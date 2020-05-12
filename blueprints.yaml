@@ -1,0 +1,22 @@
+name: Chassis
+version: 0.1.0
+description: -
+icon: rebel
+author:
+  name: Sebastian Laube
+  email: hello@sebastianlaube.de
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in Menu
+        highlight: 1
+        default: 1
+        options:
+          1: PLUGIN_ADMIN.ENABLED
+          0: PLUGIN_ADMIN.DISABLED
+        validate:
+          type: bool

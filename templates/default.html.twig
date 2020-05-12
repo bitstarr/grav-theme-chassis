@@ -1,0 +1,14 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <div class="wrapper page__main">
+        <h1 class="page__title">{{ page.title }}</h1>
+        <div class="textflow">
+            {% if page.rawMarkdown matches '/' ~ config.site.summary.delimiter ~ '/' %}
+                {{ page.content|slice(page.summary|length) }}
+            {% else %}
+                {{ page.content|raw }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

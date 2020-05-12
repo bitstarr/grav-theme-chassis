@@ -1,0 +1,32 @@
+<div class="hero">
+    {% if page.header.hero_image matches '~^\/|^https?:\/\/~' %}
+        <img class="hero__img" src="{{ page.header.hero_image }}" alt="" />
+    {% else %}
+        {# {% set hero_image = page.media[page.header.hero_image] %} #}
+        {# style="background-image: url({{ hero_image.url }});" #}
+        {% set hero_image = media_directory('page://_heros')[page.header.hero_image] %}
+        {# <img class="hero__img" src="{{ hero_image.url }}" alt="" /> #}
+
+        <img class="hero__img" srcset="{{ hero_image.cropZoom(800,600).quality(70).url }} 500w, {{ hero_image.cropZoom(1200,900).quality(70).url }} 1000w,
+            {{ hero_image.url }} 3000w" src="{{ hero_image.cropZoom(800,600).quality(70).url }}" sizes="100vw" alt="">
+    {% endif %}
+
+    {% if page.header.headline %}
+        <div class="wrapper">
+            <h1 class="hero__title">
+                {{ page.header.headline }}
+            </h1>
+        </div>
+    {% endif %}
+
+    {% if page.header.hero_actions %}
+        <div class="hero__cta">
+            {% for button in page.header.hero_actions %}
+                <a class="hero__action button{% if button.classes %} {{button.classes}}{% endif %}" href="{{ button.url }}">
+                <span>{{ button.label }}</span>
+                {{ svg( 'arrow', 'icon' ) }}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

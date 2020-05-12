@@ -1,0 +1,118 @@
+{% set body_classes = [
+    page.header.body_classes,
+    body_classes|default( '' )
+]|join( ' ' )|trim %}
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+{% endblock head %}
+
+{% block stylesheets %}
+    {# {% if config.system.dev_mode %}
+        {% do assets.addCss('theme://dist/css/main.css', 100) %}
+    {% else %}
+        {% do assets.addCss('theme://assets/css/main.css', 100) %}
+    {% endif %} #}
+    {% do assets.addCss('theme://dist/css/main.css', 100) %}
+    {% if page.header.page_css %}
+        {% do assets.addCss('theme://dist/css/' ~ page.header.page_css ~ '.css', 99) %}
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {% if config.system.dev_mode %}
+        {% do assets.addJs('theme://node_modules/ruleemall/emeter.js', {group:'bottom'}) %}
+    {% endif %}
+    {# {% do assets.addJs('theme://dist/js/etag.js', {loading: 'inline', group:'bottom'}) %} #}
+{% endblock %}
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+</head>
+<body id="top" class="{{ body_classes }}">
+
+{% block header %}
+    <header class="header">
+        <div class="wrapper">
+            <a class="logo" href="{{ home_url }}">
+                {{ svg('swe-logo', 'logo__img', { 'title': 'Stadtwerke Erfurt' }) }}
+            </a>
+            <div class="header__main">
+                {% block header_navigation %}
+                    {% include 'partials/navigation.html.twig' %}
+                {% endblock %}
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block hero %}
+    {% if page.header.hero_image %}
+        {% include 'partials/hero.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% if config.plugins.breadcrumbs.enabled and page.header.hide_breadcrumbs == false %}
+        {% include 'partials/breadcrumbs.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer">
+        <div class="wrapper">
+            {% if site.footer.menu %}
+                <nav class="footer__nav">
+                    <ul class="menu">
+                    {% for item in site.footer.menu %}
+                        <li class="menu__item">
+                            <a href="{{ item.url }}" class="menu__link">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </nav>
+            {% endif %}
+
+            {% if site.footer.social %}
+                <ul class="footer__social">
+                {% for item in site.footer.social %}
+                    <li class="footer__social__item">
+                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title }) }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </footer>
+{% endblock %}
+
+{% block bottom %}
+    {{ assets.js('bottom')|raw }}
+{% endblock %}
+
+{#}
+{% if theme_var('production-mode') == true %}
+    {% include 'partials/dev.html.twig' %}
+{% endif %}
+{#}
+</body>
+</html>

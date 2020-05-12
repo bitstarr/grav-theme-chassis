@@ -1,0 +1,13 @@
+.page__title {
+    margin-bottom: 1.5rem;
+    font-size: 2em;
+    color: var( --green );
+}
+
+.page__main {
+    margin-bottom: calc( var( --gap ) * 2 );
+}
+
+.page__section {
+    margin-bottom: var( --gap );
+}

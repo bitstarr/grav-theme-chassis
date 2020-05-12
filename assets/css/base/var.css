@@ -1,0 +1,38 @@
+/* stylelint-disable */
+html{
+    --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --wrapper: 60rem;
+    --gap: 1.25rem;
+    --gap-half: .625rem;
+    --gap-x2: 2.5rem;
+
+    --green-60: #006e50;
+    --green:    #008566;
+    --green-40: #4ca994;
+    --green-30: #8cc8ba;
+    --green-20: #cce7e0;
+    --green-10: #e5f3ef;
+
+    --red: #d0103a;
+
+    --yellow-60: #e09d00;
+    --yellow:   #ffb820;
+
+    --grey: #707070;
+    --grey-80: #b3b3b3;
+    --grey-60: #d8d8d8;
+    --grey-40: #f0f0f0;
+    --grey-20: #f7f7f7;
+
+
+    --brand-color: var( --green );
+    --text-default: #444;
+    --text-muted: var( --grey );
+    --link-color: var( --green );
+
+    --scroll-bg: rgba( 255, 255, 255, .2 );
+    --scroll-fg: var( --grey-80 );
+    --border-color: var( --grey-60 );
+}
+/* stylelint-endable */

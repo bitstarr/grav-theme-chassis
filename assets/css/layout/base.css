@@ -1,0 +1,51 @@
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+@media( min-width: 55em ) {
+    body {
+        font-size: 1.2em;
+    }
+}
+.noscroll {
+    overflow: hidden;
+}
+
+.main {
+    flex: 1 0 auto;
+    width: 100%;
+    padding-top: var( --header-height );
+
+    &:after {
+        content: '\00a0'; /* &nbsp; */
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+}
+.header,
+.footer { flex: none; }
+
+.wrapper {
+    margin: 0 auto;
+    padding: 0 var( --gap );
+    max-width: var( --wrapper );
+}
+.wrapper--tight {
+    margin: 0 auto;
+    max-width: var( --wrapper );
+
+    @media (min-width: 50rem) {
+        padding: 0 var( --gap );
+    }
+}
+
+.errorcode {
+    margin-top: var( --gap );
+    font-size: .6em;
+    color: var( --text-quiet );
+}

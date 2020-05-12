@@ -1,0 +1,12 @@
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <title>alert</title>
+  <g id="Interface-Essential_Alerts_alert-circle" data-name="Interface-Essential / Alerts / alert-circle">
+    <g id="Group_181" data-name="Group 181">
+      <g id="alert-circle">
+        <path d="M12,18a1.125,1.125,0,1,1,1.125-1.125A1.127,1.127,0,0,1,12,18Zm0-1.5a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,16.5Z"/>
+        <path d="M12,14.25a.75.75,0,0,1-.75-.75V5.25a.75.75,0,0,1,1.5,0V13.5A.75.75,0,0,1,12,14.25Z"/>
+        <path d="M12,24A12,12,0,1,1,24,12,12.014,12.014,0,0,1,12,24ZM12,1.5A10.5,10.5,0,1,0,22.5,12,10.512,10.512,0,0,0,12,1.5Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

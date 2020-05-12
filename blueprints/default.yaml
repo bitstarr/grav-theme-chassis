@@ -1,0 +1,97 @@
+title: Page Content
+@extends:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+
+          #
+          # Add your custom fields here.
+          # These fields will be available in the page's Content tab
+          # inside the Admin Panel.
+          #
+          fields:
+
+            header.menu:
+              type: text
+              label: Titel in der Navi
+
+            header.menu_classes:
+              type: text
+              label: CSS Klassen für die Navi
+
+            header.menu_icon:
+              type: text
+              label: Icon für den Navi-Eintrtag
+
+            header.hide_breadcrumbs:
+              type: toggle
+              label: Breadcrumb
+              default: 0
+              highlight: 0
+              options:
+                  1: 'verbergen'
+                  0: 'anzeigen'
+              validate:
+                  type: bool
+
+        hero:
+          type: tab
+          title: Titelbild
+          ordering@: -2
+          fields:
+            #
+            # Cover image
+            #
+            # header.coverImage:
+            #   type: file
+            #   label: Titelbild
+            #   destination: 'self@'
+            #   filesize: 0.5
+            #   multiple: false
+            #   accept:
+            #     - image/*
+
+            header.hero_media:
+              type: file
+              label: PLUGIN_ADMIN.PAGE_MEDIA
+              destination: 'page@:/_heros'
+              multiple: true
+              filesize: .8
+              accept:
+                - image/*
+
+            header.hero_image:
+              type: filepicker
+              label: Titelbild
+              preview_images: true
+              folder: 'page@:/_heros'
+
+            header.headline:
+              type: text
+              label: Überschrift auf dem Titelbild
+              toggleable: true
+
+            header.hero_actions:
+              name: buttons
+              type: list
+              label: Buttons
+              max: 3
+              fields:
+                .label:
+                  type: text
+                  label: Text
+                .url:
+                  type: text
+                  label: URL
+                .classes:
+                  type: text
+                  label: CSS Klassen

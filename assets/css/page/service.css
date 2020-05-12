@@ -1,0 +1,10 @@
+.media__list {
+    margin-bottom: var( --gap );
+}
+
+.media__grid {
+    margin-top: var( --gap );
+    padding-top: var( --gap );
+    padding-bottom: var( --gap );
+    border-top: 1px solid var( --border-color );
+}

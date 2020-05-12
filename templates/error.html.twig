@@ -1,0 +1,12 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <div class="wrapper page__main">
+        <div class="textflow">
+        {{ page.content }}
+        </div>
+        <div class="errorcode">
+        {{ 'PLUGIN_ERROR.ERROR'|t }} {{ page.header.http_response_code }}
+        </div>
+    </div>
+{% endblock %}

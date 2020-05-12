@@ -1,0 +1,40 @@
+title: Bullets
+@extends:
+  type: modular/default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+
+          fields:
+            content:
+              unset@: true
+
+            header.hero_image:
+              unset@: true
+
+            header.bullets:
+              name: items
+              type: list
+              label: Slider Einträge
+              max: 5
+              fields:
+                .label:
+                  type: text
+                  label: Text
+                .url:
+                  type: text
+                  label: URL
+                .icon:
+                  type: text
+                  label: Icon
+                .classes:
+                  type: text
+                  label: CSS Klassen

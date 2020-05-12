@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 8
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "project": true,
+        "Choices": true,
+        "google": true,
+        "supportsWoff2": true
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": [
+            1,
+            { "vars": "all", "args": "after-used" }
+        ]
+    }
+}

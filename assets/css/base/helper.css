@@ -1,0 +1,49 @@
+.vh,
+.screen-reader-text {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+
+    &.focusable:active,
+    &.focusable:focus {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        z-index: 1000;
+        clip: initial;
+        width: auto;
+        height: auto;
+        padding: 1ex;
+        text-decoration: none;
+        text-transform: none;
+        background-color: #111;
+        color: #eee;
+    }
+}
+
+.u-hidden { display: none; }
+
+.u-quiet {
+    color: @text-quiet;
+
+    a,
+    a:visited {
+        color: @text-quiet;
+
+        &:focus,
+        &:hover,
+        &:active {
+            color: @text-default;
+        }
+    }
+}
+
+.u-hyphen {
+    overflow-wrap: break-word;
+    wordp-wrap: break-word;
+    hyphens: auto;
+}

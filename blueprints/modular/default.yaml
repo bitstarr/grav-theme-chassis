@@ -1,0 +1,33 @@
+title: Titelbild
+@extends:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+
+          #
+          # Add your custom fields here.
+          # These fields will be available in the page's Content tab
+          # inside the Admin Panel.
+          #
+          fields:
+
+            header.menu:
+              unset@: true
+
+            header.menu_classes:
+              unset@: true
+
+            header.menu_icon:
+              unset@: true
+
+            header.hide_breadcrumbs:
+              unset@: true

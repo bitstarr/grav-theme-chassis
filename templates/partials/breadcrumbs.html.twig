@@ -1,0 +1,38 @@
+{% set crumbs = breadcrumbs.get() %}
+{% set breadcrumbs_config = config.plugins.breadcrumbs %}
+{% set divider = breadcrumbs_config.icon_divider_classes %}
+
+{% if crumbs|length > 1 or breadcrumbs_config.show_all %}
+<nav class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+<ol class="wrapper">
+    {% for crumb in crumbs %}
+    <li class="item" itemscope itemtype="http://schema.org/ListItem">
+        {% if not loop.last %}
+            {% if crumb.route == '/' %}
+                <a href="{{ crumb.url }}" itemprop="url" class="link is-home">
+                    {% if crumb.route == '/' %}
+                        {{ svg('home', 'icon' ) }}
+                    {% endif %}
+                    <span class="title vh" itemprop="name">{{ crumb.title }}</span>
+                </a>
+            {% elseif crumb.routable %}
+                <a href="{{ crumb.url }}" itemprop="url" class="link">
+                    <span class="title" itemprop="name">{{ crumb.title }}</span>
+                </a>
+            {% else  %}
+                <span class="title" itemprop="name">{{ crumb.title }}</span>
+            {% endif %}
+        {% else %}
+            {% if breadcrumbs_config.link_trailing %}
+                <a href="{{ crumb.url }}" itemprop="url" class="link">
+                    <span class="title" itemprop="name">{{ crumb.title }}</span>
+                </a>
+            {% else %}
+                <span class="title" itemprop="name">{{ crumb.title }}</span>
+            {% endif %}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ol>
+</nav>
+{% endif %}

@@ -1,0 +1,33 @@
+{%- import 'macros/navigation.twig' as nav -%}
+
+<nav class="navigation">
+    <input class="navigation__state vh" type="checkbox" role="button" aria-haspopup="true" id="navigation__state">
+    <label class="navigation__trigger" for="navigation__state">
+        <span class="vh collapsed-hint">Menü verborgen</span>
+        <span class="collapsed-hint" aria-hidden="true">{{ svg( 'menu', 'icon' ) }}</span>
+        <span class="vh expanded-hint">Menü geöffnet</span>
+        <span class="expanded-hint" aria-hidden="true">{{ svg( 'menu-close', 'icon' ) }}</span>
+    </label>
+    <div class="navigation__layer" role="menu">
+        <div class="menu__wrapper">
+            <ul class="menu menu--main">
+                {{ nav.loop(pages) }}
+            </ul>
+
+            {% if site.minor_menu %}
+                <ul class="menu menu--minor">
+                    {% for mitem in site.minor_menu %}
+                        <li>
+                            <a href="{{ mitem.url }}">
+                                {% if mitem.icon %}<i class="fa fa-{{ mitem.icon }}"></i>{% endif %}
+                                {{ mitem.text }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <label class="navigation__layer__abyss" for="navigation__state" aria-hidden="true">
+    </label>
+</nav>

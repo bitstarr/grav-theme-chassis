@@ -1,0 +1,9 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+	{{ page.content }}
+	{% for module in page.collection() %}
+		{# <a id="{{ module.menu|hyphenize }}"></a> #}
+		{{ module.content|raw }}
+	{% endfor %}
+{% endblock %}

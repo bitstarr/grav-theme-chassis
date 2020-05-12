@@ -1,0 +1,42 @@
+.footer {
+    --comp-bg: var( --green );
+    --comp-txt: #fff;
+
+    padding-bottom: 2em;
+    color: var( --comp-txt );
+    background-color: var( --comp-bg );
+
+    &__nav {
+        margin-top: 1.5em;
+
+        a {
+            color: var( --comp-txt );
+        }
+        .menu {
+            display: flex;
+            font-size: .9em;
+        }
+
+        .menu__item + .menu__item {
+            margin-left: 1ex;
+            padding-left: 1ex;
+            border-left: 1px solid;
+        }
+
+        .menu__link {
+            display: block;
+            line-height: 1.1;
+        }
+    }
+
+    &__social {
+        display: flex;
+        margin-left: calc( var( --gap-half ) * -1 );
+        font-size: 1.5em;
+
+
+        &__link {
+            padding: var( --gap-half );
+        }
+    }
+}
