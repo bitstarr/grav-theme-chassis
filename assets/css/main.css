@@ -4,8 +4,9 @@
 @import 'base/base.css';
 @import 'base/icons.css';
 @import 'base/helper.css';
-@import 'base/form.css';
-@import 'base/textflow.css';
+
+@import 'component/form.css';
+@import 'component/textflow.css';
 
 @import 'layout/base.css';
 @import 'layout/header.css';

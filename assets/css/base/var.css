@@ -26,6 +26,12 @@ html{
     --grey-20: #f7f7f7;
 
 
+    --beige: #f5dd90;
+    --blue: #6676a6;
+    --cornflower: #324376;
+    --lava: #f68e5f;
+    --lobster: #f76c5e;
+
     --brand-color: var( --green );
     --text-default: #444;
     --text-muted: var( --grey );
