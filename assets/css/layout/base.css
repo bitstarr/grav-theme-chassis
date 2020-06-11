@@ -1,4 +1,5 @@
 html {
+    /* do we need a sticky fix? https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/*/
     height: 100%;
 }
 body {

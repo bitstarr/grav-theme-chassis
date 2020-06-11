@@ -81,6 +81,20 @@ All image files in `/assets/img` will be optimized on build (or calling it manua
 
 If you are using a CI Server you can add the `/dist` folder to `.gitignore`. Otherwise you should make a build before every merge with you master branch, so the master branch includes the minified and most optimized assets in `/dist`.
 
+## Configuration
+
+In `package.json` you will find an onject called `config`. Here are paths stored that are used by gulp.
+
+## Browsersync / LiveReload
+
+To use this feature make sure you set up the correct URL of your project in `config.bsProxy` in `package.json`.
+
+When the `watch` task is running, you can access [http://localhost:3000](http://localhost:3000). Depending on you network or firewall configuration you could also access this port with other devices to do even more cross device/browser testing. `Browsersync` will keep scrolling position (procetual) in sync
+
+The `watch` task will force refreshes on CSS and JS files via Browsersync so you can see instantly the impact of your changes.
+
+On port 3001 you can access the Browsersync control panel.
+
 ## Task Runner
 
 Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline workflows.
@@ -103,10 +117,3 @@ Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline work
 | npm run clean | clear `/dist` |
 | npm run dev | runs `css`, `js`, `img:sloppy` and `icons` in parallel once |
 | npm run build | runs `lint`, `clean`, `cssmin`, `js`, `jsmin`, `imgmin` and `fonts` |
-
-## Configuration
-
-In `package.json` you will find an onject called `config`. Here are paths stored that are used by gulp.
-
-### Browsersync
-WIP

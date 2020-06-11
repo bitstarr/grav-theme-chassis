@@ -53,7 +53,7 @@
         "fontsDist": "dist/fonts/",
         "assets": "assets/",
         "dist": "dist/",
-        "bsProxy": "swe.ddev.site"
+        "bsProxy": "HOSTNAME.ddev.site"
     },
     "scripts": {
         "js": "npx gulp js",
