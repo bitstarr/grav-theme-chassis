@@ -1,5 +1,6 @@
 /* stylelint-disable */
 html{
+    /* define design tokens */
     --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
     --wrapper: 60rem;

@@ -221,7 +221,7 @@ function browserSyncReload( done ) {
 // Watch files
 function watchFiles() {
     watch( master.config.css + '**/*', cssDev );
-    watch( master.config.js + '*.js', series( bundle2js, sloppyScripts, browserSyncReload ) );
+    watch( master.config.js + '**/*', series( bundle2js, sloppyScripts, browserSyncReload ) );
     watch( config.img.src + config.img.pattern, series( sloppyImages, browserSyncReload ) );
     watch( config.icons.src + config.icons.pattern, series( optimizeIcons, browserSyncReload ) );
 }

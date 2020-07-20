@@ -28,16 +28,16 @@
 .u-hidden { display: none; }
 
 .u-quiet {
-    color: @text-quiet;
+    color: var( --text-muted );
 
     a,
     a:visited {
-        color: @text-quiet;
+        color: var( --text-muted );
 
         &:focus,
         &:hover,
         &:active {
-            color: @text-default;
+            color: var( --ext-default );
         }
     }
 }
