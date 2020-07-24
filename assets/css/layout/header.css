@@ -10,8 +10,8 @@
 
     .wrapper {
         display: flex;
-        justify-content: center;
-        align-items: space-between;
+        justify-content: space-between;
+        align-items: center;
         padding: 0 var( --space );
         height: 100%;
     }

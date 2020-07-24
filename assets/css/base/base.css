@@ -16,7 +16,7 @@
 */
 body {
     /* new cross OS sans font stack */
-    font: 1em/1.2 var( --font-stack );
+    font: 1em/calc(1ex / .32) var( --font-stack );
     color: var( --text-default );
     background: var( --body-bg );
 }
