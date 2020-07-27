@@ -1,0 +1,15 @@
+.header {
+    --comp-bg: var( --header-bg );
+    --comp-txt: var( --header-text );
+
+    color: var( --comp-txt );
+    background-color: var( --comp-bg );
+
+    .wrapped {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var( --gap ) 0;
+        height: 100%;
+    }
+}

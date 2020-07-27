@@ -1,5 +1,5 @@
 .breadcrumb {
-    --comp-txt: var( --grey );
+    --comp-txt: var( --breadcrumb-text );
 
     padding: 1em 0;
     font-size: .75em;

@@ -1,19 +1,32 @@
+/* Settings, basic elements, fixes/homogenisation */
 @import 'base/fonts.css';
 @import 'base/var.css';
 @import 'base/reset.css';
-@import 'base/base.css';
-@import 'base/icons.css';
+@import 'base/typography.css';
+@import 'base/form.css';
+@import 'base/media.css';
 @import 'base/helper.css';
 
-@import 'component/form.css';
-@import 'component/textflow.css';
+/* simple self containing units */
+@import 'molecule/icons.css';
+@import 'molecule/logo.css';
+@import 'molecule/headline.css';
 
-@import 'layout/base.css';
-@import 'layout/header.css';
-@import 'layout/navigation.css';
-@import 'layout/breadcrumbs.css';
-@import 'layout/footer.css';
+/* more copmplex modules */
+/* global */
+@import 'organism/header.css';
+@import 'organism/navigation.css';
+@import 'organism/footer.css';
+@import 'organism/breadcrumbs.css';
+@import 'organism/footer.css';
+@import 'organism/form.css';
+@import 'organism/textflow.css';
+/* specific */
+@import 'organism/hero.css';
 
-@import 'module/page.css';
-@import 'module/hero.css';
-@import 'module/bullets.css';
+/* layouts define the relations between modules on a specific page type */
+@import 'template/global.css';
+@import 'template/page.css';
+@import 'template/error.css';
+
+/* vendor (third-party) sprecific */

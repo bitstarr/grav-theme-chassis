@@ -1,17 +1,6 @@
 .textflow {
     & > * + * {
-        margin-top: 1.5rem;
-    }
-    h2 + * {
-        margin-top: 1em;
-    }
-
-    p,
-    ul,
-    ol,
-    dl,
-    table {
-        line-height: 1.4;
+        margin-top: var( --body-lh );
     }
 
     ul,
@@ -29,10 +18,17 @@
         font-weight: 700;
     }
     h2 {
-        font-size: 1.8em;
+        font-size: 1.75em;
+        line-height: calc( 1ex / .38 );
+        margin-top: calc( 1ex / .38 );
+    }
+    h3,
+    h4 {
+        line-height: calc( 1ex / .37 );
+        margin-top: calc( 1ex / .37 );
     }
     h3 {
-        font-size: 1.4em;
+        font-size: 1.5em;
     }
     h4 {
         font-size: 1.2em;
@@ -41,7 +37,7 @@
     h2 + *,
     h3 + *,
     h4 + * {
-        margin-top: 1ch;
+        margin-top: 1ex;
     }
 
     table {
@@ -53,13 +49,13 @@
     }
     th {
         font-weight: 700;
-        border-bottom: 2px solid var( --border-color );
+        border-bottom: 2px solid var( --color-border );
     }
     th:empty {
         display: none;
     }
     tr + tr td {
-        border-top: 1px solid var( --border-color );
+        border-top: 1px solid var( --color-border );
     }
 
     svg,
@@ -76,12 +72,12 @@
     }
 
     a {
-        --link-color: var( --blue );
+        --link-color: var( --color-primary );
         text-decoration: underline;
 
         &:focus,
         &:hover {
-            --link-color: var( --lobster );
+            --link-color: var( --color-secondary );
         }
     }
 

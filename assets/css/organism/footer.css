@@ -1,5 +1,5 @@
 .footer {
-    --comp-bg: var( --green );
+    --comp-bg: var( --color-primary );
     --comp-txt: #fff;
 
     padding-bottom: 2em;
@@ -31,12 +31,12 @@
 
     &__social {
         display: flex;
-        margin-left: calc( var( --gap-half ) * -1 );
+        margin-left: calc( var( --gap-moon ) * -1 );
         font-size: 1.5em;
 
 
         &__link {
-            padding: var( --gap-half );
+            padding: var( --gap-moon );
         }
     }
 }

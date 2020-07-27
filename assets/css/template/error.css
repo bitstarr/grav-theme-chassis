@@ -1,0 +1,7 @@
+.t-error {
+    .errorcode {
+        margin-top: var( --gap );
+        font-size: .6em;
+        color: var( --text-quiet );
+    }
+}

@@ -1,6 +1,6 @@
-::-webkit-input-placeholder { color: #777; }
-::-moz-placeholder { color: #777; }
-:-ms-input-placeholder { color: #777; }
+::-webkit-input-placeholder { color: var( --color-placeholder ); }
+::-moz-placeholder { color: var( --color-placeholder ); }
+:-ms-input-placeholder { color: var( --color-placeholder ); }
 
 .form {
     --txt-space: .7em;
@@ -31,10 +31,11 @@
 .text-input {
     --error-brd: #a00;
     --error-bg: #fcc;
+    --suffix-bg: #f7f7f7;
     width: 100%;
     padding: var( --txt-space );
     background: #fff;
-    border: 1px solid var( --border-color );
+    border: 1px solid var( --color-border );
     border-radius: 5px;
     transition: border .2s;
     box-shadow: none;
@@ -42,11 +43,11 @@
     -webkit-appearance: none;
 
     ::placeholder {
-        color: var( --grey-60 );
+        color: var( --color-placeholder );
     }
 
     &:focus {
-        --border-color: var( --grey );
+        --color-border: var( --grey );
     }
     input&:not(:placeholder-shown):invalid,
     select&:not([value='']):invalid {
@@ -59,10 +60,10 @@
     &__suffix {
         display: inline-block;
         padding: var( --txt-space );
-        border: 1px solid var( --border-color );
+        border: 1px solid var( --color-border );
         border-left: 0;
         border-radius: 0 5px 5px 0;
-        background-color: var( --grey-20 );
+        background-color: var( --suffix-bg );
     }
 
     .has-suffix & {
@@ -110,7 +111,7 @@
     border: 0;
 
     & + label {
-        --color: var( --brand-color );
+        --color: var( --color-primary );
         position: relative;
         padding: .2em 1em .2em 1.6em;
         line-height: 1;
@@ -121,7 +122,7 @@
         position: absolute;
         left: 0;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY( -50% );
         display: block;
         width: 1.1em;
         height: 1.1em;
@@ -134,22 +135,22 @@
         position: absolute;
         top: 50%;
         left: .55em;
-        transform: rotate(45deg) translate(-50%, -50%);
+        transform: rotate( 45deg ) translate( -50%, -50% );
         transform-origin: 50% 0;
         width: .35em;
         height: .65em;
-        border-right: 2px solid var(--color);
-        border-bottom: 2px solid var(--color);
+        border-right: 2px solid var( --color );
+        border-bottom: 2px solid var( --color );
         opacity: 0;
     }
 
     &:hover + label::before,
     &:focus + label::before {
-        border-color: var(--color);
+        border-color: var( --color );
     }
 
     &:checked + label::before {
-        border-color: var(--color);
+        border-color: var( --color );
     }
     &:checked + label::after {
         opacity: 1;
@@ -169,10 +170,12 @@
 }
 
 .button {
-    --comp-bg: var( --lobster );
-    --comp-txt: #fff;
-    --hover-bg: var( --lava );
+    --comp-bg: var( --color-primary );
+    --comp-txt: var( --color-primary-inside );
+    --hover-bg: var( --color-primary-darker );
     --hover-txt: var( --comp-txt );
+    --disable-bg: #bbb;
+    --disable-txt: #444;
 
     position: relative;
     z-index: 1;
@@ -202,17 +205,7 @@
     }
 
     &[disabled] {
-        color: #fff;
-        background: var( --grey-60 );
+        color: var( --disable-txt );
+        background: var( --disable-bg );
     }
-}
-.button--yellow {
-    --comp-bg: var( --yellow );
-    --comp-txt: var( --dark );
-    --hover-bg: var( --yellow-40 );
-}
-.button--green {
-    --comp-bg: var( --green );
-    --comp-txt: #fff;
-    --hover-bg: var( --green-40 );
 }

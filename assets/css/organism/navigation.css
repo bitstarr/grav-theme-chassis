@@ -125,9 +125,6 @@
         --link-color: var( --grey );
         font-size: var( --micro-fs );
     }
-    .navigation .icon {
-        margin-right: 1ch;
-    }
 
     .navigation .menu__item.has-childre {
         position: relative;

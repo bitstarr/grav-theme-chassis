@@ -1,6 +1,7 @@
 {% set body_classes = [
-    page.header.body_classes,
-    body_classes|default( '' )
+    body_classes|default( '' ),
+    tpl_body_classes|default(''),
+    header.body_classes,
 ]|join( ' ' )|trim %}
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
 <!DOCTYPE html>
@@ -40,10 +41,11 @@
 <body id="top" class="{{ body_classes }}">
 
 {% block header %}
-    <header class="header">
-        <div class="wrapper">
+    <header class="header wrapping">
+        <div class="wrapped">
             <a class="logo" href="{{ home_url }}">
-                {{ svg('swe-logo', 'logo__img', { 'title': 'Firmenname' }) }}
+                {{ svg('logo', 'logo__img icon', { 'title': 'Firmenname' }) }}
+                Chassis
             </a>
             <div class="header__main">
                 {% block header_navigation %}
@@ -73,8 +75,8 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="footer">
-        <div class="wrapper">
+    <footer class="footer wrapping">
+        <div class="wrapped">
             {% if site.footer.menu %}
                 <nav class="footer__nav">
                     <ul class="menu">
