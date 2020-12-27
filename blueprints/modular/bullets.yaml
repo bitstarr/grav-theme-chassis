@@ -1,5 +1,5 @@
 title: Bullets
-@extends:
+extends@:
   type: modular/default
   context: blueprints://pages
 

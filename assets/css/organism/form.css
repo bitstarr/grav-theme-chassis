@@ -1,10 +1,11 @@
-::-webkit-input-placeholder { color: var( --color-placeholder ); }
-::-moz-placeholder { color: var( --color-placeholder ); }
-:-ms-input-placeholder { color: var( --color-placeholder ); }
+::-webkit-input-placeholder { color: var( --input-placeholder ); }
+::-moz-placeholder { color: var( --input-placeholder ); }
+:-ms-input-placeholder { color: var( --input-placeholder ); }
 
 .form {
     --txt-space: .7em;
     --txt-height: 1.2em;
+
     textarea,
     label {
         display: block;
@@ -25,6 +26,19 @@
         max-width: 15em;
         font-size: 1.2em;
     }
+
+    .field-personality {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > label {
+            width: 100%;
+            margin-bottom: .5em;
+            font-size: .9em;
+            line-height: var( --txt-height );
+            color: var( --input-placeholder );
+        }
+    }
 }
 
 
@@ -32,22 +46,25 @@
     --error-brd: #a00;
     --error-bg: #fcc;
     --suffix-bg: #f7f7f7;
+
     width: 100%;
     padding: var( --txt-space );
+    line-height: var( --txt-height );
     background: #fff;
-    border: 1px solid var( --color-border );
+    border: 1px solid var( --input-brd );
     border-radius: 5px;
     transition: border .2s;
     box-shadow: none;
+    resize: vertical;
 
     -webkit-appearance: none;
 
     ::placeholder {
-        color: var( --color-placeholder );
+        color: var( --input-placeholder );
     }
 
     &:focus {
-        --color-border: var( --grey );
+        --input-brd: var( --input-active-brd);
     }
     input&:not(:placeholder-shown):invalid,
     select&:not([value='']):invalid {
@@ -60,7 +77,7 @@
     &__suffix {
         display: inline-block;
         padding: var( --txt-space );
-        border: 1px solid var( --color-border );
+        border: 1px solid var( --input-brd );
         border-left: 0;
         border-radius: 0 5px 5px 0;
         background-color: var( --suffix-bg );
@@ -88,13 +105,14 @@
 
     label {
         position: absolute;
-        top: 0;
-        left: calc( var( --txt-space ) - .4em );
-        transform: translateY( -50% );
-        padding: 0 .5em;
+        top: calc( var( --txt-space ) * .5 );
+        left: var( --txt-space );
         font-size: .9em;
-        /* background-color: #fff; */
-        background-image: linear-gradient( to top, transparent 38%, #fff 38% );
+        line-height: var( --txt-height );
+        color: var( --input-placeholder );
+    }
+    label + * {
+        padding-top: calc( var( --txt-space ) + var( --txt-height ) );
     }
 }
 
@@ -201,6 +219,7 @@
 
     &:hover,
     &:focus {
+        color: var( --hover-txt );
         background-color: var( --hover-bg );
     }
 

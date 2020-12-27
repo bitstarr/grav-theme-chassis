@@ -1,8 +1,4 @@
 .navigation {
-    --overlay-bg: var( --grey-20 );
-    --overlay-text: var( --green );
-    --overlay-div: var( --color-04 );
-
     --menu-fs: 1.2em;
     --submenu-fs: 1em;
     --micro-fs: .8em;
@@ -60,7 +56,7 @@
         z-index: 100;
         overflow-y: auto;
         padding: 1.5em 1.5em 0;
-        color: var( --overlay-text );
+        color: var( --overlay-txt );
         background-color: var( --overlay-bg );
     }
     .navigation__layer__abyss {
@@ -72,6 +68,15 @@
         left: 0;
         z-index: 99;
         background-color: rgba( 0, 0, 0, .4 );
+    }
+    .navigation__close {
+        position: absolute;
+        top: var( --gap );
+        left: 85%;
+        padding: 1ch;
+        line-height: 1;
+        background-color: var( --overlay-bg );
+        border-radius: 0 50% 50% 0;
     }
 
     .navigation__state:checked ~ .navigation__layer,
@@ -126,7 +131,7 @@
         font-size: var( --micro-fs );
     }
 
-    .navigation .menu__item.has-childre {
+    .navigation .menu__item.has-children {
         position: relative;
     }
 

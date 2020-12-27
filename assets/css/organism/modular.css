@@ -1,0 +1,9 @@
+.modular {
+    padding: 2rem 0;
+
+    &__title {
+        margin-bottom: 1rem;
+        font-size: 2em;
+        font-weight: 700;
+    }
+}

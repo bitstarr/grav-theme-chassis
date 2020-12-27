@@ -24,3 +24,8 @@
         font-style: normal;
     font-display: swap;
 }
+
+/* because cssnano will drop the whole file though */
+.font-loaded {
+    font-family: 'Roboto Chassis';
+}

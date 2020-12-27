@@ -1,0 +1,8 @@
+{
+    "lib": [],
+    "src": [
+        "base.js",
+        "details.js",
+        "tabs.js"
+    ]
+}
