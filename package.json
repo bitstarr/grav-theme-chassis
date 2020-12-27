@@ -37,6 +37,15 @@
         "del": "*",
         "ruleemall": "https://github.com/bitstarr/ruleemall/"
     },
+    "optionalDependencies": {
+        "geomicons-open": "latest",
+        "bytesize-icons": "latest",
+        "superTinySocialIcons": "git://github.com/edent/SuperTinySocialIcons",
+        "web.svg.min": "git://github.com/larsenwork/web.svg.min",
+        "a11y.css": "latest",
+        "lint-html-with-css": "git://github.com/lendk/Lint-HTML-with-SCSS-CSS",
+        "color-blindness-emulation": "git://github.com/hail2u/color-blindness-emulation"
+    },
     "config": {
         "css": "assets/css/",
         "cssDist": "dist/css/",
@@ -55,6 +64,14 @@
         "dist": "dist/",
         "bsProxy": "HOSTNAME.ddev.site"
     },
+    "browserslist": [
+        "defaults",
+        "not ie 11",
+        "not ie_mob 11",
+        "not baidu >= 7.12",
+        "not and_qq >= 1.2",
+        "not op_mini all"
+    ],
     "scripts": {
         "js": "npx gulp js",
         "jsmin": "npx gulp jsmin",

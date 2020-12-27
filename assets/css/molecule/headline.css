@@ -1,5 +1,5 @@
 .headline {
-    margin-bottom: 1.5rem;
     font-size: 2em;
-    color: var( --color-pimary-darker );
+    line-height: calc( 1ex / .38 );
+    color: var( --color-primary-darker );
 }

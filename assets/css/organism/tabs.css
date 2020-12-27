@@ -1,0 +1,45 @@
+.tabs {
+    &__head {
+        display: none;
+    }
+
+    &__content {
+        margin-bottom: var( --gap-mars );
+    }
+
+    &__title {
+        margin-bottom: var( --gap-moon );
+        font-size: 1.2em;
+    }
+
+    &.is-interactive &__head {
+        display: flex;
+    }
+    &.is-interactive &__title{
+        display: none;
+    }
+
+
+    &--default {
+        --comp-brd: var( --grey-60 );
+        --comp-bg: #fff;
+    }
+    &--default &__toggle {
+        display: block;
+        text-align: center;
+        padding: var( --gap-moon );
+    }
+    &--default &__toggle[aria-selected] {
+        position: relative;
+        top: 2px;
+        border: 2px solid var( --comp-brd );
+        border-bottom: 0;
+        background: var( --comp-bg );
+    }
+    &--default.is-interactive &__content {
+        padding: var( --gap ) var( --gap-moon );
+        border: 2px solid var( --comp-brd );
+        background: var( --comp-bg );
+        border-radius: 0 0 5px 5px;
+    }
+}

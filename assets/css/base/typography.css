@@ -4,6 +4,10 @@ body {
     background: var( --body-bg );
 }
 
+/* don't ever combine both lines or user text-shadow! */
+::-moz-selection{ background: var( --color-primary ); color: var( --color-primary-inside ); text-shadow: none; }
+::selection { background: var( --color-primary ); color: var( --color-primary-inside ); text-shadow: none; }
+
 /*
     clear quotes, if they are not needed
 

@@ -6,7 +6,10 @@ html{
     --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
     --wrapper: 60rem;
-    --wrapper-offset: 4em;
+    --wrapper-offset: .5fr;
+    @media( min-width: 40rem ) {
+        --wrapper-offset: 4em;
+    }
 
     /* imagine some distances relative to earth */
     --gap: 1.25rem; /* default distance */
@@ -36,7 +39,7 @@ html{
     --color-secondary-inside: #222;
 
     --color-border: #ddd;
-    --color-placeholder: #777;
+    --color-ui: #f4f4f4;
 
     --text-default: #444;
     --text-muted: var( --grey );
@@ -52,6 +55,14 @@ html{
 
     --breadcrumb-text: var( --grey );
 
+    --input-bg: #fff;
+    --input-txt: var( --text-default );
+    --input-brd: var( --color-border );
+    --input-placeholder: #777;
+    --input-active-brd: var( --color-primary );
+
+    --overlay-bg: #fff;
+    --overlay-txt: var( --blue );
 
     /* deprecate */
     --green: #008566;

@@ -1,0 +1,32 @@
+.notice {
+    --comp-bg: var( --color-ui );
+    --comp-brd: #777;
+    --comp-txt: var( --text-default );
+
+    padding: var( --gap-moon );
+    color: var( --comp-txt );
+    background: var( --comp-bg );
+    border-left: .4em solid var( --comp-brd );
+
+    &:empty { display: none; }
+
+    a {
+        text-decoration: underline;
+        color: inherit;
+    }
+
+    &--success {
+        --comp-bg: #e5f3ef;
+        --comp-brd: #008566;
+    }
+
+    &--warning {
+        --comp-bg: #fcf8f2;
+        --comp-brd: #ffb820;
+    }
+
+    &--error {
+        --comp-bg: #fdf7f7;
+        --comp-brd: #d0103a;
+    }
+}

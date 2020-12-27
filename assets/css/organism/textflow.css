@@ -79,6 +79,10 @@
         &:hover {
             --link-color: var( --color-secondary );
         }
+        &:focus {
+            outline: 2px solid var( --color-primary );
+            outline-offset: 3px;
+        }
     }
 
     .button {

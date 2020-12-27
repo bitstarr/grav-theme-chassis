@@ -1,5 +1,4 @@
 /* Settings, basic elements, fixes/homogenisation */
-@import 'base/fonts.css';
 @import 'base/var.css';
 @import 'base/reset.css';
 @import 'base/typography.css';
@@ -21,6 +20,9 @@
 @import 'organism/footer.css';
 @import 'organism/form.css';
 @import 'organism/textflow.css';
+@import 'organism/notice.css';
+@import 'organism/details.css';
+@import 'organism/tabs.css';
 /* specific */
 @import 'organism/hero.css';
 

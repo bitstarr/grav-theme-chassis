@@ -19,7 +19,7 @@
                     {% for mitem in site.minor_menu %}
                         <li>
                             <a href="{{ mitem.url }}">
-                                {% if mitem.icon %}<i class="fa fa-{{ mitem.icon }}"></i>{% endif %}
+                                {% if mitem.icon %}{{ svg( mitem.icon, 'icon') }}{% endif %}
                                 {{ mitem.text }}
                             </a>
                         </li>
@@ -29,5 +29,8 @@
         </div>
     </div>
     <label class="navigation__layer__abyss" for="navigation__state" aria-hidden="true">
+        <span class="navigation__close">
+            {{ svg( 'menu-close', 'icon' ) }}
+        </span>
     </label>
 </nav>

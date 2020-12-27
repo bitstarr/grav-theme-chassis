@@ -1,0 +1,28 @@
+<section class="modular__section tabs tabs--default">
+    <h2>{{ page.title }}</h2>
+
+    <div class="wrapper">
+        <ul class="tabs__head">
+            {% for target in page.collection() %}
+            <li class="tabs__tab">
+                <a class="tabs__toggle" href="#tabsection{{ loop.index }}">
+                    <span class="label">{{ target.title }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="wrapper">
+
+    {% for target in page.collection() %}
+    <article class="tabs__content" id="tabsection{{ loop.index }}">
+        <h2 class="tabs__title">{{ target.title }}</h2>
+        <div class="textflow">
+            {{ target.content }}
+        </div>
+    </article>
+    {% endfor %}
+    </div>
+
+</section>
