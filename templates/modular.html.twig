@@ -1,12 +1,19 @@
-{% set tpl_body_classes = 't-modular modular' %}
+{% set tpl_body_classes = 't-modular' %}
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
     <div class="wrapping">
-        {{ page.content }}
-        {% for module in page.collection() %}
-            {# <a id="{{ module.menu|hyphenize }}"></a> #}
-            {{ module.content|raw }}
-        {% endfor %}
+    <h1 class="page__title">
+        {{ page.title }}
+    </h1>
+        {% if page.content|length %}
+            <div class="textflow">
+                {{ page.content }}
+            </div>
+        {% endif %}
     </div>
+    {% for module in page.collection() %}
+        {# <a id="{{ module.menu|hyphenize }}"></a> #}
+        {{ module.content|raw }}
+    {% endfor %}
 {% endblock %}

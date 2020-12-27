@@ -1,7 +1,7 @@
-<section class="modular__section tabs tabs--default">
-    <h2>{{ page.title }}</h2>
+<section class="modular wrapping tabs tabs--default">
+    <h2 class="modular__title">{{ page.title }}</h2>
 
-    <div class="wrapper">
+    <div class="wrapped">
         <ul class="tabs__head">
             {% for target in page.collection() %}
             <li class="tabs__tab">
@@ -13,16 +13,15 @@
         </ul>
     </div>
 
-    <div class="wrapper">
-
-    {% for target in page.collection() %}
-    <article class="tabs__content" id="tabsection{{ loop.index }}">
-        <h2 class="tabs__title">{{ target.title }}</h2>
-        <div class="textflow">
-            {{ target.content }}
-        </div>
-    </article>
-    {% endfor %}
+    <div class="wrapped">
+        {% for target in page.collection() %}
+        <article class="tabs__content" id="tabsection{{ loop.index }}">
+            <h2 class="tabs__title">{{ target.title }}</h2>
+            <div class="textflow">
+                {{ target.content }}
+            </div>
+        </article>
+        {% endfor %}
     </div>
 
 </section>

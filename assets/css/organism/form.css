@@ -26,6 +26,19 @@
         max-width: 15em;
         font-size: 1.2em;
     }
+
+    .field-personality {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > label {
+            width: 100%;
+            margin-bottom: .5em;
+            font-size: .9em;
+            line-height: var( --txt-height );
+            color: var( --input-placeholder );
+        }
+    }
 }
 
 

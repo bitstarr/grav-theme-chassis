@@ -1,4 +1,5 @@
 {% block field %}
+{% set layout_form_field_outer_classes = layout_form_field_outer_classes ~ ' ' ~ field.id %}
 <div class="{{- layout_form_field_outer_classes|trim -}} {{- form_field_outer_core|trim -}}">
     {% block contents %}
         {% if show_label %}
