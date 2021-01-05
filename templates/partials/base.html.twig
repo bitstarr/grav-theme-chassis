@@ -4,12 +4,21 @@
     header.body_classes,
 ]|join( ' ' )|trim %}
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+
+{% set doc_title = '' %}
+{% if header.title and page.slug != 'home' %}
+    {% set doc_title = header.title|e('html') ~ ' - ' %}
+{% endif %}
+{% if title_overwrite != null %}
+    {% set doc_title = title_overwrite ~ ' - ' %}
+{% endif %}
+{% set doc_title = doc_title ~ site.title|e('html') %}
 <!DOCTYPE html>
 <html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
 <head>
 {% block head %}
     <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    <title>{{ doc_title }}</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,8 +32,14 @@
     {% if page.header.page_css %}
         {% do assets.addCss('theme://dist/css/' ~ page.header.page_css ~ '.css', 99) %}
     {% endif %}
-
 {% endblock %}
+<link rel="stylesheet"
+    href="{{ url( 'theme://dist/css/fonts.css' )}}"
+    media="print" onload="this.media='all'" />
+
+<noscript>
+    <link rel="stylesheet" href="{{ url( 'theme://dist/css/fonts.css' )}}" />
+</noscript>
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}

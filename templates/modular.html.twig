@@ -1,11 +1,12 @@
 {% set tpl_body_classes = 't-modular' %}
+{% set page_title = page.header.headline|default( page.title ) %}
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
     <div class="wrapping">
-    <h1 class="page__title">
-        {{ page.title }}
-    </h1>
+        <h1 class="headline">
+            {{ page_title }}
+        </h1>
         {% if page.content|length %}
             <div class="textflow">
                 {{ page.content }}

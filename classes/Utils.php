@@ -25,7 +25,7 @@ class Utils
             if ( preg_match( "/^.*\.(woff|woff2)$/i", $file, $ext ) )
             {
                 $url = $path[0] . '/' . $file;
-                $links .= '<link rel="preload" href="' . $url . '" as="font" type="font/' . $ext[1] . '" crossorigin />'. "\n";
+                $links .= '<link rel="preload" href="/' . $url . '" as="font" type="font/' . $ext[1] . '" crossorigin />'. "\n";
             }
         }
 

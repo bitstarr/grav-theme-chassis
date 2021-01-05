@@ -72,15 +72,14 @@
     }
 
     a {
-        --link-color: var( --color-primary );
         text-decoration: underline;
 
         &:focus,
         &:hover {
-            --link-color: var( --color-secondary );
+            --link-color: var( --link-color-hover );
         }
         &:focus {
-            outline: 2px solid var( --color-primary );
+            outline: 2px solid;
             outline-offset: 3px;
         }
     }

@@ -1,0 +1,14 @@
+/*
+    Super Scaling Layout
+    @see https://codepen.io/bitstarr/pen/gOwaNoB
+*/
+:root {
+    /* super scale! */
+    @media ( min-width: 120.01rem ) {
+        font-size: calc( 100vw / 120 );
+    }
+    @supports (-webkit-touch-callout: none) {
+        /* CSS specific to iOS devices */
+        font-size: 1rem;
+    }
+}
