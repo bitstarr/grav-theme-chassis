@@ -4,9 +4,9 @@
     <input class="navigation__state vh" type="checkbox" role="button" aria-haspopup="true" id="navigation__state">
     <label class="navigation__trigger" for="navigation__state">
         <span class="vh collapsed-hint">Menü verborgen</span>
-        <span class="collapsed-hint" aria-hidden="true">{{ svg( 'menu', 'icon' ) }}</span>
+        <span class="collapsed-hint" aria-hidden="true">{{ svg( 'menu' )|raw }}</span>
         <span class="vh expanded-hint">Menü geöffnet</span>
-        <span class="expanded-hint" aria-hidden="true">{{ svg( 'close', 'icon' ) }}</span>
+        <span class="expanded-hint" aria-hidden="true">{{ svg( 'close' )|raw }}</span>
     </label>
     <div class="navigation__layer" role="menu">
         <div class="menu__wrapper">
@@ -19,7 +19,7 @@
                     {% for mitem in site.minor_menu %}
                         <li>
                             <a href="{{ mitem.url }}">
-                                {% if mitem.icon %}{{ svg( mitem.icon, 'icon') }}{% endif %}
+                                {% if mitem.icon %}{{ svg( mitem.icon )|raw }}{% endif %}
                                 {{ mitem.text }}
                             </a>
                         </li>
@@ -30,7 +30,7 @@
     </div>
     <label class="navigation__layer__abyss" for="navigation__state" aria-hidden="true">
         <span class="navigation__close">
-            {{ svg( 'menu-close', 'icon' ) }}
+            {{ svg( 'menu-close' )|raw }}
         </span>
     </label>
 </nav>

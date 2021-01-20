@@ -11,7 +11,7 @@
             {% if crumb.route == '/' %}
                 <a href="{{ crumb.url }}" itemprop="url" class="link is-home">
                     {% if crumb.route == '/' %}
-                        {{ svg('home', 'icon' ) }}
+                        {{ svg('home' )|raw }}
                     {% endif %}
                     <span class="title vh" itemprop="name">{{ crumb.title }}</span>
                 </a>

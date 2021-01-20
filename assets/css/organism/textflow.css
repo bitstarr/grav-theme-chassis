@@ -58,7 +58,7 @@
         border-top: 1px solid var( --color-border );
     }
 
-    svg,
+    svg:not(.icon),
     img {
         max-width: 100%;
         height: auto;

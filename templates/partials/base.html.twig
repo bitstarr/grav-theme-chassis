@@ -59,7 +59,7 @@
     <header class="header wrapping">
         <div class="wrapped">
             <a class="logo" href="{{ home_url }}">
-                {{ svg('logo', 'logo__img icon', { 'title': 'Firmenname' }) }}
+                {{ svg('logo', 'logo__img icon', { 'title': 'Firmenname' })|raw }}
                 Chassis
             </a>
             <div class="header__main">
@@ -108,7 +108,7 @@
                 <ul class="footer__social">
                 {% for item in site.footer.social %}
                     <li class="footer__social__item">
-                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title }) }}</a>
+                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title })|raw }}</a>
                     </li>
                 {% endfor %}
                 </ul>

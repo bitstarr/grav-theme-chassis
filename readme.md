@@ -4,6 +4,10 @@ This is a WIP starting point for custom themes for grav CMS.
 
 We are using some gulp magic to help with boring and repetitive tasks. Please learn first about the file structure and the way assets are organized and processed in this project.
 
+## Dependecies
+
+@TODO list grav plugins here, point to the kickstart
+
 ## File Structure
 
 ````
@@ -118,3 +122,9 @@ Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline work
 | npm run clean | clear `/dist` |
 | npm run dev | runs `css`, `js`, `img:sloppy` and `icons` in parallel once |
 | npm run build | runs `lint`, `clean`, `cssmin`, `js`, `jsmin`, `imgmin` and `fonts` |
+
+## Todo
+
+* l10n
+* add info about theme renaming
+* think about hero partial and bullets modular

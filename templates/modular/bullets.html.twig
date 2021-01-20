@@ -7,7 +7,7 @@
                     {% if bullet.icon %}
                     <li class="bullets__item">
                         <a class="bullets__link" href="{{ bullet.url }}">
-                            {{ svg( bullet.icon, 'bullets__icon icon' ) }}
+                            {{ svg( bullet.icon, 'bullets__icon icon' )|raw }}
                             <span class="bullets__label">{{ bullet.label }}</span>
                         </a>
                     </li>

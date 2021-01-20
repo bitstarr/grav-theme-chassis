@@ -18,7 +18,7 @@
         <article class="tabs__content" id="tabsection{{ loop.index }}">
             <h2 class="tabs__title">{{ target.title }}</h2>
             <div class="textflow">
-                {{ target.content }}
+                {{ target.content|raw }}
             </div>
         </article>
         {% endfor %}

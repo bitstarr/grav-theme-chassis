@@ -10,6 +10,6 @@
 <section class="{{ modular_classes|join( ' ' )|trim }}">
     <h2 class="modular__title">{{ page.title }}</h2>
     <div class="textflow">
-        {{ page.content }}
+        {{ page.content|raw }}
     </div>
 </section>

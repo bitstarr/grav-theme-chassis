@@ -9,7 +9,7 @@
         </h1>
         <div class="textflow">
             {% if page.rawMarkdown matches '/' ~ config.site.summary.delimiter ~ '/' %}
-                {{ page.content|slice(page.summary|length) }}
+                {{ page.content|slice(page.summary|length)|raw }}
             {% else %}
                 {{ page.content|raw }}
             {% endif %}
