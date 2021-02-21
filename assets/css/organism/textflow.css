@@ -1,5 +1,6 @@
 .textflow {
     & > * + * {
+        /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
         margin-top: var( --flow-space, var( --body-lh ) );
     }
 
