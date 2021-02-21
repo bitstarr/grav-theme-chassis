@@ -128,3 +128,4 @@ Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline work
 * l10n
 * add info about theme renaming
 * think about hero partial and bullets modular
+* social image fallback

@@ -17,6 +17,12 @@ class Utils
     {
         $grav = Grav::instance();
         $path = $grav['locator']->findResources('theme://dist/fonts/', false );
+
+        if ( !$path )
+        {
+            return;
+        }
+
         $files = Folder::all( $path[0] );
         $links = '';
 

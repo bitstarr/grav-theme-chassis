@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="textflow wrapping">
-        {{ page.content }}
+        {{ page.content|raw }}
         <p class="errorcode">
         {{ 'PLUGIN_ERROR.ERROR'|t }} {{ page.header.http_response_code }}
         </p>

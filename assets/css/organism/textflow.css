@@ -1,6 +1,6 @@
 .textflow {
     & > * + * {
-        margin-top: var( --body-lh );
+        margin-top: var( --flow-space, var( --body-lh ) );
     }
 
     ul,
@@ -20,12 +20,12 @@
     h2 {
         font-size: 1.75em;
         line-height: calc( 1ex / .38 );
-        margin-top: calc( 1ex / .38 );
+        --flow-space: calc( 1ex / .38 );
     }
     h3,
     h4 {
         line-height: calc( 1ex / .37 );
-        margin-top: calc( 1ex / .37 );
+        --flow-space: calc( 1ex / .37 );
     }
     h3 {
         font-size: 1.5em;
@@ -37,7 +37,7 @@
     h2 + *,
     h3 + *,
     h4 + * {
-        margin-top: 1ex;
+        --flow-space: 1ex;
     }
 
     table {

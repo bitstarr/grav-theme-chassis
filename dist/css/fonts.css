@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Roboto Chassis';
+    src: url('../fonts/roboto-regular-wf.woff2') format('woff2'),
+        url('../fonts/roboto-regular-wf.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto Chassis';
+    src: url('../fonts/roboto-light-wf.woff2') format('woff2'),
+        url('../fonts/roboto-light-wf.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto Chassis';
+    src: url('../fonts/roboto-bold-wf.woff2') format('woff2'),
+        url('../fonts/roboto-bold-wf.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    font-display: swap;
+}
+
+/* because cssnano will drop the whole file though */
+
+.font-loaded {
+    font-family: 'Roboto Chassis';
+}
+/*# sourceMappingURL=fonts.css.map */
