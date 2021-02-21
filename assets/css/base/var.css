@@ -48,7 +48,9 @@ html{
 
     --body-bg: #fff;
     --body-fz: 1em;
-    --body-lh: calc( 1ex / .32 );
+    /* --body-lh: calc( 1ex / .32 ); */
+    /* https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
+    --body-lh: calc( 2px + 1.1em + 2px );
 
     --scroll-bg: rgba( 255, 255, 255, .2 );
     --scroll-fg: var( --grey-80 );
