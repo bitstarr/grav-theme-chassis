@@ -21,6 +21,7 @@ html{
     --beige: #f5dd90;
     --blue: #6676a6;
     --anatolia: #324376;
+    --anatolia-hue: 225;
     --anatolia-hs: 225 40%;
     --anatolia-l: 33%;
     --lava: #f68e5f;
@@ -30,6 +31,7 @@ html{
     --grey: #707070;
 
     --color-primary: var( --anatolia );
+    --color-primary-hue: var( --anatolia-hue );
     --color-primary-darker: hsl( var( --anatolia-hs ) calc( var( --anatolia-l ) - 15% ) );
     --color-primary-lighter: hsl( var( --anatolia-hs ) calc( var( --anatolia-l ) + 20% ) );
     --color-primary-inside: #fff;
@@ -49,8 +51,8 @@ html{
     --body-bg: #fff;
     --body-fz: 1em;
     /* --body-lh: calc( 1ex / .32 ); */
-    /* https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
     --body-lh: calc( 2px + 1.1em + 2px );
+    /* see https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
 
     --scroll-bg: rgba( 255, 255, 255, .2 );
     --scroll-fg: var( --grey-80 );

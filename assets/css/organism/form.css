@@ -116,68 +116,6 @@
     }
 }
 
-.checkbox {
-    position: absolute;
-    clip: rect( 0 0 0 0 );
-    clip-path: inset( 100% );
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    margin: -1px;
-    padding: 0;
-    white-space: nowrap;
-    border: 0;
-
-    & + label {
-        --color: var( --color-primary );
-        position: relative;
-        padding: .2em 1em .2em 1.6em;
-        line-height: 1;
-    }
-
-    & + label::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY( -50% );
-        display: block;
-        width: 1.1em;
-        height: 1.1em;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 2px;
-    }
-    & + label::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: .55em;
-        transform: rotate( 45deg ) translate( -50%, -50% );
-        transform-origin: 50% 0;
-        width: .35em;
-        height: .65em;
-        border-right: 2px solid var( --color );
-        border-bottom: 2px solid var( --color );
-        opacity: 0;
-    }
-
-    &:hover + label::before,
-    &:focus + label::before {
-        border-color: var( --color );
-    }
-
-    &:checked + label::before {
-        border-color: var( --color );
-    }
-    &:checked + label::after {
-        opacity: 1;
-    }
-}
-.radio + label::before {
-    border-radius: 50%;
-}
-
 .dropdown {
     padding-right: 1.5em;
     appearance: none;
