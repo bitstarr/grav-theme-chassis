@@ -15,6 +15,7 @@ We are using some gulp magic to help with boring and repetitive tasks. Please le
 ├── /assets                 "raw" assets
 │   ├── /css                   CSS files
 │   │   ├── /base                   settings, normalization, helper
+│   │   ├── /form                   form components
 │   │   ├── /molecule               simple modules
 │   │   ├── /oranism                complex modules
 │   │   ├── /template               template/page specifics (e.g. spacing)
@@ -129,3 +130,4 @@ Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline work
 * add info about theme renaming
 * think about hero partial and bullets modular
 * social image fallback
+* refactor tabs.css

@@ -7,7 +7,7 @@ html{
 
     --wrapper: 60rem;
     --wrapper-offset: .5fr;
-    @media( min-width: 40rem ) {
+    @media ( min-width: 40rem ) {
         --wrapper-offset: 4em;
     }
 
@@ -21,9 +21,10 @@ html{
     --beige: #f5dd90;
     --blue: #6676a6;
     --anatolia: #324376;
-    --anatolia-hue: 225;
-    --anatolia-hs: 225 40%;
+    --anatolia-h: 225;
+    --anatolia-s: 40%;
     --anatolia-l: 33%;
+    --anatolia-hs: 225 40%;
     --lava: #f68e5f;
     --lobster: #f76c5e;
     --lobster-hs: 5, 91%;
@@ -31,13 +32,11 @@ html{
     --grey: #707070;
 
     --color-primary: var( --anatolia );
-    --color-primary-hue: var( --anatolia-hue );
-    --color-primary-darker: hsl( var( --anatolia-hs ) calc( var( --anatolia-l ) - 15% ) );
-    --color-primary-lighter: hsl( var( --anatolia-hs ) calc( var( --anatolia-l ) + 20% ) );
+    --color-primary-h: var( --anatolia-h );
+    --color-primary-s: var( --anatolia-s );
+    --color-primary-l: var( --anatolia-l );
     --color-primary-inside: #fff;
     --color-secondary: var( --lobster );
-    --color-secondary-darker: hsl( var( --lobster-hs ) calc( var( --lobster-l ) - 15% ) );
-    --color-secondary-lighter: hsl( var( --lobster-hs ) calc( var( --lobster-l ) + 20% ) );
     --color-secondary-inside: #222;
 
     --color-border: #ddd;
@@ -59,35 +58,18 @@ html{
 
     --breadcrumb-text: var( --grey );
 
+    --input-h: var( --anatolia-h );
+    --input-s: var( --anatolia-s );
+    --input-l: var( --anatolia-l );
     --input-bg: #fff;
     --input-txt: var( --text-default );
-    --input-brd: var( --color-border );
     --input-placeholder: #777;
-    --input-active-brd: var( --color-primary );
+
+    --error-h: 0;
+    --error-s: 100%;
+    --error-l: 33%;
 
     --overlay-bg: #fff;
     --overlay-txt: var( --blue );
-
-    /* deprecate */
-    --green: #008566;
-    --green-60: #006e50;
-    --green-40: #4ca994;
-    --green-30: #8cc8ba;
-    --green-20: #cce7e0;
-    --green-10: #e5f3ef;
-
-    --red: #d0103a;
-
-    --yellow-60: #e09d00;
-    --yellow:   #ffb820;
-
-    --grey: #707070;
-    --grey-80: #b3b3b3;
-    --grey-60: #d8d8d8;
-    --grey-40: #f0f0f0;
-    --grey-20: #f7f7f7;
-
-    --brand-color: var( --green );
-    --border-color: var( --grey-60 );
 }
 /* stylelint-endable */

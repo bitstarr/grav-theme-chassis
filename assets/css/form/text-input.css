@@ -1,0 +1,49 @@
+.text-input {
+    appearance: none;
+    width: 100%;
+    padding: var( --txt-space );
+    line-height: var( --txt-height );
+    background: var( --b, var( --background ) );
+    border: .1em solid var( --bc, var( --border-light ) );
+    border-radius: .3em;
+    box-shadow: 0 0 0 transparent;
+    transition: border-color .3s, box-shadow .2s;
+    box-shadow: none;
+    resize: vertical;
+
+    ::placeholder {
+        color: var( --placeholder );
+    }
+
+    &:hover {
+        &:not(:disabled) {
+            --bc: var( --border );
+        }
+    }
+    &:focus {
+        --bc: var( --border );
+        box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+    }
+    input&:not(:focus):not(:placeholder-shown):invalid,
+    select&:not([value='']):invalid {
+        --ec: var( --error-h ) var( --error-s );
+        border-color: hsl( var( --ec ) var( --error-l ) );
+        box-shadow: inset 0 0 0 1px hsl( var( --ec ) var( --error-l ) );
+        background-color: hsl( var( --ec ) 95% );
+    }
+
+    &:disabled {
+        --b: var( --disabled );
+        --border: var( --disabled-border );
+        opacity: .6;
+        cursor: not-allowed;
+    }
+    &[readonly] {
+        --b: var( --disabled );
+        --border: var( --disabled-border );
+    }
+
+    &[type='number'] {
+        font-variant-numeric: tabular-nums;
+    }
+}

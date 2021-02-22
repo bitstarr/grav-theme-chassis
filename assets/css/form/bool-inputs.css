@@ -2,16 +2,6 @@
     .form {
         input[type='checkbox'],
         input[type='radio'] {
-            --hue: var(  --color-primary-hue );
-            --active: hsl( var( --hue ) 66% 66% );
-            --active-inner: #fff;
-            --focus: 2px hsl( var( --hue ) 66% 66% / .3 );
-            --border: hsl( var( --hue ) 66% 76% );
-            --border-hover: hsl( var( --hue ) 66% 56% );
-            --background: #fff;
-            --disabled: hsl( var( --hue ) 15% 98% );
-            --disabled-inner: hsl( var( --hue ) 15% 73% );
-            --disabled-border: hsl( var( --hue ) 15% 73% );
             appearance: none;
             position: relative;
             display: inline-block;
@@ -61,13 +51,13 @@
             &:hover {
                 &:not(:checked) {
                     &:not(:disabled) {
-                        --bc: var( --border-hover );
+                        --bc: var( --border-light );
                     }
                 }
             }
 
             &:focus {
-                box-shadow: 0 0 0 var( --focus );
+                box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
             }
 
             &:not(.switch) {
