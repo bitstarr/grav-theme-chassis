@@ -7,6 +7,9 @@
 @import 'base/media.css';
 @import 'base/helper.css';
 
+/* form components */
+@import 'form/forms.css';
+
 /* simple self containing units */
 @import 'molecule/icons.css';
 @import 'molecule/logo.css';
@@ -18,7 +21,6 @@
 @import 'organism/navigation.css';
 @import 'organism/footer.css';
 @import 'organism/breadcrumbs.css';
-@import 'organism/form.css';
 @import 'organism/textflow.css';
 @import 'organism/notice.css';
 @import 'organism/details.css';

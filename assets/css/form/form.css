@@ -1,0 +1,57 @@
+::-webkit-input-placeholder { color: var( --input-placeholder ); }
+::-moz-placeholder { color: var( --input-placeholder ); }
+:-ms-input-placeholder { color: var( --input-placeholder ); }
+
+.form {
+    --txt-space: .7em;
+    --txt-height: 1.2em;
+    --placeholder: var( --input-placeholder );
+
+    --hue: var( --input-h );
+    --sat: var( --input-s );
+    --lit: var( --input-l );
+    --sat-d: calc( var( --sat ) * .6 );
+    --background: var( --input-bg );
+    --border: hsl( var( --hue ) var( --sat ) 80% );
+    --border: hsl( var( --hue ) var( --sat ) var( --lit ) );
+    --border-light: hsl( var( --hue ) var( --sat ) 80% );
+    --active: hsl( var( --hue ) var( --sat ) var( --lit ) );
+    --active-inner: var( --input-bg );
+    --disabled: hsl( var( --hue ) var( --sat-d ) 98% );
+    --disabled-inner: hsl( var( --hue ) var( --sat-d ) 73% );
+    --disabled-border: hsl( var( --hue ) var( --sat-d ) 73% );
+
+    textarea,
+    label {
+        display: block;
+    }
+
+    &__buttons,
+    &__field + &__field {
+        margin-top: var( --gap );
+    }
+
+    &__buttons {
+        text-align: center;
+    }
+
+    &__buttons .button {
+        width: 100%;
+        max-width: 15em;
+        font-size: 1.2em;
+    }
+
+    /* for our custom quiz field */
+    .field-personality {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > label {
+            width: 100%;
+            margin-bottom: .5em;
+            font-size: .9em;
+            line-height: var( --txt-height );
+            color: var( --placeholder );
+        }
+    }
+}
