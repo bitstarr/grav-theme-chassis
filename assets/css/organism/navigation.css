@@ -1,166 +1,112 @@
-.navigation {
-    --menu-fs: 1.2em;
-    --submenu-fs: 1em;
-    --micro-fs: .8em;
+/* see: https://web.dev/building-a-sidenav-component/ */
 
-    --link-color: var( --overlay-text );
-}
+/*
+    make a nice mouse and keyboard nav
+    see https://css-tricks.com/solved-with-css-dropdown-menus/
+    design inspiration: https://dev.to/5t3ph/css-only-accessible-dropdown-navigation-menu-1f95
+*/
+/*  for touch use a bit js to toggle an 'open' class - like the
+    nav twig macro provides in case of current page is in submenu.
+    this way we can depciate the checkbox hack for this usage and
+    provide a better a11y experience.
+    @see https://inclusive-components.design/menus-menu-buttons/
+    @see https://bitsofco.de/accessible-multi-level-dropdown-navigation/
+*/
 
-.navigation__trigger {
-    display: block;
-    padding: 1ex var( --space, 1rem );
-    line-height: 1;
-    cursor: pointer;
-}
-
-/* .navigation__trigger:hover, */
-.navigation__state:focus + .navigation__trigger,
-.navigation__state:checked + .navigation__trigger {
-    outline: none;
-    background-color: var( --color--03 );
-}
-
-.navigation__state:checked + .navigation__trigger .expanded-hint,
-.navigation__state:not(:checked) + .navigation__trigger .collapsed-hint {
-    display: inline;
-}
-
-.navigation__state:checked + .navigation__trigger .collapsed-hint,
-.navigation__state:not(:checked) + .navigation__trigger .expanded-hint {
-    display: none;
-}
-
-
-.navigation .menu__link {
-    display: block;
-    min-width: 100%;
-    padding: .6em;
-    white-space: nowrap;
-}
-.navigation .menu__item {
-    position: relative;
-}
-
-.navigation .icon {
-    transition: transform .2s;
-}
-
-
-    .navigation__layer {
-        display: none;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 15%;
-        z-index: 100;
-        overflow-y: auto;
-        padding: 1.5em 1.5em 0;
-        color: var( --overlay-txt );
-        background-color: var( --overlay-bg );
-    }
-    .navigation__layer__abyss {
-        display: none;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        z-index: 99;
-        background-color: rgba( 0, 0, 0, .4 );
-    }
-    .navigation__close {
-        position: absolute;
-        top: var( --gap );
-        left: 85%;
-        padding: 1ch;
-        line-height: 1;
-        background-color: var( --overlay-bg );
-        border-radius: 0 50% 50% 0;
-    }
-
-    .navigation__state:checked ~ .navigation__layer,
-    .navigation__state:checked ~ .navigation__layer__abyss {
-        display: block;
-    }
-
-    .navigation .menu__wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-    }
-
-    .navigation .menu--main {
-        margin-bottom: 2em;
-    }
-    .navigation .menu--main > .menu__item > .menu__link {
-        font-size: var( --menu-fs );
-    }
-
-    .navigation .menu--minor {
-        padding-bottom: 1.5rem;
-    }
-
-    .navigation .menu__link {
-        padding: .5em 0;
-
-        &:focus,
-        &:hover {
-            text-decoration: underline;
+@media (min-width: 40em) {
+    .navigation {
+        &__open,
+        &__close {
+            display: none;
         }
     }
+    .menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
 
-    /* .navigation .menu__item.uber {
-        margin-bottom: 1.5rem;
-        font-size: var( --micro-fs );
-    } */
+        &__item {
+            padding: 0 .4em;
+        }
 
-    /*
-    .navigation .menu__item.primary > .menu__link {
-        border-bottom: 1px dotted var( --overlay-div );
+        &--minor {
+            display: none;
+        }
     }
-    */
-
-    .navigation .menu__item.primary + .menu__item.secondary {
-        margin-top: 2em;
-    }
-
-    .menu__item.secondary {
-        --link-color: var( --grey );
-        font-size: var( --micro-fs );
-    }
-
-    .navigation .menu__item.has-children {
-        position: relative;
-    }
-
-    .navigation .submenu {
+    /* TODO: Style! */
+    .submenu {
         display: none;
-        font-size: var( --submenu-fs );
     }
-    .navigation .submenu .menu__link {
-        padding-left: 1.5em;
-    }
-    .navigation .submenu .submenu {
-        margin-left: 1ch;
-    }
+}
 
-    .navigation .submenu__trigger {
-        position: absolute;
-        top: 1.1em;
-        right: -.4em;
-        transform: translateY( -50% );
-        padding: .4em;
-        line-height: 1;
+@media (max-width: 39.99em) {
+    .navigation {
+        --easeOutExpo: cubic-bezier( .16, 1, .3, 1 );
+        --duration: .6s;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: [nav] 3fr [escape] 1fr;
+
+        visibility: hidden;
+        transform: translateX(-110vw);
+        will-change: transform;
+        transition:
+            transform var(--duration) var(--easeOutExpo),
+            visibility 0s linear var(--duration);
+
+        &:target {
+            visibility: visible;
+            transform: translateX(0);
+            transition: transform var(--duration) var(--easeOutExpo);
+        }
+
+        &__layer {
+            display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+            overflow-y: auto;
+            padding: 1.5em;
+            color: var( --overlay-txt );
+            background-color: var( --overlay-bg );
+        }
+
+        &__open {
+            padding: 1ex var( --space, 1rem );
+            line-height: 1;
+
+            &:focus,
+            &:hover {
+                color: var( --color-secondary );
+            }
+        }
+
+        &__close {
+            background: linear-gradient( to left, transparent, hsl( 0 0% 0% / .3 ) );
+        }
     }
+    .menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
 
-    .navigation .submenu__state:checked + .submenu__trigger .icon {
-        transform: rotate( 90deg );
+        &__item {
+            position: relative;
+            display: block;
+            padding: .6em;
+            white-space: nowrap;
+        }
     }
+}
 
-    .navigation .submenu__state:checked + .submenu__trigger + .submenu {
-        display: block;
+
+@media (prefers-reduced-motion: reduce) {
+    .navigation {
+        --duration: 1ms;
     }
-
-
+}

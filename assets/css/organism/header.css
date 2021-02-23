@@ -7,9 +7,11 @@
 
     .wrapped {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: var( --gap ) 0;
         height: 100%;
+    }
+    .logo {
+        margin-right: auto;
     }
 }
