@@ -62,11 +62,10 @@
                 {{ svg('logo', 'logo__img icon', { 'title': 'Firmenname' })|raw }}
                 Chassis
             </a>
-            <div class="header__main">
-                {% block header_navigation %}
-                    {% include 'partials/navigation.html.twig' %}
-                {% endblock %}
-            </div>
+
+            {% block header_navigation %}
+                {% include 'partials/navigation.html.twig' %}
+            {% endblock %}
         </div>
     </header>
 {% endblock %}
@@ -90,7 +89,7 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="footer wrapping">
+    <footer class="footer wrapping" id="footer">
         <div class="wrapped">
             {% if site.footer.menu %}
                 <nav class="footer__nav">
