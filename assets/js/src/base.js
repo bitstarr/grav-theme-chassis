@@ -26,7 +26,7 @@
                 if ( event.code === 'Escape' ) doc.location.hash = '';
             });
 
-            // focus UX
+            // focus UX (improve small screen nav)
             layer.addEventListener('transitionend', function( e )
             {
                 const isOpen = doc.location.hash === '#navigation';
