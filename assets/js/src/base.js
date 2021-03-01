@@ -14,29 +14,31 @@
         {
             let self = this;
 
-            self.overlayToggles = doc.querySelectorAll( '#navigation__state' );
-            self.overlayToggles.forEach( function( toggle )
+            /*
+                navigation enhancements
+                see https://web.dev/building-a-sidenav-component/
+            */
+
+            // Press escape to close
+            const layer = doc.querySelector( '#navigation' );
+            layer.addEventListener( 'keyup', function( event )
             {
-                toggle.addEventListener( 'change', function()
-                {
-                    win.project.toggleBodyScroll();
-                });
+                if ( event.code === 'Escape' ) doc.location.hash = '';
             });
+
+            // focus UX (improve small screen nav)
+            layer.addEventListener('transitionend', function( e )
+            {
+                const isOpen = doc.location.hash === '#navigation';
+                isOpen
+                    ? doc.querySelector( '#nav-close' ).focus()
+                    : doc.querySelector( '#nav-open' ).focus();
+            })
         },
 
-        toggleBodyScroll: function()
+        toggleBodyScroll: function( scrolling = true )
         {
-            let self = this,
-                scrolling = true;
-
-            self.overlayToggles.forEach( function( toggle )
-            {
-                if ( toggle.checked )
-                {
-                    scrolling = false;
-                    return;
-                }
-            });
+            let self = this;
 
             if ( scrolling )
             {

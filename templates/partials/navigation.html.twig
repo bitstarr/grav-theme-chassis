@@ -1,5 +1,32 @@
 {%- import 'macros/navigation.twig' as nav -%}
 
+<a class="navigation__open" href="#navigation" id="nav-open" title="Menü öffnen" aria-label="Menü öffnen">
+    {{ svg( 'menu' )|raw }} <span aria-hidden="true">Menü</span>
+</a>
+<div class="navigation" id="navigation">
+    <nav class="navigation__layer">
+        <ul class="menu">
+            {{ nav.loop(pages) }}
+        </ul>
+
+        {% if site.minor_menu %}
+            <ul class="menu menu--minor">
+                {% for mitem in site.minor_menu %}
+                    <li class="menu__item">
+                        <a href="{{ mitem.url }}">
+                            {% if mitem.icon %}{{ svg( mitem.icon )|raw }}{% endif %}
+                            {{ mitem.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <span hidden id="current">Aktuelle Seite</span>
+    </nav>
+    <a class="navigation__close" href="#" id="nav-close" title="Menü schließen" aria-label="Menü schließen"></a>
+</div>
+
+{#}
 <nav class="navigation">
     <input class="navigation__state vh" type="checkbox" role="button" aria-haspopup="true" id="navigation__state">
     <label class="navigation__trigger" for="navigation__state">
@@ -34,3 +61,4 @@
         </span>
     </label>
 </nav>
+{#}

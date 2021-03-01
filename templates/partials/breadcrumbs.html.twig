@@ -24,7 +24,7 @@
             {% endif %}
         {% else %}
             {% if breadcrumbs_config.link_trailing %}
-                <a href="{{ crumb.url }}" itemprop="url" class="link">
+                <a href="{{ crumb.url }}" itemprop="url" class="link" aria-current="location">
                     <span class="title" itemprop="name">{{ crumb.title }}</span>
                 </a>
             {% else %}
