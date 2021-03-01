@@ -9,14 +9,12 @@
     Only Caveat is, that tablets or touch screen laptops are unable to access the submenus.
     You can overthink your content strategy, provide on page navigations (like hubs) or add JS magic.
     The most desirable goal is to have onlu one level of main navigation.
-*/
-/*  for touch use a bit js to toggle an 'open' class - like the
-    nav twig macro provides in case of current page is in submenu.
-    this way we can depciate the checkbox hack for this usage and
-    provide a better a11y experience.
-    @see https://inclusive-components.design/menus-menu-buttons/
-    @see https://bitsofco.de/accessible-multi-level-dropdown-navigation/
+
+    With a bit of JS (navigation.js) we add progressive enhancement and a lot of a11y
     @see https://adrianroselli.com/2019/06/link-disclosure-widget-navigation.html
+
+    Please remember to reduce navigation complexity in best case to one level only - so
+    you can drop some the CSS code following and the JS at all.
 */
 
 .navigation {
@@ -59,6 +57,16 @@
         background-repeat: no-repeat;
         background-position: center;
         border: 0;
+        transition: transform var( --duration );
+        transform-origin: 50%;
+
+        &[aria-expanded='true'] {
+            transform: rotate(180deg);
+        }
+
+        &[aria-controls]:focus {
+            outline: .1em solid var( --color-primary );
+        }
     }
 }
 
@@ -147,8 +155,9 @@
     .menu {
         display: flex;
 
+        .submenu.visible,
         &__item:hover > .submenu,
-        &__item:focus-within > .submenu,
+        &__item:focus-within > .submenu:not([id]),
         &__item .submenu:hover,
         &__item .submenu:focus {
             visibility: visible;
