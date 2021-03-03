@@ -5,7 +5,10 @@ en:
       REVEAL: Open Menu
       HIDE: Hide Menu
       SUBMENU: Submenu
-      CURRENT_PAGE: Aktuelle Seite
+      CURRENT_PAGE: Current Page
+    PAGINATION:
+      NEWER: Newer
+      OLDER: Older
     BLOG:
       CONTINUE_READING: Continue reading →
       POST_NAV: Post Navigation
@@ -22,6 +25,9 @@ de:
       HIDE: Menü schließen
       SUBMENU: Untermenü
       CURRENT_PAGE: Aktuelle Seite
+    PAGINATION:
+      NEWER: Neuer
+      OLDER: Älter
     BLOG:
       CONTINUE_READING: Weiterlesen →
       POST_NAV: Beitragsnavigation
