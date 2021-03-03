@@ -1,0 +1,28 @@
+{% set tpl_body_classes = 't-blog' %}
+{% extends 'partials/base.html.twig' %}
+
+{% set page_title = page.header.headline|default( page.title ) %}
+{% if uri.param( 'category' ) %}
+    {% set page_title = 'THEME_C.BLOG.ARCHIVE_OF'|t|e ~ ' <q>' ~ uri.param( 'category' ) ~ '</q>' %}
+{% endif %}
+{% if uri.param( 'tag' ) %}
+    {% set page_title = 'THEME_C.BLOG.ARCHIVE_OF'|t|e ~ ' <q>' ~ uri.param( 'tag' ) ~ '</q>' %}
+{% endif %}
+
+{% block content %}
+    <div class="wrapping">
+        <h1 class="headline">
+            {{ page_title }}
+        </h1>
+
+        <div class="blog">
+            {% for post in page.collection() %}
+                {% include 'partials/blog/list-item.html.twig' with: { post: post } %}
+            {% endfor %}
+        </div>
+
+        {% if config.plugins.pagination.enabled and page.collection.params.pagination %}
+            {% include 'partials/pagination.html.twig' with {base_url: page.url, pagination: page.collection.params.pagination} %}
+        {% endif %}
+    </div>
+{% endblock %}

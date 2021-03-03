@@ -17,7 +17,7 @@
                     {{ p.menu }}
                 </a>
                 <button class="menu__expander" tabindex="-1"></button>
-                <ul class="submenu" aria-label="Untermenü">
+                <ul class="submenu" aria-label="{{ 'THEME_C.NAV.SUBMENU'|t|e }}">
                     {{ nav.loop(p) }}
                 </ul>
             </li>

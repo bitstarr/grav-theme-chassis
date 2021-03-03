@@ -59,8 +59,8 @@
     <header class="header wrapping">
         <div class="wrapped">
             <a class="logo" href="{{ home_url }}">
-                {{ svg('logo', 'logo__img icon', { 'title': 'Firmenname' })|raw }}
-                Chassis
+                {{ svg('logo', 'logo__img icon', { 'title': site.title })|raw }}
+                {{ site.title }}
             </a>
 
             {% block header_navigation %}

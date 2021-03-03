@@ -1,7 +1,7 @@
 {%- import 'macros/navigation.twig' as nav -%}
 
-<a class="navigation__open" href="#navigation" id="nav-open" title="Menü öffnen" aria-label="Menü öffnen">
-    {{ svg( 'menu' )|raw }} <span aria-hidden="true">Menü</span>
+<a class="navigation__open" href="#navigation" id="nav-open" title="{{ 'THEME_C.NAV.REVEAL'|t|e }}" aria-label="{{ 'THEME_C.NAV.REVEAL'|t|e }}">
+    {{ svg( 'menu' )|raw }} <span aria-hidden="true">{{ 'THEME_C.NAV.MENU'|t|e }}</span>
 </a>
 <div class="navigation" id="navigation">
     <nav class="navigation__layer">
@@ -23,42 +23,5 @@
         {% endif %}
         <span hidden id="current">Aktuelle Seite</span>
     </nav>
-    <a class="navigation__close" href="#" id="nav-close" title="Menü schließen" aria-label="Menü schließen"></a>
+    <a class="navigation__close" href="#" id="nav-close" title="{{ 'THEME_C.NAV.HIDE'|t|e }}" aria-label="{{ 'THEME_C.NAV.HIDE'|t|e }}"></a>
 </div>
-
-{#}
-<nav class="navigation">
-    <input class="navigation__state vh" type="checkbox" role="button" aria-haspopup="true" id="navigation__state">
-    <label class="navigation__trigger" for="navigation__state">
-        <span class="vh collapsed-hint">Menü verborgen</span>
-        <span class="collapsed-hint" aria-hidden="true">{{ svg( 'menu' )|raw }}</span>
-        <span class="vh expanded-hint">Menü geöffnet</span>
-        <span class="expanded-hint" aria-hidden="true">{{ svg( 'close' )|raw }}</span>
-    </label>
-    <div class="navigation__layer" role="menu">
-        <div class="menu__wrapper">
-            <ul class="menu menu--main">
-                {{ nav.loop(pages) }}
-            </ul>
-
-            {% if site.minor_menu %}
-                <ul class="menu menu--minor">
-                    {% for mitem in site.minor_menu %}
-                        <li>
-                            <a href="{{ mitem.url }}">
-                                {% if mitem.icon %}{{ svg( mitem.icon )|raw }}{% endif %}
-                                {{ mitem.text }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    </div>
-    <label class="navigation__layer__abyss" for="navigation__state" aria-hidden="true">
-        <span class="navigation__close">
-            {{ svg( 'menu-close' )|raw }}
-        </span>
-    </label>
-</nav>
-{#}

@@ -1,0 +1,31 @@
+en:
+  THEME_C:
+    NAV:
+      MENU: Menu
+      REVEAL: Open Menu
+      HIDE: Hide Menu
+      SUBMENU: Submenu
+      CURRENT_PAGE: Aktuelle Seite
+    BLOG:
+      CONTINUE_READING: Continue reading →
+      POST_NAV: Post Navigation
+      NEXT_POST: Next Post
+      PREV_POST: Previous Post
+      TAGS: Tags
+      ARCHIVE_OF: Achive of
+
+de:
+  THEME_C:
+    NAV:
+      MENU: Menü
+      REVEAL: Menü öffnen
+      HIDE: Menü schließen
+      SUBMENU: Untermenü
+      CURRENT_PAGE: Aktuelle Seite
+    BLOG:
+      CONTINUE_READING: Weiterlesen →
+      POST_NAV: Beitragsnavigation
+      NEXT_POST: Nächster Beitrag
+      PREV_POST: Vorheriger Beitrag
+      TAGS: Schlagworte
+      ARCHIVE_OF: Archiv für

@@ -7,6 +7,9 @@ author:
   email: 'hello@sebastianlaube.de'
 license: 'MIT'
 
+dependencies:
+  - { name: grav, version: '>=1.7.5' }
+
 form:
   validation: loose
   fields:
