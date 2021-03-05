@@ -12,6 +12,13 @@
     li ol,
     li ul { margin-bottom: 0; }
     li ul { list-style-type: circle; }
+    ul li::marker {
+        color: var( --color-primary );
+        font-size: .8em;
+    }
+    li ul li::marker {
+        opacity: .6;
+    }
 
     h2,
     h3,
