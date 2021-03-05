@@ -1,0 +1,39 @@
+en:
+  THEME_C:
+    NAV:
+      MENU: Menu
+      REVEAL: Open Menu
+      HIDE: Hide Menu
+      SUBMENU: Submenu
+      CURRENT_PAGE: Current Page
+    PAGINATION:
+      NEWER: Newer
+      OLDER: Older
+    BLOG:
+      CONTINUE_READING: Continue reading →
+      POST_NAV: Post Navigation
+      NEXT_POST: Next Post
+      PREV_POST: Previous Post
+      POSTED_IN: Posted in
+      TAGS: Tags
+      ARCHIVE_OF: Achive of
+
+de:
+  THEME_C:
+    NAV:
+      MENU: Menü
+      REVEAL: Menü öffnen
+      HIDE: Menü schließen
+      SUBMENU: Untermenü
+      CURRENT_PAGE: Aktuelle Seite
+    PAGINATION:
+      NEWER: Neuer
+      OLDER: Älter
+    BLOG:
+      CONTINUE_READING: Weiterlesen →
+      POST_NAV: Beitragsnavigation
+      NEXT_POST: Nächster Beitrag
+      PREV_POST: Vorheriger Beitrag
+      POSTED_IN: Abgelegt in
+      TAGS: Schlagworte
+      ARCHIVE_OF: Archiv für

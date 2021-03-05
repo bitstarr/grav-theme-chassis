@@ -1,0 +1,23 @@
+<article class="article">
+    <header class="article__header">
+        <h2 class="article__title">
+            <a href="{{ post.url }}" rel="bookmark">
+            {{ post.title }}
+            </a>
+        </h2>
+        <p class="article__date">
+            <time class="article__datetime dt-published" datetime="{{ post.date|date("c") }}">
+                {{ post.date|localizeddate( 'long', 'none', site.default_lang ) }}
+            </time>
+        </p>
+    </header>
+    {% include 'partials/blog/item-image.html.twig' with { post: post, link: true } %}
+    <div class="textflow">
+        {{ post.summary|raw }}
+        {% if post.content|length > post.summary|length %}
+        <p>
+            <a href="{{ post.url }}#continue" class="continue">{{ 'THEME_C.BLOG.CONTINUE_READING'|t|e }}</a>
+        </p>
+        {% endif %}
+    </div>
+</article>

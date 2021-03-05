@@ -1,0 +1,33 @@
+.breadcrumb {
+    --comp-txt: var( --breadcrumb-text );
+
+    padding: 1em 0;
+    font-size: .75em;
+    color: var( --comp-txt );
+}
+.breadcrumb .link {
+    color: currentColor;
+}
+.breadcrumb .item {
+    display: inline;
+}
+.breadcrumb .item:before {
+    position: relative;
+    top: -.1em;
+    display: inline-block;
+    width: .4em;
+    height: .4em;
+    margin-right: .2em;
+    margin-left: .1em;
+
+    border: 1px solid;
+    border-width: 1px 1px 0 0;
+    transform: rotate( 45deg );
+}
+.breadcrumb .item + .item:before {
+    content: '';
+}
+
+.breadcrumb .is-home .title {
+
+}

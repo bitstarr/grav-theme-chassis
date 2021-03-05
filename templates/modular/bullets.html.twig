@@ -1,13 +1,13 @@
 {% if header.bullets %}
-    <div class="modular__section bullets">
-        <div class="wrapper">
+    <div class="modular wrapping bullets">
+        <div class="wrapped">
             <h2 class="bullets__headline" >{{ page.title }}</h2>
             <ul class="bullets__list">
                 {% for bullet in header.bullets %}
                     {% if bullet.icon %}
                     <li class="bullets__item">
                         <a class="bullets__link" href="{{ bullet.url }}">
-                            {{ svg( bullet.icon, 'bullets__icon icon' ) }}
+                            {{ svg( bullet.icon, 'bullets__icon icon' )|raw }}
                             <span class="bullets__label">{{ bullet.label }}</span>
                         </a>
                     </li>

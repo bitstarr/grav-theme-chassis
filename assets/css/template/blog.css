@@ -1,0 +1,6 @@
+.t-blog {
+    .blog,
+    .pager {
+        margin-top: var( --gap-mars );
+    }
+}

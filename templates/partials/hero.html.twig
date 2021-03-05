@@ -24,7 +24,7 @@
             {% for button in page.header.hero_actions %}
                 <a class="hero__action button{% if button.classes %} {{button.classes}}{% endif %}" href="{{ button.url }}">
                 <span>{{ button.label }}</span>
-                {{ svg( 'arrow', 'icon' ) }}
+                {{ svg( 'arrow' )|raw }}
                 </a>
             {% endfor %}
         </div>

@@ -13,35 +13,21 @@
         {% endif %}
         {% if p.children.visible.count > 0 %}
             <li class="menu__item has-children {{ classes|join( ' ' ) }}">
-                <a class="menu__link" href="{{ p.url }}">
+                <a class="menu__link" href="{{ p.url }}" {% if p.active %} aria-describedby="current"{% endif %}>
                     {{ p.menu }}
                 </a>
-                <input type="checkbox" id="submenu__state--{{ p.title|hyphenize }}" class="submenu__state vh" role="button" aria-haspopup="true"{% if p.activeChild or p.active %} checked{% endif %}>
-                <label class="submenu__trigger" for="submenu__state--{{ p.title|hyphenize }}">
-                    <span aria-hidden="true">{{ svg( 'angle-right', 'icon menu__presser' ) }}</span>
-                    <span class="vh expanded-text">Untermenü geöffnet</span>
-                    <span class="vh collapsed-text">Untermenü verborgen</span>
-                </label>
-                <ul class="submenu">
+                <button class="menu__expander" tabindex="-1"></button>
+                <ul class="submenu" aria-label="{{ 'THEME_C.NAV.SUBMENU'|t|e }}">
                     {{ nav.loop(p) }}
                 </ul>
             </li>
         {% else %}
             <li class="menu__item {{ classes|join( ' ' ) }}">
-                <a class="menu__link" href="{{ p.url }}">
+                <a class="menu__link" href="{{ p.url }}"{% if p.active %} aria-describedby="current"{% endif %}>
                     {% if p.header.menu_icon is defined %}
-                        {{ svg( p.header.menu_icon, 'icon menu__icon' ) }}
+                        {{ svg( p.header.menu_icon, 'icon menu__icon' )|raw }}
                     {% endif %}
-                    {# a11y freindly custom formated names #}
-                    {% if p.header.menu is defined %}
-                        <span aria-label="{{ p.title }}">
-                            <span aria-hidden="true">
-                                {{ p.menu }}
-                            </span>
-                        </span>
-                    {% else %}
-                        {{ p.menu }}
-                    {% endif %}
+                    {{ p.menu }}
                 </a>
             </li>
         {% endif %}

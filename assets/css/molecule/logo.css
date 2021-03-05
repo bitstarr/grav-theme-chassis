@@ -1,0 +1,14 @@
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+
+    &__img {
+        display: block;
+        height: 2em;
+        width: auto;
+        fill: currentColor;
+        margin-right: 1ex;
+    }
+}

@@ -1,11 +1,15 @@
+{% set tpl_body_classes = 't-page' %}
+{% set page_title = page.header.headline|default( page.title ) %}
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <div class="wrapper page__main">
-        <h1 class="page__title">{{ page.title }}</h1>
+    <div class="wrapping">
+        <h1 class="headline">
+            {{ page_title }}
+        </h1>
         <div class="textflow">
             {% if page.rawMarkdown matches '/' ~ config.site.summary.delimiter ~ '/' %}
-                {{ page.content|slice(page.summary|length) }}
+                {{ page.content|slice(page.summary|length)|raw }}
             {% else %}
                 {{ page.content|raw }}
             {% endif %}

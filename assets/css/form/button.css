@@ -1,0 +1,48 @@
+.button {
+    --hue: var( --color-primary-h );
+    --sat: var( --color-primary-s );
+    --lit: var( --color-primary-l );
+    --sat-d: calc( var( --sat ) * .6 );
+    --comp-bg: hsl( var( --hue ) var( --sat ) var( --lit ) );
+    --comp-txt: var( --color-primary-inside );
+    --hover-bg: hsl( var( --hue ) var( --sat ) calc( var( --lit ) * .6 ) );
+    --hover-txt: var( --comp-txt );
+    --disabled-bg: hsl( var( --hue ) var( --sat-d ) 75% );
+    --disabled-txt: hsl( var( --hue ) var( --sat-d ) 96% );
+
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1ex;
+    line-height: 1.2;
+    text-align: center;
+    color: var( --comp-txt );
+    background: var( --comp-bg );
+    border: 0;
+    border-radius: 0;
+    transition: background-color .2s;
+
+    a&,
+    a&:visited {
+        color: var( --comp-txt );
+    }
+    a&:hover,
+    a&:focus {
+        color: var( --hover-txt );
+    }
+
+    &:hover,
+    &:focus {
+        color: var( --hover-txt );
+        background-color: var( --hover-bg );
+        box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+    }
+
+    &[disabled] {
+        color: var( --disabled-txt );
+        background: var( --disabled-bg );
+        cursor: not-allowed;
+    }
+}

@@ -37,7 +37,7 @@
         &:focus,
         &:hover,
         &:active {
-            color: var( --ext-default );
+            color: var( --text-default );
         }
     }
 }
@@ -46,4 +46,8 @@
     overflow-wrap: break-word;
     wordp-wrap: break-word;
     hyphens: auto;
+}
+
+.noscroll {
+    overflow: hidden;
 }

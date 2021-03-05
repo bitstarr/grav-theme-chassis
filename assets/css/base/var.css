@@ -1,45 +1,75 @@
 /* stylelint-disable */
 html{
     /* define design tokens */
+
+    /* new cross OS sans font stack */
     --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
     --wrapper: 60rem;
-    --gap: 1.25rem;
-    --gap-half: .625rem;
-    --gap-x2: 2.5rem;
+    --wrapper-offset: .5fr;
+    @media ( min-width: 40rem ) {
+        --wrapper-offset: 4em;
+    }
 
-    --green-60: #006e50;
-    --green:    #008566;
-    --green-40: #4ca994;
-    --green-30: #8cc8ba;
-    --green-20: #cce7e0;
-    --green-10: #e5f3ef;
-
-    --red: #d0103a;
-
-    --yellow-60: #e09d00;
-    --yellow:   #ffb820;
-
-    --grey: #707070;
-    --grey-80: #b3b3b3;
-    --grey-60: #d8d8d8;
-    --grey-40: #f0f0f0;
-    --grey-20: #f7f7f7;
-
+    /* imagine some distances relative to earth */
+    --gap: 1.25rem; /* default distance */
+    --gap-moon: .625rem;
+    --gap-venus: 1.25rem;
+    --gap-mars: 2.5rem;
+    --gap-jupiter: 4rem;
 
     --beige: #f5dd90;
     --blue: #6676a6;
-    --cornflower: #324376;
+    --anatolia: #324376;
+    --anatolia-h: 225;
+    --anatolia-s: 40%;
+    --anatolia-l: 33%;
+    --anatolia-hs: 225 40%;
     --lava: #f68e5f;
     --lobster: #f76c5e;
+    --lobster-hs: 5, 91%;
+    --lobster-l: 67%;
+    --grey: #707070;
 
-    --brand-color: var( --green );
+    --color-primary: var( --anatolia );
+    --color-primary-h: var( --anatolia-h );
+    --color-primary-s: var( --anatolia-s );
+    --color-primary-l: var( --anatolia-l );
+    --color-primary-inside: #fff;
+    --color-secondary: var( --lobster );
+    --color-secondary-inside: #222;
+
+    --color-border: #ddd;
+    --color-ui: #f4f4f4;
+
     --text-default: #444;
     --text-muted: var( --grey );
-    --link-color: var( --green );
+    --link-color: var( --anatolia );
+    --link-color-hover: var( --blue );
+
+    --body-bg: #fff;
+    --body-fz: 1em;
+    /* --body-lh: calc( 1ex / .32 ); */
+    --body-lh: calc( 2px + 1.1em + 2px );
+    /* see https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
 
     --scroll-bg: rgba( 255, 255, 255, .2 );
     --scroll-fg: var( --grey-80 );
-    --border-color: var( --grey-60 );
+
+    --breadcrumb-text: var( --grey );
+
+    --input-h: var( --anatolia-h );
+    --input-s: var( --anatolia-s );
+    --input-l: var( --anatolia-l );
+    --input-bg: #fff;
+    --input-txt: var( --text-default );
+    --input-placeholder: #777;
+
+    --error-h: 0;
+    --error-s: 100%;
+    --error-l: 33%;
+
+    --overlay-bg: #fff;
+    --overlay-txt: var( --blue );
 }
 /* stylelint-endable */

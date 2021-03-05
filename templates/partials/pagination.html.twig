@@ -1,0 +1,51 @@
+{% set pagination = pagination|default(page.collection.params.pagination) %}
+{% set base_url = base_url|default(page.url) %}
+
+{% if pagination|length > 1 %}
+
+{% set pager_classes = [
+    'pager',
+] %}
+
+{% if pagination.hasPrev == false %}
+    {% set pager_classes = pager_classes|merge( ['is-first'] ) %}
+{% endif %}
+{% if pagination.hasNext == false %}
+    {% set pager_classes = pager_classes|merge( ['is-last'] ) %}
+{% endif %}
+
+<ul class="{{ pager_classes|join( ' ' )|trim }}">
+    {% if pagination.hasPrev %}
+        {% set url =  (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) %}
+        <li class="pager__item pager__item--prev">
+            <a class="pager__link" rel="prev" href="{{ url }}">{{ 'THEME_C.PAGINATION.NEWER'|t|e }}</a>
+        </li>
+    {% endif %}
+
+    {% for paginate in pagination %}
+
+        {% if paginate.isCurrent %}
+            <li class="pager__item pager__item--current">
+                <span class="pager__text active">{{ paginate.number }}</span>
+            </li>
+        {% elseif paginate.isInDelta %}
+            {% set url = (base_url ~ pagination.params ~ paginate.url)|replace({'//':'/'}) %}
+            <li class="pager__item pager__item--num">
+                <a class="pager__link" href="{{ url }}">{{ paginate.number }}</a>
+            </li>
+        {% elseif paginate.isDeltaBorder %}
+            <li class="pager__item pager__item--gap">
+                <span class="pager__text" >&hellip;</span>
+            </li>
+        {% endif %}
+
+    {% endfor %}
+    {% if pagination.hasNext %}
+        {% set url = (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) %}
+        <li class="pager__item pager__item--next">
+            <a class="pager__link" rel="next" href="{{ url }}">{{ 'THEME_C.PAGINATION.OLDER'|t|e }}</a>
+        </li>
+    {% endif %}
+</ul>
+
+{% endif %}

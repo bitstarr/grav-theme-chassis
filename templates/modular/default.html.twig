@@ -1,5 +1,15 @@
-<section class="modular__section">
-	<div class="wrapper">
-		{{ page.content }}
-	</div>
+{% set modular_classes = [
+    'modular',
+    'wrapping',
+] %}
+
+{% if page.header.layout_alt %}
+    {% set modular_classes = modular_classes|merge( ['modular--alt'] ) %}
+{% endif %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    <h2 class="modular__title">{{ page.title }}</h2>
+    <div class="textflow">
+        {{ page.content|raw }}
+    </div>
 </section>

@@ -4,19 +4,23 @@ This is a WIP starting point for custom themes for grav CMS.
 
 We are using some gulp magic to help with boring and repetitive tasks. Please learn first about the file structure and the way assets are organized and processed in this project.
 
+## Dependecies
+
+@TODO list grav plugins here, point to the kickstart
+
 ## File Structure
 
 ````
 .
 ├── /assets                 "raw" assets
 │   ├── /css                   CSS files
-│   │   ├── /base                   base styles
-│   │   ├── /compnent               global components
-│   │   ├── /layout                 layout styles
-│   │   ├── /module                 modules
-│   │   ├── /page                   page specific styles
-│   │   ├── /util                   Helfer
+│   │   ├── /base                   settings, normalization, helper
+│   │   ├── /form                   form components
+│   │   ├── /molecule               simple modules
+│   │   ├── /oranism                complex modules
+│   │   ├── /template               template/page specifics (e.g. spacing)
 │   │   ├── /vendor                 3rd party / plugin styles
+│   │   ├── fonts.css               dedicated web font style sheet
 │   │   └── main.css                main style sheet
 │   ├── /favicon                favicons/app icons
 │   ├── /fonts                  font files in WOFF and WOFF2 format
@@ -28,6 +32,8 @@ We are using some gulp magic to help with boring and repetitive tasks. Please le
 │       ├── base.js                 JS component placeholder
 │       └── dev.json                JS bundle base only used in local env.
 ├── /blueprints             grav blueprints for page types
+├── /classes                custom PHP Classes
+│   └── Utils.php               utilty class with helper functions
 ├── /dist                   build files
 │   ├── /css                    minified CSS files
 │   ├── /fonts                  duplicates of assets/fonts

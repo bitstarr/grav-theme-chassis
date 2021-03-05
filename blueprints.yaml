@@ -1,11 +1,14 @@
 name: Chassis
-version: 0.1.0
-description: -
-icon: rebel
+version: 0.2.0
+description: ''
+icon: 'rebel'
 author:
-  name: Sebastian Laube
-  email: hello@sebastianlaube.de
-license: MIT
+  name: 'Sebastian Laube'
+  email: 'hello@sebastianlaube.de'
+license: 'MIT'
+
+dependencies:
+  - { name: grav, version: '>=1.7.5' }
 
 form:
   validation: loose

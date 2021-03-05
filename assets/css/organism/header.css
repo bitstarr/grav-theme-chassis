@@ -1,0 +1,18 @@
+.header {
+    --comp-bg: var( --header-bg );
+    --comp-txt: var( --header-text );
+
+    margin-bottom: var( --gap-mars );
+    color: var( --comp-txt );
+    background-color: var( --comp-bg );
+
+    .wrapped {
+        display: flex;
+        align-items: center;
+        padding: var( --gap ) 0;
+        height: 100%;
+    }
+    .logo {
+        margin-right: auto;
+    }
+}

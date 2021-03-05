@@ -1,0 +1,9 @@
+{% extends "forms/field.html.twig" %}
+
+{% set form_field_input_classes = [ form_field_input_classes, form_field_text_classes ]|join( ' ' )|trim  %}
+
+{% block input_attributes %}
+    type="email"
+    {% if field.multiple in ['on', 'true', 1] %}multiple="multiple"{% endif %}
+    {{ parent() }}
+{% endblock %}

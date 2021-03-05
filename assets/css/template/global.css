@@ -1,0 +1,79 @@
+/*
+    center column with max-width and possibilities to break out - the grid way
+    @see https://codepen.io/bitstarr/pen/BajbPRa
+*/
+.wrapping {
+    display: grid;
+    grid-template-columns:
+        [full-start]
+        minmax(1em, 1fr)
+        [mid-start]
+        minmax(0, var( --wrapper-offset ))
+        [main-start]
+        minmax(0, var( --wrapper ))
+        [main-end]
+        minmax(0, var( --wrapper-offset ))
+        [mid-end]
+        minmax(1em, 1fr)
+        [full-end];
+    align-content: start;
+}
+.wrapping > * {
+    grid-column: main;
+}
+.breakout {
+    grid-column: full;
+    grid-template-columns: inherit;
+}
+.breakout--wrapping {
+    display: inherit;
+
+    .wrapped {
+        grid-column: main;
+    }
+}
+.breakout--mid {
+    grid-column: mid;
+    grid-template-columns: inherit;
+}
+
+/* sticky footer - the grid way */
+html {
+    /* do we need a sticky fix? https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/*/
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+
+
+@media( min-width: 55em ) {
+    body {
+        font-size: 1.2em;
+    }
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+
+/*
+.wrapper {
+    margin: 0 auto;
+    padding: 0 var( --gap );
+    max-width: var( --wrapper );
+}
+.wrapper--tight {
+    margin: 0 auto;
+    max-width: var( --wrapper );
+
+    @media (min-width: 50rem) {
+        padding: 0 var( --gap );
+    }
+}
+*/
+

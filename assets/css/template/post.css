@@ -1,0 +1,5 @@
+.t-post {
+    .postnav {
+        margin-top: var( --gap-mars );
+    }
+}

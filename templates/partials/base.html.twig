@@ -1,14 +1,24 @@
 {% set body_classes = [
-    page.header.body_classes,
-    body_classes|default( '' )
+    body_classes|default( '' ),
+    tpl_body_classes|default(''),
+    header.body_classes,
 ]|join( ' ' )|trim %}
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+
+{% set doc_title = '' %}
+{% if header.title and page.slug != 'home' %}
+    {% set doc_title = header.title|e('html') ~ ' - ' %}
+{% endif %}
+{% if title_overwrite != null %}
+    {% set doc_title = title_overwrite ~ ' - ' %}
+{% endif %}
+{% set doc_title = doc_title ~ site.title|e('html') %}
 <!DOCTYPE html>
 <html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
 <head>
 {% block head %}
     <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    <title>{{ doc_title }}</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,8 +32,14 @@
     {% if page.header.page_css %}
         {% do assets.addCss('theme://dist/css/' ~ page.header.page_css ~ '.css', 99) %}
     {% endif %}
-
 {% endblock %}
+<link rel="stylesheet"
+    href="{{ url( 'theme://dist/css/fonts.css' )}}"
+    media="print" onload="this.media='all'" />
+
+<noscript>
+    <link rel="stylesheet" href="{{ url( 'theme://dist/css/fonts.css' )}}" />
+</noscript>
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}
@@ -40,16 +56,16 @@
 <body id="top" class="{{ body_classes }}">
 
 {% block header %}
-    <header class="header">
-        <div class="wrapper">
+    <header class="header wrapping">
+        <div class="wrapped">
             <a class="logo" href="{{ home_url }}">
-                {{ svg('swe-logo', 'logo__img', { 'title': 'Firmenname' }) }}
+                {{ svg('logo', 'logo__img icon', { 'title': site.title })|raw }}
+                {{ site.title }}
             </a>
-            <div class="header__main">
-                {% block header_navigation %}
-                    {% include 'partials/navigation.html.twig' %}
-                {% endblock %}
-            </div>
+
+            {% block header_navigation %}
+                {% include 'partials/navigation.html.twig' %}
+            {% endblock %}
         </div>
     </header>
 {% endblock %}
@@ -73,8 +89,8 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="footer">
-        <div class="wrapper">
+    <footer class="footer wrapping" id="footer">
+        <div class="wrapped">
             {% if site.footer.menu %}
                 <nav class="footer__nav">
                     <ul class="menu">
@@ -91,7 +107,7 @@
                 <ul class="footer__social">
                 {% for item in site.footer.social %}
                     <li class="footer__social__item">
-                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title }) }}</a>
+                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title })|raw }}</a>
                     </li>
                 {% endfor %}
                 </ul>

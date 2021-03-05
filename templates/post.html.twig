@@ -1,0 +1,43 @@
+{% set tpl_body_classes = 't-post post' %}
+{% extends 'partials/base.html.twig' %}
+{% do assets.addCss('theme://dist/css/blog.css', 99) %}
+
+{% block content %}
+    <article class="article wrapping">
+        <header class="article__header">
+            <h1 class="article__title headline">
+                {{ page.title }}
+            </h1>
+            {% include 'partials/blog/categories.html.twig' with { post: page } %}
+            <p class="article__date">
+                <time class="article__datetime dt-published" datetime="{{ page.date|date("c") }}">
+                    {{ page.date|localizeddate( 'long', 'none', site.default_lang ) }}
+                </time>
+            </p>
+        </header>
+        {% include 'partials/blog/item-image.html.twig' with { post: page } %}
+        <div class="textflow">
+            {% if page.rawMarkdown matches '/' ~ config.site.summary.delimiter ~ '/' %}
+                {% if page.header.hide_summary != true %}
+                    {{ page.summary|raw }}
+                {% endif %}
+                <a name="continue vh"></a>
+                {{ page.content|slice(page.summary|length)|raw }}
+            {% else %}
+                {{ page.content|raw }}
+            {% endif %}
+        </div>
+        {% if page.taxonomy.tag %}
+            <footer class="article__footer">
+                <span class="tags">
+                    <span class="vh">{{ 'THEME_C.BLOG.TAGS'|t|e }}:</span>
+                    {% for tag in page.taxonomy.tag %}
+                    <a class="tag" rel="tag" href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag }}</a>
+                    {% endfor %}
+                </span>
+            </footer>
+        {% endif %}
+    </article>
+
+    {% include 'partials/blog/postnav.html.twig' with { post: page } %}
+{% endblock %}
