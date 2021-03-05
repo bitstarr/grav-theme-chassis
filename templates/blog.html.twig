@@ -1,5 +1,6 @@
 {% set tpl_body_classes = 't-blog' %}
 {% extends 'partials/base.html.twig' %}
+{% do assets.addCss('theme://dist/css/blog.css', 99) %}
 
 {% set page_title = page.header.headline|default( page.title ) %}
 {% if uri.param( 'category' ) %}
@@ -17,7 +18,7 @@
 
         <div class="blog">
             {% for post in page.collection() %}
-                {% include 'partials/blog/list-item.html.twig' with: { post: post } %}
+                {% include 'partials/blog/list-item.html.twig' with { post: post } %}
             {% endfor %}
         </div>
 

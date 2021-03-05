@@ -2,6 +2,7 @@
     --comp-bg: var( --color-primary );
     --comp-txt: #fff;
 
+    margin-top: var( --gap-mars );
     padding-bottom: 2em;
     color: var( --comp-txt );
     background-color: var( --comp-bg );

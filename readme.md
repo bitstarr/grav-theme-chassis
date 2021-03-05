@@ -123,11 +123,3 @@ Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline work
 | npm run clean | clear `/dist` |
 | npm run dev | runs `css`, `js`, `img:sloppy` and `icons` in parallel once |
 | npm run build | runs `lint`, `clean`, `cssmin`, `js`, `jsmin`, `imgmin` and `fonts` |
-
-## Todo
-
-* l10n
-* add info about theme renaming
-* think about hero partial and bullets modular
-* social image fallback
-* refactor tabs.css

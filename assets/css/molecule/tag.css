@@ -1,0 +1,41 @@
+.tag {
+    --comp-bg: #888;
+    position: relative;
+    display: inline-block;
+    margin: 0 .7em .5em;
+    padding: .3em .6em .3em 1em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: var( --comp-bg );
+    border-radius: 0 2px 2px 0;
+
+    &:hover,
+    &:focus {
+        --comp-bg: var( --color-primary );
+        color: #fff;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: rotateY(0deg) rotateZ(45deg);
+        transform-origin: 0 0;
+        height: 1.13em;
+        width: 1.13em;
+        background: var( --comp-bg );
+        border-radius: 0 0 0 2px;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY( -50% );
+        height: .4em;
+        width: .4em;
+        background-color: #fff;
+        border-radius: 50%;
+    }
+}

@@ -11,7 +11,7 @@
             </time>
         </p>
     </header>
-    {% include 'partials/blog/image.html.twig' with { post: post, link: true } %}
+    {% include 'partials/blog/item-image.html.twig' with { post: post, link: true } %}
     <div class="textflow">
         {{ post.summary|raw }}
         {% if post.content|length > post.summary|length %}

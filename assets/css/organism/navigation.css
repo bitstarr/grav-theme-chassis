@@ -127,7 +127,7 @@
             font-weight: 700;
         }
 
-        .active  &__link {
+        .active &__link {
             text-decoration: underline;
         }
     }
@@ -172,12 +172,18 @@
         &--minor {
             display: none;
         }
+
+        &__item:hover > &__link,
+        &__link:focus,
+        .active &__link {
+            text-decoration: underline;
+        }
     }
     .submenu {
         position: absolute;
         z-index: 101;
         left: 0;
-        top: calc( 100% - .25rem );
+        top: calc( 100% + .05rem );
         transform: rotateX( -90deg );
         transform-origin: top center;
         visibility: hidden;

@@ -14,6 +14,7 @@ en:
       POST_NAV: Post Navigation
       NEXT_POST: Next Post
       PREV_POST: Previous Post
+      POSTED_IN: Posted in
       TAGS: Tags
       ARCHIVE_OF: Achive of
 
@@ -33,5 +34,6 @@ de:
       POST_NAV: Beitragsnavigation
       NEXT_POST: Nächster Beitrag
       PREV_POST: Vorheriger Beitrag
+      POSTED_IN: Abgelegt in
       TAGS: Schlagworte
       ARCHIVE_OF: Archiv für
