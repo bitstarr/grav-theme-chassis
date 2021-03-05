@@ -3,10 +3,14 @@
     for further ideas read:
     https://simonhearne.com/2021/layout-shifts-webfonts/
     a neat trick would be to use faux bolds or faux italics - but your design might not like this
+
+    Also consider to try a local font first:
+    https://twitter.com/argyleink/status/1223026734817087488
 */
 @font-face {
     font-family: 'Roboto Chassis';
-    src: url('../fonts/roboto-regular-wf.woff2') format('woff2');
+    src: local('Roboto'),
+        url('../fonts/roboto-regular-wf.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
     font-display: optional;
@@ -14,7 +18,8 @@
 
 @font-face {
     font-family: 'Roboto Chassis';
-    src: url('../fonts/roboto-light-wf.woff2') format('woff2');
+    src: local('Roboto'),
+        url('../fonts/roboto-light-wf.woff2') format('woff2');
         font-weight: 300;
         font-style: normal;
     font-display: optional;
@@ -22,7 +27,8 @@
 
 @font-face {
     font-family: 'Roboto Chassis';
-    src: url('../fonts/roboto-bold-wf.woff2') format('woff2');
+    src: local('Roboto'),
+        url('../fonts/roboto-bold-wf.woff2') format('woff2');
         font-weight: 700;
         font-style: normal;
     font-display: optional;
