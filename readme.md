@@ -6,7 +6,13 @@ We are using some gulp magic to help with boring and repetitive tasks. Please le
 
 ## Dependecies
 
-@TODO list grav plugins here, point to the kickstart
+Chassis provides templates and styles for the following plugins (if you install and enable them…)
+
+* breadcrumbs
+* forms
+* markdown-details
+* markdown-notices
+* pagination
 
 ## File Structure
 
@@ -123,3 +129,17 @@ Wir use `gulp` as task runner, which is wrapped in npm sripts to streamline work
 | npm run clean | clear `/dist` |
 | npm run dev | runs `css`, `js`, `img:sloppy` and `icons` in parallel once |
 | npm run build | runs `lint`, `clean`, `cssmin`, `js`, `jsmin`, `imgmin` and `fonts` |
+
+## Renaming the theme
+
+This is a bit trickey since grav has not only one place to set the name. In order to rename the theme you will need to follow these steps (let's take picasso for example):
+
+* rename the theme folder `chassis` -> `picasso`
+* rename `/chassis.yaml` and `/chassis.php` in `picasso.*`
+* change the name in `/blueprints.yaml`
+* in the file formerly known as `/chassis.php` rename the class name, mind the capital first letter `class Chassis extends Theme` -> `class Picasso extends Theme`
+* there are occurrences regarding the utility class in the same file, rename and follow the capitalization
+* in `/classes/Utils.php` rename the namespace definition, mind the capitalization
+* make sure all occurrences of utility functions in the template folder are renamed (search for chassis in files)
+
+When Using a dash in the theme name you will have to CamelCase ( upper camel case) the namespaces and class names.

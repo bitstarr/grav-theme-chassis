@@ -1,5 +1,5 @@
 /* stylelint-disable */
-html{
+html {
     /* define design tokens */
 
     /* new cross OS sans font stack */
@@ -8,7 +8,7 @@ html{
     --wrapper: 60rem;
     --wrapper-offset: .5fr;
     @media ( min-width: 40rem ) {
-        --wrapper-offset: 4em;
+        --wrapper-offset: 4rem;
     }
 
     /* imagine some distances relative to earth */
