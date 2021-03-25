@@ -13,14 +13,14 @@
                     {% if crumb.route == '/' %}
                         {{ svg('home' )|raw }}
                     {% endif %}
-                    <span class="title vh" itemprop="name">{{ crumb.title }}</span>
+                    <span class="title vh" itemprop="name">{{ crumb.menu }}</span>
                 </a>
             {% elseif crumb.routable %}
                 <a href="{{ crumb.url }}" itemprop="url" class="link">
-                    <span class="title" itemprop="name">{{ crumb.title }}</span>
+                    <span class="title" itemprop="name">{{ crumb.menu }}</span>
                 </a>
             {% else  %}
-                <span class="title" itemprop="name">{{ crumb.title }}</span>
+                <span class="title" itemprop="name">{{ crumb.menu }}</span>
             {% endif %}
         {% else %}
             {% if breadcrumbs_config.link_trailing %}
@@ -28,7 +28,7 @@
                     <span class="title" itemprop="name">{{ crumb.title }}</span>
                 </a>
             {% else %}
-                <span class="title" itemprop="name">{{ crumb.title }}</span>
+                <span class="title" itemprop="name">{{ crumb.menu }}</span>
             {% endif %}
         {% endif %}
     </li>
