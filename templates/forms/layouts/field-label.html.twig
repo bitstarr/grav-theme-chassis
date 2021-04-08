@@ -5,6 +5,8 @@
         {{ form_field_label }}
     {%- endif -%}
     {%- if form_field_required %}
-        <span class="required">*</span>
+        {# <span class="required">*</span> #}
+    {% else %}
+        <small>{{ 'THEME_C.FORM.OPTIONAL'|t|e }}</small>
     {%- endif -%}
 {%- endblock -%}

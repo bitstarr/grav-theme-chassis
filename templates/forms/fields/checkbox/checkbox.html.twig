@@ -31,7 +31,11 @@
             {% else %}
                 {{ field.label|t|e }}
             {% endif %}
-            {{ field.validate.required in ['on', 'true', 1] ? '<span class="required">*</span>' }}
+            {%- if field.validate.required in ['on', 'true', 1] %}
+                {# <span class="required">*</span> #}
+            {% else %}
+                <small>({{ 'THEME_C.FORM.OPTIONAL'|t|e }})</small>
+            {%- endif -%}
         </label>
     </div>
 {% endblock %}

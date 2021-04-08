@@ -17,6 +17,8 @@ en:
       POSTED_IN: Posted in
       TAGS: Tags
       ARCHIVE_OF: Achive of
+    FORM:
+      OPTIONAL: optional
 
 de:
   THEME_C:
@@ -37,3 +39,5 @@ de:
       POSTED_IN: Abgelegt in
       TAGS: Schlagworte
       ARCHIVE_OF: Archiv für
+    FORM:
+      OPTIONAL: optional
