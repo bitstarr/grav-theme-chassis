@@ -1,0 +1,5 @@
+{% if form.message %}
+    {% set inline_errors = form.inline_errors is not null ? form.inline_errors : config.plugins.form.inline_errors(false) %}
+    {% set message = inline_errors and form.messages ? "GRAV.FORM.VALIDATION_FAIL"|t : form.message %}
+    <div class="notice {{ form.status }} notice--{{ form.status }}"><p>{{ message|raw }}</p></div>
+{% endif %}
