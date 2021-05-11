@@ -17,6 +17,10 @@ en:
       POSTED_IN: Posted in
       TAGS: Tags
       ARCHIVE_OF: Achive of
+    TICKER:
+      DEV: +++ DEV Enviroment +++ Buckle up +++ Try Konami Code for more entertainment ++
+      STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++
+      PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++
     FORM:
       OPTIONAL: optional
 
@@ -39,5 +43,9 @@ de:
       POSTED_IN: Abgelegt in
       TAGS: Schlagworte
       ARCHIVE_OF: Archiv für
+    TICKER:
+      DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Konami Code sorgt für Unterhaltung +++
+      STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++
+      PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++
     FORM:
       OPTIONAL: optional

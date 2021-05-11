@@ -43,7 +43,7 @@
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}
-    {% if config.system.dev_mode %}
+    {% if config.system.env.state == 'dev' %}
         {% do assets.addJs('theme://dist/js/dev.js', { group:'bottom' }) %}
     {% endif %}
 {% endblock %}
@@ -52,6 +52,12 @@
     {{ assets.css()|raw }}
     {{ assets.js()|raw }}
 {% endblock %}
+
+{%- if config.system.env.state == 'production' %}
+    {# {% include 'partials/matomo.html.twig' %} #}
+{% else %}
+    <link rel="icon" href="{{ url('theme://assets/favicon/favicon.php') }}?env={{ config.system.env.state }}" />
+{% endif %}
 </head>
 <body id="top" class="{{ body_classes }}">
 
@@ -120,10 +126,8 @@
     {{ assets.js('bottom')|raw }}
 {% endblock %}
 
-{#}
-{% if config.system.dev_mode %}
-    {% include 'partials/dev.html.twig' %}
+{% if config.system.env.banner %}
+    {% include 'partials/ticker.html.twig' %}
 {% endif %}
-{#}
 </body>
 </html>
