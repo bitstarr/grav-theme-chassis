@@ -21,6 +21,7 @@ en:
       DEV: +++ DEV Enviroment +++ Buckle up +++ Try Konami Code for more entertainment ++
       STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++
       PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++
+      FALLBACK: +++ Why are you here? +++
     FORM:
       OPTIONAL: optional
 
@@ -47,5 +48,6 @@ de:
       DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Konami Code sorgt für Unterhaltung +++
       STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++
       PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++
+      FALLBACK: +++ Warum bist du hier? +++
     FORM:
       OPTIONAL: optional
