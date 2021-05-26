@@ -1,0 +1,1210 @@
+/* Settings, basic elements, fixes/homogenisation */
+/* stylelint-disable */
+html{
+    /* define design tokens */
+
+    /* new cross OS sans font stack */
+    --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --wrapper: 60rem;
+    --wrapper-offset: .5fr;
+
+    /* imagine some distances relative to earth */
+    --gap: 1.25rem; /* default distance */
+    --gap-moon: .625rem;
+    --gap-venus: 1.25rem;
+    --gap-mars: 2.5rem;
+    --gap-jupiter: 4rem;
+
+    --beige: #f5dd90;
+    --blue: #6676a6;
+    --anatolia: #324376;
+    --anatolia-h: 225;
+    --anatolia-s: 40%;
+    --anatolia-l: 33%;
+    --anatolia-hs: 225 40%;
+    --lava: #f68e5f;
+    --lobster: #f76c5e;
+    --lobster-hs: 5, 91%;
+    --lobster-l: 67%;
+    --grey: #707070;
+
+    --color-primary: var( --anatolia );
+    --color-primary-h: var( --anatolia-h );
+    --color-primary-s: var( --anatolia-s );
+    --color-primary-l: var( --anatolia-l );
+    --color-primary-inside: #fff;
+    --color-secondary: var( --lobster );
+    --color-secondary-inside: #222;
+
+    --color-border: #ddd;
+    --color-ui: #f4f4f4;
+
+    --text-default: #444;
+    --text-muted: var( --grey );
+    --link-color: var( --anatolia );
+    --link-color-hover: var( --blue );
+
+    --body-bg: #fff;
+    --body-fz: 1em;
+    /* --body-lh: calc( 1ex / .32 ); */
+    --body-lh: calc( 2px + 1.1em + 2px );
+    /* see https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
+
+    --scroll-bg: rgba( 255, 255, 255, .2 );
+    --scroll-fg: var( --grey-80 );
+
+    --breadcrumb-text: var( --grey );
+
+    --input-h: var( --anatolia-h );
+    --input-s: var( --anatolia-s );
+    --input-l: var( --anatolia-l );
+    --input-bg: #fff;
+    --input-txt: var( --text-default );
+    --input-placeholder: #777;
+
+    --error-h: 0;
+    --error-s: 100%;
+    --error-l: 33%;
+
+    --overlay-bg: #fff;
+    --overlay-txt: var( --blue );
+}
+@media ( min-width: 40rem ) {
+html{
+        --wrapper-offset: 4em;
+}
+    }
+/* stylelint-endable */
+/*
+    Super Scaling Layout
+    @see https://codepen.io/bitstarr/pen/gOwaNoB
+*/
+/* super scale! */
+@media ( min-width: 120.01rem ) {
+:root {
+        font-size: calc( 100vw / 120 )
+}
+    }
+@supports (-webkit-touch-callout: none) {
+:root {
+        /* CSS specific to iOS devices */
+        font-size: 1rem
+}
+    }
+/* stylelint-disable selector-list-comma-newline-after */
+/**
+ * 1. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ * 2. Set death proof box-sizing
+ */
+html {
+    -ms-text-size-adjust: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 1 */
+    box-sizing: border-box; /* 1 */
+}
+*, *:before, *:after { box-sizing: inherit; }
+/* 3 */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, mark, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, figure { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+/* remember to define focus styles! */
+:focus { outline: 0; }
+ol, ul { list-style: none; }
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: separate; border-spacing: 0; }
+/* Webkit-Browser machen einen 2px margin außerhalb von Form-Elementen */
+button, input, select, textarea { margin: 0; }
+/* Scrollbar erzwingen für nicht IE, verhindert springen der Seite */
+html { overflow-y: scroll; }
+/* stylelint-enable selector-list-comma-newline-after */
+body {
+    font: var( --body-fz )/var( --body-lh ) var( --font-stack );
+    color: var( --text-default );
+    background: var( --body-bg );
+}
+/* don't ever combine both lines or user text-shadow! */
+::-moz-selection{ background: var( --color-primary ); color: var( --color-primary-inside ); text-shadow: none; }
+::selection { background: var( --color-primary ); color: var( --color-primary-inside ); text-shadow: none; }
+/*
+    clear quotes, if they are not needed
+
+blockquote:before, blockquote:after, q:before, q:after { content: ' }
+blockquote, q { quotes: ' ' }
+*/
+/*
+    use multi lang quotes
+:lang(de-DE) { quotes:'\201E' '\201C' '\201A' '\2018' }
+:lang(de-CH) { quotes:'\00AB' '\00BB' '\2039' '\203A' }
+:lang(en)    { quotes:'\201C' '\201D' '\2018' '\2019' }
+:lang(fr)    { quotes:'\00AB\00A0' '\00A0\00BB' '\2039\00A0' '\00A0\203A' }
+*/
+q { quotes: '\201E' '\201C' '\201A' '\2018'; }
+q::before { content: open-quote; }
+q::after { content: close-quote; }
+/* monospace normalisieren http://en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre,
+code,
+kbd,
+samp { font-family: monospace, sans-serif; }
+/* http://www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+pre {
+    padding: 1em;
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    word-wrap: break-word; /* IE */
+}
+small { font-size: 85%; }
+strong,
+th { font-weight: 700; }
+em { font-style: italic; }
+sub,
+sup { font-size: smaller; }
+sub { vertical-align: sub; }
+sup { vertical-align: super; }
+@supports ( font-variant-position: super ) {
+    sup { font-variant-positon: super; }
+    sub { font-variant-positon: sub; }
+}
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+abbr[title]:hover {
+        cursor: help;
+    }
+abbr {
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+a {
+    text-decoration: none;
+    color: var( --link-color );
+}
+a[href^='tel'] {
+    --link-color: inherit;
+    cursor: inherit;
+}
+/*
+Set tables to fixed layout to speed up rendering of longer tables in IE
+http://www.quirksmode.org/css/tables.html und http://msdn.microsoft.com/en-us/library/ms531161%28v=vs.85%29.aspx
+
+table{ table-layout: fixed; }
+*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-variant-numeric: lining-nums tabular-nums;
+}
+td,
+td img { vertical-align: top; }
+caption,
+th,
+td { padding: 0; text-align: left; font-weight: 400; }
+/* Form Fixes / Normalisations */
+button,
+input,
+select,
+optgroup,
+textarea { margin: 0; font: inherit; }
+select,
+input,
+textarea { color: inherit; }
+/* Address inconsistent `text-transform` inheritance for `button` and `select`. */
+button,
+select { text-transform: none; }
+/* adjust checkboxes, radiobuttons, text inputs to label */
+input[type='radio'],
+input[type='checkbox'] { box-sizing: border-box; vertical-align: baseline; padding: 0; }
+/* Address Firefox 4+ setting `line-height` on `input` using `!important` in the UA stylesheet .*/
+input { line-height: normal; }
+/* remove scrollbar of textarea in IE @see http://www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+textarea { overflow: auto; resize: none; }
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type='button'], /* 1 */
+input[type='reset'],
+input[type='submit'] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+/*  Firefox and Chrome - remove inner border */
+button::-moz-focus-inner,
+input::-moz-focus-inner { border: 0; padding: 0; }
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button { height: auto; }
+/* we like our number inputs undecorated */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+::-webkit-inner-spin-button { -webkit-appearance: none;}
+::-webkit-outer-spin-button { -webkit-appearance: none;}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+ */
+input[type='search'] {
+    -webkit-appearance: textfield; /* 1 */
+    box-sizing: content-box; /* 2 */
+}
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration { -webkit-appearance: none; }
+label { cursor: pointer; }
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+    display: inline-block; /* 1 */
+    vertical-align: baseline; /* 2 */
+}
+/**
+* Correct overflow not hidden in IE 9/10/11.
+*/
+svg:not( :root ) {
+    overflow: hidden;
+}
+.vh,
+.screen-reader-text {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+.vh.focusable:active,
+    .vh.focusable:focus,
+    .screen-reader-text.focusable:active,
+    .screen-reader-text.focusable:focus {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        z-index: 1000;
+        clip: initial;
+        width: auto;
+        height: auto;
+        padding: 1ex;
+        text-decoration: none;
+        text-transform: none;
+        background-color: #111;
+        color: #eee;
+    }
+.u-hidden { display: none; }
+.u-quiet {
+    color: var( --text-muted );
+}
+.u-quiet a,
+    .u-quiet a:visited {
+        color: var( --text-muted );
+    }
+.u-quiet a:focus,
+        .u-quiet a:hover,
+        .u-quiet a:active,
+        .u-quiet a:visited:focus,
+        .u-quiet a:visited:hover,
+        .u-quiet a:visited:active {
+            color: var( --text-default );
+        }
+.u-hyphen {
+    overflow-wrap: break-word;
+    wordp-wrap: break-word;
+    -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+}
+.noscroll {
+    overflow: hidden;
+}
+/* form components */
+::-webkit-input-placeholder { color: var( --input-placeholder ); }
+::-moz-placeholder { color: var( --input-placeholder ); }
+:-ms-input-placeholder { color: var( --input-placeholder ); }
+.form {
+    --txt-space: .7em;
+    --txt-height: 1.2em;
+    --placeholder: var( --input-placeholder );
+
+    --hue: var( --input-h );
+    --sat: var( --input-s );
+    --lit: var( --input-l );
+    --sat-d: calc( var( --sat ) * .6 );
+    --background: var( --input-bg );
+    --border: hsl( var( --hue ) var( --sat ) 80% );
+    --border: hsl( var( --hue ) var( --sat ) var( --lit ) );
+    --border-light: hsl( var( --hue ) var( --sat ) 80% );
+    --active: hsl( var( --hue ) var( --sat ) var( --lit ) );
+    --active-inner: var( --input-bg );
+    --disabled: hsl( var( --hue ) var( --sat-d ) 98% );
+    --disabled-inner: hsl( var( --hue ) var( --sat-d ) 73% );
+    --disabled-border: hsl( var( --hue ) var( --sat-d ) 73% );
+}
+.form textarea,
+    .form label {
+        display: block;
+    }
+.form__buttons,
+    .form__field + .form__field {
+        margin-top: var( --gap );
+    }
+.form__buttons {
+        text-align: center;
+    }
+.form__buttons .button {
+        width: 100%;
+        max-width: 15em;
+        font-size: 1.2em;
+    }
+/* for our custom quiz field */
+.form .field-personality {
+        display: flex;
+        flex-wrap: wrap;
+    }
+.form .field-personality > label {
+            width: 100%;
+            margin-bottom: .5em;
+            font-size: .9em;
+            line-height: var( --txt-height );
+            color: var( --placeholder );
+        }
+.text-input {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    width: 100%;
+    padding: var( --txt-space );
+    line-height: var( --txt-height );
+    background: var( --b, var( --background ) );
+    border: .1em solid var( --bc, var( --border-light ) );
+    border-radius: .3em;
+    box-shadow: 0 0 0 transparent;
+    transition: border-color .3s, box-shadow .2s;
+    box-shadow: none;
+    resize: vertical;
+}
+.text-input ::-moz-placeholder {
+        color: var( --placeholder );
+    }
+.text-input ::-ms-input-placeholder {
+        color: var( --placeholder );
+    }
+.text-input ::placeholder {
+        color: var( --placeholder );
+    }
+.text-input:hover:not(:disabled) {
+            --bc: var( --border );
+        }
+.text-input:focus {
+        --bc: var( --border );
+        box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+    }
+input.text-input:not(:focus):not(:-moz-placeholder-shown):invalid {
+        --ec: var( --error-h ) var( --error-s );
+        border-color: hsl( var( --ec ) var( --error-l ) );
+        box-shadow: inset 0 0 0 1px hsl( var( --ec ) var( --error-l ) );
+        background-color: hsl( var( --ec ) 95% );
+    }
+input.text-input:not(:focus):not(:placeholder-shown):invalid,
+    select.text-input:not([value='']):invalid {
+        --ec: var( --error-h ) var( --error-s );
+        border-color: hsl( var( --ec ) var( --error-l ) );
+        box-shadow: inset 0 0 0 1px hsl( var( --ec ) var( --error-l ) );
+        background-color: hsl( var( --ec ) 95% );
+    }
+.text-input:disabled {
+        --b: var( --disabled );
+        --border: var( --disabled-border );
+        opacity: .6;
+        cursor: not-allowed;
+    }
+.text-input[readonly] {
+        --b: var( --disabled );
+        --border: var( --disabled-border );
+    }
+.text-input[type='number'] {
+        font-variant-numeric: tabular-nums;
+    }
+.dropdown {
+    padding-right: 1.5em;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" ><path fill="%23666" d="M256,298.3L256,298.3L256,298.3l174.2-167.2c4.3-4.2,11.4-4.1,15.8,0.2l30.6,29.9c4.4,4.3,4.5,11.3,0.2,15.5L264.1,380.9c-2.2,2.2-5.2,3.2-8.1,3c-3,0.1-5.9-0.9-8.1-3L35.2,176.7c-4.3-4.2-4.2-11.2,0.2-15.5L66,131.3c4.4-4.3,11.5-4.4,15.8-0.2L256,298.3z"/></svg>' );
+    background-size: .8em;
+    background-repeat: no-repeat;
+    background-position: calc( 100% - .5em ) center;
+}
+.button {
+    --hue: var( --color-primary-h );
+    --sat: var( --color-primary-s );
+    --lit: var( --color-primary-l );
+    --sat-d: calc( var( --sat ) * .6 );
+    --comp-bg: hsl( var( --hue ) var( --sat ) var( --lit ) );
+    --comp-txt: var( --color-primary-inside );
+    --hover-bg: hsl( var( --hue ) var( --sat ) calc( var( --lit ) * .6 ) );
+    --hover-txt: var( --comp-txt );
+    --disabled-bg: hsl( var( --hue ) var( --sat-d ) 75% );
+    --disabled-txt: hsl( var( --hue ) var( --sat-d ) 96% );
+
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1ex;
+    line-height: 1.2;
+    text-align: center;
+    color: var( --comp-txt );
+    background: var( --comp-bg );
+    border: 0;
+    border-radius: 0;
+    transition: background-color .2s;
+}
+a.button,
+    a.button:visited {
+        color: var( --comp-txt );
+    }
+a.button:hover,
+    a.button:focus {
+        color: var( --hover-txt );
+    }
+.button:hover,
+    .button:focus {
+        color: var( --hover-txt );
+        background-color: var( --hover-bg );
+        box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+    }
+.button[disabled] {
+        color: var( --disabled-txt );
+        background: var( --disabled-bg );
+        cursor: not-allowed;
+    }
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+        .form input[type='checkbox'],
+        .form input[type='radio'] {
+            -webkit-appearance: none;
+               -moz-appearance: none;
+                    appearance: none;
+            position: relative;
+            display: inline-block;
+            height: 1.2em;
+            margin: 0;
+            vertical-align: top;
+            background: var( --b, var( --background ) );
+            border: .1em solid var( --bc, var( --border ) );
+            box-shadow: 0 0 0 transparent;
+            transition: background .3s, border-color .3s, box-shadow .2s;
+            cursor: pointer;
+            outline: none;
+        }
+
+            .form input[type='checkbox']:after, .form input[type='radio']:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: block;
+                transition: opacity var( --d-o, .2s );
+            }
+
+            .form input[type='checkbox']:checked, .form input[type='radio']:checked {
+                --b: var( --active );
+                --bc: var( --active );
+                --d-o: .3s;
+                --d-t: .6s;
+                --d-t-e: cubic-bezier( .2, .85, .32, 1.2 );
+            }
+
+            .form input[type='checkbox']:disabled, .form input[type='radio']:disabled {
+                --b: var( --disabled );
+                --border: var( --disabled-border );
+                opacity: .9;
+                cursor: not-allowed;
+            }
+
+                .form input[type='checkbox']:disabled:checked, .form input[type='radio']:disabled:checked {
+                    --b: var( --disabled-inner );
+                    --bc: var( --border );
+                }
+
+                .form input[type='checkbox']:disabled + label, .form input[type='radio']:disabled + label {
+                    cursor: not-allowed;
+                }
+                    .form input[type='checkbox']:hover:not(:checked):not(:disabled), .form input[type='radio']:hover:not(:checked):not(:disabled) {
+                        --bc: var( --border-light );
+                    }
+
+            .form input[type='checkbox']:focus, .form input[type='radio']:focus {
+                box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+            }
+
+            .form input[type='checkbox']:not(.switch), .form input[type='radio']:not(.switch) {
+                width: 1.2em;
+            }
+
+                .form input[type='checkbox']:not(.switch):after, .form input[type='radio']:not(.switch):after {
+                    opacity: var( --o, 0 );
+                }
+
+                .form input[type='checkbox']:not(.switch):checked, .form input[type='radio']:not(.switch):checked {
+                    --o: 1;
+                }
+
+            .form input[type='checkbox'] + label, .form input[type='radio'] + label {
+                display: inline-block;
+                margin-left: .3em;
+                padding: .2em 1.2em .2em 0;
+                line-height: 1;
+                vertical-align: top;
+                cursor: pointer;
+            }
+            .form input[type='checkbox']:not(.switch) {
+                border-radius: .2em;
+            }
+
+                .form input[type='checkbox']:not(.switch):after {
+                    left: 50%;
+                    top: 45%;
+                    width: .4em;
+                    height: .7em;
+                    border: .15em solid var( --active-inner );
+                    border-top: 0;
+                    border-left: 0;
+                    transform: translate( -50%, -50% ) rotate( 43deg );
+                }
+
+            .form input[type='checkbox'].switch {
+                width: 2.6em;
+                border-radius: .7em;
+            }
+
+                .form input[type='checkbox'].switch:after {
+                    left: .2em;
+                    top: 50%;
+                    width: .65em;
+                    height: .65em;
+                    background: var( --ab, var( --border ) );
+                    border-radius: 50%;
+                    transform: translate( var( --x, 0 ), -50% );
+                    transition: transform var( --d-t, .3s ) var( --d-t-e, ease );
+                }
+
+                .form input[type='checkbox'].switch:checked {
+                    --ab: var( --active-inner );
+                    --x: 1.3em;
+                }
+                        .form input[type='checkbox'].switch:disabled:not(:checked):after {
+                            opacity: .6;
+                        }
+
+        .form input[type='radio'] {
+            border-radius: 50%;
+        }
+
+            .form input[type='radio']:after {
+                left: 50%;
+                top: 50%;
+                width: .5em;
+                height: .5em;
+                border-radius: 50%;
+                background: var( --active-inner );
+                opacity: 0;
+                transform: translate( -50%, -50% );
+            }
+}
+.levitate {
+    position: relative;
+}
+.levitate label {
+        position: absolute;
+        z-index: 1;
+        top: calc( var( --txt-space ) * .5 );
+        left: var( --txt-space );
+        font-size: .9em;
+        line-height: var( --txt-height );
+        color: var( --placeholder );
+    }
+.levitate label + * {
+        padding-top: calc( var( --txt-space ) + var( --txt-height ) );
+    }
+/* simple self containing units */
+.icon {
+    fill: currentColor;
+    height: 1em;
+    width: 1em;
+    overflow: hidden;
+    vertical-align: -.125em;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+}
+.logo__img {
+        display: block;
+        height: 2em;
+        width: auto;
+        fill: currentColor;
+        margin-right: 1ex;
+    }
+.headline {
+    font-size: 2em;
+    line-height: calc( 1ex / .38 );
+    color: hsl( var( --color-primary-hue ) var( --color-primary-sat ) calc( var( --color-primary-l ) * .85 ) );
+}
+/* more copmplex modules */
+/* global */
+.header {
+    --comp-bg: var( --header-bg );
+    --comp-txt: var( --header-text );
+
+    color: var( --comp-txt );
+    background-color: var( --comp-bg );
+}
+.header .wrapped {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var( --gap ) 0;
+        height: 100%;
+    }
+.navigation {
+    --menu-fs: 1.2em;
+    --submenu-fs: 1em;
+    --micro-fs: .8em;
+
+    --link-color: var( --overlay-text );
+}
+.navigation__trigger {
+    display: block;
+    padding: 1ex var( --space, 1rem );
+    line-height: 1;
+    cursor: pointer;
+}
+/* .navigation__trigger:hover, */
+.navigation__state:focus + .navigation__trigger,
+.navigation__state:checked + .navigation__trigger {
+    outline: none;
+    background-color: var( --color--03 );
+}
+.navigation__state:checked + .navigation__trigger .expanded-hint,
+.navigation__state:not(:checked) + .navigation__trigger .collapsed-hint {
+    display: inline;
+}
+.navigation__state:checked + .navigation__trigger .collapsed-hint,
+.navigation__state:not(:checked) + .navigation__trigger .expanded-hint {
+    display: none;
+}
+.navigation .menu__link {
+    display: block;
+    min-width: 100%;
+    padding: .6em;
+    white-space: nowrap;
+}
+.navigation .menu__item {
+    position: relative;
+}
+.navigation .icon {
+    transition: transform .2s;
+}
+.navigation__layer {
+        display: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 15%;
+        z-index: 100;
+        overflow-y: auto;
+        padding: 1.5em 1.5em 0;
+        color: var( --overlay-txt );
+        background-color: var( --overlay-bg );
+    }
+.navigation__layer__abyss {
+        display: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 99;
+        background-color: rgba( 0, 0, 0, .4 );
+    }
+.navigation__close {
+        position: absolute;
+        top: var( --gap );
+        left: 85%;
+        padding: 1ch;
+        line-height: 1;
+        background-color: var( --overlay-bg );
+        border-radius: 0 50% 50% 0;
+    }
+.navigation__state:checked ~ .navigation__layer,
+    .navigation__state:checked ~ .navigation__layer__abyss {
+        display: block;
+    }
+.navigation .menu__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+.navigation .menu--main {
+        margin-bottom: 2em;
+    }
+.navigation .menu--main > .menu__item > .menu__link {
+        font-size: var( --menu-fs );
+    }
+.navigation .menu--minor {
+        padding-bottom: 1.5rem;
+    }
+.navigation .menu__link {
+        padding: .5em 0;
+    }
+.navigation .menu__link:focus,
+        .navigation .menu__link:hover {
+            text-decoration: underline;
+        }
+/* .navigation .menu__item.uber {
+        margin-bottom: 1.5rem;
+        font-size: var( --micro-fs );
+    } */
+/*
+    .navigation .menu__item.primary > .menu__link {
+        border-bottom: 1px dotted var( --overlay-div );
+    }
+    */
+.navigation .menu__item.primary + .menu__item.secondary {
+        margin-top: 2em;
+    }
+.menu__item.secondary {
+        --link-color: var( --grey );
+        font-size: var( --micro-fs );
+    }
+.navigation .menu__item.has-children {
+        position: relative;
+    }
+.navigation .submenu {
+        display: none;
+        font-size: var( --submenu-fs );
+    }
+.navigation .submenu .menu__link {
+        padding-left: 1.5em;
+    }
+.navigation .submenu .submenu {
+        margin-left: 1ch;
+    }
+.navigation .submenu__trigger {
+        position: absolute;
+        top: 1.1em;
+        right: -.4em;
+        transform: translateY( -50% );
+        padding: .4em;
+        line-height: 1;
+    }
+.navigation .submenu__state:checked + .submenu__trigger .icon {
+        transform: rotate( 90deg );
+    }
+.navigation .submenu__state:checked + .submenu__trigger + .submenu {
+        display: block;
+    }
+.footer {
+    --comp-bg: var( --color-primary );
+    --comp-txt: #fff;
+
+    padding-bottom: 2em;
+    color: var( --comp-txt );
+    background-color: var( --comp-bg );
+}
+.footer__nav {
+        margin-top: 1.5em;
+    }
+.footer__nav a {
+            color: var( --comp-txt );
+        }
+.footer__nav .menu {
+            display: flex;
+            font-size: .9em;
+        }
+.footer__nav .menu__item + .menu__item {
+            margin-left: 1ex;
+            padding-left: 1ex;
+            border-left: 1px solid;
+        }
+.footer__nav .menu__link {
+            display: block;
+            line-height: 1.1;
+        }
+.footer__social {
+        display: flex;
+        margin-left: calc( var( --gap-moon ) * -1 );
+        font-size: 1.5em;
+    }
+.footer__social__link {
+            padding: var( --gap-moon );
+        }
+.breadcrumb {
+    --comp-txt: var( --breadcrumb-text );
+
+    padding: 1em 0;
+    font-size: .75em;
+    color: var( --comp-txt );
+}
+.breadcrumb .link {
+    color: currentColor;
+}
+.breadcrumb .item {
+    display: inline;
+}
+.breadcrumb .item:before {
+    position: relative;
+    top: -.1em;
+    display: inline-block;
+    width: .4em;
+    height: .4em;
+    margin-right: .2em;
+    margin-left: .1em;
+
+    border: 1px solid;
+    border-width: 1px 1px 0 0;
+    transform: rotate( 45deg );
+}
+.breadcrumb .item + .item:before {
+    content: '';
+}
+.breadcrumb .is-home .title {
+
+}
+.textflow > * + * {
+        /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
+        margin-top: var( --flow-space, var( --body-lh ) );
+    }
+.textflow ul,
+    .textflow ol { margin-left: 1em; }
+.textflow li { -moz-column-break-inside: avoid; break-inside: avoid; }
+.textflow ol { list-style: decimal; }
+.textflow ul { list-style: disc; }
+.textflow li ol,
+    .textflow li ul { margin-bottom: 0; }
+.textflow li ul { list-style-type: circle; }
+.textflow ul li::marker {
+        color: var( --color-primary );
+        font-size: .8em;
+    }
+.textflow li ul li::marker {
+        opacity: .6;
+    }
+.textflow h2,
+    .textflow h3,
+    .textflow h4 {
+        font-weight: 700;
+    }
+.textflow h2 {
+        font-size: 1.75em;
+        line-height: calc( 1ex / .38 );
+        --flow-space: calc( 1ex / .38 );
+    }
+.textflow h3,
+    .textflow h4 {
+        line-height: calc( 1ex / .37 );
+        --flow-space: calc( 1ex / .37 );
+    }
+.textflow h3 {
+        font-size: 1.5em;
+    }
+.textflow h4 {
+        font-size: 1.2em;
+    }
+.textflow h2 + *,
+    .textflow h3 + *,
+    .textflow h4 + * {
+        --flow-space: 1ex;
+    }
+.textflow table {
+        width: 100%;
+    }
+.textflow th,
+    .textflow td {
+        padding: .5em;
+    }
+.textflow th {
+        font-weight: 700;
+        border-bottom: 2px solid var( --color-border );
+    }
+.textflow th:empty {
+        display: none;
+    }
+.textflow tr + tr td {
+        border-top: 1px solid var( --color-border );
+    }
+.textflow svg:not(.icon),
+    .textflow img {
+        max-width: 100%;
+        height: auto;
+    }
+.textflow svg.full,
+    .textflow img.full {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+.textflow a {
+        text-decoration: underline;
+    }
+.textflow a:focus,
+        .textflow a:hover {
+            --link-color: var( --link-color-hover );
+        }
+.textflow a:focus {
+            outline: 2px solid;
+            outline-offset: 3px;
+        }
+.textflow .button {
+        text-decoration: none;
+    }
+.notice {
+    --comp-bg: var( --color-ui );
+    --comp-brd: #777;
+    --comp-txt: var( --text-default );
+
+    padding: var( --gap-moon );
+    color: var( --comp-txt );
+    background: var( --comp-bg );
+    border-left: .4em solid var( --comp-brd );
+}
+.notice:empty { display: none; }
+.notice a {
+        text-decoration: underline;
+        color: inherit;
+    }
+.notice--success {
+        --comp-bg: #e5f3ef;
+        --comp-brd: #008566;
+    }
+.notice--warning {
+        --comp-bg: #fcf8f2;
+        --comp-brd: #ffb820;
+    }
+.notice--error {
+        --comp-bg: #fdf7f7;
+        --comp-brd: #d0103a;
+    }
+.details {
+    padding: var( --gap-moon ) var( --gap );
+    background: var( --color-ui );
+    border-bottom: 2px solid var( --color-border );
+}
+.details + .details {
+        margin-top: var( --body-lh );;
+    }
+.details__trigger {
+        all: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: var( --gap-moon ) 0;
+        border: 0;
+        cursor: pointer;
+    }
+.details__trigger::marker {
+        display: none;
+    }
+.details__trigger::-webkit-details-marker {
+        display: none;
+    }
+.details .indicator {
+        height: 1rem;
+        margin: 0 0 0 .5em;
+        fill: currentColor;
+    }
+.details .details__title { /* high specifity */
+        margin: 0;
+        font-size: 1.4em;
+        font-weight: 700;
+    }
+.details__content {
+        padding-bottom: var( --gap-moon );
+    }
+.details[data-expanded='false'] .details__content {
+        display: none;
+    }
+.details[open] .indicator__vert,
+    .details[data-expanded='true'] .indicator__vert {
+        display: none;
+    }
+.tabs__head {
+        display: none;
+    }
+.tabs__content {
+        margin-bottom: var( --gap-mars );
+    }
+.tabs__title {
+        margin-bottom: var( --gap-moon );
+        font-size: 1.2em;
+    }
+.tabs.is-interactive .tabs__head {
+        display: flex;
+    }
+.tabs.is-interactive .tabs__title{
+        display: none;
+    }
+.tabs--default {
+        --comp-brd: var( --grey-60 );
+        --comp-bg: #fff;
+    }
+.tabs--default .tabs__toggle {
+        display: block;
+        text-align: center;
+        padding: var( --gap-moon );
+    }
+.tabs--default .tabs__toggle[aria-selected] {
+        position: relative;
+        top: 2px;
+        border: 2px solid var( --comp-brd );
+        border-bottom: 0;
+        background: var( --comp-bg );
+    }
+.tabs--default.is-interactive .tabs__content {
+        padding: var( --gap ) var( --gap-moon );
+        border: 2px solid var( --comp-brd );
+        background: var( --comp-bg );
+        border-radius: 0 0 5px 5px;
+    }
+/* specific */
+.hero {
+    position: relative;
+    overflow: hidden;
+    /* padding-top: 80%; */
+    height: 109vw;
+    max-height: 30em;
+}
+.hero__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+.hero__title {
+        position: absolute;
+        top: 15%;
+        font-size: 2em;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0 0 3px rgba( 0, 0, 0, .7 );
+    }
+.modular {
+    padding: 2rem 0;
+}
+.modular__title {
+        margin-bottom: 1rem;
+        font-size: 2em;
+        font-weight: 700;
+    }
+/* layouts define the relations between modules on a specific page type */
+/*
+    center column with max-width and possibilities to break out - the grid way
+    @see https://codepen.io/bitstarr/pen/BajbPRa
+*/
+.wrapping {
+    display: grid;
+    grid-template-columns:
+        [full-start]
+        minmax(1em, 1fr)
+        [mid-start]
+        minmax(0, var( --wrapper-offset ))
+        [main-start]
+        minmax(0, var( --wrapper ))
+        [main-end]
+        minmax(0, var( --wrapper-offset ))
+        [mid-end]
+        minmax(1em, 1fr)
+        [full-end];
+    align-content: start;
+}
+.wrapping > * {
+    grid-column: main;
+}
+.breakout {
+    grid-column: full;
+    grid-template-columns: inherit;
+}
+.breakout--wrapping {
+    display: inherit;
+}
+.breakout--wrapping .wrapped {
+        grid-column: main;
+    }
+.breakout--mid {
+    grid-column: mid;
+    grid-template-columns: inherit;
+}
+/* sticky footer - the grid way */
+html {
+    /* do we need a sticky fix? https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/*/
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+@media( min-width: 55em ) {
+    body {
+        font-size: 1.2em;
+    }
+}
+body {
+    scroll-behavior: smooth;
+}
+/*
+.wrapper {
+    margin: 0 auto;
+    padding: 0 var( --gap );
+    max-width: var( --wrapper );
+}
+.wrapper--tight {
+    margin: 0 auto;
+    max-width: var( --wrapper );
+
+    @media (min-width: 50rem) {
+        padding: 0 var( --gap );
+    }
+}
+*/
+.t-page .main {
+        margin: var( --gap ) 0 var( --gap-mars );
+    }
+.t-error .errorcode {
+        margin-top: var( --gap );
+        font-size: .6em;
+        color: var( --text-quiet );
+    }
+/* vendor (third-party) sprecific */
+/*# sourceMappingURL=main.css.map */

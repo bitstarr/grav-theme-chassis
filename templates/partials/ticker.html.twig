@@ -1,0 +1,15 @@
+{% do assets.addCss('theme://dist/css/ticker.css', 99) %}
+
+<div class="ticker ticker--{{ config.system.env.state }}">
+    <marquee behavior="" direction="">
+        {% if config.system.env.state == 'preview' %}
+            {{ 'THEME_C.TICKER.PREVIEW'|t|e }}
+        {% elseif config.system.env.state == 'stage' %}
+            {{ 'THEME_C.TICKER.STAGE'|t|e }}
+        {% elseif config.system.env.state == 'dev' %}
+            {{ 'THEME_C.TICKER.DEV'|t|e }}
+        {% else %}
+            {{ 'THEME_C.TICKER.FALLBACK'|t|e }}
+        {% endif %}
+    </marquee>
+</div>
