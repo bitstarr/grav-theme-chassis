@@ -69,6 +69,11 @@ abbr {
 a {
     text-decoration: none;
     color: var( --link-color );
+
+    &:focus,
+    &:hover {
+        --link-color: var( --link-color-hover );
+    }
 }
 a[href^='tel'] {
     --link-color: inherit;
