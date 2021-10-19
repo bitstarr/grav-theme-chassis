@@ -10,6 +10,7 @@
     text-align: center;
     color: var( --comp-txt, #fff );
     background-color: var( --comp-bg, #066 );
+    opacity: .7;
 
     &--stage {
         --comp-txt: #fff;
@@ -20,8 +21,4 @@
         --comp-txt: #fff;
         --comp-bg: #922;
     }
-}
-
-body {
-    padding-bottom: 2em;
 }

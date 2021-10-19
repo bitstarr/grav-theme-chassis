@@ -59,7 +59,7 @@
 {%- if config.system.env.state == 'production' %}
     {# {% include 'partials/matomo.html.twig' %} #}
 {% else %}
-    <link rel="icon" href="{{ url('theme://assets/favicon/favicon.php') }}?env={{ config.system.env.state }}" />
+    <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}" />
 {% endif %}
 
 </head>

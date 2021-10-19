@@ -65,6 +65,10 @@ html {
     --input-txt: var( --text-default );
     --input-placeholder: #777;
 
+    --tabs-border-color: var( --color-border );
+    --tabs-border-hover: hsl( var( --color-primary-h ) var( --color-primary-s ) var( --color-primary-l ) / .5 );
+    --tabs-background: var( --body-bg );
+
     --error-h: 0;
     --error-s: 100%;
     --error-l: 33%;

@@ -43,6 +43,7 @@
         "superTinySocialIcons": "git://github.com/edent/SuperTinySocialIcons",
         "web.svg.min": "git://github.com/larsenwork/web.svg.min",
         "a11y.css": "latest",
+        "a11y-test": "https://github.com/matuzo/a11y-tests.css",
         "lint-html-with-css": "git://github.com/lendk/Lint-HTML-with-SCSS-CSS",
         "color-blindness-emulation": "git://github.com/hail2u/color-blindness-emulation"
     },

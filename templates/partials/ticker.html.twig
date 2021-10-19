@@ -13,3 +13,13 @@
         {% endif %}
     </marquee>
 </div>
+
+<script>
+document.addEventListener( 'keydown', function( e )
+{
+    if( e.shiftKey === true && e.code === 'KeyT' )
+    {
+        document.querySelector( '.ticker' ).classList.toggle( 'hidden' );
+    }
+});
+</script>

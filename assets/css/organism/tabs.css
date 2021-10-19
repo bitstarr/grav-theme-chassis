@@ -21,25 +21,30 @@
 
 
     &--default {
-        --comp-brd: var( --grey-60 );
-        --comp-bg: #fff;
+        --comp-brdw: var( --tabs-border, .15em );
+        --comp-brd: var( --tabs-border-color, #ddd );
+        --comp-hvr: var( --tabs-border-hover, #eee );
+        --comp-bg: var( --tabs-background, #fff );
     }
     &--default &__toggle {
         display: block;
         text-align: center;
         padding: var( --gap-moon );
-    }
-    &--default &__toggle[aria-selected] {
-        position: relative;
-        top: 2px;
-        border: 2px solid var( --comp-brd );
+        border: var( --comp-brdw ) solid var( --body-bg );
         border-bottom: 0;
         background: var( --comp-bg );
     }
+    &--default &__toggle:not( [aria-selected] ):hover {
+        box-shadow: inset 0 0 0 var( --comp-brdw ) var( --comp-hvr );
+    }
+    &--default &__toggle[aria-selected] {
+        position: relative;
+        top: var( --comp-brdw );
+        border-color: var( --comp-brd );
+    }
     &--default.is-interactive &__content {
         padding: var( --gap ) var( --gap-moon );
-        border: 2px solid var( --comp-brd );
+        border: var( --comp-brdw ) solid var( --comp-brd );
         background: var( --comp-bg );
-        border-radius: 0 0 5px 5px;
     }
 }
