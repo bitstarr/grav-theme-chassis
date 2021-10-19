@@ -18,9 +18,9 @@ en:
       TAGS: Tags
       ARCHIVE_OF: Achive of
     TICKER:
-      DEV: +++ DEV Enviroment +++ Buckle up +++ Try Konami Code for more entertainment ++
-      STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++
-      PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++
+      DEV: +++ DEV Enviroment +++ Buckle up +++ Press Shift+T to hide this message +++
+      STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++ Press Shift+T to hide this message +++
+      PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++ Press Shift+T to hide this message +++
       FALLBACK: +++ Why are you here? +++
     FORM:
       OPTIONAL: optional
@@ -45,9 +45,9 @@ de:
       TAGS: Schlagworte
       ARCHIVE_OF: Archiv für
     TICKER:
-      DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Konami Code sorgt für Unterhaltung +++
-      STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++
-      PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++
+      DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Drücke Shift+T um diese Nachricht auszublenden +++
+      STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++ Drücke Shift+T um diese Nachricht auszublenden +++
+      PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++ Drücke Shift+T um diese Nachricht auszublenden +++
       FALLBACK: +++ Warum bist du hier? +++
     FORM:
       OPTIONAL: optional

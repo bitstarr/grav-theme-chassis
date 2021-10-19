@@ -14,18 +14,21 @@
 {% endif %}
 {% set doc_title = doc_title ~ site.title|e('html') %}
 <!DOCTYPE html>
-<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}" class="no-js">
 <head>
 {% block head %}
     <meta charset="utf-8" />
     <title>{{ doc_title }}</title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include 'partials/metadata.html.twig' %}
-
     <link rel="canonical" href="{{ page.url(true, true) }}" />
 {% endblock head %}
+
+<script type="module">
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+</script>
 
 {% block stylesheets %}
     {% do assets.addCss('theme://dist/css/main.css', 100) %}
@@ -33,10 +36,10 @@
         {% do assets.addCss('theme://dist/css/' ~ page.header.page_css ~ '.css', 99) %}
     {% endif %}
 {% endblock %}
+
 <link rel="stylesheet"
     href="{{ url( 'theme://dist/css/fonts.css' )}}"
     media="print" onload="this.media='all'" />
-
 <noscript>
     <link rel="stylesheet" href="{{ url( 'theme://dist/css/fonts.css' )}}" />
 </noscript>
@@ -56,8 +59,9 @@
 {%- if config.system.env.state == 'production' %}
     {# {% include 'partials/matomo.html.twig' %} #}
 {% else %}
-    <link rel="icon" href="{{ url('theme://assets/favicon/favicon.php') }}?env={{ config.system.env.state }}" />
+    <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}" />
 {% endif %}
+
 </head>
 <body id="top" class="{{ body_classes }}">
 

@@ -33,7 +33,7 @@
                 isOpen
                     ? doc.querySelector( '#nav-close' ).focus()
                     : doc.querySelector( '#nav-open' ).focus();
-            })
+            });
         },
 
         toggleBodyScroll: function( scrolling = true )

@@ -4,12 +4,12 @@
     border-bottom: 2px solid var( --color-border );
 
     & + & {
-        margin-top: var( --body-lh );;
+        margin-top: var( --body-lh );
     }
 
     &__trigger {
         all: inherit;
-        display: flex;
+        display: block;
         justify-content: space-between;
         align-items: center;
         width: 100%;
@@ -18,33 +18,44 @@
         border: 0;
         cursor: pointer;
     }
+
+    &__title {
+        position: relative;
+        display: block;
+        font-weight: 700;
+    }
+    &__title::before,
+    &__title::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        background: currentColor;
+    }
+    &__title::after {
+        right: .5rem;
+        transform: translate(50%, -50%);
+        height: 1rem;
+        width: .25rem;
+    }
+    &__title::before {
+        right: 0;
+        transform: translate(0, -50%);
+        height: .25rem;
+        width: 1rem;
+    }
+
     &__trigger::marker {
         display: none;
     }
     &__trigger::-webkit-details-marker {
         display: none;
     }
-    & .indicator {
-        height: 1rem;
-        margin: 0 0 0 .5em;
-        fill: currentColor;
-    }
-
-    & &__title { /* high specifity */
-        margin: 0;
-        font-size: 1.4em;
-        font-weight: 700;
-    }
-
-    &__content {
-        padding-bottom: var( --gap-moon );
-    }
 
     &[data-expanded='false'] &__content {
         display: none;
     }
-    &[open] .indicator__vert,
-    &[data-expanded='true'] .indicator__vert {
+    &[open] &__title::after,
+    &[data-expanded='true'] &__title::after {
         display: none;
     }
 }
