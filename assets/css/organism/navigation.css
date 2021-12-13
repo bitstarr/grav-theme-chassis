@@ -99,6 +99,7 @@
             flex-direction: column;
             justify-content: space-between;
             overflow-y: auto;
+            overscroll-behavior-y: contain;
             padding: 1.5em;
             color: var( --overlay-txt );
             background-color: var( --overlay-bg );

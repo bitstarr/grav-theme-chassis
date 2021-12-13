@@ -1,28 +1,41 @@
 <?php
     header('Content-Type: image/svg+xml');
     $path = '//' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
-    $letter = ( isset( $_GET['letter'] ) ) ? ucfirst( $_GET['letter'] )[0] : ucfirst($_SERVER['HTTP_HOST'])[0];
+    $letter = ( isset( $_GET['letter'] ) ) ? strtoupper( substr( $_GET['letter'], 0, 3 ) ) : ucfirst($_SERVER['HTTP_HOST'])[0];
 ?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#111">
     <style>
-        .letter {
-            fill: #000000;
-            font: bold 350px sans-serif;
+        svg {
+            --fg: #000000;
+            --bg: #ffffff;
         }
-        .bg {
-            fill: #ffffff;
+        .letter {
+            font: bold 250px sans-serif;
+        }
+        .letter-1,
+        .letter-2 {
+            letter-spacing: .1em;
+            font-stretch: condensed;
+        }
+        .letter-1 {
+            font-size: 350px;
+        }
+        .letter-2 {
+            font-size: 300px;
         }
         @media (prefers-color-scheme: dark) {
-            .letter { fill: #ffffff; }
-            .bg { fill: #000000; }
+            svg {
+                --fg: #ffffff;
+                --bg: #000000;
+            }
         }
     </style>
 
     <?php /*
     <image x="0" y="0" width="512" height="512" href="<?php echo $path ?>/favicon.svg" />
     */ ?>
-    <rect class="bg" width="512" height="512"/>
-    <text x="50%" y="38%" dominant-baseline="middle" text-anchor="middle" class="letter">
+    <rect class="bg" width="512" height="512" fill="var( --bg )" />
+    <text x="50%" y="35%" fill="var( --fg )" dominant-baseline="middle" text-anchor="middle" class="letter">
         <?php echo $letter ?>
     </text>
 <?php
