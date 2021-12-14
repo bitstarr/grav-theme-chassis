@@ -1,33 +1,74 @@
 /* stylelint-disable selector-list-comma-newline-after */
-/**
- * 1. Prevent iOS and IE text size adjust after device orientation change,
- *    without disabling user zoom.
- * 2. Set death proof box-sizing
- */
-html {
-    -ms-text-size-adjust: 100%; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 1 */
-    box-sizing: border-box; /* 1 */
+/*
+    @see https://www.joshwcomeau.com/css/custom-css-reset/
+    @see https://github.com/elad2412/the-new-css-reset
+*/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+*/
+*:where(:not(iframe, canvas, img, svg, video, [hidden]):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
 }
-*, *:before, *:after { box-sizing: inherit; } /* 3 */
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, mark, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, figure { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+/*
+  Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/*
+    Remove the margin on controls in Safari.
+    Remove built-in form typography styles
+*/
+:where( input, button, textarea, select ) {
+    margin: 0;
+    font: inherit;
+}
+
+/*
+    Remove list styles (bullets/numbers)
+*/
+:where( ol, ul, menu ) {
+    list-style: none;
+    counter-reset: revert;
+}
+
+/*
+    Improve media defaults
+*/
+:where( img, picture, video, canvas, svg ) {
+    display: block;
+    max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+:where( table ) {
+    border-collapse: collapse;
+}
+
+/*
+    Always show scrollbar to prevent 'jumping' when pages transition (old school)
+    Prevent adjustments of font size after orientation changes in iOS.
+*/
+html {
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+}
+
 
 /* remember to define focus styles! */
 :focus { outline: 0; }
-ol, ul { list-style: none; }
-/* tables still need 'cellspacing="0"' in the markup */
-table { border-collapse: separate; border-spacing: 0; }
-/* Webkit-Browser machen einen 2px margin außerhalb von Form-Elementen */
-button, input, select, textarea { margin: 0; }
-/* Scrollbar erzwingen für nicht IE, verhindert springen der Seite */
-html { overflow-y: scroll; }
-
 html:focus-within { scroll-behavior: smooth; }
+
 /* stylelint-enable selector-list-comma-newline-after */
 
 /* stylelint-disable */
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+/*
+    Remove all animations, transitions and smooth scroll for people that prefer not to see them
+*/
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

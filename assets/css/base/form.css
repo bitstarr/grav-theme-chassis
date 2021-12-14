@@ -6,7 +6,11 @@ optgroup,
 textarea { margin: 0; font: inherit; }
 select,
 input,
-textarea { color: inherit; }
+textarea {
+    color: inherit;
+    /* revert the 'white-space' property for textarea elements on Safari */
+    white-space: revert;
+}
 
 /* Address inconsistent `text-transform` inheritance for `button` and `select`. */
 button,

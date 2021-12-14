@@ -3,7 +3,7 @@ html {
     /* define design tokens */
 
     /* new cross OS sans font stack */
-    --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-stack: 'Roboto Chassis', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 
     --wrapper: 60rem;
     --wrapper-offset: .5fr;

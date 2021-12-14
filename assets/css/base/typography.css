@@ -2,6 +2,7 @@ body {
     font: var( --body-fz )/var( --body-lh ) var( --font-stack );
     color: var( --text-default );
     background: var( --body-bg );
+    -webkit-font-smoothing: antialiased;
 }
 
 /* don't ever combine both lines or user text-shadow! */
