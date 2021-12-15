@@ -9,87 +9,46 @@
     li { break-inside: avoid; }
     ol { list-style: decimal; }
     ul { list-style: disc; }
+    ul li::marker {
+        content: '•  ';
+        color: var( --color-primary );
+    }
     li ol,
     li ul { margin-bottom: 0; }
-    li ul { list-style-type: circle; }
-    ul li::marker {
-        color: var( --color-primary );
-        font-size: .8em;
-    }
-    li ul li::marker {
-        opacity: .6;
-    }
-
-    h2,
-    h3,
-    h4 {
-        font-weight: 700;
-    }
-    h2 {
-        font-size: 1.75em;
-        line-height: calc( 1ex / .38 );
-        --flow-space: calc( 1ex / .38 );
-    }
-    h3,
-    h4 {
-        line-height: calc( 1ex / .37 );
-        --flow-space: calc( 1ex / .37 );
-    }
-    h3 {
-        font-size: 1.5em;
-    }
-    h4 {
-        font-size: 1.2em;
-    }
-
 
     h2 + *,
     h3 + *,
     h4 + * {
-        --flow-space: 1ex;
+        --flow-space: calc( var( --base-line ) / 2 );
     }
 
-    hr {
-        border: .1em solid;
+    h2,
+    h3,
+    h4 { font-weight: 700; }
+    h2 {
+        font-size: 1.9em;
+        color: var( --color-primary );
+        --flow-space: calc( var( --base-line ) * 1.5 );
     }
+    h3 { font-size: 1.55em; }
+    h4 { font-size: 1.2em; }
 
-    table {
-        width: 100%;
-    }
-    th,
-    td {
-        padding: .5em;
-    }
+    hr { border: .1em solid; }
+
+    table { width: 100%; }
     th {
         font-weight: 700;
         border-bottom: 2px solid var( --color-border );
     }
-    th:empty {
-        display: none;
-    }
-    tr + tr td {
-        border-top: 1px solid var( --color-border );
-    }
+    th:empty { display: none; }
+    tr + tr td { border-top: 1px solid var( --color-border );  }
 
-    svg:not(.icon),
-    img,
-    picture {
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
+    :where( a ) { text-decoration: underline; }
 
-    a {
-        text-decoration: underline;
-
-        &:focus-visible {
-            outline: 2px solid;
-            outline-offset: 3px;
-        }
-    }
-
-    .button {
-        text-decoration: none;
+    /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
+    :is( a, button, input, textarea, summary ):focus-visible {
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+        outline-offset: var( --outline-offset, var( --outline-size ) );
     }
 
     blockquote {
@@ -107,7 +66,7 @@
             content: '';
             position: absolute;
         }
-        /*
+        /* gigantic quote marc
         &:before {
             content: '\201C';
             top: -.3rem;
@@ -121,7 +80,7 @@
             line-height: 1;
             opacity: .6;
         }
-        /*/
+        /* line on the left */
         &:after {
             top: 0;
             bottom: 0;
@@ -129,5 +88,6 @@
             border-left: .4em solid var( --color-primary );
             opacity: .6;
         }
+        /**/
     }
 }

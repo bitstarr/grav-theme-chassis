@@ -1,10 +1,10 @@
 .header {
-    --comp-bg: var( --header-bg );
-    --comp-txt: var( --header-text );
+    --_bg: var( --header-bg );
+    --_txt: var( --header-text );
 
     margin-bottom: var( --gap-hecto );
-    color: var( --comp-txt );
-    background-color: var( --comp-bg );
+    color: var( --_txt );
+    background-color: var( --_bg );
 
     .wrapped {
         display: flex;

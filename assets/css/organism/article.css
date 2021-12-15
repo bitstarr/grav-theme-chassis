@@ -1,6 +1,6 @@
 .article {
     & + & {
-        margin-top: var( --gap-hecto );
+        margin-top: var( --gap-kilo );
     }
 
     &__header {
@@ -30,17 +30,10 @@
         text-transform: uppercase;
     }
     &__category {
-        --color-link: inherit;
-
         order: -1;
         margin-bottom: 1ex;
         font-weight: 700;
         color: var( --color-muted );
-
-        a:focus,
-        a:hover {
-            --color-link: var( --color-primary );
-        }
     }
     &__date {
         display: flex;

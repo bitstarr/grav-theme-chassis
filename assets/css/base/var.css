@@ -41,6 +41,10 @@ html {
     --base-scroll-track: hsl( 0 0% 100% / .2 );
     --base-scroll-thumb: var( --color-primary );
 
+    --outline-size: max( 2px, .08em );
+    --outline-style: solid;
+    --outline-color: var( --color-primary );
+
     /*
         Specific Colors
     */

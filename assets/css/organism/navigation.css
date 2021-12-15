@@ -29,20 +29,16 @@
         flex-wrap: wrap;
         position: relative;
         line-height: var( --menu-lh );
-
-        &:hover,
-        &:focus-within {
-            cursor: pointer;
-        }
-
     }
     &__link {
+        --color-hover: var( --color-secondary );
         display: block;
         padding: var( --menu-pad );
-    }
-    &__item:hover > &__link,
-    &__link:focus {
-        --color-link: var( --color-secondary );
+
+        &:focus-visible {
+            outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+            outline-offset: var( --outline-offset, var( --outline-size ) );
+        }
     }
 
     &__expander {
@@ -64,8 +60,9 @@
             transform: rotate(180deg);
         }
 
-        &[aria-controls]:focus {
-            outline: .1em solid var( --color-primary );
+        &[aria-controls]:focus-visible {
+            outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+            outline-offset: var( --outline-offset, var( --outline-size ) );
         }
     }
 }
@@ -131,6 +128,10 @@
         .active &__link {
             text-decoration: underline;
         }
+
+        &__expander {
+            display: none;
+        }
     }
     .submenu {
         width: 100%;
@@ -174,7 +175,7 @@
             display: none;
         }
 
-        &__item:hover > &__link,
+        &__link:hover,
         &__link:focus,
         .active &__link {
             text-decoration: underline;
@@ -212,6 +213,9 @@
             transition: opacity var( --duration ) ease-out;
             will-change: opacity;
         }
+    }
+    .submenu .menu__link {
+        width: 100%;
     }
 }
 

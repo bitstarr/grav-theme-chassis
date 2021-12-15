@@ -24,13 +24,8 @@
     border-radius: 0;
     transition: background-color .2s;
 
-    a&,
-    a&:visited {
-        color: var( --comp-txt );
-    }
-    a&:hover,
-    a&:focus {
-        color: var( --hover-txt );
+    a& {
+        text-decoration: none;
     }
 
     &:hover,
