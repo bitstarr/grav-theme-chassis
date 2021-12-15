@@ -28,16 +28,15 @@
 .u-hidden { display: none; }
 
 .u-quiet {
-    color: var( --text-muted );
+    color: var( --color-muted );
 
-    a,
-    a:visited {
-        color: var( --text-muted );
+    a {
+        --color-link: var( --color-muted );
+        text-decoration: underline;
 
-        &:focus,
-        &:hover,
-        &:active {
-            color: var( --text-default );
+        &:hover {
+            --color-link: var( --color-default );
+            text-decoration: underline dashed;
         }
     }
 }

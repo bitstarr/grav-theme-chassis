@@ -1,5 +1,5 @@
 .t-page {
     .main {
-        margin: var( --gap ) 0 var( --gap-mars );
+        margin: var( --gap ) 0 var( --gap-hecto );
     }
 }

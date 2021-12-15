@@ -2,7 +2,7 @@
     --comp-bg: var( --header-bg );
     --comp-txt: var( --header-text );
 
-    margin-bottom: var( --gap-mars );
+    margin-bottom: var( --gap-hecto );
     color: var( --comp-txt );
     background-color: var( --comp-bg );
 

@@ -4,11 +4,11 @@
     }
 
     &__content {
-        margin-bottom: var( --gap-mars );
+        margin-bottom: var( --gap-hecto );
     }
 
     &__title {
-        margin-bottom: var( --gap-moon );
+        margin-bottom: var( --gap-deci );
         font-size: 1.2em;
     }
 
@@ -29,8 +29,8 @@
     &--default &__toggle {
         display: block;
         text-align: center;
-        padding: var( --gap-moon );
-        border: var( --comp-brdw ) solid var( --body-bg );
+        padding: var( --gap-deci );
+        border: var( --comp-brdw ) solid var( --base-surface );
         border-bottom: 0;
         background: var( --comp-bg );
     }
@@ -43,7 +43,7 @@
         border-color: var( --comp-brd );
     }
     &--default.is-interactive &__content {
-        padding: var( --gap ) var( --gap-moon );
+        padding: var( --gap ) var( --gap-deci );
         border: var( --comp-brdw ) solid var( --comp-brd );
         background: var( --comp-bg );
     }

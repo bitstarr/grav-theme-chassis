@@ -42,7 +42,7 @@
     }
     &__item:hover > &__link,
     &__link:focus {
-        --link-color: var( --color-secondary );
+        --color-link: var( --color-secondary );
     }
 
     &__expander {

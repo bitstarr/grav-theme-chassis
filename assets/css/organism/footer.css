@@ -2,7 +2,7 @@
     --comp-bg: var( --color-primary );
     --comp-txt: #fff;
 
-    margin-top: var( --gap-mars );
+    margin-top: var( --gap-hecto );
     padding-bottom: 2em;
     color: var( --comp-txt );
     background-color: var( --comp-bg );
@@ -32,12 +32,12 @@
 
     &__social {
         display: flex;
-        margin-left: calc( var( --gap-moon ) * -1 );
+        margin-left: calc( var( --gap-deci ) * -1 );
         font-size: 1.5em;
 
 
         &__link {
-            padding: var( --gap-moon );
+            padding: var( --gap-deci );
         }
     }
 }

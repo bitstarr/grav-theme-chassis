@@ -3,21 +3,47 @@ html {
     /* define design tokens */
 
     /* new cross OS sans font stack */
-    --font-stack: 'Roboto Chassis', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-default: 'Roboto Chassis', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    /* use other font stacks like this:
+    --font-fancy: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
+    */
 
+    /*
+        Wrapping
+    */
     --wrapper: 60rem;
     --wrapper-offset: .5fr;
     @media ( min-width: 40rem ) {
         --wrapper-offset: 4rem;
     }
 
-    /* imagine some distances relative to earth */
+    /*
+        Spacing
+        @see https://en.wikipedia.org/wiki/Metric_prefix
+    */
+    --gap-deci: .625rem;
     --gap: 1.25rem; /* default distance */
-    --gap-moon: .625rem;
-    --gap-venus: 1.25rem;
-    --gap-mars: 2.5rem;
-    --gap-jupiter: 4rem;
+    --gap-deca: 1.25rem;
+    --gap-hecto: 2.5rem;
+    --gap-kilo: 4rem;
+    --gap-mega: 8rem;
+    --gap-giga: 12rem;
 
+    /*
+        Basic Settings
+    */
+    --base-surface: #fff;
+    --base-line: calc( 1em + .35rem );
+    /*
+        read about line-height: https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+        which will recommend something like calc( 1.1em + .25rem )
+    */
+    --base-scroll-track: hsl( 0 0% 100% / .2 );
+    --base-scroll-thumb: var( --color-primary );
+
+    /*
+        Specific Colors
+    */
     --beige: #f5dd90;
     --blue: #6676a6;
     --anatolia: #324376;
@@ -31,47 +57,46 @@ html {
     --lobster-l: 67%;
     --grey: #707070;
 
+    /*
+        Functional Colors
+    */
+    --color-default: #444;
+    --color-link: var( --anatolia );
+    --color-hover: var( --blue );
+    --color-muted: var( --grey );
+    --color-border: #ddd;
+    --color-ui: #f4f4f4;
+
+    /*
+        Brand Colors
+    */
     --color-primary: var( --anatolia );
     --color-primary-h: var( --anatolia-h );
     --color-primary-s: var( --anatolia-s );
     --color-primary-l: var( --anatolia-l );
-    --color-primary-inside: #fff;
+    --color-on-primary: #fff;
     --color-secondary: var( --lobster );
-    --color-secondary-inside: #222;
+    --color-on-secondary: #222;
 
-    --color-border: #ddd;
-    --color-ui: #f4f4f4;
+    /*
+        Component (organism) Specific
+    */
 
-    --text-default: #444;
-    --text-muted: var( --grey );
-    --link-color: var( --anatolia );
-    --link-color-hover: var( --blue );
+    --o-breadcrumb-ink: var( --grey );
 
-    --body-bg: #fff;
-    --body-fz: 1em;
-    /* --body-lh: calc( 1ex / .32 ); */
-    --body-lh: calc( 2px + 1.1em + 2px );
-    /* see https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
-
-    --scroll-bg: rgba( 255, 255, 255, .2 );
-    --scroll-fg: var( --grey-80 );
-
-    --breadcrumb-text: var( --grey );
+    --o-form-error-ink: hsl( 0 100% 33% );
+    --o-form-error-surface: hsl( 0 100% 95% );
+    --o-form-placeholder-ink: #777;
 
     --input-h: var( --anatolia-h );
     --input-s: var( --anatolia-s );
     --input-l: var( --anatolia-l );
     --input-bg: #fff;
-    --input-txt: var( --text-default );
-    --input-placeholder: #777;
+    --input-txt: var( --color-default );
 
     --tabs-border-color: var( --color-border );
     --tabs-border-hover: hsl( var( --color-primary-h ) var( --color-primary-s ) var( --color-primary-l ) / .5 );
-    --tabs-background: var( --body-bg );
-
-    --error-h: 0;
-    --error-s: 100%;
-    --error-l: 33%;
+    --tabs-background: var( --base-surface );
 
     --overlay-bg: #fff;
     --overlay-txt: var( --blue );

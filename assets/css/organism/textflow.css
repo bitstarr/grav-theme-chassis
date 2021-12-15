@@ -1,7 +1,7 @@
 .textflow {
     & > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-        margin-top: var( --flow-space, var( --body-lh ) );
+        margin-top: var( --flow-space, var( --base-line ) );
     }
 
     ul,
@@ -42,10 +42,15 @@
         font-size: 1.2em;
     }
 
+
     h2 + *,
     h3 + *,
     h4 + * {
         --flow-space: 1ex;
+    }
+
+    hr {
+        border: .1em solid;
     }
 
     table {
@@ -94,7 +99,7 @@
 
         & > * + * {
             /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-            margin-top: var( --flow-space, var( --body-lh ) );
+            margin-top: var( --flow-space, var( --base-line ) );
         }
 
         &:after,

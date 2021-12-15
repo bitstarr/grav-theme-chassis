@@ -1,10 +1,10 @@
 .details {
-    padding: var( --gap-moon ) var( --gap );
+    padding: var( --gap-deci ) var( --gap );
     background: var( --color-ui );
     border-bottom: 2px solid var( --color-border );
 
     & + & {
-        margin-top: var( --body-lh );
+        margin-top: var( --base-line );
     }
 
     &__trigger {
@@ -14,7 +14,7 @@
         align-items: center;
         width: 100%;
         margin: 0;
-        padding: var( --gap-moon ) 0;
+        padding: var( --gap-deci ) 0;
         border: 0;
         cursor: pointer;
     }

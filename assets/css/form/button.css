@@ -4,7 +4,7 @@
     --lit: var( --color-primary-l );
     --sat-d: calc( var( --sat ) * .6 );
     --comp-bg: hsl( var( --hue ) var( --sat ) var( --lit ) );
-    --comp-txt: var( --color-primary-inside );
+    --comp-txt: var( --color-on-primary );
     --hover-bg: hsl( var( --hue ) var( --sat ) calc( var( --lit ) * .6 ) );
     --hover-txt: var( --comp-txt );
     --disabled-bg: hsl( var( --hue ) var( --sat-d ) 75% );

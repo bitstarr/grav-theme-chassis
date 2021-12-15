@@ -1,11 +1,9 @@
-::-webkit-input-placeholder { color: var( --input-placeholder ); }
-::-moz-placeholder { color: var( --input-placeholder ); }
-:-ms-input-placeholder { color: var( --input-placeholder ); }
+::placeholder { color: var( --o-form-placeholder-ink ); }
 
 .form {
     --txt-space: .7em;
     --txt-height: 1.2em;
-    --placeholder: var( --input-placeholder );
+    --placeholder: var( --o-form-placeholder-ink );
 
     --hue: var( --input-h );
     --sat: var( --input-s );
