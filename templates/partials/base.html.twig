@@ -101,17 +101,23 @@
 {% block footer %}
     <footer class="footer wrapping" id="footer">
         <div class="wrapped">
-            {% if site.footer.menu %}
-                <nav class="footer__nav">
-                    <ul class="menu">
-                    {% for item in site.footer.menu %}
-                        <li class="menu__item">
-                            <a href="{{ item.url }}" class="menu__link">{{ item.title }}</a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                </nav>
-            {% endif %}
+            <nav class="footer__nav">
+                <ul class="menu__item">
+                {% set menuItems = page.collection( {
+                    items: {
+                        '@taxonomy.navarea': 'footer'
+                    },
+                    order: {
+                        by: default
+                    }
+                } ) %}
+                {% for item in menuItems %}
+                    <li class="menu__item">
+                        <a href="{{ item.url }}" class="menu__link">{{ item.menu }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </nav>
 
             {% if site.footer.social %}
                 <ul class="footer__social">
