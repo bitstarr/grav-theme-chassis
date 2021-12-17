@@ -4,21 +4,45 @@
     bottom: 0;
     left: 0;
     right: 0;
-    align-items: center;
+    display: flex;
     padding: 1ex 0;
     font-size: 1.5em;
     text-align: center;
-    color: var( --comp-txt, #fff );
-    background-color: var( --comp-bg, #066 );
+    color: var( --_txt, #fff );
+    background-color: var( --_bg, #066 );
     opacity: .7;
 
     &--stage {
-        --comp-txt: #fff;
-        --comp-bg: #d91;
+        --_txt: #fff;
+        --_bg: #d91;
     }
 
     &--dev {
-        --comp-txt: #fff;
-        --comp-bg: #922;
+        --_txt: #fff;
+        --_bg: #922;
+    }
+
+    &.hidden {
+        display: none;
+    }
+
+    &__control {
+        --link-color: var( --_txt, #fff );
+        flex-shrink: 0;
+        padding: 0 1ex;
+        font-size: .4em;
+
+        a {
+            display: inline-block;
+            padding: 1ex 0;
+            width: 1.8em;
+            line-height: 1;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        a + a {
+            margin-left: .3em;
+        }
     }
 }
