@@ -1,5 +1,5 @@
 .t-post {
     .postnav {
-        margin-top: var( --gap-hecto );
+        margin-top: var( --gap-deca );
     }
 }

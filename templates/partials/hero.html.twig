@@ -1,32 +1,37 @@
 <div class="hero">
-    {% if page.header.hero_image matches '~^\/|^https?:\/\/~' %}
-        <img class="hero__img" src="{{ page.header.hero_image }}" alt="" />
-    {% else %}
-        {# {% set hero_image = page.media[page.header.hero_image] %} #}
-        {# style="background-image: url({{ hero_image.url }});" #}
-        {% set hero_image = media_directory('page://_heros')[page.header.hero_image] %}
-        {# <img class="hero__img" src="{{ hero_image.url }}" alt="" /> #}
+{% if page.header.hero.image matches '~^\/|^https?:\/\/~' %}
+    <img class="hero__img" src="{{ page.header.hero_image }}" alt="" />
+{% else %}
+    {# {% set hero_image = page.media[page.header.hero_image] %} #}
+    {# <img class="hero__img" src="{{ hero_image.url }}" alt="" /> #}
+    {% set hero_image = media_directory('page://_heros')[page.header.hero.image] %}
 
-        <img class="hero__img" srcset="{{ hero_image.cropZoom(800,600).quality(70).url }} 500w, {{ hero_image.cropZoom(1200,900).quality(70).url }} 1000w,
-            {{ hero_image.url }} 3000w" src="{{ hero_image.cropZoom(800,600).quality(70).url }}" sizes="100vw" alt="">
-    {% endif %}
+    {% set image = {
+        640: hero_image.cropZoom(640,320).quality(70).url,
+        960: hero_image.cropZoom(960,240).quality(70).url,
+        1280: hero_image.cropZoom(1280,320).quality(70).url,
+        1920: hero_image.cropZoom(1920,480).quality(70).url,
+    } %}
+    <picture>
+        <source srcset="{{ image[640] }}" media="(max-width: 549px)" />
+        <source srcset="{{ image[1920] }}" media="(min-width: 1280px)" />
+        <source srcset="{{ image[1280] }}" media="(min-width: 960px)" />
+        <source srcset="{{ image[960] }}" media="(min-width: 550px)" />
+        <img class="hero__img"
+            src="{{ image[640] }}"
+            width="640"
+            height="160"
+            alt="" />
+    </picture>
+{% endif %}
 
-    {% if page.header.headline %}
-        <div class="wrapper">
-            <h1 class="hero__title">
-                {{ page.header.headline }}
-            </h1>
-        </div>
-    {% endif %}
-
-    {% if page.header.hero_actions %}
-        <div class="hero__cta">
-            {% for button in page.header.hero_actions %}
-                <a class="hero__action button{% if button.classes %} {{button.classes}}{% endif %}" href="{{ button.url }}">
-                <span>{{ button.label }}</span>
-                {{ svg( 'arrow' )|raw }}
-                </a>
-            {% endfor %}
-        </div>
-    {% endif %}
+{% if page.header.hero.headline %}
+    <div class="wrapper">
+        <h1 class="hero__title">
+            <span class="padded">
+                {{ page.header.hero.headline }}
+            </span>
+        </h1>
+    </div>
+{% endif %}
 </div>

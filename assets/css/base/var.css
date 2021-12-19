@@ -23,11 +23,19 @@ html {
     */
     --gap-deci: .625rem;
     --gap: 1.25rem; /* default distance */
-    --gap-deca: 1.25rem;
-    --gap-hecto: 2.5rem;
-    --gap-kilo: 4rem;
-    --gap-mega: 8rem;
-    --gap-giga: 12rem;
+    --gap-deca: 2.5rem;
+    --gap-hecto: 4rem;
+    --gap-kilo: 8rem;
+    --gap-mega: 12rem;
+    --gap-giga: 16rem;
+
+    /* font-sizes */
+    --size-deci: .8em;
+    --size-deca: 1.2em;
+    --size-hecto: 1.55em;
+    --size-kilo: 1.9em;
+    --size-mega: 2.3em;
+    --size-giga: 3em;
 
     /*
         Basic Settings
@@ -51,6 +59,7 @@ html {
     --beige: #f5dd90;
     --blue: #6676a6;
     --anatolia: #324376;
+    --anatolia-hsl: 225 40% 33%;
     --anatolia-h: 225;
     --anatolia-s: 40%;
     --anatolia-l: 33%;
@@ -75,6 +84,7 @@ html {
         Brand Colors
     */
     --color-primary: var( --anatolia );
+    --color-primary-hsl: var( --anatolia-hsl );
     --color-primary-h: var( --anatolia-h );
     --color-primary-s: var( --anatolia-s );
     --color-primary-l: var( --anatolia-l );
@@ -86,23 +96,19 @@ html {
         Component (organism) Specific
     */
 
-    --o-breadcrumb-ink: var( --grey );
-
+    --o-form-placeholder-ink: #777;
+    --o-form-padding: .7rem;
     --o-form-error-ink: hsl( 0 100% 33% );
     --o-form-error-surface: hsl( 0 100% 95% );
-    --o-form-placeholder-ink: #777;
 
-    --input-h: var( --anatolia-h );
-    --input-s: var( --anatolia-s );
-    --input-l: var( --anatolia-l );
-    --input-bg: #fff;
-    --input-txt: var( --color-default );
+    --o-form-surface: #fff;
+    --o-form-accent-hsl: var( --anatolia-hsl );
+    --o-form-accent-h: var( --anatolia-h );
+    --o-form-accent-s: var( --anatolia-s );
+    --o-form-accent-l: var( --anatolia-l );
 
     --tabs-border-color: var( --color-border );
     --tabs-border-hover: hsl( var( --color-primary-h ) var( --color-primary-s ) var( --color-primary-l ) / .5 );
     --tabs-background: var( --base-surface );
-
-    --overlay-bg: #fff;
-    --overlay-txt: var( --blue );
 }
 /* stylelint-endable */

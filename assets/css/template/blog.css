@@ -1,6 +1,6 @@
 .t-blog {
     .blog,
     .pager {
-        margin-top: var( --gap-hecto );
+        margin-top: var( --gap-deca );
     }
 }

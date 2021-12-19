@@ -81,7 +81,7 @@
 {% endblock %}
 
 {% block hero %}
-    {% if page.header.hero_image %}
+    {% if page.header.hero.image %}
         {% include 'partials/hero.html.twig' %}
     {% endif %}
 {% endblock %}
@@ -119,9 +119,9 @@
                 </ul>
             </nav>
 
-            {% if site.footer.social %}
+            {% if theme_var('footer.social') %}
                 <ul class="footer__social">
-                {% for item in site.footer.social %}
+                {% for item in theme_var('footer.social') %}
                     <li class="footer__social__item">
                         <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title })|raw }}</a>
                     </li>

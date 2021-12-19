@@ -8,7 +8,7 @@
     - The "symbol *" part is to solve Firefox SVG sprite bug
     @see https://www.joshwcomeau.com/css/custom-css-reset/#digit-tweaking-line-height for the line-height
 */
-:where(:not(iframe, canvas, img, svg, video, [hidden]):not(svg *, symbol *)) {
+:where( :not( iframe, canvas, img, svg, video ):not( svg *, symbol * ) ) {
     all: unset;
     display: revert;
     line-height: var( --base-line );
@@ -19,6 +19,12 @@
 */
 *, *::before, *::after {
     box-sizing: border-box;
+}
+
+/* fix the feature of attribute hidden
+display:revert; revert to element instead of attribute */
+:where( [hidden] ){
+    display: none;
 }
 
 /*

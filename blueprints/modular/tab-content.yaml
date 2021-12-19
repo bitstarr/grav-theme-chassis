@@ -1,0 +1,17 @@
+title: Tab-Content
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        options:
+          unset@: true
+        advanced:
+          fields:
+            overrides:
+              unset@: true
+            routes_only:
+              unset@: true
+            admin_only:
+              unset@: true

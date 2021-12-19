@@ -3,9 +3,9 @@
         display: none;
     }
 
-    &__content {
-        margin-bottom: var( --gap-hecto );
-    }
+    /* &__content {
+        margin-bottom: var( --gap-deca );
+    } */
 
     &__title {
         margin-bottom: var( --gap-deci );

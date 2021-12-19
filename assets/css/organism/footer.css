@@ -3,9 +3,9 @@
     --_txt: var( --o-footer-ink, var( --color-on-primary ) );
     --color-link: currentColor;
 
-    margin-top: var( --gap-hecto );
-    padding-top: var( --gap-hecto );
-    padding-bottom: var( --gap-hecto );
+    margin-top: var( --gap-deca );
+    padding-top: var( --gap-deca );
+    padding-bottom: var( --gap-deca );
     color: var( --_txt );
     background-color: var( --_bg );
 

@@ -1,7 +1,7 @@
 .notice {
-    --_bg: var( --o-notice-surface, var( --color-ui ) );
-    --_brd: var( --o-notice-border, var( --color-default ) );
-    --_txt: var( --o-notice-ink, var( --color-default ) );
+    --_bg: var( --color-ui );
+    --_brd: var( --color-default );
+    --_txt: var( --color-default );
 
     padding: var( --gap-deci );
     color: var( --_txt );

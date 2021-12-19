@@ -1,5 +1,9 @@
 .breadcrumb {
-    --_txt: var( --o-breadcrumb-ink );
+    /*
+        API:
+        --o-breadcrumb-ink  text/link color
+    */
+    --_txt: var( --o-breadcrumb-ink, var( --grey ) );
 
     padding: 1em 0;
     font-size: .75em;

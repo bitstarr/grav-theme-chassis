@@ -24,9 +24,11 @@
 @import 'organism/notice.css';
 @import 'organism/details.css';
 @import 'organism/tabs.css';
+@import 'organism/bullets.css';
 /* specific */
 @import 'organism/hero.css';
 @import 'organism/modular.css';
+
 
 /* layouts define the relations between modules on a specific page type */
 @import 'template/global.css';

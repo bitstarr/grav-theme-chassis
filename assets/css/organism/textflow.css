@@ -26,12 +26,12 @@
     h3,
     h4 { font-weight: 700; }
     h2 {
-        font-size: 1.9em;
+        font-size: var( --size-kilo );
         color: var( --o-textflow-h2-accent, var( --color-primary ) );
         --flow-space: calc( var( --base-line ) * 1.5 );
     }
-    h3 { font-size: 1.55em; }
-    h4 { font-size: 1.2em; }
+    h3 { font-size: var( --size-hecto ); }
+    h4 { font-size: var( --size-deca ); }
 
     hr { border: .1em solid; }
 
@@ -45,8 +45,9 @@
 
     :where( a ) { text-decoration: underline; }
 
+    /* help with accasibility */
     /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
-    :is( a, button, input, textarea, summary ):focus-visible {
+    :is( a, button, input, textarea, select, summary ):focus-visible {
         outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
         outline-offset: var( --outline-offset, var( --outline-size ) );
     }
@@ -54,7 +55,7 @@
     blockquote {
         position: relative;
         padding-left: 2rem;
-        font-size: 1.2em;
+        font-size: var( --size-deca );
 
         & > * + * {
             /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
