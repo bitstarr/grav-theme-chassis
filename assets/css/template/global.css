@@ -37,15 +37,21 @@
     grid-template-columns: inherit;
 }
 
-/* sticky footer - the grid way */
 html {
-    /* do we need a sticky fix? https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/*/
-    height: 100%;
+    /* optional, colored scrollbar
+    scrollbar-color: var( --base-scroll-thumb ) var( --base-scroll-track );
+    scrollbar-width: thin;
+    /**/
 }
-body {
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+
+
+/*
+    Clever new sticky footer
+    @see https://css-tricks.com/a-clever-sticky-footer-technique/
+*/
+body > footer {
+    position: sticky;
+    top: 100vh;
 }
 
 

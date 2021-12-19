@@ -1,5 +1,6 @@
 .headline {
-    font-size: 2em;
+    margin-bottom: 1em;
+    font-size: 2.3em;
     line-height: calc( 1ex / .38 );
     color: hsl( var( --color-primary-hue ) var( --color-primary-sat ) calc( var( --color-primary-l ) * .85 ) );
 }

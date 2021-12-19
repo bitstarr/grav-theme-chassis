@@ -36,7 +36,7 @@
     &__link {
         &:focus,
         &:hover {
-            --link-color: var( --color-secondary );
+            --color-link: var( --color-secondary );
         }
     }
 

@@ -1,25 +1,30 @@
-::-webkit-input-placeholder { color: var( --input-placeholder ); }
-::-moz-placeholder { color: var( --input-placeholder ); }
-:-ms-input-placeholder { color: var( --input-placeholder ); }
-
 .form {
-    --txt-space: .7em;
-    --txt-height: 1.2em;
-    --placeholder: var( --input-placeholder );
+    /*
+        API:
+        --o-form-surface        background for fields
+        --o-form-accent-hsl     accent color in HSL
+        --o-form-accent-h       accent color hue
+        --o-form-accent-s       accent color saturation
+        --o-form-accent-l       accent color lightness
 
-    --hue: var( --input-h );
-    --sat: var( --input-s );
-    --lit: var( --input-l );
-    --sat-d: calc( var( --sat ) * .6 );
-    --background: var( --input-bg );
-    --border: hsl( var( --hue ) var( --sat ) 80% );
-    --border: hsl( var( --hue ) var( --sat ) var( --lit ) );
-    --border-light: hsl( var( --hue ) var( --sat ) 80% );
-    --active: hsl( var( --hue ) var( --sat ) var( --lit ) );
-    --active-inner: var( --input-bg );
-    --disabled: hsl( var( --hue ) var( --sat-d ) 98% );
-    --disabled-inner: hsl( var( --hue ) var( --sat-d ) 73% );
-    --disabled-border: hsl( var( --hue ) var( --sat-d ) 73% );
+        Notes:
+        * field text color will be default body text color due to CSS reset
+        * hover, focus and disabled highlighting will be calculated via HSL
+        * calculated values will be used by form elements
+    */
+    --_h: var( --o-form-accent-h );
+    --_s: var( --o-form-accent-s );
+    --_l: var( --o-form-accent-l );
+    --_s-d: calc( var( --_s ) * .6 );
+    --_form-border: hsl( var( --o-form-accent-hsl ) );
+    --_form-border-light: hsl( var( --_h ) var( --_s ) 80% );
+    --_form-active: hsl( var( --o-form-accent-hsl ) );
+    --_form-on-active: var( --o-form-surface );
+    --_form-disabled: hsl( var( --_h ) var( --_s-d ) 98% );
+    --_form-on-disabled: hsl( var( --_h ) var( --_s-d ) 73% );
+    --_form-disabled-border: hsl( var( --_h ) var( --_s-d ) 73% );
+
+    ::placeholder { color: var( --o-form-placeholder-ink ); }
 
     textarea,
     label {
@@ -41,6 +46,13 @@
         font-size: 1.2em;
     }
 
+    /* help with accasibility, can be overwritten by textflow.css */
+    /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
+    :is( a, button, input, textarea, select, summary ):focus-visible {
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+        outline-offset: var( --outline-offset, var( --outline-size ) );
+    }
+
     /* for our custom quiz field */
     .field-personality {
         display: flex;
@@ -50,8 +62,8 @@
             width: 100%;
             margin-bottom: .5em;
             font-size: .9em;
-            line-height: var( --txt-height );
-            color: var( --placeholder );
+            line-height: var( --base-line );
+            color: var( --o-form-placeholder-ink );
         }
     }
 }

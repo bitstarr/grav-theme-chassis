@@ -1,19 +1,28 @@
 .tag {
-    --comp-bg: #888;
+    /*
+        API:
+        --o-tag-surface         background
+        --o-tag-ink             text color
+        --o-tag-surface-hover   background on hover
+        --o-tag-ink-hover       text color on hover
+    */
+    --_bg: var( --o-tag-surface, #888 );
+    --_txt: var( --o-tag-ink, #fff );
+
     position: relative;
     display: inline-block;
     margin: 0 .7em .5em;
     padding: .3em .6em .3em 1em;
     line-height: 1;
     text-transform: uppercase;
-    color: #fff;
-    background-color: var( --comp-bg );
+    color: var( --_txt );
+    background-color: var( --_bg );
     border-radius: 0 2px 2px 0;
 
     &:hover,
     &:focus {
-        --comp-bg: var( --color-primary );
-        color: #fff;
+        --_bg: var( --o-tag-surface-hover, var( --color-primary ) );
+        --_txt: var( --o-tag-ink-hover, var( --color-on-primary ) );
     }
     &:before {
         content: '';
@@ -24,7 +33,7 @@
         transform-origin: 0 0;
         height: 1.13em;
         width: 1.13em;
-        background: var( --comp-bg );
+        background: var( --_bg );
         border-radius: 0 0 0 2px;
     }
     &:after {

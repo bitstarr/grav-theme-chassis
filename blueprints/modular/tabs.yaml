@@ -1,0 +1,17 @@
+title: Tabs
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+        options:
+          unset@: true
+        advanced:
+          unset@: true

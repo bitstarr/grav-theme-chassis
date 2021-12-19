@@ -1,6 +1,6 @@
 .article {
     & + & {
-        margin-top: var( --gap-mars );
+        margin-top: var( --gap-hecto );
     }
 
     &__header {
@@ -30,17 +30,10 @@
         text-transform: uppercase;
     }
     &__category {
-        --link-color: inherit;
-
         order: -1;
         margin-bottom: 1ex;
         font-weight: 700;
-        color: var( --text-muted );
-
-        a:focus,
-        a:hover {
-            --link-color: var( --color-primary );
-        }
+        color: var( --color-muted );
     }
     &__date {
         display: flex;
@@ -49,7 +42,7 @@
     }
 
     &__footer {
-        margin-top: var( --gap-mars );
+        margin-top: var( --gap-deca );
         font-size: .7em;
     }
 }

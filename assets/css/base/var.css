@@ -3,24 +3,63 @@ html {
     /* define design tokens */
 
     /* new cross OS sans font stack */
-    --font-stack: 'Roboto Chassis', BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-default: 'Roboto Chassis', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    /* use other font stacks like this:
+    --font-fancy: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
+    */
 
+    /*
+        Wrapping
+    */
     --wrapper: 60rem;
     --wrapper-offset: .5fr;
     @media ( min-width: 40rem ) {
         --wrapper-offset: 4rem;
     }
 
-    /* imagine some distances relative to earth */
+    /*
+        Spacing
+        @see https://en.wikipedia.org/wiki/Metric_prefix
+    */
+    --gap-deci: .625rem;
     --gap: 1.25rem; /* default distance */
-    --gap-moon: .625rem;
-    --gap-venus: 1.25rem;
-    --gap-mars: 2.5rem;
-    --gap-jupiter: 4rem;
+    --gap-deca: 2.5rem;
+    --gap-hecto: 4rem;
+    --gap-kilo: 8rem;
+    --gap-mega: 12rem;
+    --gap-giga: 16rem;
 
+    /* font-sizes */
+    --size-deci: .8em;
+    --size-deca: 1.2em;
+    --size-hecto: 1.55em;
+    --size-kilo: 1.9em;
+    --size-mega: 2.3em;
+    --size-giga: 3em;
+
+    /*
+        Basic Settings
+    */
+    --base-surface: #fff;
+    --base-line: calc( 1em + .35rem );
+    /*
+        read about line-height: https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+        which will recommend something like calc( 1.1em + .25rem )
+    */
+    --base-scroll-track: hsl( 0 0% 100% / .2 );
+    --base-scroll-thumb: var( --color-primary );
+
+    --outline-size: max( 2px, .08em );
+    --outline-style: solid;
+    --outline-color: var( --color-primary );
+
+    /*
+        Specific Colors
+    */
     --beige: #f5dd90;
     --blue: #6676a6;
     --anatolia: #324376;
+    --anatolia-hsl: 225 40% 33%;
     --anatolia-h: 225;
     --anatolia-s: 40%;
     --anatolia-l: 33%;
@@ -31,49 +70,45 @@ html {
     --lobster-l: 67%;
     --grey: #707070;
 
-    --color-primary: var( --anatolia );
-    --color-primary-h: var( --anatolia-h );
-    --color-primary-s: var( --anatolia-s );
-    --color-primary-l: var( --anatolia-l );
-    --color-primary-inside: #fff;
-    --color-secondary: var( --lobster );
-    --color-secondary-inside: #222;
-
+    /*
+        Functional Colors
+    */
+    --color-default: #444;
+    --color-link: var( --anatolia );
+    --color-hover: var( --blue );
+    --color-muted: var( --grey );
     --color-border: #ddd;
     --color-ui: #f4f4f4;
 
-    --text-default: #444;
-    --text-muted: var( --grey );
-    --link-color: var( --anatolia );
-    --link-color-hover: var( --blue );
+    /*
+        Brand Colors
+    */
+    --color-primary: var( --anatolia );
+    --color-primary-hsl: var( --anatolia-hsl );
+    --color-primary-h: var( --anatolia-h );
+    --color-primary-s: var( --anatolia-s );
+    --color-primary-l: var( --anatolia-l );
+    --color-on-primary: #fff;
+    --color-secondary: var( --lobster );
+    --color-on-secondary: #222;
 
-    --body-bg: #fff;
-    --body-fz: 1em;
-    /* --body-lh: calc( 1ex / .32 ); */
-    --body-lh: calc( 2px + 1.1em + 2px );
-    /* see https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
+    /*
+        Component (organism) Specific
+    */
 
-    --scroll-bg: rgba( 255, 255, 255, .2 );
-    --scroll-fg: var( --grey-80 );
+    --o-form-placeholder-ink: #777;
+    --o-form-padding: .7rem;
+    --o-form-error-ink: hsl( 0 100% 33% );
+    --o-form-error-surface: hsl( 0 100% 95% );
 
-    --breadcrumb-text: var( --grey );
-
-    --input-h: var( --anatolia-h );
-    --input-s: var( --anatolia-s );
-    --input-l: var( --anatolia-l );
-    --input-bg: #fff;
-    --input-txt: var( --text-default );
-    --input-placeholder: #777;
+    --o-form-surface: #fff;
+    --o-form-accent-hsl: var( --anatolia-hsl );
+    --o-form-accent-h: var( --anatolia-h );
+    --o-form-accent-s: var( --anatolia-s );
+    --o-form-accent-l: var( --anatolia-l );
 
     --tabs-border-color: var( --color-border );
     --tabs-border-hover: hsl( var( --color-primary-h ) var( --color-primary-s ) var( --color-primary-l ) / .5 );
-    --tabs-background: var( --body-bg );
-
-    --error-h: 0;
-    --error-s: 100%;
-    --error-l: 33%;
-
-    --overlay-bg: #fff;
-    --overlay-txt: var( --blue );
+    --tabs-background: var( --base-surface );
 }
 /* stylelint-endable */

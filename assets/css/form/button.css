@@ -1,14 +1,33 @@
 .button {
-    --hue: var( --color-primary-h );
-    --sat: var( --color-primary-s );
-    --lit: var( --color-primary-l );
-    --sat-d: calc( var( --sat ) * .6 );
-    --comp-bg: hsl( var( --hue ) var( --sat ) var( --lit ) );
-    --comp-txt: var( --color-primary-inside );
-    --hover-bg: hsl( var( --hue ) var( --sat ) calc( var( --lit ) * .6 ) );
-    --hover-txt: var( --comp-txt );
-    --disabled-bg: hsl( var( --hue ) var( --sat-d ) 75% );
-    --disabled-txt: hsl( var( --hue ) var( --sat-d ) 96% );
+    /*
+        API:
+        --o-button-surface          background
+        --o-button-ink              text color
+        --o-button-surface-hover    background on hover
+        --o-button-ink-hover        text color on hover
+        --o-button-halo-hover       boxshadow color on hover
+        --o-button-surface-disable  background when disabled
+        --o-button-ink-disabled     text color when disabled
+    */
+    --_bg: var( --o-button-surface, var( --color-primary ) );
+    --_txt: var( --o-button-ink, var( --color-on-primary ) );
+    --_hover-bg: var( --o-button-surface-hover, hsl(
+        var( --color-primary-h )
+        var( --color-primary-s )
+        calc( var( --color-primary-l ) * .5 )
+    ) );
+    --_hover-txt: var( --o-button-ink-hover, var( --color-on-primary ) );
+    --_hover-halo: var( --o-button-halo-hover, hsl( var( --color-primary-hsl ) / .3 ) );
+    --_disabled-bg: var( --o-button-surface-disabled, hsl(
+        var( --color-primary-h )
+        calc( var( --color-primary-s ) * .6 )
+        75%
+    ) );
+    --_disabled-txt: var( --o-button-ink-disabled, hsl(
+        var( --color-primary-h )
+        calc( var( --color-primary-s ) * .6 )
+        96%
+    ) );
 
     position: relative;
     z-index: 1;
@@ -18,31 +37,26 @@
     padding: 1ex;
     line-height: 1.2;
     text-align: center;
-    color: var( --comp-txt );
-    background: var( --comp-bg );
+    color: var( --_txt );
+    background: var( --_bg );
     border: 0;
     border-radius: 0;
     transition: background-color .2s;
 
-    a&,
-    a&:visited {
-        color: var( --comp-txt );
-    }
-    a&:hover,
-    a&:focus {
-        color: var( --hover-txt );
+    a& {
+        text-decoration: none;
     }
 
-    &:hover,
-    &:focus {
-        color: var( --hover-txt );
-        background-color: var( --hover-bg );
-        box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+        --_bg: var( --_hover-bg );
+        --_txt: var( --_hover-txt );
+        box-shadow: 0 0 0 .1em var( --_hover-hover );
     }
 
     &[disabled] {
-        color: var( --disabled-txt );
-        background: var( --disabled-bg );
+        --_txt: var( --_disabled-txt );
+        --_bg: var( --_disabled-bg );
         cursor: not-allowed;
     }
 }

@@ -3,7 +3,12 @@
 
     <div class="wrapped">
         <ul class="tabs__head">
-            {% for target in page.collection() %}
+            {% set tabs = page.collection( {
+                items: {
+                    '@self.modular': ''
+                }
+            } ) %}
+            {% for target in tabs %}
             <li class="tabs__tab">
                 <a class="tabs__toggle" href="#tabsection{{ loop.index }}">
                     <span class="label">{{ target.title }}</span>
@@ -11,10 +16,7 @@
             </li>
             {% endfor %}
         </ul>
-    </div>
-
-    <div class="wrapped">
-        {% for target in page.collection() %}
+        {% for target in tabs %}
         <article class="tabs__content" id="tabsection{{ loop.index }}">
             <h2 class="tabs__title">{{ target.title }}</h2>
             <div class="textflow">

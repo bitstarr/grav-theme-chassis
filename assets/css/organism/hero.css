@@ -1,26 +1,26 @@
 .hero {
     position: relative;
     overflow: hidden;
-    /* padding-top: 80%; */
-    height: 109vw;
-    max-height: 30em;
 
     &__img {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
+        /* object-fit: cover; */
     }
 
     &__title {
         position: absolute;
-        top: 15%;
+        left: 0;
+        bottom: var( --gap-deca );
         font-size: 2em;
         font-weight: 700;
         color: #fff;
-        text-shadow: 0 0 3px rgba( 0, 0, 0, .7 );
+
+        .padded {
+            display: inline;
+            padding: .1em var( --gap-deci );
+            line-height: calc( 1.2em + ( 2 * .1em ) );
+            background: hsl( 0 0% 0% / .6 );
+            box-decoration-break: clone;
+        }
     }
 }
