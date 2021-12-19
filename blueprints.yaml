@@ -1,5 +1,5 @@
 name: Chassis
-version: 0.2.0
+version: 0.3.0
 description: ''
 icon: 'rebel'
 author:
@@ -14,6 +14,20 @@ dependencies:
 form:
   validation: loose
   fields:
+    footer.social:
+      name: footerSocialItems
+      type: list
+      label: Social Media im Footer
+      fields:
+        .title:
+          type: text
+          label: Bezeichnung/Name
+        .icon:
+          type: text
+          label: Icon
+        .url:
+          type: text
+          label: URL
     # dropdown.enabled:
     #     type: toggle
     #     label: Dropdown in Menu

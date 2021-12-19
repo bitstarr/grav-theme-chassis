@@ -13,6 +13,8 @@ class Chassis extends Theme
             'onThemeInitialized'    => ['onThemeInitialized', 0],
             'onTwigLoader'          => ['onTwigLoader', 0],
             'onTwigInitialized'     => ['onTwigInitialized', 0],
+            // 'onAdminPageTypes'      => ['onAdminPageTypes', 0],
+            'onAdminModularPageTypes'      => ['onAdminModularPageTypes', 0],
             'onTwigSiteVariables'   => ['onTwigSiteVariables', 0],
         ];
     }
@@ -58,6 +60,23 @@ class Chassis extends Theme
         ];
 
         $twig->twig_vars = array_merge($twig->twig_vars, $form_class_variables);
+    }
+
+    /*
+        Define Custom Names for Modular Templates
+    */
+    public function onAdminModularPageTypes( $event )
+    {
+        $names = [
+            'modular/tab-content' => 'Tab Content',
+            'modular/tabs' => 'Tabs Container',
+        ];
+        // merge arrays
+        $list = array_replace( $event['types'], $names );
+        // drop these that are currently not detected by grav
+        $list = array_intersect_key( $list, $event['types'] );
+
+        $event['types'] = $list;
     }
 
     public function onTwigSiteVariables()

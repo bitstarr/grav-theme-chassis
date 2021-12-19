@@ -1,7 +1,5 @@
 title: Bullets
-extends@:
-  type: modular/default
-  context: blueprints://pages
+extends@: default
 
 form:
   fields:
@@ -16,14 +14,23 @@ form:
           fields:
             content:
               unset@: true
-
-            header.hero_image:
+            header.media_order:
               unset@: true
+
+            header.layout:
+              type: checkboxes
+              label: Layout Optionen
+              default:
+                show_title: true
+              options:
+                show_title: Überschrift anzeigen
+                inverted: Invertieren
+              use: keys
 
             header.bullets:
               name: items
               type: list
-              label: Slider Einträge
+              label: Einträge
               max: 5
               fields:
                 .label:
@@ -38,3 +45,8 @@ form:
                 .classes:
                   type: text
                   label: CSS Klassen
+
+        options:
+          unset@: true
+        advanced:
+          unset@: true

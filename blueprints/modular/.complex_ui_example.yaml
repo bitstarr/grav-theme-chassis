@@ -1,0 +1,71 @@
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          fields:
+            content:
+              type: ignore
+            header.test:
+              ordering@: -1
+              name: module_slideshow
+              label: TEST
+              type: fieldset
+              icon: slideshows
+              fields:
+                header.test.columns:
+                  type: columns
+                  fields:
+                    column1:
+                      type: column
+                      fields:
+                        header.test.animation:
+                          name: slideshow_animation
+                          label: TEST.ANIMATION
+                          type: select
+                          options:
+                            slide: 'slide'
+                            fade: 'fade'
+                        header.test.settings:
+                          type: fieldset
+                          name: test_settings
+                          label: TEST.TEST
+                          icon: slideshows
+                          fields:
+                            header.test.settings.content_transition:
+                              name: slideshow_slides_content_transition
+                              label: TEST.SETTINGS.CONTENT.TRANSITION
+                              type: select
+                              options:
+                                fade: 'transition-fade'
+                                slide-top: 'transition-slide-top'
+                    column2:
+                      type: column
+                      fields:
+                        .header.test.content:
+                          name: slideshow_slides_content_overlay
+                          label: TEST.CONTENT.PARALLAX
+                          type: text
+                        .header.test.list:
+                          type: list
+                          name: module_slideshow
+                          label: TEST.LIST
+                          icon: slideshows
+                          collapsed: false
+                          collapsible: false
+                          fields:
+                            .header.test.list.pauseonhover:
+                              name: test_pauseonhover
+                              label: TEST.LIST.PAUSEONHOVER
+                              type: toggle
+                              default: 1
+                              options:
+                                0: GENERAL.NO
+                                1: GENERAL.YES
+                              validate:
+                                type: bool

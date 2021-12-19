@@ -4,13 +4,13 @@
     label {
         position: absolute;
         z-index: 1;
-        top: calc( var( --txt-space ) * .5 );
-        left: var( --txt-space );
+        top: calc( var( --o-form-padding ) * .5 );
+        left: var( --o-form-padding );
         font-size: .9em;
-        line-height: var( --txt-height );
-        color: var( --placeholder );
+        line-height: var( --base-line );
+        color: var( --o-form-placeholder-ink );
     }
     label + * {
-        padding-top: calc( var( --txt-space ) + var( --txt-height ) );
+        padding-top: calc( var( --o-form-padding ) + var( --base-line ) );
     }
 }

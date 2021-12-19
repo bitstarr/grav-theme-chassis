@@ -1,99 +1,97 @@
-body {
-    font: var( --body-fz )/var( --body-lh ) var( --font-stack );
-    color: var( --text-default );
-    background: var( --body-bg );
+::selection {
+    background: var( --color-primary );
+    color: var( --color-on-primary );
+    text-shadow: none;
 }
 
-/* don't ever combine both lines or user text-shadow! */
-::-moz-selection{ background: var( --color-primary ); color: var( --color-primary-inside ); text-shadow: none; }
-::selection { background: var( --color-primary ); color: var( --color-primary-inside ); text-shadow: none; }
+body {
+    font: 1em/var( --base-line ) var( --font-default );
+    color: var( --color-default );
+    background: var( --base-surface );
+    -webkit-font-smoothing: antialiased;
+}
 
-/*
-    clear quotes, if they are not needed
-
-blockquote:before, blockquote:after, q:before, q:after { content: ' }
-blockquote, q { quotes: ' ' }
-*/
-
-/*
-    use multi lang quotes
-:lang(de-DE) { quotes:'\201E' '\201C' '\201A' '\2018' }
-:lang(de-CH) { quotes:'\00AB' '\00BB' '\2039' '\203A' }
-:lang(en)    { quotes:'\201C' '\201D' '\2018' '\2019' }
-:lang(fr)    { quotes:'\00AB\00A0' '\00A0\00BB' '\2039\00A0' '\00A0\203A' }
-*/
-
-q { quotes: '\201E' '\201C' '\201A' '\2018'; }
-q::before { content: open-quote; }
-q::after { content: close-quote; }
-
-/* monospace normalisieren http://en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
-pre,
-code,
-kbd,
-samp { font-family: monospace, sans-serif; }
-/* http://www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
-pre {
+:where( pre, code, kbd, samp ) {
+    font-family: monospace, monospace;
+}
+:where( pre ) {
     padding: 1em;
     white-space: pre; /* CSS2 */
     white-space: pre-wrap; /* CSS 2.1 */
     word-wrap: break-word; /* IE */
 }
-small { font-size: 85%; }
-strong,
-th { font-weight: 700; }
-em { font-style: italic; }
 
-sub,
-sup { font-size: smaller; }
-sub { vertical-align: sub; }
-sup { vertical-align: super; }
+:where( small ) { font-size: 85%; }
+:where( strong, th ) { font-weight: 700; }
+:where( em ) { font-style: italic; }
 
-@supports ( font-variant-position: super ) {
-    sup { font-variant-positon: super; }
-    sub { font-variant-positon: sub; }
+:where( sub, sup ) {
+    font-size: 75%;
+    line-height: 0;
+	position: relative;
+	vertical-align: baseline;
 }
+:where( sub ) { bottom: -.25em; }
+:where( sup ) { top: -.5em; }
 
-abbr[title] {
-    border-bottom: 1px dotted;
-
-    &:hover {
-        cursor: help;
-    }
-}
-abbr {
+:where( abbr ) {
     font-variant: small-caps;
     text-transform: lowercase;
 }
+:where( abbr[title] ) {
+    text-decoration: underline;
+    text-decoration: underline dotted;
 
-a {
+    &:hover { cursor: help; }
+}
+
+/*
+    Basic link styles
+*/
+:where( a ) {
     text-decoration: none;
-    color: var( --link-color );
+    color: var( --color-link );
+    cursor: revert;
 
     &:focus,
     &:hover {
-        --link-color: var( --link-color-hover );
+        --color-link: var( --color-hover );
     }
 }
-a[href^='tel'] {
-    --link-color: inherit;
+:where( a[href^='tel'] ) {
+    --color-link: inherit;
     cursor: inherit;
 }
 
 /*
-Set tables to fixed layout to speed up rendering of longer tables in IE
-http://www.quirksmode.org/css/tables.html und http://msdn.microsoft.com/en-us/library/ms531161%28v=vs.85%29.aspx
-
-table{ table-layout: fixed; }
+    Removes spacing between cells in tables
+    Correct table border color in Chrome, Edge, and Safari.
+    Remove text indentation from table contents in Chrome, Edge, and Safari.
+    Set Numbers in tabular format
 */
-
-table {
+:where(table) {
     border-collapse: collapse;
-    border-spacing: 0;
+    border-color: currentColor;
+    text-indent: 0;
     font-variant-numeric: lining-nums tabular-nums;
 }
-td,
-td img { vertical-align: top; }
-caption,
-th,
-td { padding: 0; text-align: left; font-weight: 400; }
+
+:where( td, td img ) { vertical-align: top; }
+:where( caption, th, td ) {
+    padding: .5em;
+    text-align: left;
+}
+
+/*
+    if you want to set explicit quotation characters,
+    define them langauage specific
+:lang(de-DE) { quotes:'\201E' '\201C' '\201A' '\2018' }
+:lang(de-CH) { quotes:'\00AB' '\00BB' '\2039' '\203A' }
+:lang(en)    { quotes:'\201C' '\201D' '\2018' '\2019' }
+:lang(fr)    { quotes:'\00AB\00A0' '\00A0\00BB' '\2039\00A0' '\00A0\203A' }
+
+    of for all at once
+q { quotes: '\201E' '\201C' '\201A' '\2018'; }
+q::before { content: open-quote; }
+q::after { content: close-quote; }
+*/

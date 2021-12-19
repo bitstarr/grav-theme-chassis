@@ -9,30 +9,30 @@
             width: 1.2em;
             margin: 0;
             vertical-align: top;
-            background: var( --b, var( --background ) );
-            border: .1em solid var( --bc, var( --border ) );
+            background: var( --_background, var( --o-form-surface ) );
+            border: .1em solid var( --_bordercolor, var( --_form-border ) );
             box-shadow: 0 0 0 transparent;
             transition: background .3s, border-color .3s, box-shadow .2s;
             cursor: pointer;
-            outline: none;
+            /* outline: none; */ /* focus box-shadow is nice but in form.css there is a good help for a11y. You may want to do you own way though? */
 
             &:checked {
-                --b: var( --active );
-                --bc: var( --active );
+                --_background: var( --_form-active );
+                --_bordercolor: var( --_form-active );
                 --d-o: .3s;
                 --d-t: .6s;
                 --d-t-e: cubic-bezier( .2, .85, .32, 1.2 );
             }
 
             &:disabled {
-                --b: var( --disabled );
-                --border: var( --disabled-border );
+                --_background: var( --_form-disabled );
+                --_form-border: var( --_form-disabled-border );
                 opacity: .9;
                 cursor: not-allowed;
 
                 &:checked {
-                    --b: var( --disabled-inner );
-                    --bc: var( --border );
+                    --_background: var( --_form-on-disabled );
+                    --_bordercolor: var( --_form-border );
                 }
 
                 & + label {
@@ -43,13 +43,13 @@
             &:hover {
                 &:not(:checked) {
                     &:not(:disabled) {
-                        --bc: var( --border-light );
+                        --_bordercolor: var( --_form-border-light );
                     }
                 }
             }
 
             &:focus {
-                box-shadow: 0 0 0 .1em hsl( var( --hue ) var( --sat ) var( --lit ) / .3 );
+                box-shadow: 0 0 0 .1em hsl( var( --o-form-accent-hsl ) / .3 );
             }
 
             &:not( .special ) + label {
@@ -79,7 +79,7 @@
                     top: 45%;
                     width: .4em;
                     height: .7em;
-                    border: .15em solid var( --active-inner );
+                    border: .15em solid var( --_form-on-active );
                     border-top: 0;
                     border-left: 0;
                     opacity: var( --o, 0 );
@@ -100,14 +100,14 @@
                     top: 50%;
                     width: .65em;
                     height: .65em;
-                    background: var( --ab, var( --border ) );
+                    background: var( --ab, var( --_form-border ) );
                     border-radius: 50%;
                     transform: translate( var( --x, 0 ), -50% );
                     transition: transform var( --d-t, .3s ) var( --d-t-e, ease );
                 }
 
                 &:checked {
-                    --ab: var( --active-inner );
+                    --ab: var( --_form-on-active );
                     --x: 1.3em;
                 }
 
@@ -125,10 +125,10 @@
             border-radius: 50%;
 
             &:checked {
-                --b: radial-gradient(circle, var( --active-inner ) 0%, var( --active-inner ) .25em, var( --active ) .27em );
+                --_background: radial-gradient(circle, var( --_form-on-active ) 0%, var( --_form-on-active ) .25em, var( --_form-active ) .27em );
             }
             &:disabled:checked {
-                --b: radial-gradient(circle, var( --disabled-inner ) 0%, var( --disabled-inner ) .25em, var( --disabled ) .27em );
+                --_background: radial-gradient(circle, var( --_form-on-disabled ) 0%, var( --_form-on-disabled ) .25em, var( --_form-disabled ) .27em );
             }
         }
     }

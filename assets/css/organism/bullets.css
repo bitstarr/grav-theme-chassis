@@ -1,0 +1,44 @@
+.bullets {
+        /*
+        API:
+        --o-bullets-surface     background
+        --o-bullets-ink         text color (title)
+        --color-link            link color
+        --color-hover           link hover color
+    */
+    --_bg: var( --o-bullets-surface, transparent );
+    --_txt: var( --o-bullets-ink, currentColor);
+
+    color: var( --_txt );
+    background: var( --_bg );
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: var( --gap );
+    }
+
+    &__link {
+        width: 9rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__icon {
+        margin-bottom: var( --gap-deci );
+        font-size: 4em;
+    }
+
+    &.is-inverted {
+        --o-bullets-surface: var( --color-primary );
+        --o-bullets-ink: var( --color-on-primary );
+        --color-link: var( --color-on-primary );
+        --color-hover: var( --color-secondary );
+
+        padding: var( --gap-deca ) 0;
+    }
+}

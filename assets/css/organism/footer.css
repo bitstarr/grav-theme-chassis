@@ -1,18 +1,15 @@
 .footer {
-    --comp-bg: var( --color-primary );
-    --comp-txt: #fff;
+    --_bg: var( --o-footer-surface, var( --color-primary ) );
+    --_txt: var( --o-footer-ink, var( --color-on-primary ) );
+    --color-link: currentColor;
 
-    margin-top: var( --gap-mars );
-    padding-bottom: 2em;
-    color: var( --comp-txt );
-    background-color: var( --comp-bg );
+    margin-top: var( --gap-deca );
+    padding-top: var( --gap-deca );
+    padding-bottom: var( --gap-deca );
+    color: var( --_txt );
+    background-color: var( --_bg );
 
     &__nav {
-        margin-top: 1.5em;
-
-        a {
-            color: var( --comp-txt );
-        }
         .menu {
             display: flex;
             font-size: .9em;
@@ -32,12 +29,12 @@
 
     &__social {
         display: flex;
-        margin-left: calc( var( --gap-moon ) * -1 );
+        margin-top: var( --base-line );
+        margin-left: calc( var( --gap-deci ) * -1 );
         font-size: 1.5em;
 
-
         &__link {
-            padding: var( --gap-moon );
+            padding: var( --gap-deci );
         }
     }
 }
