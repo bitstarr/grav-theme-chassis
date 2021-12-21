@@ -24,7 +24,7 @@
         "gulp-terser": "*",
         "imagemin": "*",
         "imagemin-giflossy": "*",
-        "imagemin-mozjpeg": "*",
+        "imagemin-mozjpeg": "9.0.0",
         "imagemin-pngquant": "*",
         "imagemin-svgo": "*",
         "imagemin-zopfli": "*",
