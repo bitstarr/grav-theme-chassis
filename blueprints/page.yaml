@@ -1,6 +1,6 @@
 title: Page Content
 extends@:
-  type: default
+  type: base
   context: blueprints://pages
 
 form:
