@@ -62,3 +62,4 @@ switch ( $_GET['env'] )
         break;
 }
 ?>
+</svg>
