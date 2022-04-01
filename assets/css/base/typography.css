@@ -9,6 +9,7 @@ body {
     color: var( --color-default );
     background: var( --base-surface );
     -webkit-font-smoothing: antialiased;
+    text-decoration-thickness: from-font;
 }
 
 :where( pre, code, kbd, samp ) {

@@ -51,7 +51,7 @@
     &:not([disabled]):focus {
         --_bg: var( --_hover-bg );
         --_txt: var( --_hover-txt );
-        box-shadow: 0 0 0 .1em var( --_hover-hover );
+        box-shadow: 0 0 0 .1em var( --_hover-halo );
     }
 
     &[disabled] {

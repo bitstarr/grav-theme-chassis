@@ -47,7 +47,7 @@ display:revert; revert to element instead of attribute */
 /*
     Improve media defaults
 */
-:where( img, picture, video, canvas, svg ):not( svg.icon ) {
+:where( img, picture, video, canvas, svg ):where( :not( svg.icon ) ) {
     display: block;
     max-width: 100%;
     height: auto;
