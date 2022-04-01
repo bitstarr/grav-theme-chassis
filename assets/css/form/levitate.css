@@ -8,7 +8,7 @@
         left: var( --o-form-padding );
         font-size: .9em;
         line-height: var( --base-line );
-        color: var( --o-form-placeholder-ink );
+        color: var( --o-form-label-ink );
     }
     label + * {
         padding-top: calc( var( --o-form-padding ) + var( --base-line ) );

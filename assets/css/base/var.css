@@ -96,6 +96,7 @@ html {
         Component (organism) Specific
     */
 
+    --o-form-label-ink: #555;
     --o-form-placeholder-ink: #777;
     --o-form-padding: .7rem;
     --o-form-error-ink: hsl( 0 100% 33% );

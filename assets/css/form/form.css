@@ -63,7 +63,7 @@
             margin-bottom: .5em;
             font-size: .9em;
             line-height: var( --base-line );
-            color: var( --o-form-placeholder-ink );
+            color: var( --o-form-label-ink );
         }
     }
 }
