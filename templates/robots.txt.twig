@@ -1,0 +1,8 @@
+{# see https://learn.getgrav.org/17/cookbook/general-recipes#display-different-robots- #}
+{% if config.site.env.state == 'dev' %}
+{% for rule in page.header.dev %}
+{{ rule }}
+{% endfor %}
+{% else %}
+{{ page.content|raw }}
+{% endif %}

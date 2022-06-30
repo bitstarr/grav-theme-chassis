@@ -1,18 +1,18 @@
-{% set body_classes = [
+{%- set body_classes = [
     body_classes|default( '' ),
     tpl_body_classes|default(''),
     header.body_classes,
-]|join( ' ' )|trim %}
-{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+]|join( ' ' )|trim -%}
+{%- set theme_config = attribute(config.themes, config.system.pages.theme) -%}
 
-{% set doc_title = '' %}
+{%- set doc_title = '' -%}
 {% if header.title and page.slug != 'home' %}
-    {% set doc_title = header.title|e('html') ~ ' - ' %}
+    {%- set doc_title = header.title|e('html') ~ ' - ' -%}
 {% endif %}
 {% if title_overwrite != null %}
-    {% set doc_title = title_overwrite ~ ' - ' %}
+    {%- set doc_title = title_overwrite ~ ' - ' -%}
 {% endif %}
-{% set doc_title = doc_title ~ site.title|e('html') %}
+{%- set doc_title = doc_title ~ site.title|e('html') -%}
 <!DOCTYPE html>
 <html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}" class="no-js">
 <head>
@@ -22,6 +22,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include 'partials/metadata.html.twig' %}
+    {%- if page.header.hero.image %}
+        {%- include 'partials/hero-preload.html.twig' -%}
+    {% endif -%}
     <link rel="canonical" href="{{ page.url(true, true) }}" />
 {% endblock head %}
 
@@ -30,12 +33,12 @@
     document.documentElement.classList.add('js');
 </script>
 
-{% block stylesheets %}
+{% block stylesheets -%}
     {% do assets.addCss('theme://dist/css/main.css', 100) %}
-    {% if page.header.page_css %}
+    {%- if page.header.page_css %}
         {% do assets.addCss('theme://dist/css/' ~ page.header.page_css ~ '.css', 99) %}
-    {% endif %}
-{% endblock %}
+    {% endif -%}
+{% endblock -%}
 
 <link rel="stylesheet"
     href="{{ url( 'theme://dist/css/fonts.css' )}}"
@@ -60,7 +63,7 @@
     {# {% include 'partials/matomo.html.twig' %} #}
 {% else %}
     <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}" />
-{% endif %}
+{% endif -%}
 
 </head>
 <body id="top" class="{{ body_classes }}">
