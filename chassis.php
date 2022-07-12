@@ -16,12 +16,17 @@ class Chassis extends Theme
             // 'onAdminPageTypes'      => ['onAdminPageTypes', 0],
             'onAdminModularPageTypes'      => ['onAdminModularPageTypes', 0],
             'onTwigSiteVariables'   => ['onTwigSiteVariables', 0],
+            'onShortcodeHandlers'   => ['onShortcodeHandlers', 0],
         ];
     }
 
     public function onThemeInitialized()
     {
-
+        if ($this->isAdmin()) {
+            $this->enable([
+                'onAssetsInitialized' => ['onAdminAssetsInitialized', 0],
+            ]);
+        }
     }
 
     // Add images to twig template paths to allow inclusion of SVG files
@@ -79,9 +84,32 @@ class Chassis extends Theme
         $event['types'] = $list;
     }
 
+
+    /**
+     * [onAdminAssetsInitialized]
+     *
+     * @return void
+     */
+    public function onAdminAssetsInitialized()
+    {
+        $page = $this->grav['admin']->page();
+        if( $page->isPage() )
+        {
+            // $this->grav['debugger']->addMessage( $page->published() );
+            $assets = $this->grav['assets'];
+            $assets->addCss( 'theme://dist/css/editor.css' );
+        }
+    }
+
     public function onTwigSiteVariables()
     {
         require_once __DIR__ . '/classes/Utils.php';
         $this->grav['twig']->twig_vars['chassis'] = new Utils();
     }
+
+    public function onShortcodeHandlers()
+    {
+        $this->grav['shortcode']->registerAllShortcodes('theme://shortcodes');
+    }
+
 }

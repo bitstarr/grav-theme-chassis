@@ -1,0 +1,6 @@
+{% for field in form.fields %}
+    {{ field.label }}: {{ string(form.value(field.name)|e) }}
+{% endfor %}
+
+
+Die Nachricht wurde über das Kontaktformular der Website versendet

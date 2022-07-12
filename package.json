@@ -37,6 +37,9 @@
         "stylelint": "*"
     },
     "optionalDeps": {
+        "chocolat": "1.0.4"
+    },
+    "resourceDeps": {
         "a11y-test": "https://github.com/matuzo/a11y-tests.css",
         "a11y.css": "latest",
         "bytesize-icons": "latest",

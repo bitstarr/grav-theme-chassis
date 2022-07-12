@@ -1,0 +1,239 @@
+.chocolat-zoomable.chocolat-zoomed {
+    cursor: zoom-out;
+}
+.chocolat-open {
+    overflow: hidden;
+}
+.chocolat-overlay {
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+.chocolat-overlay.chocolat-visible {
+    visibility: visible;
+    opacity: .8;
+    transition: opacity .4s;
+}
+
+.chocolat-wrapper {
+    visibility: hidden;
+    position: fixed;
+    z-index: 16;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    transition: opacity .4s ease;
+}
+.chocolat-wrapper.chocolat-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .4s;
+}
+
+.chocolat-zoomable .chocolat-img {
+    cursor: zoom-in;
+}
+.chocolat-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: .3em;
+    width: 10em;
+    transform: translateX( -50% );
+    z-index: 11;
+    opacity: 0;
+    background: linear-gradient(
+        to right,
+        #444 33%,
+        #f00 35%,
+        #f00 64%,
+        #444 66%
+    );
+    background-size: 150%;
+    background-position: 50% 50%;
+    animation: kitt 1s linear infinite alternate;
+}
+.chocolat-loader.chocolat-visible {
+    opacity: 1;
+}
+@keyframes kitt {
+    0% {
+        background-position: 180% 0;
+    }
+    100% {
+        background-position: -80% 0;
+    }
+}
+
+.chocolat-image-wrapper {
+    position: fixed;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    z-index: 14;
+    text-align: left;
+    transform: translate(-50%, -50%);
+}
+
+.chocolat-image-wrapper .chocolat-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.chocolat-wrapper .chocolat-left,
+.chocolat-wrapper .chocolat-right,
+.chocolat-wrapper .chocolat-close {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    cursor: pointer;
+    filter: invert();
+}
+.chocolat-wrapper .chocolat-left {
+    visibility: hidden;
+    z-index: 17;
+    width: 50px;
+    height: 100px;
+    background-image: url( '../icons/angle-left.svg' );
+}
+.chocolat-wrapper .chocolat-right {
+    visibility: hidden;
+    z-index: 17;
+    width: 50px;
+    height: 100px;
+    background-image: url( '../icons/angle-right.svg' );
+}
+.chocolat-wrapper .chocolat-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url( '../icons/close.svg' );
+}
+.chocolat-wrapper .chocolat-right.active,
+.chocolat-wrapper .chocolat-left.active {
+    visibility: visible;
+}
+.chocolat-wrapper .chocolat-fullscreen {
+    display: none;
+}
+
+.chocolat-layout {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.chocolat-image-canvas {
+    transition: opacity .2s;
+    opacity: 0;
+    flex-grow: 1;
+    align-self: stretch;
+}
+.chocolat-image-canvas.chocolat-visible {
+    opacity: 1;
+}
+.chocolat-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.chocolat-wrapper .chocolat-top {
+    height: 50px;
+    overflow: hidden;
+    z-index: 17;
+    flex-shrink: 0;
+}
+.chocolat-wrapper .chocolat-bottom {
+    height: 40px;
+    font-size: 12px;
+    z-index: 17;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: rgba( 0, 0, 0, .2 );
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+}
+.chocolat-wrapper .chocolat-set-title {
+    display: none;
+}
+.chocolat-wrapper .chocolat-pagination {
+    float: right;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.chocolat-wrapper .chocolat-description {
+    display: inline-block;
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* no container mode*/
+body.chocolat-open > .chocolat-overlay {
+    z-index: 15;
+}
+body.chocolat-open > .chocolat-loader {
+    z-index: 15;
+}
+body.chocolat-open > .chocolat-image-wrapper {
+    z-index: 17;
+}
+
+/* container mode*/
+.chocolat-in-container .chocolat-wrapper,
+.chocolat-in-container .chocolat-image-wrapper,
+.chocolat-in-container .chocolat-overlay {
+    position: absolute;
+}
+.chocolat-in-container {
+    position: relative;
+}
+
+.chocolat-zoomable.chocolat-zooming-in .chocolat-image-wrapper,
+.chocolat-zoomable.chocolat-zooming-out .chocolat-image-wrapper {
+    transition: width .2s ease, height .2s ease;
+}
+.chocolat-zoomable.chocolat-zooming-in .chocolat-img,
+.chocolat-zoomable.chocolat-zooming-out .chocolat-img {
+    transition: margin .2s ease;
+}
+
+/* uncomment to hide controls when zoomed-in*/
+/*
+.chocolat-zoomable .chocolat-top,
+.chocolat-zoomable .chocolat-bottom,
+.chocolat-zoomable .chocolat-right,
+.chocolat-zoomable .chocolat-left {
+    transition: opacity .3s ease, visibility 0s .3s;
+    opacity: 1;
+}
+
+.chocolat-zoomable.chocolat-zoomed .chocolat-top,
+.chocolat-zoomable.chocolat-zoomed .chocolat-bottom,
+.chocolat-zoomable.chocolat-zoomed .chocolat-right,
+.chocolat-zoomable.chocolat-zoomed .chocolat-left {
+    visibility: hidden;
+    opacity: 0;
+}
+*/

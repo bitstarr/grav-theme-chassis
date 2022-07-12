@@ -40,6 +40,10 @@
         text-align: center;
     }
 
+    &__notice {
+        margin-bottom: var( --gap );
+    }
+
     &__buttons .button {
         width: 100%;
         max-width: 15em;

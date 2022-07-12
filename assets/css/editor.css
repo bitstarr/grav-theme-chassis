@@ -1,0 +1,6 @@
+/* stylelint-disable */
+.cm-s-paper.CodeMirror,
+#admin-main .admin-block .grav-editor-preview {
+    max-width: 60rem;
+}
+/* stylelint-endable */

@@ -23,7 +23,24 @@ en:
       PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++ Press Shift+T to hide this message +++
       FALLBACK: +++ Why are you here? +++
     FORM:
+      FIELD:
+        RECIPIENT: Please select the recipient of your message
+        NAME: Name
+        NAME_PH: Your name
+        EMAIL: Email
+        EMAIL_PH: Your email address
+        PHONE: Phone
+        PHONE_PH: Your phone number
+        MESSAGE: Message
+        MESSAGE_PH: Your message to me
+        SPAM_Q: "Anti-Spam-Question: What's the first name of Pablo Picasso?"
+        SPAM_FAIL: You failed the Spam Test.
+        DSGVO: 'I agree with the [Privacy Policy](/imprint).'
+        SUBMIT: Send message
+        FAX: Fax
       OPTIONAL: optional
+      GENERAL: 'General Request'
+      THANKS: Thanks for your message.
 
 de:
   THEME_C:
@@ -50,4 +67,21 @@ de:
       PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++ Drücke Shift+T um diese Nachricht auszublenden +++
       FALLBACK: +++ Warum bist du hier? +++
     FORM:
+      FIELD:
+        RECIPIENT: Bitte wählen Sie den Empfänger Ihrer Nachricht
+        NAME: Name
+        NAME_PH: Ihr Name
+        EMAIL: E-Mail
+        EMAIL_PH: Ihre E-Mail-Adresse
+        PHONE: Telefonnummer
+        PHONE_PH: Ihre Telefonnummer
+        MESSAGE: Nachricht
+        MESSAGE_PH: Ihre Nachricht an mich
+        SPAM_Q: 'Anti-Spam-Frage: Wie lautet der Vorname von Pablo Picasso?'
+        SPAM_FAIL: Bei der Anti-Spam-Frage versagt.
+        DSGVO: 'Ich stimme den [Datenschutzrichtlinien](/impressum) zu.'
+        SUBMIT: Nachricht senden
+        FAX: Fax
       OPTIONAL: optional
+      GENERAL: Allgemeine Anfrage
+      THANKS: Danke für Ihre Nachricht
