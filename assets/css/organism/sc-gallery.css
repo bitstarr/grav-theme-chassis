@@ -1,0 +1,92 @@
+.sc-gallery {
+    --grid-layout-gap: var( --gap );
+    --grid-column-count: 4;
+    --grid-item--min-width: 12rem;
+
+
+    box-sizing: border-box;
+
+    & :where(*, *::before, *::after) {
+        box-sizing: inherit;
+    }
+
+    &__link {
+        display: block;
+    }
+
+    &__image {
+        display: block;
+    }
+
+    &--grid {
+        --gap-count: calc( var( --grid-column-count ) - 1 );
+        --total-gap-width: calc( var( --gap-count ) * var( --grid-layout-gap ) );
+        --grid-item--max-width: calc( ( 100% - var( --total-gap-width ) ) / var( --grid-column-count ) );
+
+        display: grid;
+        grid-template-columns: repeat( auto-fill, minmax( max( var( --grid-item--min-width ), var( --grid-item--max-width ) ), 1fr ) );
+        grid-gap: var(--grid-layout-gap);
+
+        @media (max-width: 45em) {
+            --grid-item--min-width: 9rem;
+        }
+    }
+
+
+    /* mixed --------- */
+    &--grid &__image,
+    &--columns &__image {
+        width: 100%;
+        height: auto;
+        max-width: auto;
+    }
+
+    &--grid &__caption,
+    &--columns &__caption {
+        margin-top: .3em;
+        font-size: .9em;
+        hyphens: auto;
+    }
+
+    /* columns --------- */
+    &--columns {
+        --column-count: 2;
+        --column-gap: 1rem;
+    }
+
+    &--columns &__figure {
+        margin-bottom: var( --column-gap );
+    }
+
+    @media (min-width: 45em) {
+        &--columns {
+            columns: var( --column-count );
+            gap: var( --column-gap );
+        }
+    }
+
+    /* list --------- */
+    &--list {
+        --list-gap: 1rem;
+    }
+    &--list &__figure {
+        display: flex;
+        gap: var( --list-gap );
+    }
+    &--list &__figure + &__figure {
+        margin-top: var( --list-gap );
+    }
+    &--list &__link,
+    &--list &__figure > &__image {
+        flex: 1 1 30%;
+        min-width: 8em;
+        max-width: 10em;
+    }
+    &--list &__caption {
+        width: 70%;
+        flex-shrink: 1;
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+}

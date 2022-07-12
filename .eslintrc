@@ -10,8 +10,7 @@
     "globals": {
         "project": true,
         "Choices": true,
-        "google": true,
-        "supportsWoff2": true
+        "Chocolat": true
     },
     "rules": {
         "indent": [

@@ -1,6 +1,10 @@
-{% for field in form.fields %}
-    {{ field.label }}: {{ string(form.value(field.name)|e) }}
-{% endfor %}
+{{ string(form.value('text')|e) }}
 
+Name: {{ string(form.value('name')|e) }}
+E-Mail: {{ string(form.value('email')|e) }}
+{% if form.value('phone') %}
+Telefon: {{ string(form.value('phone')|e) }}
+
+{% endif %}
 
 Die Nachricht wurde über das Kontaktformular der Website versendet
