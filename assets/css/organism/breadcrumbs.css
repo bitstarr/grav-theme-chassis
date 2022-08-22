@@ -10,7 +10,7 @@
     color: var( --_txt );
 
     .link {
-        color: currentColor;
+        color: currentcolor;
     }
     .item {
         display: inline;

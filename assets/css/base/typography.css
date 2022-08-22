@@ -72,7 +72,7 @@ body {
 */
 :where(table) {
     border-collapse: collapse;
-    border-color: currentColor;
+    border-color: currentcolor;
     text-indent: 0;
     font-variant-numeric: lining-nums tabular-nums;
 }

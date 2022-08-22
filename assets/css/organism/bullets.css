@@ -7,7 +7,7 @@
         --color-hover           link hover color
     */
     --_bg: var( --o-bullets-surface, transparent );
-    --_txt: var( --o-bullets-ink, currentColor);
+    --_txt: var( --o-bullets-ink, currentcolor);
 
     color: var( --_txt );
     background: var( --_bg );

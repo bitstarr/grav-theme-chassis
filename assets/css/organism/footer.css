@@ -1,7 +1,7 @@
 .footer {
     --_bg: var( --o-footer-surface, var( --color-primary ) );
     --_txt: var( --o-footer-ink, var( --color-on-primary ) );
-    --color-link: currentColor;
+    --color-link: currentcolor;
 
     margin-top: var( --gap-deca );
     padding-top: var( --gap-deca );
