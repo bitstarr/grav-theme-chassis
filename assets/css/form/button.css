@@ -11,23 +11,32 @@
     */
     --_bg: var( --o-button-surface, var( --color-primary ) );
     --_txt: var( --o-button-ink, var( --color-on-primary ) );
-    --_hover-bg: var( --o-button-surface-hover, hsl(
-        var( --color-primary-h )
-        var( --color-primary-s )
-        calc( var( --color-primary-l ) * .5 )
-    ) );
+    --_hover-bg: var(
+        --o-button-surface-hover,
+        hsl(
+            var( --color-primary-h )
+            var( --color-primary-s )
+            calc( var( --color-primary-l ) * .5 )
+        )
+    );
     --_hover-txt: var( --o-button-ink-hover, var( --color-on-primary ) );
     --_hover-halo: var( --o-button-halo-hover, hsl( var( --color-primary-hsl ) / .3 ) );
-    --_disabled-bg: var( --o-button-surface-disabled, hsl(
-        var( --color-primary-h )
-        calc( var( --color-primary-s ) * .6 )
-        75%
-    ) );
-    --_disabled-txt: var( --o-button-ink-disabled, hsl(
-        var( --color-primary-h )
-        calc( var( --color-primary-s ) * .6 )
-        96%
-    ) );
+    --_disabled-bg: var(
+        --o-button-surface-disabled,
+        hsl(
+            var( --color-primary-h )
+            calc( var( --color-primary-s ) * .6 )
+            75%
+        )
+    );
+    --_disabled-txt: var(
+        --o-button-ink-disabled,
+        hsl(
+            var( --color-primary-h )
+            calc( var( --color-primary-s ) * .6 )
+            96%
+        )
+    );
 
     position: relative;
     z-index: 1;
