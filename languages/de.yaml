@@ -1,0 +1,42 @@
+THEME_C:
+  NAV:
+    MENU: Menü
+    REVEAL: Menü öffnen
+    HIDE: Menü schließen
+    SUBMENU: Untermenü
+    CURRENT_PAGE: Aktuelle Seite
+  PAGINATION:
+    NEWER: Neuer
+    OLDER: Älter
+  BLOG:
+    CONTINUE_READING: Weiterlesen →
+    POST_NAV: Beitragsnavigation
+    NEXT_POST: Nächster Beitrag
+    PREV_POST: Vorheriger Beitrag
+    POSTED_IN: Abgelegt in
+    TAGS: Schlagworte
+    ARCHIVE_OF: Archiv für
+  TICKER:
+    DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Drücke Shift+T um diese Nachricht auszublenden +++
+    STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++ Drücke Shift+T um diese Nachricht auszublenden +++
+    PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++ Drücke Shift+T um diese Nachricht auszublenden +++
+    FALLBACK: +++ Warum bist du hier? +++
+  FORM:
+    FIELD:
+      RECIPIENT: Bitte wählen Sie den Empfänger Ihrer Nachricht
+      NAME: Name
+      NAME_PH: Ihr Name
+      EMAIL: E-Mail
+      EMAIL_PH: Ihre E-Mail-Adresse
+      PHONE: Telefonnummer
+      PHONE_PH: Ihre Telefonnummer
+      MESSAGE: Nachricht
+      MESSAGE_PH: Ihre Nachricht an mich
+      SPAM_Q: 'Anti-Spam-Frage: Wie lautet der Vorname von Pablo Picasso?'
+      SPAM_FAIL: Bei der Anti-Spam-Frage versagt.
+      DSGVO: 'Ich stimme den [Datenschutzrichtlinien](/impressum) zu.'
+      SUBMIT: Nachricht senden
+      FAX: Fax
+    OPTIONAL: optional
+    GENERAL: Allgemeine Anfrage
+    THANKS: Danke für Ihr
