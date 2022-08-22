@@ -1,0 +1,42 @@
+THEME_C:
+  NAV:
+    MENU: Menu
+    REVEAL: Open Menu
+    HIDE: Hide Menu
+    SUBMENU: Submenu
+    CURRENT_PAGE: Current Page
+  PAGINATION:
+    NEWER: Newer
+    OLDER: Older
+  BLOG:
+    CONTINUE_READING: Continue reading →
+    POST_NAV: Post Navigation
+    NEXT_POST: Next Post
+    PREV_POST: Previous Post
+    POSTED_IN: Posted in
+    TAGS: Tags
+    ARCHIVE_OF: Achive of
+  TICKER:
+    DEV: +++ DEV Enviroment +++ Buckle up +++ Press Shift+T to hide this message +++
+    STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++ Press Shift+T to hide this message +++
+    PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++ Press Shift+T to hide this message +++
+    FALLBACK: +++ Why are you here? +++
+  FORM:
+    FIELD:
+      RECIPIENT: Please select the recipient of your message
+      NAME: Name
+      NAME_PH: Your name
+      EMAIL: Email
+      EMAIL_PH: Your email address
+      PHONE: Phone
+      PHONE_PH: Your phone number
+      MESSAGE: Message
+      MESSAGE_PH: Your message to me
+      SPAM_Q: "Anti-Spam-Question: What's the first name of Pablo Picasso?"
+      SPAM_FAIL: You failed the Spam Test.
+      DSGVO: 'I agree with the [Privacy Policy](/imprint).'
+      SUBMIT: Send message
+      FAX: Fax
+    OPTIONAL: optional
+    GENERAL: 'General Request'
+    THANKS: Thanks for your message.
