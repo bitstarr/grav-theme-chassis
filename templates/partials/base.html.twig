@@ -17,7 +17,7 @@
 <html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}" class="no-js">
 <head>
 {% block head %}
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>{{ doc_title }}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@
     {%- if page.header.hero.image %}
         {%- include 'partials/hero-preload.html.twig' -%}
     {% endif -%}
-    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}">
 {% endblock head %}
 
 <script type="module">
@@ -42,9 +42,9 @@
 
 <link rel="stylesheet"
     href="{{ url( 'theme://dist/css/fonts.css' )}}"
-    media="print" onload="this.media='all'" />
+    media="print" onload="this.media='all'">
 <noscript>
-    <link rel="stylesheet" href="{{ url( 'theme://dist/css/fonts.css' )}}" />
+    <link rel="stylesheet" href="{{ url( 'theme://dist/css/fonts.css' )}}">
 </noscript>
 
 {% block javascripts %}
@@ -62,7 +62,7 @@
 {%- if config.system.env.state == 'production' %}
     {# {% include 'partials/matomo.html.twig' %} #}
 {% else %}
-    <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}" />
+    <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}">
 {% endif -%}
 
 </head>
