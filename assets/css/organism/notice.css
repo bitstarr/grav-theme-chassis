@@ -1,7 +1,22 @@
 .notice {
-    --_bg: var( --color-ui );
-    --_brd: var( --color-default );
-    --_txt: var( --color-default );
+    /*
+        API:
+        --o-notice-surface          background
+        --o-notice-ink              text color
+        --o-notice-frame            border color
+        --o-notice-surface-success
+        --o-notice-ink-success
+        --o-notice-frame-success
+        --o-notice-surface-warning
+        --o-notice-ink-warning
+        --o-notice-frame-warning
+        --o-notice-surface-error
+        --o-notice-ink-error
+        --o-notice-frame-error
+    */
+    --_bg: var( --o-notice-surface, var( --color-ui ) );
+    --_txt: var( --o-notice-ink, var( --color-default ) );
+    --_brd: var( --o-notice-frame, var( --color-default ) );
 
     padding: var( --gap-deci );
     color: var( --_txt );
@@ -20,17 +35,20 @@
     }
 
     &--success {
-        --_bg: #e5f3ef;
-        --_brd: #008566;
+        --_bg: var( --o-notice-surface-success, #e5f3ef );
+        --_txt: var( --o-notice-ink-success );
+        --_brd: var( --o-notice-frame-success, #008566 );
     }
 
     &--warning {
-        --_bg: #fcf8f2;
-        --_brd: #ffb820;
+        --_bg: var( --o-notice-surface-warning, #fcf8f2 );
+        --_txt: var( --o-notice-ink-warning );
+        --_brd: var( --o-notice-frame-warning, #ffb820 );
     }
 
     &--error {
-        --_bg: #fdf7f7;
-        --_brd: #d0103a;
+        --_bg: var( --o-notice-surface-error, #fdf7f7 );
+        --_txt: var( --o-notice-ink-error );
+        --_brd: var( --o-notice-frame-error, #d0103a );
     }
 }

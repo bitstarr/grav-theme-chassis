@@ -108,8 +108,7 @@ html {
     --o-form-accent-s: var( --anatolia-s );
     --o-form-accent-l: var( --anatolia-l );
 
-    --tabs-border-color: var( --color-border );
-    --tabs-border-hover: hsl( var( --color-primary-h ) var( --color-primary-s ) var( --color-primary-l ) / .5 );
-    --tabs-background: var( --base-surface );
+    --o-tabs-border-color: var( --color-border );
+    --o-tabs-border-hover: hsl( var( --color-primary-hsl ) / .5 );
 }
 /* stylelint-endable */

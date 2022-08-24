@@ -1,4 +1,13 @@
 .tabs {
+    /*
+        API:
+        --o-tabs-surface          background color
+        --o-tabs-ink              text color
+        --o-tabs-border           border width
+        --o-tabs-border-color     border color
+        --o-tabs-border-hover     border color on hover
+    */
+
     &__head {
         display: none;
     }
@@ -21,30 +30,31 @@
 
 
     &--default {
-        --comp-brdw: var( --tabs-border, .15em );
-        --comp-brd: var( --tabs-border-color, #ddd );
-        --comp-hvr: var( --tabs-border-hover, #eee );
-        --comp-bg: var( --tabs-background, #fff );
+        --_brdw: var( --o-tabs-border, .15em );
+        --_brd: var( --o-tabs-border-color, #ddd );
+        --_hvr: var( --o-tabs-border-hover, #eee );
+        --_bg: var( --o-tabs-surface, var( --base-surface ) );
+        --_txt: var( --o-tabs-ink, var( --color-default ) );
     }
     &--default &__toggle {
         display: block;
         text-align: center;
         padding: var( --gap-deci );
-        border: var( --comp-brdw ) solid var( --base-surface );
+        border: var( --_brdw ) solid var( --base-surface );
         border-bottom: 0;
-        background: var( --comp-bg );
+        background: var( --_bg );
     }
     &--default &__toggle:not( [aria-selected] ):hover {
-        box-shadow: inset 0 0 0 var( --comp-brdw ) var( --comp-hvr );
+        box-shadow: inset 0 0 0 var( --_brdw ) var( --_hvr );
     }
     &--default &__toggle[aria-selected] {
         position: relative;
-        top: var( --comp-brdw );
-        border-color: var( --comp-brd );
+        top: var( --_brdw );
+        border-color: var( --_brd );
     }
     &--default.is-interactive &__content {
         padding: var( --gap ) var( --gap-deci );
-        border: var( --comp-brdw ) solid var( --comp-brd );
-        background: var( --comp-bg );
+        border: var( --_brdw ) solid var( --_brd );
+        background: var( --_bg );
     }
 }
