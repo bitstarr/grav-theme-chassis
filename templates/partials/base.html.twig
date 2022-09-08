@@ -18,9 +18,9 @@
 <head>
 {% block head %}
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ doc_title }}</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include 'partials/metadata.html.twig' %}
     {%- if page.header.hero.image %}
         {%- include 'partials/hero-preload.html.twig' -%}

@@ -1,6 +1,6 @@
 title: Page Content
 extends@:
-  type: base
+  type: default
   context: blueprints://pages
 
 form:
@@ -10,30 +10,6 @@ form:
       active: 1
 
       fields:
-        content:
-          type: tab
-
-          #
-          # Add your custom fields here.
-          # These fields will be available in the page's Content tab
-          # inside the Admin Panel.
-          #
-          fields:
-
-            header.hide_breadcrumbs:
-              type: toggle
-              label: Breadcrumb
-              default: 0
-              highlight: 0
-              options:
-                  1: 'verbergen'
-                  0: 'anzeigen'
-              validate:
-                  type: bool
-
-            header.foo:
-              type: editor
-              label: foobar
 
         advanced:
           fields:
@@ -46,6 +22,17 @@ form:
                   type: text
                   label: Menü CSS Klassen
                   toggleable: true
+
+                header.hide_breadcrumbs:
+                  type: toggle
+                  label: Breadcrumb
+                  default: 0
+                  highlight: 0
+                  options:
+                      1: 'verbergen'
+                      0: 'anzeigen'
+                  validate:
+                      type: bool
 
         hero:
           type: tab

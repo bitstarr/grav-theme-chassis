@@ -16,7 +16,7 @@ body {
     font-family: monospace, monospace;
 }
 :where( pre ) {
-    padding: 1em;
+    /* padding: 1em; */
     white-space: pre; /* CSS2 */
     white-space: pre-wrap; /* CSS 2.1 */
     word-wrap: break-word; /* IE */

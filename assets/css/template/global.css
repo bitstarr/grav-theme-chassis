@@ -66,6 +66,10 @@ body {
     scroll-behavior: smooth;
 }
 
+.main {
+    padding: var( --gap-deca ) 0;
+}
+
 
 /*
 .wrapper {

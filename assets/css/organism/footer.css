@@ -3,7 +3,6 @@
     --_txt: var( --o-footer-ink, var( --color-on-primary ) );
     --color-link: currentcolor;
 
-    margin-top: var( --gap-deca );
     padding-top: var( --gap-deca );
     padding-bottom: var( --gap-deca );
     color: var( --_txt );

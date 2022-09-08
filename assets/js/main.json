@@ -1,7 +1,8 @@
 {
     "lib": [],
     "stock": [
-        "chocolat/dist/js/chocolat.js"
+        "chocolat/dist/js/chocolat.js",
+        "embedvideo.js"
     ],
     "src": [
         "base.js",
