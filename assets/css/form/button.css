@@ -1,42 +1,21 @@
 .button {
     /*
         API:
-        --o-button-surface          background
+        --o-button-surface          background color
         --o-button-ink              text color
-        --o-button-surface-hover    background on hover
-        --o-button-ink-hover        text color on hover
-        --o-button-halo-hover       boxshadow color on hover
-        --o-button-surface-disable  background when disabled
-        --o-button-ink-disabled     text color when disabled
+        --o-button-surface-hover    hover background color
+        --o-button-ink-hover        hover text color
+        --o-button-halo-hover       hover halo (boxshadow)
+        --o-button-surface-disable  disabled background color
+        --o-button-ink-disabled     disabled text color
     */
-    --_bg: var( --o-button-surface, var( --color-primary ) );
-    --_txt: var( --o-button-ink, var( --color-on-primary ) );
-    --_hover-bg: var(
-        --o-button-surface-hover,
-        hsl(
-            var( --color-primary-h )
-            var( --color-primary-s )
-            calc( var( --color-primary-l ) * .5 )
-        )
-    );
-    --_hover-txt: var( --o-button-ink-hover, var( --color-on-primary ) );
-    --_hover-halo: var( --o-button-halo-hover, hsl( var( --color-primary-hsl ) / .3 ) );
-    --_disabled-bg: var(
-        --o-button-surface-disabled,
-        hsl(
-            var( --color-primary-h )
-            calc( var( --color-primary-s ) * .6 )
-            75%
-        )
-    );
-    --_disabled-txt: var(
-        --o-button-ink-disabled,
-        hsl(
-            var( --color-primary-h )
-            calc( var( --color-primary-s ) * .6 )
-            96%
-        )
-    );
+    --_bg: var( --o-button-surface, var( --default-primary) );
+    --_txt: var( --o-button-ink, var( --default-on-primary ) );
+    --_hover-bg: var( --o-button-surface-hover, var( --default-primary-dark ) );
+    --_hover-txt: var( --o-button-ink-hover, var( --default-on-primary ) );
+    --_hover-halo: var( --o-button-halo-hover, var( --default-primary-light ) );
+    --_disabled-bg: var( --o-button-surface-disabled, var( --default-ui ) );
+    --_disabled-txt: var( --o-button-ink-disabled, var( --default-muted ) );
 
     position: relative;
     z-index: 1;

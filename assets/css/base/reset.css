@@ -11,7 +11,7 @@
 :where( :not( iframe, canvas, img, svg, video ):not( svg *, symbol * ) ) {
     all: unset;
     display: revert;
-    line-height: var( --base-line );
+    line-height: var( --font-line );
 }
 
 /*

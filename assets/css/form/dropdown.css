@@ -5,6 +5,7 @@
     background-size: .8em;
     background-repeat: no-repeat;
     background-position: calc( 100% - .5em ) center;
+    background-color: var( --o-dropdown-surface, var( --o-input-surface ) );
 
     option[value=''][disabled] {
         display: none;

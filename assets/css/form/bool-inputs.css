@@ -1,7 +1,22 @@
+/*
+    API:
+    --o-bool-ink-checked        tick color
+    --o-bool-surface-checked    background color
+    --o-bool-ink-disabled       disabled tick color
+    --o-bool-surface-disabled   disabled background color
+*/
 @supports(-webkit-appearance: none) or (-moz-appearance: none) {
     .form {
         input[type='checkbox'],
         input[type='radio'] {
+            --_background: var( --o-input-surface, transparent );
+            --_bordercolor: var( --o-input-border, var( --default-border ) );
+            --_tickcolor: var( --o-bool-surface-checked, var( --default-primary ) );
+            --_disable-bg: var( --o-bool-surface-disabled );
+            --_disable-fg: var( --o-bool-ink-disabled );
+            --_check-bg: var( --o-bool-surface-checked, var( --default-primary ) );
+            --_check-fg: var( --o-bool-ink-checked, var( --default-on-primary ) );
+
             appearance: none;
             position: relative;
             display: inline-block;
@@ -9,48 +24,11 @@
             width: 1.2em;
             margin: 0;
             vertical-align: top;
-            background: var( --_background, var( --o-form-surface ) );
-            border: .1em solid var( --_bordercolor, var( --_form-border ) );
+            background: var( --_background );
+            border: .1em solid var( --_bordercolor );
             box-shadow: 0 0 0 transparent;
             transition: background .3s, border-color .3s, box-shadow .2s;
             cursor: pointer;
-            /* outline: none; */ /* focus box-shadow is nice but in form.css there is a good help for a11y. You may want to do you own way though? */
-
-            &:checked {
-                --_background: var( --_form-active );
-                --_bordercolor: var( --_form-active );
-                --d-o: .3s;
-                --d-t: .6s;
-                --d-t-e: cubic-bezier( .2, .85, .32, 1.2 );
-            }
-
-            &:disabled {
-                --_background: var( --_form-disabled );
-                --_form-border: var( --_form-disabled-border );
-                opacity: .9;
-                cursor: not-allowed;
-
-                &:checked {
-                    --_background: var( --_form-on-disabled );
-                    --_bordercolor: var( --_form-border );
-                }
-
-                & + label {
-                    cursor: not-allowed;
-                }
-            }
-
-            &:hover {
-                &:not(:checked) {
-                    &:not(:disabled) {
-                        --_bordercolor: var( --_form-border-light );
-                    }
-                }
-            }
-
-            &:focus {
-                box-shadow: 0 0 0 .1em hsl( var( --o-form-accent-hsl ) / .3 );
-            }
 
             &:not( .special ) + label {
                 display: inline-block;
@@ -59,6 +37,37 @@
                 line-height: 1;
                 vertical-align: top;
                 cursor: pointer;
+            }
+
+            &:checked {
+                --_background: var( --_check-bg );
+                --_bordercolor: var( --_check-bg );
+                --_tickcolor: var( --_check-fg );
+                --d-o: .3s;
+                --d-t: .6s;
+                --d-t-e: cubic-bezier( .2, .85, .32, 1.2 );
+            }
+
+            &:disabled {
+                --_background: var( --_disable-bg );
+                --_bordercolor: var( --_disable-fg );
+                --_tickcolor: var( --_disable-fg );
+                opacity: .7;
+                cursor: not-allowed;
+
+                & + label {
+                    cursor: not-allowed;
+                    opacity: .7;
+                }
+            }
+
+            &:hover,
+            &:focus {
+                &:not(:checked) {
+                    &:not(:disabled) {
+                        --_bordercolor: var( --o-input-border-hover, var( --default-primary ) );
+                    }
+                }
             }
         }
 
@@ -79,7 +88,7 @@
                     top: 45%;
                     width: .4em;
                     height: .7em;
-                    border: .15em solid var( --_form-on-active );
+                    border: .15em solid var( --_tickcolor );
                     border-top: 0;
                     border-left: 0;
                     opacity: var( --o, 0 );
@@ -100,14 +109,14 @@
                     top: 50%;
                     width: .65em;
                     height: .65em;
-                    background: var( --ab, var( --_form-border ) );
+                    background: var( --ab, var( --_tickcolor ) );
                     border-radius: 50%;
                     transform: translate( var( --x, 0 ), -50% );
                     transition: transform var( --d-t, .3s ) var( --d-t-e, ease );
                 }
 
                 &:checked {
-                    --ab: var( --_form-on-active );
+                    --ab: var( --_tickcolor );
                     --x: 1.3em;
                 }
 
@@ -125,10 +134,10 @@
             border-radius: 50%;
 
             &:checked {
-                --_background: radial-gradient(circle, var( --_form-on-active ) 0%, var( --_form-on-active ) .25em, var( --_form-active ) .27em );
+                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .25em, var( --_check-bg ) .27em );
             }
             &:disabled:checked {
-                --_background: radial-gradient(circle, var( --_form-on-disabled ) 0%, var( --_form-on-disabled ) .25em, var( --_form-disabled ) .27em );
+                --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );
             }
         }
     }
