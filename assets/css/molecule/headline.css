@@ -1,6 +1,6 @@
 .headline {
-    margin-bottom: 1em;
-    font-size: 2.3em;
+    margin-bottom: var( --gap-deca );
+    font-size: var( --size-mega );
     line-height: calc( 1ex / .38 );
-    color: hsl( var( --color-primary-hue ) var( --color-primary-sat ) calc( var( --color-primary-l ) * .85 ) );
+    color: var( --o-headline-ink );
 }

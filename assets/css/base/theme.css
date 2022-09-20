@@ -1,6 +1,6 @@
 html {
     /*
-        Specific Colors, only raw hsl
+        Specific Colors, only raw HSL
         https://reasonable.work/colors/
     */
     --raspberry-1: 357.78 99.6% 98.53%;
@@ -60,6 +60,8 @@ html {
     */
 
     --o-footer-surface: hsl( var( --cerulean-6 ) );
+
+    --o-headline-ink: hsl( var( --cerulean-6 ) );
 
     --o-form-label-ink: #555;
     /* --o-form-placeholder: #777; */
