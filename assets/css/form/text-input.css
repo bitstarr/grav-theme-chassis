@@ -1,24 +1,23 @@
-/*
-    API:
-    --o-input-ink               input text color
-    --o-input-surface           input background color
-    --o-input-border            input border color
-    --o-input-padding           input padding
-    --o-input-border-hover      hover border-color
-    --o-input-halo-hover        hover focus halo
-    --o-input-ink-disabled      disabled text color
-    --o-input-surface-disabled  disabled background color
-    --o-input-border-disabled   disabled border color
-
-*/
 .text-input {
-    --_text: var( --o-input-ink, var( --default-ink ) );
-    --_background: var( --o-input-surface, transparent );
-    --_bordercolor: var( --o-input-border, var( --default-border ) );
+    /*
+        API:
+        --f-input-ink               input text color
+        --f-input-surface           input background color
+        --f-input-border            input border color
+        --f-input-padding           input padding
+        --f-input-border-hover      hover border-color
+        --f-input-halo-hover        hover focus halo
+        --f-input-ink-disabled      disabled text color
+        --f-input-surface-disabled  disabled background color
+        --f-input-border-disabled   disabled border color
+    */
+    --_text: var( --f-input-ink, var( --default-ink ) );
+    --_background: var( --f-input-surface, var( --default-surface) );
+    --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
 
     appearance: none;
     width: 100%;
-    padding: var( --o-input-padding, .7rem );
+    padding: var( --f-input-padding, .7rem );
     line-height: var( --font-line );
     color: var( --_text );
     background: var( --_background );
@@ -31,31 +30,32 @@
 
     &:hover {
         &:not(:disabled) {
-            --_bordercolor: var( --o-input-border-hover, var( --default-primary ) );
+            --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+            --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
         }
     }
     &:focus {
-        --_bordercolor: var( --o-input-border-hover, var( --default-primary ) );
-        --_boxshadow: 0 0 0 .1em var( --o-input-halo-hover );
+        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+        --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
     input&:not(:focus):not(:placeholder-shown):invalid,
     select&:not([value='']):invalid {
-        --_background: var( --o-form-error-surface );
-        --_bordercolor: var( --o-form-error-ink );
-        --_boxshadow: inset 0 0 0 .1em var( --o-form-error-ink );
+        --_background: var( --f-form-error-surface );
+        --_bordercolor: var( --f-form-error-ink );
+        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink );
     }
 
     &:disabled {
-        --_text: var( --o-input-ink-disabled );
-        --_background: var( --o-input-surface-disabled );
-        --_bordercolor: var( --o-input-border-disabled );
+        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
         opacity: .6;
         cursor: not-allowed;
     }
     &[readonly] {
-        --_text: var( --o-input-ink-disabled );
-        --_background: var( --o-input-surface-disabled );
-        --_bordercolor: var( --o-input-border-disabled );
+        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
     }
 
     &[type='number'] {

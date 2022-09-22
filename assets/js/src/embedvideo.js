@@ -81,7 +81,7 @@
         },
     };
 
-    if ( doc.querySelectorAll( win.project.embedvideo.selector ) )
+    if ( doc.querySelector( win.project.embedvideo.selector ) )
     {
         win.project.embedvideo.init();
     }

@@ -1,21 +1,21 @@
 /*
     API:
-    --o-bool-ink-checked        tick color
-    --o-bool-surface-checked    background color
-    --o-bool-ink-disabled       disabled tick color
-    --o-bool-surface-disabled   disabled background color
+    --f-bool-ink-checked        tick color
+    --f-bool-surface-checked    background color
+    --f-bool-ink-disabled       disabled tick color
+    --f-bool-surface-disabled   disabled background color
 */
 @supports(-webkit-appearance: none) or (-moz-appearance: none) {
     .form {
         input[type='checkbox'],
         input[type='radio'] {
-            --_background: var( --o-input-surface, transparent );
-            --_bordercolor: var( --o-input-border, var( --default-border ) );
-            --_tickcolor: var( --o-bool-surface-checked, var( --default-primary ) );
-            --_disable-bg: var( --o-bool-surface-disabled );
-            --_disable-fg: var( --o-bool-ink-disabled );
-            --_check-bg: var( --o-bool-surface-checked, var( --default-primary ) );
-            --_check-fg: var( --o-bool-ink-checked, var( --default-on-primary ) );
+            --_background: var( --f-input-surface, transparent );
+            --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
+            --_tickcolor: var( --f-bool-surface-checked, var( --default-primary ) );
+            --_disable-bg: var( --f-bool-surface-disabled, var( --default-ui ) );
+            --_disable-fg: var( --f-bool-ink-disabled, var( --default-muted ) );
+            --_check-bg: var( --f-bool-surface-checked, var( --default-primary ) );
+            --_check-fg: var( --f-bool-ink-checked, var( --default-on-primary ) );
 
             appearance: none;
             position: relative;
@@ -65,7 +65,7 @@
             &:focus {
                 &:not(:checked) {
                     &:not(:disabled) {
-                        --_bordercolor: var( --o-input-border-hover, var( --default-primary ) );
+                        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
                     }
                 }
             }

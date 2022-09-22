@@ -18,11 +18,11 @@ html {
     --cerulean-6: 199.33 99.94% 8.26%;
 
     --gray-1: 194.33 0% 96.6%;
-	--gray-2: 194.33 0% 88.76%;
-	--gray-3: 194.33 0% 54.65%;
-	--gray-4: 194.33 0% 43.69%;
-	--gray-5: 194.33 0% 24.13%;
-	--gray-6: 194.33 0% 13.15%;
+    --gray-2: 194.33 0% 88.76%;
+    --gray-3: 194.33 0% 54.65%;
+    --gray-4: 194.33 0% 43.69%;
+    --gray-5: 194.33 0% 24.13%;
+    --gray-6: 194.33 0% 13.15%;
 
     /*
         Functional Colors
@@ -56,38 +56,38 @@ html {
     --outline-ink: hsl( var( --raspberry-4 ) );
 
     /*
+        Component (form) Specific
+        values equaling defaults are commented
+    */
+    --f-form-label-ink: #555;
+    /* --f-form-placeholder: #777; */
+    /* --f-form-outline-ink: hsl( var( --cerulean-4 ) ); */
+    --f-form-error-ink: hsl( 0 100% 33% );
+    --f-form-error-surface: hsl( 0 100% 95% );
+
+    /* --f-input-ink: var( --default-ink ) */
+    /* --f-input-surface: #fff; */
+    /* --f-input-border: var( --default-border-ink ); */
+    /* --f-input-padding: .7rem; */
+    --f-input-border-hover: hsl( var( --cerulean-4 ) );
+    --f-input-halo-hover: hsl( var( --cerulean-3 ) / .2 );
+    /* --f-input-ink-disabled: hsl( var( --gray-4 ) ); */
+    /* --f-input-surface-disabled: hsl( var( --gray-1 ) ); */
+    /* --f-input-border-disabled: hsl( var( --gray-2 ) ); */
+
+    /* --f-bool-ink-checked: #fff; */
+    /* --f-bool-surface-checked: hsl( var( --cerulean-4 ) ); */
+    /* --f-bool-ink-disabled: hsl( var( --gray-4 ) ); */
+    /* --f-bool-surface-disabled: hsl( var( --gray-1 ) ); */
+
+    /* --f-dropdown-surface: #fff;  */
+
+    /*
         Component (organism) Specific
     */
-
     --o-footer-surface: hsl( var( --cerulean-6 ) );
 
     --o-headline-ink: hsl( var( --cerulean-6 ) );
-
-    --o-form-label-ink: #555;
-    /* --o-form-placeholder: #777; */
-    --o-form-error-ink: hsl( 0 100% 33% );
-    --o-form-error-surface: hsl( 0 100% 95% );
-    /* --o-form-outline-ink: hsl( var( --cerulean-4 ) ); */
-
-    /* --o-input-ink: var( --default-ink ) */
-    /* --o-input-surface: #fff; */
-    --o-input-border: var( --default-border-ink );
-    --o-input-padding: .7rem;
-
-    --o-input-border-hover: hsl( var( --cerulean-4 ) );
-    --o-input-halo-hover: hsl( var( --cerulean-3 ) / .2 );
-
-    --o-input-ink-disabled: hsl( var( --gray-4 ) );
-    --o-input-surface-disabled: hsl( var( --gray-1 ) );
-    --o-input-border-disabled: hsl( var( --gray-2 ) );
-
-    /* --o-bool-ink-checked: #fff; */
-    /* --o-bool-surface-checked: hsl( var( --cerulean-4 ) ); */
-    --o-bool-ink-disabled: hsl( var( --gray-4 ) );
-    --o-bool-surface-disabled: hsl( var( --gray-1 ) );
-
-    --o-dropdown-surface: #fff; /* defines the background of options, recommend to set */
-
 
     --o-tabs-border-color: var( --default-border );
     --o-tabs-border-hover: hsl( var( --cerulean-5 ) / .5 );

@@ -1,14 +1,14 @@
 .form {
     /*
         API:
-        --o-form-label-ink          label text color
-        --o-form-placeholder        placeholder text color
-        --o-form-outline-ink        outline color override
-        --o-form-error-ink          error text color
-        --o-form-error-surface      error background
+        --f-form-label-ink          label text color
+        --f-form-placeholder        placeholder text color
+        --f-form-outline-ink        outline color override
+        --f-form-error-ink          error text color
+        --f-form-error-surface      error background
     */
 
-    ::placeholder { color: var( --o-input-placeholder, #777 ); }
+    ::placeholder { color: var( --f-input-placeholder, #777 ); }
 
     textarea,
     label {
@@ -37,7 +37,7 @@
     /* help with accasibility, can be overwritten by textflow.css */
     /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
     :is( a, button, input, textarea, select, summary ):focus-visible {
-        outline: var( --outline-size ) var( --outline-style ) var( --o-form-outline-ink, var( --outline-ink ) );
+        outline: var( --outline-size ) var( --outline-style ) var( --f-form-outline-ink, var( --outline-ink ) );
         outline-offset: var( --outline-offset, var( --outline-size ) );
     }
 
@@ -51,7 +51,7 @@
             margin-bottom: .5em;
             font-size: .9em;
             line-height: var( --font-line );
-            color: var( --o-form-label-ink );
+            color: var( --f-form-label-ink, var( --default-muted ) );
         }
     }
 }
