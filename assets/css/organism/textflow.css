@@ -1,4 +1,10 @@
 .textflow {
+    /*
+        API:
+        --o-textflow-list-accent    bullet list points color
+        --o-textflow-h2-accent      h2 text color
+        --o-textflow-quote-accent   blockquote accent color
+    */
     & > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
         margin-top: var( --flow-space, var( --font-line ) );
@@ -130,6 +136,7 @@
         &-html::before { content: 'HTML'; }
         &-js::before { content: 'JS'; }
         &-yaml::before { content: 'YAML'; }
+        &-php::before { content: 'PHP'; }
     }
     pre code {
         display: block;

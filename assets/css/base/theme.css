@@ -89,6 +89,6 @@ html {
 
     --o-headline-ink: hsl( var( --cerulean-6 ) );
 
-    --o-tabs-border-color: var( --default-border );
-    --o-tabs-border-hover: hsl( var( --cerulean-5 ) / .5 );
+    /* --o-tabs-border-color: var( --default-border-ink ); */
+    /* --o-tabs-border-hover: hsl( var( --cerulean-3 ) / .5 ); */
 }
