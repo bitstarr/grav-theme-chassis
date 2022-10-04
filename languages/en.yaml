@@ -7,6 +7,15 @@ THEME_C:
     SUBMENU_REVEAL: Show Submenu
     SUBMENU_HIDE: Hide Submenu
     CURRENT_PAGE: Current Page
+  PAGE:
+    MENU_CLASSES: CSS Classes for Menu Entry
+    BREADCRUMB: Breadcrumb
+    SHOW: Show
+    HIDE: Hide
+  HERO:
+    IMAGE: Hero Image
+    HEADLINE: Headline on top of Hero Image
+    SOURCE: Source of Image
   PAGINATION:
     NEWER: Newer
     OLDER: Older

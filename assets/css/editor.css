@@ -7,4 +7,18 @@
 #admin-main .admin-block .grav-editor-preview {
     max-width: 60rem;
 }
+
+/* editor buttons */
+.fa-exclamation-circle.notice-info {
+	color: #666;
+}
+.fa-exclamation-circle.notice-success {
+	color: #008566;
+}
+.fa-exclamation-circle.notice-warning {
+	color: #ffb820;
+}
+.fa-exclamation-circle.notice-error {
+	color: #d0103a;
+}
 /* stylelint-endable */

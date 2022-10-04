@@ -92,13 +92,15 @@ class Chassis extends Theme
      */
     public function onAdminAssetsInitialized()
     {
-        $page = $this->grav['admin']->page();
-        if( $page->isPage() )
-        {
-            // $this->grav['debugger']->addMessage( $page->published() );
-            $assets = $this->grav['assets'];
-            $assets->addCss( 'theme://dist/css/editor.css' );
-        }
+        $assets = $this->grav['assets'];
+        // $page = $this->grav['admin']->page();
+        // if( $page->isPage() ) {}
+
+        // editor styles
+        $assets->addCss( 'theme://dist/css/editor.css' );
+        // editor buttons
+        $assets->add( 'theme://admin/buttons/notice/notice.js', [ 'defer' => true ] );
+
     }
 
     public function onTwigSiteVariables()

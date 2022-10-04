@@ -20,24 +20,24 @@ form:
               fields:
                 header.menu_classes:
                   type: text
-                  label: Menü CSS Klassen
+                  label: THEME_C.PAGE.MENU_CLASSES
                   toggleable: true
 
                 header.hide_breadcrumbs:
                   type: toggle
-                  label: Breadcrumb
+                  label: THEME_C.PAGE.BREADCRUMB
                   toggleable: true
                   default: 0
                   highlight: 0
                   options:
-                      1: 'verbergen'
-                      0: 'anzeigen'
+                      0: THEME_C.PAGE.SHOW
+                      1: THEME_C.PAGE.HIDE
                   validate:
                       type: bool
 
         hero:
           type: tab
-          title: Titelbild
+          title: THEME_C.HERO.IMAGE
           ordering@: -2
           fields:
             #
@@ -47,7 +47,7 @@ form:
 
             header.hero.image:
               type: pagemediaselect
-              label: Titelbild
+              label: THEME_C.HERO.IMAGE
               folder: 'page://_heros'
               preview_images: true
               accept:
@@ -56,5 +56,10 @@ form:
 
             header.hero.headline:
               type: text
-              label: Überschrift auf dem Titelbild
+              label: THEME_C.HERO.HEADLINE
+              toggleable: true
+
+            header.hero.author:
+              type: text
+              label: THEME_C.HERO.SOURCE
               toggleable: true
