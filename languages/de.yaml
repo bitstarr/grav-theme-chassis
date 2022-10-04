@@ -4,6 +4,8 @@ THEME_C:
     REVEAL: Menü öffnen
     HIDE: Menü schließen
     SUBMENU: Untermenü
+    SUBMENU_REVEAL: Untermenü anzeigen
+    SUBMENU_HIDE: Untermenü verbergen
     CURRENT_PAGE: Aktuelle Seite
   PAGINATION:
     NEWER: Neuer
