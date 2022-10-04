@@ -26,6 +26,7 @@ form:
                 header.hide_breadcrumbs:
                   type: toggle
                   label: Breadcrumb
+                  toggleable: true
                   default: 0
                   highlight: 0
                   options:

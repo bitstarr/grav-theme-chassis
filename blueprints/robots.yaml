@@ -1,0 +1,21 @@
+title: Robots
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          unset@: true
+        options:
+          unset@: true
+        advanced:
+          unset@: true
+        security:
+          fields:
+          _site:
+            unset@: true
+          _admin:
+            unset@: true

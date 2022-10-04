@@ -1,4 +1,8 @@
 /* stylelint-disable */
+
+#admin-main .form-tabs .tab__content {
+    max-width: 80rem;
+}
 .cm-s-paper.CodeMirror,
 #admin-main .admin-block .grav-editor-preview {
     max-width: 60rem;
