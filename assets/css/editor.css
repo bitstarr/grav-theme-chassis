@@ -10,15 +10,19 @@
 
 /* editor buttons */
 .fa-exclamation-circle.notice-info {
-	color: #666;
+    color: #666;
 }
 .fa-exclamation-circle.notice-success {
-	color: #008566;
+    color: #008566;
 }
 .fa-exclamation-circle.notice-warning {
-	color: #ffb820;
+    color: #ffb820;
 }
 .fa-exclamation-circle.notice-error {
-	color: #d0103a;
+    color: #d0103a;
+}
+
+.grav-editor-toolbar .grav-editor-button-h1 {
+    display: none;
 }
 /* stylelint-endable */

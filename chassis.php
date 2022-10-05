@@ -99,8 +99,12 @@ class Chassis extends Theme
         // editor styles
         $assets->addCss( 'theme://dist/css/editor.css' );
         // editor buttons
-        $assets->add( 'theme://admin/buttons/notice/notice.js', [ 'defer' => true ] );
-
+        if ($this->config->get('plugins.markdown-notices.enabled')) {
+            $assets->add( 'theme://admin/buttons/notice.js', [ 'defer' => true ] );
+        }
+        if ($this->config->get('plugins.shortcode-core.enabled')) {
+            $assets->add( 'theme://admin/buttons/shortcodes.js', [ 'defer' => true ] );
+        }
     }
 
     public function onTwigSiteVariables()
