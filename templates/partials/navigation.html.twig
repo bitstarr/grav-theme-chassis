@@ -3,7 +3,7 @@
 <a class="navigation__open" href="#navigation" id="nav-open" title="{{ 'THEME_C.NAV.REVEAL'|t|e }}" aria-label="{{ 'THEME_C.NAV.REVEAL'|t|e }}">
     {{ svg( 'menu' )|raw }} <span aria-hidden="true">{{ 'THEME_C.NAV.MENU'|t|e }}</span>
 </a>
-<div class="navigation" id="navigation">
+<div class="navigation" id="navigation" data-l10n-show="{{ 'THEME_C.NAV.SUBMENU_REVEAL'|t|e }}" data-l10n-hide="{{ 'THEME_C.NAV.SUBMENU_HIDE'|t|e }}">
     <nav class="navigation__layer">
         <ul class="menu">
             {{ nav.loop(pages) }}

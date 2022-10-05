@@ -8,8 +8,9 @@
     },
     "extends": "eslint:recommended",
     "globals": {
+        "Grav": true,
+        "jQuery": true,
         "project": true,
-        "Choices": true,
         "Chocolat": true
     },
     "rules": {

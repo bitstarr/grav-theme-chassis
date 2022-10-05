@@ -4,7 +4,18 @@ THEME_C:
     REVEAL: Menü öffnen
     HIDE: Menü schließen
     SUBMENU: Untermenü
+    SUBMENU_REVEAL: Untermenü anzeigen
+    SUBMENU_HIDE: Untermenü verbergen
     CURRENT_PAGE: Aktuelle Seite
+  PAGE:
+    MENU_CLASSES: CSS Klassen für Menü-Eintrag
+    BREADCRUMB: Breadcrumb
+    SHOW: Anzeigen
+    HIDE: Verbergen
+  HERO:
+    HERO_IMAGE: Titelbild
+    HERO_HEADLINE: Überschrift auf dem Titelbild
+    SOURCE: Bildquelle
   PAGINATION:
     NEWER: Neuer
     OLDER: Älter
@@ -39,4 +50,4 @@ THEME_C:
       FAX: Fax
     OPTIONAL: optional
     GENERAL: Allgemeine Anfrage
-    THANKS: Danke für Ihr
+    THANKS: Danke für Ihre Nachricht

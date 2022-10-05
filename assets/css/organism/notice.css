@@ -14,9 +14,9 @@
         --o-notice-ink-error
         --o-notice-frame-error
     */
-    --_bg: var( --o-notice-surface, var( --color-ui ) );
-    --_txt: var( --o-notice-ink, var( --color-default ) );
-    --_brd: var( --o-notice-frame, var( --color-default ) );
+    --_bg: var( --o-notice-surface, var( --default-ui ) );
+    --_txt: var( --o-notice-ink, var( --default-ink ) );
+    --_brd: var( --o-notice-frame, var( --default-ink ) );
 
     padding: var( --gap-deci );
     color: var( --_txt );

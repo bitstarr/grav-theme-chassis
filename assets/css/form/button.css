@@ -1,42 +1,21 @@
 .button {
     /*
         API:
-        --o-button-surface          background
-        --o-button-ink              text color
-        --o-button-surface-hover    background on hover
-        --o-button-ink-hover        text color on hover
-        --o-button-halo-hover       boxshadow color on hover
-        --o-button-surface-disable  background when disabled
-        --o-button-ink-disabled     text color when disabled
+        --f-button-surface          background color
+        --f-button-ink              text color
+        --f-button-surface-hover    hover background color
+        --f-button-ink-hover        hover text color
+        --f-button-halo-hover       hover halo (boxshadow)
+        --f-button-surface-disable  disabled background color
+        --f-button-ink-disabled     disabled text color
     */
-    --_bg: var( --o-button-surface, var( --color-primary ) );
-    --_txt: var( --o-button-ink, var( --color-on-primary ) );
-    --_hover-bg: var(
-        --o-button-surface-hover,
-        hsl(
-            var( --color-primary-h )
-            var( --color-primary-s )
-            calc( var( --color-primary-l ) * .5 )
-        )
-    );
-    --_hover-txt: var( --o-button-ink-hover, var( --color-on-primary ) );
-    --_hover-halo: var( --o-button-halo-hover, hsl( var( --color-primary-hsl ) / .3 ) );
-    --_disabled-bg: var(
-        --o-button-surface-disabled,
-        hsl(
-            var( --color-primary-h )
-            calc( var( --color-primary-s ) * .6 )
-            75%
-        )
-    );
-    --_disabled-txt: var(
-        --o-button-ink-disabled,
-        hsl(
-            var( --color-primary-h )
-            calc( var( --color-primary-s ) * .6 )
-            96%
-        )
-    );
+    --_bg: var( --f-button-surface, var( --default-primary) );
+    --_txt: var( --f-button-ink, var( --default-on-primary ) );
+    --_hover-bg: var( --f-button-surface-hover, var( --default-primary-dark ) );
+    --_hover-txt: var( --f-button-ink-hover, var( --default-on-primary ) );
+    --_hover-halo: var( --f-button-halo-hover, var( --default-primary-light ) );
+    --_disabled-bg: var( --f-button-surface-disabled, var( --default-ui ) );
+    --_disabled-txt: var( --f-button-ink-disabled, var( --default-muted ) );
 
     position: relative;
     z-index: 1;

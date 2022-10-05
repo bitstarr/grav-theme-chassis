@@ -67,7 +67,7 @@ body {
 }
 
 .main {
-    padding: var( --gap-deca ) 0;
+    padding: var( --gap-deca ) 0 var( --gap-hecto );
 }
 
 

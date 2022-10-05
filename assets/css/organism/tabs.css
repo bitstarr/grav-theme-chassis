@@ -30,17 +30,17 @@
 
 
     &--default {
-        --_brdw: var( --o-tabs-border, .15em );
-        --_brd: var( --o-tabs-border-color, #ddd );
-        --_hvr: var( --o-tabs-border-hover, #eee );
-        --_bg: var( --o-tabs-surface, var( --base-surface ) );
-        --_txt: var( --o-tabs-ink, var( --color-default ) );
+        --_brdw: var( --o-tabs-border, .125em );
+        --_brd: var( --o-tabs-border-color, var( --default-border-ink) );
+        --_hvr: var( --o-tabs-border-hover, var( --default-primary-light ) );
+        --_bg: var( --o-tabs-surface, var( --default-surface ) );
+        --_txt: var( --o-tabs-ink, var( --default-ink ) );
     }
     &--default &__toggle {
         display: block;
         text-align: center;
         padding: var( --gap-deci );
-        border: var( --_brdw ) solid var( --base-surface );
+        border: var( --_brdw ) solid transparent;
         border-bottom: 0;
         background: var( --_bg );
     }

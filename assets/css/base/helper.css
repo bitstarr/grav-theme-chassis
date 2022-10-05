@@ -27,15 +27,17 @@
 
 .u-hidden { display: none; }
 
-.u-quiet {
-    color: var( --color-muted );
+.u-quiet,
+.u-muted {
+    --color-link: var( --default-muted );
+    --color-hover: var( --default-ink );
+
+    color: var( --default-muted );
 
     a {
-        --color-link: var( --color-muted );
         text-decoration: underline;
 
         &:hover {
-            --color-link: var( --color-default );
             text-decoration: underline dashed;
         }
     }
@@ -43,7 +45,7 @@
 
 .u-hyphen {
     overflow-wrap: break-word;
-    wordp-wrap: break-word;
+    word-wrap: break-word;
     hyphens: auto;
 }
 

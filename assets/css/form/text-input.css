@@ -1,41 +1,61 @@
 .text-input {
+    /*
+        API:
+        --f-input-ink               input text color
+        --f-input-surface           input background color
+        --f-input-border            input border color
+        --f-input-padding           input padding
+        --f-input-border-hover      hover border-color
+        --f-input-halo-hover        hover focus halo
+        --f-input-ink-disabled      disabled text color
+        --f-input-surface-disabled  disabled background color
+        --f-input-border-disabled   disabled border color
+    */
+    --_text: var( --f-input-ink, var( --default-ink ) );
+    --_background: var( --f-input-surface, var( --default-surface) );
+    --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
+
     appearance: none;
     width: 100%;
-    padding: var( --o-form-padding );
-    line-height: var( --base-line );
-    background: var( --_background, var( --o-form-surface ) );
-    border: .1em solid var( --_bordercolor, var( --_form-border-light ) );
+    padding: var( --f-input-padding, .7rem );
+    line-height: var( --font-line );
+    color: var( --_text );
+    background: var( --_background );
+    border: .1em solid var( --_bordercolor );
     border-radius: .3em;
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
-    box-shadow: none;
+    box-shadow: var( --_boxshadow, none );
     resize: vertical;
 
     &:hover {
         &:not(:disabled) {
-            --_bordercolor: var( --_form-border );
+            --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+            --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
         }
     }
     &:focus {
-        --_bordercolor: var( --_form-border );
-        box-shadow: 0 0 0 .1em hsl( var( --o-form-accent-hsl ) / .3 );
+        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+        --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
     input&:not(:focus):not(:placeholder-shown):invalid,
     select&:not([value='']):invalid {
-        border-color: var( --o-form-error-ink );
-        box-shadow: inset 0 0 0 1px var( --o-form-error-ink );
-        background-color: var( --o-form-error-surface );
+        --_background: var( --f-form-error-surface );
+        --_bordercolor: var( --f-form-error-ink );
+        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink );
     }
 
     &:disabled {
-        --_background: var( --_form-disabled );
-        --_bordercolor: var( --_form-disabled-border );
+        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
         opacity: .6;
         cursor: not-allowed;
     }
     &[readonly] {
-        --_background: var( --_form-disabled );
-        --_bordercolor: var( --_form-disabled-border );
+        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
     }
 
     &[type='number'] {

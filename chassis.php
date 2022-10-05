@@ -92,12 +92,18 @@ class Chassis extends Theme
      */
     public function onAdminAssetsInitialized()
     {
-        $page = $this->grav['admin']->page();
-        if( $page->isPage() )
-        {
-            // $this->grav['debugger']->addMessage( $page->published() );
-            $assets = $this->grav['assets'];
-            $assets->addCss( 'theme://dist/css/editor.css' );
+        $assets = $this->grav['assets'];
+        // $page = $this->grav['admin']->page();
+        // if( $page->isPage() ) {}
+
+        // editor styles
+        $assets->addCss( 'theme://dist/css/editor.css' );
+        // editor buttons
+        if ($this->config->get('plugins.markdown-notices.enabled')) {
+            $assets->add( 'theme://admin/buttons/notice.js', [ 'defer' => true ] );
+        }
+        if ($this->config->get('plugins.shortcode-core.enabled')) {
+            $assets->add( 'theme://admin/buttons/shortcodes.js', [ 'defer' => true ] );
         }
     }
 

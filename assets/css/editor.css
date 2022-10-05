@@ -1,6 +1,28 @@
 /* stylelint-disable */
+
+#admin-main .form-tabs .tab__content {
+    max-width: 80rem;
+}
 .cm-s-paper.CodeMirror,
 #admin-main .admin-block .grav-editor-preview {
     max-width: 60rem;
+}
+
+/* editor buttons */
+.fa-exclamation-circle.notice-info {
+    color: #666;
+}
+.fa-exclamation-circle.notice-success {
+    color: #008566;
+}
+.fa-exclamation-circle.notice-warning {
+    color: #ffb820;
+}
+.fa-exclamation-circle.notice-error {
+    color: #d0103a;
+}
+
+.grav-editor-toolbar .grav-editor-button-h1 {
+    display: none;
 }
 /* stylelint-endable */

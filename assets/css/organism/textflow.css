@@ -1,7 +1,13 @@
 .textflow {
+    /*
+        API:
+        --o-textflow-list-accent    bullet list points color
+        --o-textflow-h2-accent      h2 text color
+        --o-textflow-quote-accent   blockquote accent color
+    */
     & > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-        margin-top: var( --flow-space, var( --base-line ) );
+        margin-top: var( --flow-space, var( --font-line ) );
     }
 
     ul,
@@ -11,15 +17,19 @@
     ul { list-style: disc; }
     ul li::marker {
         content: '•  ';
-        color: var( --o-textflow-list-accent, var( --color-primary ) );
+        color: var( --o-textflow-list-accent, var( --default-primary) );
     }
     li ol,
     li ul { margin-bottom: 0; }
+    li + li {
+        margin-top: .5ex;
+    }
+
 
     h2 + *,
     h3 + *,
     h4 + * {
-        --flow-space: calc( var( --base-line ) / 2 );
+        --flow-space: calc( var( --font-line ) / 2 );
     }
 
     h2,
@@ -27,8 +37,8 @@
     h4 { font-weight: 700; }
     h2 {
         font-size: var( --size-kilo );
-        color: var( --o-textflow-h2-accent, var( --color-primary ) );
-        --flow-space: calc( var( --base-line ) * 1.5 );
+        color: var( --o-textflow-h2-accent, var( --default-primary) );
+        --flow-space: calc( var( --font-line ) * 1.5 );
     }
     h3 { font-size: var( --size-hecto ); }
     h4 { font-size: var( --size-deca ); }
@@ -38,19 +48,21 @@
     table { width: 100%; }
     th {
         font-weight: 700;
-        border-bottom: 2px solid var( --color-border );
+        border-bottom: 2px solid var( --default-border-ink );
     }
     th:empty { display: none; }
-    tr + tr td { border-top: 1px solid var( --color-border );  }
+    tr + tr td { border-top: 1px solid var( --default-border-ink );  }
 
     :where( a ) { text-decoration: underline; }
 
     /* help with accasibility */
     /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
+
     :is( a, button, input, textarea, select, summary ):focus-visible {
-        outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
         outline-offset: var( --outline-offset, var( --outline-size ) );
     }
+
 
     blockquote {
         position: relative;
@@ -59,7 +71,7 @@
 
         & > * + * {
             /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-            margin-top: var( --flow-space, var( --base-line ) );
+            margin-top: var( --flow-space, var( --font-line ) );
         }
 
         &:after,
@@ -86,7 +98,7 @@
             top: 0;
             bottom: 0;
             left: 0;
-            border-left: .4em solid var( --o-textflow-quote-accent, var( --color-primary ) );
+            border-left: .4em solid var( --o-textflow-quote-accent, var( --default-primary) );
             opacity: .6;
         }
         /**/
@@ -101,6 +113,7 @@
         padding: .1rem .3rem .2rem;
         word-break: break-word;
         color: #002b36;
+        background: #eee8d5;
         border-radius: .2rem;
     }
     code[class^='language-'] {
@@ -123,10 +136,11 @@
         &-html::before { content: 'HTML'; }
         &-js::before { content: 'JS'; }
         &-yaml::before { content: 'YAML'; }
+        &-php::before { content: 'PHP'; }
     }
     pre code {
         display: block;
-        overflow-x: scroll;
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: var( --gap );
         line-height: 1.3;

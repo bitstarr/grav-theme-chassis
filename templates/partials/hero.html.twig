@@ -26,6 +26,11 @@
             >
     </picture>
 {% endif %}
+{% if page.header.hero.author %}
+    <span class="hero__author">
+        {{ page.header.hero.author }}
+    </span>
+{% endif %}
 
 {% if page.header.hero.headline %}
     <div class="wrapper">
