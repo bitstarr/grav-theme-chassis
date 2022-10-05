@@ -18,6 +18,8 @@ Chassis provides templates and styles for the following plugins (if you install 
 
 ````
 .
+├── /admin                  Admin modifications and enhancements
+│   └── /buttons                Editor buttons
 ├── /assets                 "raw" assets
 │   ├── /css                   CSS files
 │   │   ├── /base                   settings, normalization, helper
@@ -26,15 +28,17 @@ Chassis provides templates and styles for the following plugins (if you install 
 │   │   ├── /oranism                complex modules
 │   │   ├── /template               template/page specifics (e.g. spacing)
 │   │   ├── /vendor                 3rd party / plugin styles
+│   │   └── admin.css               admin style modifications
 │   │   ├── fonts.css               dedicated web font style sheet
 │   │   └── main.css                main style sheet
 │   ├── /favicon                favicons/app icons
-│   ├── /fonts                  font files in WOFF and WOFF2 format
+│   ├── /fonts                  font files in WOFF2 format
 │   ├── /icons                  SVG icons
 │   ├── /img                    static images
 │   │   ├── marker.svg              map marker template
 │   │   └── social.jpg              default open graph image
 │   └── /js                     JS files
+│       ├── /src                    JS (bundle) source files
 │       ├── base.js                 JS component placeholder
 │       └── dev.json                JS bundle base only used in local env.
 ├── /blueprints             grav blueprints for page types
@@ -91,6 +95,10 @@ Every JS file in ``/assets/js`` will be copied in ``/dist/js``. Bundles will run
 ## Images
 
 All image files in `/assets/img` will be optimized on build (or calling it manually) using `imagemin` (svgo, pngQuant, mozJpeg, gifLossy, Zopfli) and stored in `/dist/img`. When using the watch task images will simply be copied to avoid waiting times in development.
+
+## Fonts
+
+It's good practice to use only WOFF2 format fonts now. Browser support is good and we provide a fallback to system fonts. Also make sure to subset (use [Font Squirrels generator](https://www.fontsquirrel.com/tools/webfont-generator) or [Font Mangler](https://github.com/bitstarr/font-mangler)) to reduce the file sizes. In build or with the dedicated command the fonts will be put in `/dist`.
 
 ## About `/dist`
 

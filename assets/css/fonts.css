@@ -8,27 +8,27 @@
     https://twitter.com/argyleink/status/1223026734817087488
 */
 @font-face {
-    font-family: 'Roboto Chassis';
-    src: local('Roboto'),
-        url('../fonts/roboto-regular-wf.woff2') format('woff2');
+    font-family: 'Atkinson Chassis';
+    src: local('Atkinson Hyperlegible'),
+        url('../fonts/Atkinson-Hyperlegible-Regular.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
     font-display: optional;
 }
 
 @font-face {
-    font-family: 'Roboto Chassis';
-    src: local('Roboto'),
-        url('../fonts/roboto-light-wf.woff2') format('woff2');
-        font-weight: 300;
-        font-style: normal;
+    font-family: 'Atkinson Chassis';
+    src: local('Atkinson Hyperlegible'),
+        url('../fonts/Atkinson-Hyperlegible-Italic.woff2') format('woff2');
+        font-weight: 400;
+        font-style: italic;
     font-display: optional;
 }
 
 @font-face {
-    font-family: 'Roboto Chassis';
-    src: local('Roboto'),
-        url('../fonts/roboto-bold-wf.woff2') format('woff2');
+    font-family: 'Atkinson Chassis';
+    src: local('Atkinson Hyperlegible'),
+        url('../fonts/Atkinson-Hyperlegible-Bold.woff2') format('woff2');
         font-weight: 700;
         font-style: normal;
     font-display: optional;
@@ -36,5 +36,5 @@
 
 /* because cssnano will drop the whole file though */
 .font-loaded {
-    font-family: 'Roboto Chassis';
+    font-family: 'Atkinson Chassis';
 }
