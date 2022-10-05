@@ -1,10 +1,10 @@
 .details {
     padding: var( --gap-deci ) var( --gap );
-    background: var( --color-ui );
-    border-bottom: 2px solid var( --color-border );
+    background: var( --default-ui );
+    border-bottom: 2px solid var( --default-border-ink );
 
     & + & {
-        margin-top: var( --base-line );
+        margin-top: var( --font-line );
     }
 
     &__trigger {
@@ -29,7 +29,7 @@
         content: '';
         position: absolute;
         top: 50%;
-        background: currentColor;
+        background: currentcolor;
     }
     &__title::after {
         right: .5rem;

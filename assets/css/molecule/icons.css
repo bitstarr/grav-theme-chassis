@@ -1,7 +1,8 @@
 .icon {
-    fill: currentColor;
+    fill: currentcolor;
     height: 1em;
     width: 1em;
     overflow: hidden;
     vertical-align: -.125em;
+    forced-color-adjust: auto;
 }

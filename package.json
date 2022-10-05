@@ -8,7 +8,7 @@
         "autoprefixer": "*",
         "browser-sync": "*",
         "cssnano": "*",
-        "del": "*",
+        "del": "6.1.1",
         "eslint": "*",
         "glob": "*",
         "gulp": "*",

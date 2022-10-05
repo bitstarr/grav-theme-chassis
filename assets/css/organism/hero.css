@@ -23,4 +23,14 @@
             box-decoration-break: clone;
         }
     }
+
+    &__author {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 1ex;
+        font-size: .6em;
+        color: #fff;
+        background-color: hsl( 0 0% 0% / .7 );
+    }
 }

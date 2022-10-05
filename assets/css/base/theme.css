@@ -1,0 +1,94 @@
+html {
+    /*
+        Specific Colors, only raw HSL
+        https://reasonable.work/colors/
+    */
+    --raspberry-1: 357.78 99.6% 98.53%;
+    --raspberry-2: 357.11 99.89% 93.31%;
+    --raspberry-3: 346.49 100% 62.87%;
+    --raspberry-4: 338.06 99.91% 43.59%;
+    --raspberry-5: 339.67 99.94% 25.43%;
+    --raspberry-6: 341.96 99.97% 15.97%;
+
+    --cerulean-1: 204.68 99.99% 95.59%;
+    --cerulean-2: 203.62 100% 86.22%;
+    --cerulean-3: 195.6 99.93% 38.63%;
+    --cerulean-4: 195.86 99.98% 30.88%;
+    --cerulean-5: 197 99.88% 16.48%;
+    --cerulean-6: 199.33 99.94% 8.26%;
+
+    --gray-1: 194.33 0% 96.6%;
+    --gray-2: 194.33 0% 88.76%;
+    --gray-3: 194.33 0% 54.65%;
+    --gray-4: 194.33 0% 43.69%;
+    --gray-5: 194.33 0% 24.13%;
+    --gray-6: 194.33 0% 13.15%;
+
+    /*
+        Functional Colors
+    */
+    --default-ink: #444;
+    --default-surface: #fff;
+    --default-muted: #707070;
+    --default-ui: #f4f4f4;
+    --default-border-ink: #ddd;
+    --default-link: hsl( var( --cerulean-4 ) );
+    --default-hover: hsl( var( --raspberry-4 ) );
+
+    /*
+        Brand Colors
+    */
+    --default-primary: hsl( var( --cerulean-4 ) );
+    --default-primary-dark: hsl( var( --cerulean-5 ) );
+    --default-primary-light: hsl( var( --cerulean-3 ) );
+    --default-on-primary: #fff;
+    --default-secondary: hsl( var( --raspberry-4 ) );
+    --default-on-secondary: #fff;
+
+    --selection-ink: #111;
+    --selection-surface: hsl( var( --cerulean-2 ) );
+
+    --scrollbar-track: hsl( 0 0% 100% / .2 );
+    --scrollbar-thumb: var( --default-primary );
+
+    --outline-size: max( 2px, .08em );
+    --outline-style: solid;
+    --outline-ink: hsl( var( --raspberry-4 ) );
+
+    /*
+        Component (form) Specific
+        values equaling defaults are commented
+    */
+    --f-form-label-ink: #555;
+    /* --f-form-placeholder: #777; */
+    /* --f-form-outline-ink: hsl( var( --cerulean-4 ) ); */
+    --f-form-error-ink: hsl( 0 100% 33% );
+    --f-form-error-surface: hsl( 0 100% 95% );
+
+    /* --f-input-ink: var( --default-ink ) */
+    /* --f-input-surface: #fff; */
+    /* --f-input-border: var( --default-border-ink ); */
+    /* --f-input-padding: .7rem; */
+    --f-input-border-hover: hsl( var( --cerulean-4 ) );
+    --f-input-halo-hover: hsl( var( --cerulean-3 ) / .2 );
+    /* --f-input-ink-disabled: hsl( var( --gray-4 ) ); */
+    /* --f-input-surface-disabled: hsl( var( --gray-1 ) ); */
+    /* --f-input-border-disabled: hsl( var( --gray-2 ) ); */
+
+    /* --f-bool-ink-checked: #fff; */
+    /* --f-bool-surface-checked: hsl( var( --cerulean-4 ) ); */
+    /* --f-bool-ink-disabled: hsl( var( --gray-4 ) ); */
+    /* --f-bool-surface-disabled: hsl( var( --gray-1 ) ); */
+
+    /* --f-dropdown-surface: #fff;  */
+
+    /*
+        Component (organism) Specific
+    */
+    --o-footer-surface: hsl( var( --cerulean-6 ) );
+
+    --o-headline-ink: hsl( var( --cerulean-6 ) );
+
+    /* --o-tabs-border-color: var( --default-border-ink ); */
+    /* --o-tabs-border-hover: hsl( var( --cerulean-3 ) / .5 ); */
+}

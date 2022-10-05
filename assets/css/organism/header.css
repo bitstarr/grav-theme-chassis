@@ -2,7 +2,6 @@
     --_bg: var( --header-bg );
     --_txt: var( --header-text );
 
-    margin-bottom: var( --gap-deca );
     color: var( --_txt );
     background-color: var( --_bg );
 

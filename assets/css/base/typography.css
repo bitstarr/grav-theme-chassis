@@ -1,13 +1,13 @@
 ::selection {
-    background: var( --color-primary );
-    color: var( --color-on-primary );
+    color: var( --selection-ink );
     text-shadow: none;
+    background: var( --selection-surface );
 }
 
 body {
-    font: 1em/var( --base-line ) var( --font-default );
-    color: var( --color-default );
-    background: var( --base-surface );
+    font: 1em/var( --font-line ) var( --font-default );
+    color: var( --default-ink );
+    background: var( --default-surface );
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
 }
@@ -16,7 +16,7 @@ body {
     font-family: monospace, monospace;
 }
 :where( pre ) {
-    padding: 1em;
+    /* padding: 1em; */
     white-space: pre; /* CSS2 */
     white-space: pre-wrap; /* CSS 2.1 */
     word-wrap: break-word; /* IE */
@@ -50,13 +50,16 @@ body {
     Basic link styles
 */
 :where( a ) {
+    --_default: var( --color-link, var( --default-link ) );
+    --_hover: var( --color-hover, var( --default-hover ) );
+
     text-decoration: none;
-    color: var( --color-link );
+    color: var( --_color, var( --_default ) );
     cursor: revert;
 
     &:focus,
     &:hover {
-        --color-link: var( --color-hover );
+        --_color: var( --_hover );
     }
 }
 :where( a[href^='tel'] ) {
@@ -72,7 +75,7 @@ body {
 */
 :where(table) {
     border-collapse: collapse;
-    border-color: currentColor;
+    border-color: currentcolor;
     text-indent: 0;
     font-variant-numeric: lining-nums tabular-nums;
 }

@@ -1,6 +1,6 @@
 <div class="hero">
 {% if page.header.hero.image matches '~^\/|^https?:\/\/~' %}
-    <img class="hero__img" src="{{ page.header.hero_image }}" alt="" />
+    <img class="hero__img" src="{{ page.header.hero_image }}" alt="" fetchpriority="high">
 {% else %}
     {# {% set hero_image = page.media[page.header.hero_image] %} #}
     {# <img class="hero__img" src="{{ hero_image.url }}" alt="" /> #}
@@ -13,16 +13,23 @@
         1920: hero_image.cropZoom(1920,480).quality(70).url,
     } %}
     <picture>
-        <source srcset="{{ image[640] }}" media="(max-width: 549px)" />
-        <source srcset="{{ image[1920] }}" media="(min-width: 1280px)" />
-        <source srcset="{{ image[1280] }}" media="(min-width: 960px)" />
-        <source srcset="{{ image[960] }}" media="(min-width: 550px)" />
+        <source srcset="{{ image[640] }}" media="(max-width: 549px)">
+        <source srcset="{{ image[1920] }}" media="(min-width: 1280px)">
+        <source srcset="{{ image[1280] }}" media="(min-width: 960px)">
+        <source srcset="{{ image[960] }}" media="(min-width: 550px)">
         <img class="hero__img"
             src="{{ image[640] }}"
             width="640"
             height="160"
-            alt="" />
+            alt=""
+            fetchpriority="high"
+            >
     </picture>
+{% endif %}
+{% if page.header.hero.author %}
+    <span class="hero__author">
+        {{ page.header.hero.author }}
+    </span>
 {% endif %}
 
 {% if page.header.hero.headline %}

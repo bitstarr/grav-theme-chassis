@@ -1,20 +1,29 @@
 .breadcrumb {
     /*
         API:
-        --o-breadcrumb-ink  text/link color
+        --o-breadcrumb-ink      text/link color
+        --o-footer-link         dedicated link text color
+        --o-footer-hover        hover link text color
     */
-    --_txt: var( --o-breadcrumb-ink, var( --grey ) );
+    --_txt: var( --o-breadcrumb-ink, var( --default-muted ) );
+    --color-link: var( --o-breadcrumb-link, currentcolor );
+    --color-hover: var( --o-breadcrumb-hover );
 
     padding: 1em 0;
     font-size: .75em;
     color: var( --_txt );
 
     .link {
-        color: currentColor;
     }
+    .link:focus-visible {
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+        outline-offset: var( --outline-offset, var( --outline-size ) );
+    }
+
     .item {
         display: inline;
     }
+
     .item::before {
         position: relative;
         top: -.1em;
@@ -28,6 +37,7 @@
         border-width: 1px 1px 0 0;
         transform: rotate( 45deg );
     }
+
     .item + .item::before {
         content: '';
     }

@@ -10,7 +10,15 @@ class EmailShortcode extends Shortcode
         $this->shortcode->getHandlers()->add('email', function(ShortcodeInterface $sc)
         {
             $link = $sc->getParameter('link');
-            $output = $this->twig->processString( '{{"' . $sc->getContent() . '"|safe_email}}' );
+            $str = $sc->getContent();
+
+            // Encode email
+            $output = '';
+            $str_len = strlen($str);
+            for ($i = 0; $i < $str_len; $i++) {
+                $output .= '&#' . ord($str[$i]). ';';
+            }
+
             if ( $link )
             {
                 $output = '<a href="mailto:' . $output . '">' . $output . '</a>';

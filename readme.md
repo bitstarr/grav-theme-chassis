@@ -46,7 +46,10 @@ Chassis provides templates and styles for the following plugins (if you install 
 │   ├── /icons                  optimized and minified icons
 │   ├── /img                    optimized images
 │   └── /js                     minified JS files and bundles
+├── /langages               translation files
+├── /shortcodes             custom shortcodes
 ├── /templates              grav templates
+│   ├── /email                  email templates
 │   ├── /forms                  custom form elements for better styling
 │   ├── /macros                 macros to use with twig
 │   ├── /modular                templates for modular page elements
@@ -143,3 +146,81 @@ This is a bit trickey since grav has not only one place to set the name. In orde
 * make sure all occurrences of utility functions in the template folder are renamed (search for chassis in files)
 
 When Using a dash in the theme name you will have to CamelCase ( upper camel case) the namespaces and class names.
+
+## Shortcodes
+
+### caption
+
+```md
+[caption class="image" caption="Quelle: Unsplash.com"]
+![](image.jpg)
+[/caption]
+```
+
+Adds a caption (via HTML `figure` + `figcaption`) to your media (image, video, embed, audio).
+
+### email
+
+```md
+[email link=1]Chunkylover53@aol.com[/email]
+```
+
+Mask E-Mails with HTML entities to give some spam protection. `link` parameter is optional and makes the address a `mailto` link.
+
+### icon
+
+```md
+[icon=mail title="E-Mail"]
+```
+
+Shortcode to use in text icons utilizing the [svg-extension](https://github.com/bitstarr/grav-plugin-svg-extension) plugin.
+
+As seen in the example the first word is the icon name, optional parameters follow after that.
+
+| Paramter | Effect |
+| --- | --- |
+| id | Set an ID for the SVG element |
+| class | Set the CSS classes for the SVG element |
+| title | Set a title (accessability) |
+
+
+### lang
+
+```md
+[lang=fr inline=1]Bonjour[/lang]
+```
+
+Wrap text in a different language semantically, so screenreader can interpret and pronounce it correctly. By default it wraps the text in a `div`, adding the optional `inline` parameter wraps it in a `span`.
+
+### video
+
+```md
+[video=Uuad8V5f_QA]
+[video="https://www.youtube.com/watch?v=Uuad8V5f_QA"]
+[video id=Uuad8V5f_QA]
+[video id="https://www.youtube.com/watch?v=Uuad8V5f_QA"]
+[video id=141358 type=vimeo]
+```
+
+Embed a video from YouTube or Vimeo with a privacy alert. The video will only load (and request external resources) if the user affirms (once or for the whole site).
+
+! This components CSS and JS need to be added to processing. They are not enabled by default.
+
+Some interpretations of the following options depend on the video platform.
+
+| Paramter | Effect | Values | Default |
+| --- | --- | --- | --- |
+| id | Video ID or URL | string or URL | – |
+| type | Which video platform | youtube or vimdeo | youtube |
+| showinfo | Include information overlays | 0 or 1 | 0 |
+| controls | Show video player controls | 0 or 1 | 1 |
+| color | Controls color | red, white, hexcode | white |
+| class | Additional CSS classes for the embed wrapper | string | – |
+
+### raw
+
+```md
+[raw][email link=1]Chunkylover53@aol.com[/email][/raw]
+```
+
+This is a helper to show shortcodes in pages without getting them processed.

@@ -8,6 +8,12 @@ html {
     --font-fancy: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
     */
 
+    --font-line: calc( 1em + .35rem );
+    /*
+        read about line-height: https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+        which will recommend something like calc( 1.1em + .25rem )
+    */
+
     /*
         Wrapping
     */
@@ -37,79 +43,5 @@ html {
     --size-mega: 2.3em;
     --size-giga: 3em;
 
-    /*
-        Basic Settings
-    */
-    --base-surface: #fff;
-    --base-line: calc( 1em + .35rem );
-    /*
-        read about line-height: https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
-        which will recommend something like calc( 1.1em + .25rem )
-    */
-    --base-scroll-track: hsl( 0 0% 100% / .2 );
-    --base-scroll-thumb: var( --color-primary );
-
-    --outline-size: max( 2px, .08em );
-    --outline-style: solid;
-    --outline-color: var( --color-primary );
-
-    /*
-        Specific Colors
-    */
-    --beige: #f5dd90;
-    --blue: #6676a6;
-    --anatolia: #324376;
-    --anatolia-hsl: 225 40% 33%;
-    --anatolia-h: 225;
-    --anatolia-s: 40%;
-    --anatolia-l: 33%;
-    --anatolia-hs: 225 40%;
-    --lava: #f68e5f;
-    --lobster: #f76c5e;
-    --lobster-hs: 5, 91%;
-    --lobster-l: 67%;
-    --grey: #707070;
-
-    /*
-        Functional Colors
-    */
-    --color-default: #444;
-    --color-link: var( --anatolia );
-    --color-hover: var( --blue );
-    --color-muted: var( --grey );
-    --color-border: #ddd;
-    --color-ui: #f4f4f4;
-
-    /*
-        Brand Colors
-    */
-    --color-primary: var( --anatolia );
-    --color-primary-hsl: var( --anatolia-hsl );
-    --color-primary-h: var( --anatolia-h );
-    --color-primary-s: var( --anatolia-s );
-    --color-primary-l: var( --anatolia-l );
-    --color-on-primary: #fff;
-    --color-secondary: var( --lobster );
-    --color-on-secondary: #222;
-
-    /*
-        Component (organism) Specific
-    */
-
-    --o-form-label-ink: #555;
-    --o-form-placeholder-ink: #777;
-    --o-form-padding: .7rem;
-    --o-form-error-ink: hsl( 0 100% 33% );
-    --o-form-error-surface: hsl( 0 100% 95% );
-
-    --o-form-surface: #fff;
-    --o-form-accent-hsl: var( --anatolia-hsl );
-    --o-form-accent-h: var( --anatolia-h );
-    --o-form-accent-s: var( --anatolia-s );
-    --o-form-accent-l: var( --anatolia-l );
-
-    --tabs-border-color: var( --color-border );
-    --tabs-border-hover: hsl( var( --color-primary-h ) var( --color-primary-s ) var( --color-primary-l ) / .5 );
-    --tabs-background: var( --base-surface );
 }
 /* stylelint-endable */

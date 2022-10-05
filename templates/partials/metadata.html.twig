@@ -2,11 +2,11 @@
 {{ chassis.preloadFonts() }}
 
 {%- for meta in page.metadata %}
-    <meta {% if meta.name %}name="{{ meta.name|e }}" {% endif %}{% if meta.http_equiv %}http-equiv="{{ meta.http_equiv|e }}" {% endif %}{% if meta.charset %}charset="{{ meta.charset|e }}" {% endif %}{% if meta.property %}property="{{ meta.property|e }}" {% endif %}{% if meta.content %}content="{{ meta.content|raw }}" {% endif %}/>
+    <meta {% if meta.name %}name="{{ meta.name|e }}" {% endif %}{% if meta.http_equiv %}http-equiv="{{ meta.http_equiv|e }}" {% endif %}{% if meta.charset %}charset="{{ meta.charset|e }}" {% endif %}{% if meta.property %}property="{{ meta.property|e }}" {% endif %}{% if meta.content %}content="{{ meta.content|raw }}" {% endif %}>
     {% if page.metadata['og:image'] is not defined %}
-        <meta property="og:image" content="{{ base_url_absolute }}{{ url('theme://dist/img/social.png') }}" />
+        <meta property="og:image" content="{{ base_url_absolute }}{{ url('theme://dist/img/social.png') }}">
     {% endif %}
     {% if page.metadata['twitter:image'] is not defined %}
-        <meta property="twitter:image" content="{{ base_url_absolute }}{{ url('theme://dist/img/social.png') }}" />
+        <meta property="twitter:image" content="{{ base_url_absolute }}{{ url('theme://dist/img/social.png') }}">
     {% endif %}
 {% endfor -%}
