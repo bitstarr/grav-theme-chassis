@@ -6,29 +6,34 @@
 <nav class="breadcrumb wrapping" itemscope itemtype="http://schema.org/BreadcrumbList">
 <ol class="wrapped">
     {% for crumb in crumbs %}
-    <li class="item" itemscope itemtype="http://schema.org/ListItem">
+    <li class="item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         {% if not loop.last %}
             {% if crumb.route == '/' %}
-                <a href="{{ crumb.url }}" itemprop="url" class="link is-home">
+                <a href="{{ crumb.url }}" itemprop="item" class="link is-home">
                     {% if crumb.route == '/' %}
                         {{ svg('home' )|raw }}
                     {% endif %}
                     <span class="title vh" itemprop="name">{{ crumb.menu }}</span>
+                    <meta itemprop="position" content="{{ loop.index }}">
                 </a>
             {% elseif crumb.routable %}
-                <a href="{{ crumb.url }}" itemprop="url" class="link">
+                <a href="{{ crumb.url }}" itemprop="item" class="link">
                     <span class="title" itemprop="name">{{ crumb.menu }}</span>
+                    <meta itemprop="position" content="{{ loop.index }}">
                 </a>
             {% else  %}
                 <span class="title" itemprop="name">{{ crumb.menu }}</span>
+                <meta itemprop="position" content="{{ loop.index }}">
             {% endif %}
         {% else %}
             {% if breadcrumbs_config.link_trailing %}
-                <a href="{{ crumb.url }}" itemprop="url" class="link" aria-current="location">
+                <a href="{{ crumb.url }}" itemprop="item" class="link" aria-current="location">
                     <span class="title" itemprop="name">{{ crumb.title }}</span>
+                    <meta itemprop="position" content="{{ loop.index }}">
                 </a>
             {% else %}
                 <span class="title" itemprop="name">{{ crumb.menu }}</span>
+                <meta itemprop="position" content="{{ loop.index }}">
             {% endif %}
         {% endif %}
     </li>

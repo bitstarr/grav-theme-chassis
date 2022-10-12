@@ -28,6 +28,10 @@
     box-shadow: var( --_boxshadow, none );
     resize: vertical;
 
+    label + & {
+        margin-top: .3rem;
+    }
+
     &:hover {
         &:not(:disabled) {
             --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );

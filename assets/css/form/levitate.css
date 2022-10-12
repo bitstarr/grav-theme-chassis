@@ -14,6 +14,7 @@
         color: var( --f-form-label-ink, var( --default-muted ) );
     }
     label + * {
+        margin-top: 0;
         padding-top: calc( var( --f-input-padding, .7rem ) + var( --font-line ) );
     }
 }
