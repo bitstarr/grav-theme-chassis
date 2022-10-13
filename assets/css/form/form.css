@@ -20,6 +20,24 @@
         margin-top: var( --gap );
     }
 
+    :where( fieldset&__field ) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var( --f-input-padding, .7rem );
+    }
+    :where( fieldset legend&__label ) {
+        float: left;
+        width: 100%;
+    }
+    @media ( max-width: 25em ) {
+        :where( fieldset&__field ) {
+            gap: calc( var( --f-input-padding, .7rem ) / 2 );
+        }
+        :where( fieldset > * ) {
+            width: 100%;
+        }
+    }
+
     &__buttons {
         text-align: center;
     }
@@ -39,19 +57,5 @@
     :is( a, button, input, textarea, select, summary ):focus-visible {
         outline: var( --outline-size ) var( --outline-style ) var( --f-form-outline-ink, var( --outline-ink ) );
         outline-offset: var( --outline-offset, var( --outline-size ) );
-    }
-
-    /* for our custom quiz field */
-    .field-personality {
-        display: flex;
-        flex-wrap: wrap;
-
-        & > label {
-            width: 100%;
-            margin-bottom: .5em;
-            font-size: .9em;
-            line-height: var( --font-line );
-            color: var( --f-form-label-ink, var( --default-muted ) );
-        }
     }
 }

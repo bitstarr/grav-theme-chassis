@@ -1,10 +1,21 @@
+{%- set wrap_tag = 'div' -%}
+{%- set label_tag = 'label' -%}
+{%- if field.type in [ 'radio' ] -%}
+    {%- set wrap_tag = 'fieldset' -%}
+    {%- set label_tag = 'legend' -%}
+{%- endif -%}
+{%- if field.type in [ 'checkbox' ] -%}
+    {% set show_label = false %}
+{%- endif -%}
+
+
 {% block field %}
 {% set layout_form_field_outer_classes = layout_form_field_outer_classes ~ ' ' ~ field.id %}
-<div class="{{- layout_form_field_outer_classes|trim }} {{ form_field_outer_core|trim -}}">
+<{{ wrap_tag }} class="{{- layout_form_field_outer_classes|trim }} {{ form_field_outer_core|trim -}}">
     {% block contents %}
         {% if show_label %}
             {{- form_field_toggleable -}}
-            <label class="{{ layout_form_field_label_classes }}{{ form_field_label_trim }}" {% if field.id %}for="{{ form_field_for }}"{% endif %}>
+            <{{ label_tag }} class="{{ layout_form_field_label_classes }}{{ form_field_label_trim }}" {% if field.id %}for="{{ form_field_for }}"{% endif %}>
                 {%- block label -%}
                     {%- if form_field_help -%}
                         <span class="tooltip" data-tooltip="{{ form_field_help|e }}">{{ form_field_label }}</span>
@@ -17,7 +28,7 @@
                         <small>({{ 'THEME_C.FORM.OPTIONAL'|t|e }})</small>
                     {%- endif -%}
                 {%- endblock -%}
-            </label>
+            </{{ label_tag }}>
         {% endif %}
         {% block group %}
             {% block input %}
@@ -43,5 +54,5 @@
             </div>
         {% endif %}
     {% endblock %}
-</div>
+</{{ wrap_tag }}>
 {% endblock %}

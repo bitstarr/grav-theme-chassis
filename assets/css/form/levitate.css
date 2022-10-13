@@ -4,16 +4,19 @@
     */
     position: relative;
 
-    label {
-        position: absolute;
-        z-index: 1;
-        top: calc( var( --f-input-padding, .7rem ) * .5 );
-        left: var( --f-input-padding, .7rem );
+    & > label,
+    & > legend {
         font-size: .9em;
         line-height: var( --font-line );
         color: var( --f-form-label-ink, var( --default-muted ) );
     }
-    label + * {
+    & > label {
+        position: absolute;
+        z-index: 1;
+        top: calc( var( --f-input-padding, .7rem ) * .5 );
+        left: var( --f-input-padding, .7rem );
+    }
+    & > label + * {
         margin-top: 0;
         padding-top: calc( var( --f-input-padding, .7rem ) + var( --font-line ) );
     }
