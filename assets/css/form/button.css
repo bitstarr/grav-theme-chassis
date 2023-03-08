@@ -30,6 +30,10 @@
     border: 0;
     border-radius: 0;
     transition: background-color .2s;
+    /*
+    display: flex;
+    width: fit-content
+    */
 
     a& {
         text-decoration: none;

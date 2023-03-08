@@ -32,9 +32,9 @@
 
             &:not( .special ) + label {
                 display: inline-block;
-                margin-left: .3em;
+                /* margin-left: .3em;
                 padding: .2em 1.2em .2em 0;
-                line-height: 1;
+                line-height: 1; */
                 vertical-align: top;
                 cursor: pointer;
             }
@@ -140,5 +140,14 @@
                 --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );
             }
         }
+    }
+}
+
+.bool {
+    &__wrap {
+        display: inline-flex;
+        align-items: start;
+        gap: .6em;
+        padding: .2em 1em .2em 0;
     }
 }

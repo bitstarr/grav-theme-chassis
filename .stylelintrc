@@ -1,5 +1,6 @@
 {
     "rules": {
+        "indentation": 4,
         "color-hex-case": [ "lower" ],
         "color-hex-length": [ "short" ],
         "color-named": [ "never" ],

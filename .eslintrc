@@ -9,7 +9,6 @@
     "extends": "eslint:recommended",
     "globals": {
         "Grav": true,
-        "jQuery": true,
         "project": true,
         "Chocolat": true
     },
