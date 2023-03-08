@@ -13,8 +13,8 @@ THEME_C:
     SHOW: Anzeigen
     HIDE: Verbergen
   HERO:
-    HERO_IMAGE: Titelbild
-    HERO_HEADLINE: Überschrift auf dem Titelbild
+    IMAGE: Titelbild
+    HEADLINE: Überschrift auf dem Titelbild
     SOURCE: Bildquelle
   PAGINATION:
     NEWER: Neuer

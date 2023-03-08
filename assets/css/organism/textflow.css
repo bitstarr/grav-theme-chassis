@@ -7,7 +7,7 @@
     */
     & > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-        margin-top: var( --flow-space, var( --font-line ) );
+        margin-block-start: var( --flow-space, var( --font-line ) );
     }
 
     ul,
@@ -71,7 +71,7 @@
 
         & > * + * {
             /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-            margin-top: var( --flow-space, var( --font-line ) );
+            margin-block-start: var( --flow-space, var( --font-line ) );
         }
 
         &:after,

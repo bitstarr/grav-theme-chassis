@@ -80,6 +80,8 @@ class Chassis extends Theme
         $list = array_replace( $event['types'], $names );
         // drop these that are currently not detected by grav
         $list = array_intersect_key( $list, $event['types'] );
+        // remove unwanted
+        // unset( $list['modular/default'] );
 
         $event['types'] = $list;
     }
