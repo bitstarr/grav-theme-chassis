@@ -6,23 +6,20 @@
         --f-button-surface-hover    hover background color
         --f-button-ink-hover        hover text color
         --f-button-halo-hover       hover halo (boxshadow)
-        --f-button-surface-disable  disabled background color
-        --f-button-ink-disabled     disabled text color
     */
     --_bg: var( --f-button-surface, var( --default-primary) );
     --_txt: var( --f-button-ink, var( --default-on-primary ) );
     --_hover-bg: var( --f-button-surface-hover, var( --default-primary-dark ) );
     --_hover-txt: var( --f-button-ink-hover, var( --default-on-primary ) );
     --_hover-halo: var( --f-button-halo-hover, var( --default-primary-light ) );
-    --_disabled-bg: var( --f-button-surface-disabled, var( --default-ui ) );
-    --_disabled-txt: var( --f-button-ink-disabled, var( --default-muted ) );
 
     position: relative;
     z-index: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1ex;
+    gap: 1rem;
+    padding: 1em;
     line-height: 1.2;
     text-align: center;
     color: var( --_txt );
@@ -47,8 +44,12 @@
     }
 
     &[disabled] {
-        --_txt: var( --_disabled-txt );
-        --_bg: var( --_disabled-bg );
+        opacity: .3;
+        filter: saturate( 0 );
         cursor: not-allowed;
+    }
+
+    &--small {
+        padding: 1ex;
     }
 }

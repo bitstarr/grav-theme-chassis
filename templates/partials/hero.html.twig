@@ -1,6 +1,6 @@
 <div class="hero">
 {% if page.header.hero.image matches '~^\/|^https?:\/\/~' %}
-    <img class="hero__img" src="{{ page.header.hero_image }}" alt="" fetchpriority="high">
+    <img class="hero__img" src="{{ page.header.hero.image }}" alt="" fetchpriority="high">
 {% else %}
     {# {% set hero_image = page.media[page.header.hero_image] %} #}
     {# <img class="hero__img" src="{{ hero_image.url }}" alt="" /> #}

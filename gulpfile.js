@@ -24,7 +24,6 @@ const cssnano = require( 'gulp-cssnano' );
 
 const browserSync = require( 'browser-sync' ).create();
 
-const rev = require( 'gulp-rev' );
 const del = require( 'del' );
 const glob = require( 'glob' );
 const path = require( 'path' );
