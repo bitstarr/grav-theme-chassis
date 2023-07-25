@@ -4,7 +4,7 @@ import imageminSvgo from 'imagemin-svgo';
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import mkdirp from 'mkdirp'
+import { mkdirp } from 'mkdirp'
 import chalk from 'chalk';
 import prettyBytes from 'pretty-bytes';
 

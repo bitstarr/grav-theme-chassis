@@ -1,19 +1,22 @@
 {% set tpl_body_classes = 't-modular' %}
 {% set page_title = page.header.headline|default( page.title ) %}
 {% extends 'partials/base.html.twig' %}
+{% set modules = page.collection( { items: {'@self.modules':''} } ) %}
 
 {% block content %}
     <div class="wrapping">
-        <h1 class="headline">
-            {{ page_title }}
-        </h1>
+        {% if header.hero.headline is not defined %}
+            <h1 class="headline">
+                {{ page_title }}
+            </h1>
+        {% endif %}
         {% if page.content|length %}
             <div class="textflow">
                 {{ page.content|raw }}
             </div>
         {% endif %}
     </div>
-    {% for module in page.collection() %}
+    {% for module in modules %}
         {# <a id="{{ module.menu|hyphenize }}"></a> #}
         {{ module.content|raw }}
     {% endfor %}

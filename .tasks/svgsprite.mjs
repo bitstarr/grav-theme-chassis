@@ -1,7 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import mkdirp from 'mkdirp'
+import { mkdirp } from 'mkdirp'
 import chalk from 'chalk';
 import vinyl from 'vinyl';
 import SVGSpriter from 'svg-sprite'

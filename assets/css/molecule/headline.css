@@ -2,5 +2,6 @@
     margin-bottom: var( --gap-deca );
     font-size: var( --size-mega );
     line-height: calc( 1ex / .38 );
+    text-wrap: balance;
     color: var( --o-headline-ink );
 }
