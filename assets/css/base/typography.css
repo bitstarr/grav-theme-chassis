@@ -103,3 +103,10 @@ q { quotes: '\201E' '\201C' '\201A' '\2018'; }
 q::before { content: open-quote; }
 q::after { content: close-quote; }
 */
+
+/* A11y basiscs */
+/* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
+:is( a, button, input, textarea, select, summary ):focus-visible {
+    outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+    outline-offset: var( --outline-offset, var( --outline-size ) );
+}
