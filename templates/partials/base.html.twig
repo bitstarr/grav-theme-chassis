@@ -123,9 +123,9 @@
                 </ul>
             </nav>
 
-            {% if theme_var('footer.social') %}
+            {% if config.details.social %}
                 <ul class="footer__social">
-                {% for item in theme_var('footer.social') %}
+                {% for item in config.details.social %}
                     <li class="footer__social__item">
                         <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title })|raw }}</a>
                     </li>
