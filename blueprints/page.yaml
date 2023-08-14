@@ -48,7 +48,7 @@ form:
             header.hero.image:
               type: pagemediaselect
               label: THEME_C.HERO.IMAGE
-              folder: 'page://_heros'
+              # folder: 'page://_heros'
               preview_images: true
               accept:
                 - .jpg

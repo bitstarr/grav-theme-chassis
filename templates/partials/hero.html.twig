@@ -2,9 +2,9 @@
 {% if page.header.hero.image matches '~^\/|^https?:\/\/~' %}
     <img class="hero__img" src="{{ page.header.hero.image }}" alt="" fetchpriority="high">
 {% else %}
-    {# {% set hero_image = page.media[page.header.hero_image] %} #}
-    {# <img class="hero__img" src="{{ hero_image.url }}" alt="" /> #}
-    {% set hero_image = media_directory('page://_heros')[page.header.hero.image] %}
+    {% set hero_image = page.media[page.header.hero.image] %}
+    {# use the following fo a central header image storage in /_heros folder #}
+    {# {% set hero_image = media_directory('page://_heros')[page.header.hero.image] %} #}
 
     {% set image = {
         640: hero_image.cropZoom(640,320).quality(70).url,

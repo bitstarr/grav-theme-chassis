@@ -1,7 +1,13 @@
 {% set tpl_body_classes = 't-modular' %}
 {% set page_title = page.header.headline|default( page.title ) %}
 {% extends 'partials/base.html.twig' %}
-{% set modules = page.collection( { items: {'@self.modules':''} } ) %}
+
+{# no need to notice a page collection all the time with this template #}
+{% set options = {
+    items: {'@self.modules': ''},
+    'order': {'by': 'folder', 'dir': 'asc'}
+} %}
+{% set modules = page.collection(options) %}
 
 {% block content %}
     <div class="wrapping">

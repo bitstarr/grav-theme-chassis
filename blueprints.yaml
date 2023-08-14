@@ -12,72 +12,26 @@ dependencies:
   - { name: grav, version: '>=1.7.5' }
   - { name: svg-extension }
 
-form:
-  validation: loose
-  fields:
- fields:
-    about.name:
-      name: aboutName
-      type: text
-      label: Name
-    about.email:
-      name: aboutEmail
-      type: text
-      label: E-Mail
-    about.phone:
-      name: aboutPhone
-      type: text
-      label: Telefon
-    about.fax:
-      name: aboutFax
-      type: text
-      label: Fax
-    about.address:
-      name: aboutAddress
-      type: textarea
-      label: Adresse
-    about.gmaps:
-      name: aboutGmaps
-      type: text
-      label: Google Maps URL
-    about.geo:
-      name: aboutGeo
-      type: text
-      label: Geo Koordinaten
+# form:
+#   validation: loose
+#   fields:
 
-    sectionOpening:
-      type: section
-      title: Offnungzeiten
-      underline: true
-      fields:
-        about.opening:
-          name: aboutOpening
-          type: list
-          label: Offnungzeiten
-          fields:
-            .day:
-              type: text
-              label: Tag
-            .time:
-              type: text
-              label: Uhrzeit
-
-    sectionFooter:
-      type: section
-      title: Social Media
-      underline: true
-      fields:
-        footer.social:
-          name: footerSocialItems
-          type: list
-          label: Social Media Profile
-          fields:
-            .title:
-              type: text
-              label: Bezeichnung/Name
-            .icon:
-              type: text
-              label: Icon
-            .url:
-              type: text
-              label: URL
+#     sectionFooter:
+#       type: section
+#       title: Social Media
+#       underline: true
+#       fields:
+#         footer.social:
+#           name: footerSocialItems
+#           type: list
+#           label: Social Media Profile
+#           fields:
+#             .title:
+#               type: text
+#               label: Bezeichnung/Name
+#             .icon:
+#               type: text
+#               label: Icon
+#             .url:
+#               type: text
+#               label: URL
