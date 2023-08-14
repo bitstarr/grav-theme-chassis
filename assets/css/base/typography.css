@@ -107,6 +107,6 @@ q::after { content: close-quote; }
 /* A11y basiscs */
 /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
 :is( a, button, input, textarea, select, summary ):focus-visible {
-    outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+    outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
     outline-offset: var( --outline-offset, var( --outline-size ) );
 }

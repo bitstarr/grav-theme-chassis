@@ -1,6 +1,7 @@
 THEME_C:
   NAV:
     MENU: Menu
+    MAIN_MENU: Main
     REVEAL: Open Menu
     HIDE: Hide Menu
     SUBMENU: Submenu
@@ -12,6 +13,9 @@ THEME_C:
     BREADCRUMB: Breadcrumb
     SHOW: Show
     HIDE: Hide
+  MODULE:
+    SELECT_REFERENCE: Select Module
+    REFERENCE_HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image

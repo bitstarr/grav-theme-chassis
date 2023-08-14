@@ -44,9 +44,9 @@
     }
     input&:not(:focus):not(:placeholder-shown):invalid,
     select&:not([value='']):invalid {
-        --_background: var( --f-form-error-surface );
-        --_bordercolor: var( --f-form-error-ink );
-        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink );
+        --_background: var( --f-form-error-surface, hsl( 0 100% 95% ) );
+        --_bordercolor: var( --f-form-error-ink, hsl( 0 100% 33% ) );
+        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, hsl( 0 100% 33% ) );
     }
 
     &:disabled {

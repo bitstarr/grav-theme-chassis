@@ -13,7 +13,7 @@
         {% endif %}
         {% if p.children.visible.count > 0 %}
             <li class="menu__item has-children {{ classes|join( ' ' ) }}">
-                <a class="menu__link" href="{{ p.url }}" {% if p.active %} aria-current="page" aria-describedby="current"{% endif %}>
+                <a class="menu__link" href="{{ p.url }}" {% if p.active %} aria-current="page"{% endif %}>
                     {{ p.menu }}
                 </a>
                 <button class="menu__expander" tabindex="-1"></button>
@@ -23,7 +23,7 @@
             </li>
         {% else %}
             <li class="menu__item {{ classes|join( ' ' ) }}">
-                <a class="menu__link" href="{{ p.url }}"{% if p.active %} aria-current="page" aria-describedby="current"{% endif %}>
+                <a class="menu__link" href="{{ p.url }}"{% if p.active %} aria-current="page"{% endif %}>
                     {% if p.header.menu_icon is defined %}
                         {{ svg( p.header.menu_icon, 'icon menu__icon' )|raw }}
                     {% endif %}

@@ -1,0 +1,40 @@
+title: Modular Page
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+
+        content:
+          fields:
+
+
+        advanced:
+          fields:
+            #
+            # We add an extra field for special classes in navigation
+            #
+            overrides:
+              fields:
+                header.menu_classes:
+                  type: text
+                  label: THEME_C.PAGE.MENU_CLASSES
+                  toggleable: true
+
+                header.hide_breadcrumbs:
+                  type: toggle
+                  label: THEME_C.PAGE.BREADCRUMB
+                  toggleable: true
+                  default: 0
+                  highlight: 0
+                  options:
+                      0: THEME_C.PAGE.SHOW
+                      1: THEME_C.PAGE.HIDE
+                  validate:
+                      type: bool

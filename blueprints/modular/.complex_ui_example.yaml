@@ -1,22 +1,21 @@
-'@extends': default
+extends@: default
 
 form:
   fields:
     tabs:
-      type: tabs
       active: 1
       fields:
         content:
-          type: tab
           fields:
             content:
               type: ignore
+              # unset@: true
             header.test:
               ordering@: -1
               name: module_slideshow
-              label: TEST
+              title: TEST
               type: fieldset
-              icon: slideshows
+              icon: picture-o
               fields:
                 header.test.columns:
                   type: columns
@@ -31,11 +30,18 @@ form:
                           options:
                             slide: 'slide'
                             fade: 'fade'
+                        header.test.speed:
+                          name: slideshow_speed
+                          label: TEST.SPEED
+                          type: text
+                          size: small
                         header.test.settings:
                           type: fieldset
                           name: test_settings
-                          label: TEST.TEST
-                          icon: slideshows
+                          title: NESTED TEST
+                          icon: wrench
+                          collapsible: true
+                          collapsed: true
                           fields:
                             header.test.settings.content_transition:
                               name: slideshow_slides_content_transition

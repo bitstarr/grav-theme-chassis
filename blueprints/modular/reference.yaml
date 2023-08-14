@@ -1,0 +1,49 @@
+title: Reference
+extends@: default
+
+form:
+  fields:
+    tabs:
+      active: 1
+      fields:
+        content:
+          fields:
+            content:
+              type: ignore
+            header.media_order:
+              type: ignore
+
+            header.reference:
+              type: pages
+              size: medium
+              label: THEME_C.MODULE.SELECT_REFERENCE
+              show_all: false
+              show_modular: true
+              show_root: false
+
+            reference_hint:
+              type: display
+              content: THEME_C.MODULE.REFERENCE_HINT
+
+            publishing:
+              type: section
+              title: PLUGIN_ADMIN.PUBLISHING
+              underline: true
+              ordering@: 99
+              fields:
+                header.published:
+                  type: toggle
+                  toggleable: true
+                  label: PLUGIN_ADMIN.PUBLISHED
+                  help: PLUGIN_ADMIN.PUBLISHED_HELP
+                  highlight: 1
+                  size: medium
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
+        options:
+          unset@: true
+        advanced:
+          unset@: true

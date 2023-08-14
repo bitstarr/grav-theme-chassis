@@ -4,8 +4,8 @@
     {{ svg( 'menu' )|raw }} <span aria-hidden="true">{{ 'THEME_C.NAV.MENU'|t|e }}</span>
 </a>
 <div class="navigation" id="navigation" data-l10n-show="{{ 'THEME_C.NAV.SUBMENU_REVEAL'|t|e }}" data-l10n-hide="{{ 'THEME_C.NAV.SUBMENU_HIDE'|t|e }}">
-    <nav class="navigation__layer">
-        <ul class="menu">
+    <nav class="navigation__layer" aria-label="{{ 'THEME_C.NAV.MAIN_MENU'|t|e }}">
+        <ul class="menu" role="list">
             {{ nav.loop(pages) }}
         </ul>
 
@@ -21,7 +21,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <span hidden id="current">Aktuelle Seite</span>
     </nav>
     <a class="navigation__close" href="#" id="nav-close" title="{{ 'THEME_C.NAV.HIDE'|t|e }}" aria-label="{{ 'THEME_C.NAV.HIDE'|t|e }}"></a>
 </div>
