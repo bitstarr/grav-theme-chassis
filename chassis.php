@@ -83,7 +83,7 @@ class Chassis extends Theme
         // remove unwanted
         // unset( $list['modular/default'] );
         // sort
-        sort( $list );
+        asort( $list );
 
         $event['types'] = $list;
     }
@@ -104,7 +104,7 @@ class Chassis extends Theme
         // remove unwanted
         unset( $list['robots'] );
         // sort
-        sort( $list );
+        asort( $list );
 
         $event['types'] = $list;
     }
