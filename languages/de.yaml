@@ -1,13 +1,19 @@
 THEME_C:
   NAV:
     MENU: Menü
-    MAIN_MENU: Haupt
+    MAIN_MENU: Hauptnavigation
+    SR_MAIN: Haupt
+    SR_FOOT: Abschluss
     REVEAL: Menü öffnen
     HIDE: Menü schließen
+    TOGGLE: Menu Öffnen/Schließen
     SUBMENU: Untermenü
     SUBMENU_REVEAL: Untermenü anzeigen
     SUBMENU_HIDE: Untermenü verbergen
     CURRENT_PAGE: Aktuelle Seite
+    BREADCRUMBS: Brotkrumen
+    FOOTER: Abschluss
+    SOCIAL: Social Media
   PAGE:
     MENU_CLASSES: CSS Klassen für Menü-Eintrag
     BREADCRUMB: Breadcrumb

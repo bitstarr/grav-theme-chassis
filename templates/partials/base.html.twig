@@ -105,7 +105,7 @@
 {% block footer %}
     <footer class="footer wrapping" id="footer">
         <div class="wrapped">
-            <nav class="footer__nav">
+            <nav class="footer__nav" aria-label="{{ 'THEME_C.NAV.FOOTER'|t|e }}">
                 <ul class="menu">
                 {% set menuItems = page.collection( {
                     items: {
@@ -124,10 +124,17 @@
             </nav>
 
             {% if config.details.social %}
-                <ul class="footer__social">
+                <ul class="footer__social" aria-label="{{ 'THEME_C.NAV.SOCIAL'|t|e }}">
                 {% for item in config.details.social %}
                     <li class="footer__social__item">
-                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title })|raw }}</a>
+                        <a
+                            class="footer__social__link"
+                            href="{{ item.url }}"
+                            title="{{ item.title }}"
+                            aria-label="{{ item.title }}"
+                        >
+                        {{ svg(item.icon)|raw }}
+                        </a>
                     </li>
                 {% endfor %}
                 </ul>
