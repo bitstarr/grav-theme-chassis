@@ -15,7 +15,7 @@
 
             // toggle by menu button
             self.button.addEventListener( 'click', e => {
-                const isOpen = self.button.getAttribute( 'aria-expanded' ) === "false";
+                const isOpen = self.button.getAttribute( 'aria-expanded' ) === 'false';
                 self.button.setAttribute( 'aria-expanded', isOpen );
                 // self.nav.setAttribute( 'inert', isOpen );
             });
@@ -59,7 +59,7 @@
                     return;
                 }
 
-                if ( self.button.getAttribute( 'aria-expanded' ) === "false" ) {
+                if ( self.button.getAttribute( 'aria-expanded' ) === 'false' ) {
                     return;
                 }
 
