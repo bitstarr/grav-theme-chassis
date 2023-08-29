@@ -22,6 +22,10 @@ THEME_C:
   MODULE:
     SELECT_REFERENCE: Modul auswählen
     REFERENCE_HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
+    HIDE_TITLE: Überschrift verbergen
+    TABS: Tabs
+    TITLE: Titel
+    CONTENT: Inhalt
   HERO:
     IMAGE: Titelbild
     HEADLINE: Überschrift auf dem Titelbild

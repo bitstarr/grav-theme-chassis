@@ -22,6 +22,10 @@ THEME_C:
   MODULE:
     SELECT_REFERENCE: Select Module
     REFERENCE_HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
+    HIDE_TITLE: Hide Title
+    TABS: Tabs
+    Title: Title
+    CONTENT: Content
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image

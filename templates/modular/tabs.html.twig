@@ -1,14 +1,11 @@
 <section class="modular wrapping tabs tabs--default">
+    {% if header.hide_title != true -%}
     <h2 class="modular__title">{{ page.title }}</h2>
+    {% endif -%}
 
     <div class="wrapped">
         <ul class="tabs__head">
-            {% set tabs = page.collection( {
-                items: {
-                    '@self.modular': ''
-                }
-            } ) %}
-            {% for target in tabs %}
+            {% for target in header.tabs %}
             <li class="tabs__tab">
                 <a class="tabs__toggle" href="#tabsection{{ loop.index }}">
                     <span class="label">{{ target.title }}</span>
@@ -16,11 +13,11 @@
             </li>
             {% endfor %}
         </ul>
-        {% for target in tabs %}
+        {% for target in header.tabs %}
         <article class="tabs__content" id="tabsection{{ loop.index }}">
             <h2 class="tabs__title">{{ target.title }}</h2>
             <div class="textflow">
-                {{ target.content|raw }}
+                {{ target.content|markdown|raw }}
             </div>
         </article>
         {% endfor %}
