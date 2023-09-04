@@ -13,27 +13,6 @@
         init: function()
         {
             let self = this;
-
-            /*
-                navigation enhancements
-                see https://web.dev/building-a-sidenav-component/
-            */
-
-            // Press escape to close
-            const layer = doc.querySelector( '#navigation' );
-            layer.addEventListener( 'keyup', function( event )
-            {
-                if ( event.code === 'Escape' ) doc.location.hash = '';
-            });
-
-            // focus UX (improve small screen nav)
-            layer.addEventListener('transitionend', function( e )
-            {
-                const isOpen = doc.location.hash === '#navigation';
-                isOpen
-                    ? doc.querySelector( '#nav-close' ).focus()
-                    : doc.querySelector( '#nav-open' ).focus();
-            });
         },
 
         toggleBodyScroll: function( scrolling = true )

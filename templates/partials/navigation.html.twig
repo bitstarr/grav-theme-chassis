@@ -1,27 +1,52 @@
 {%- import 'macros/navigation.twig' as nav -%}
 
-<a class="navigation__open" href="#navigation" id="nav-open" title="{{ 'THEME_C.NAV.REVEAL'|t|e }}" aria-label="{{ 'THEME_C.NAV.REVEAL'|t|e }}">
-    {{ svg( 'menu' )|raw }} <span aria-hidden="true">{{ 'THEME_C.NAV.MENU'|t|e }}</span>
-</a>
-<div class="navigation" id="navigation" data-l10n-show="{{ 'THEME_C.NAV.SUBMENU_REVEAL'|t|e }}" data-l10n-hide="{{ 'THEME_C.NAV.SUBMENU_HIDE'|t|e }}">
-    <nav class="navigation__layer">
-        <ul class="menu">
+
+<nav
+    class="navigation"
+    id="mainnav"
+    aria-label="{{ 'THEME_C.NAV.SR_MAIN'|t|e }}"
+    data-l10n-show="{{ 'THEME_C.NAV.SUBMENU_REVEAL'|t|e }}"
+    data-l10n-hide="{{ 'THEME_C.NAV.SUBMENU_HIDE'|t|e }}"
+    >
+
+    <button
+        class="navigation__open is-interactive"
+        id="mainnav-open"
+        type="button"
+        aria-expanded="false"
+        aria-label="{{ 'THEME_C.NAV.TOGGLE'|t|e }}"
+        aria-controls="mainnav"
+        title="{{ 'THEME_C.NAV.MAIN_MENU'|t|e }}"
+    >
+        <span>{{ 'THEME_C.NAV.MENU'|t|e }}</span>
+        {{ svg( 'menu' )|raw }}
+    </button>
+
+    {# no js fallback buttons with :target #}
+    <a
+        class="navigation__open is-fallback"
+        href="#navigation"
+        aria-label="{{ 'THEME_C.NAV.REVEAL'|t|e }}"
+        title="{{ 'THEME_C.NAV.REVEAL'|t|e }}"
+        >
+        <span>{{ 'THEME_C.NAV.MENU'|t|e }}</span>
+        {{ svg( 'menu' )|raw }}
+    </a>
+
+    <div class="navigation__overlay" id="navigation">
+        <ul class="menu" role="list">
             {{ nav.loop(pages) }}
         </ul>
+        <span class="navigation__abyss"></span>
+        <a
+            class="navigation__close is-fallback"
+            href="#"
+            aria-label="{{ 'THEME_C.NAV.HIDE'|t|e }}"
+            title="{{ 'THEME_C.NAV.HIDE'|t|e }}"
+            >
+            {{ svg( 'menu-close' )|raw }}
+            <span>{{ 'THEME_C.NAV.HIDE'|t|e }}</span>
+        </a>
+    </div>
 
-        {% if site.minor_menu %}
-            <ul class="menu menu--minor">
-                {% for mitem in site.minor_menu %}
-                    <li class="menu__item">
-                        <a href="{{ mitem.url }}">
-                            {% if mitem.icon %}{{ svg( mitem.icon )|raw }}{% endif %}
-                            {{ mitem.title }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <span hidden id="current">Aktuelle Seite</span>
-    </nav>
-    <a class="navigation__close" href="#" id="nav-close" title="{{ 'THEME_C.NAV.HIDE'|t|e }}" aria-label="{{ 'THEME_C.NAV.HIDE'|t|e }}"></a>
-</div>
+</nav>

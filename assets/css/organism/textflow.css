@@ -5,6 +5,9 @@
         --o-textflow-h2-accent      h2 text color
         --o-textflow-quote-accent   blockquote accent color
     */
+
+    text-wrap: pretty;
+
     & > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
         margin-block-start: var( --flow-space, var( --font-line ) );
@@ -30,6 +33,7 @@
     h3 + *,
     h4 + * {
         --flow-space: calc( var( --font-line ) / 2 );
+        text-wrap: balance;
     }
 
     h2,
@@ -54,15 +58,6 @@
     tr + tr td { border-top: 1px solid var( --default-border-ink );  }
 
     :where( a ) { text-decoration: underline; }
-
-    /* help with accasibility */
-    /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
-
-    :is( a, button, input, textarea, select, summary ):focus-visible {
-        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
-        outline-offset: var( --outline-offset, var( --outline-size ) );
-    }
-
 
     blockquote {
         position: relative;

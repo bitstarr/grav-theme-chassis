@@ -1,13 +1,87 @@
-(function(win, doc) {
+(function (win, doc) {
     'use strict';
 
     win.project = win.project || {};
 
     win.project.navigation = {
 
-        nav: doc.getElementById( 'navigation' ),
+        nav: doc.getElementById( 'mainnav' ),
 
-        init: function()
+        init: function () {
+            let self = this;
+            // self.subnavs = self.nav.querySelectorAll( '.submenu' );
+            self.button = self.nav.querySelector( 'button.navigation__open' );
+            self.abyss = self.nav.querySelector( 'span.navigation__abyss' );
+
+            // toggle by menu button
+            self.button.addEventListener( 'click', e => {
+                const isOpen = self.button.getAttribute( 'aria-expanded' ) === 'false';
+                self.button.setAttribute( 'aria-expanded', isOpen );
+                // self.nav.setAttribute( 'inert', isOpen );
+            });
+
+            // close on click on the abyss
+            self.abyss.addEventListener( 'click', e => {
+                self.button.setAttribute('aria-expanded', false);
+                self.button.focus();
+            });
+
+            // close on ESC key
+            self.nav.addEventListener( 'keyup', e => {
+                if ( e.code === 'Escape' ) {
+                    self.button.setAttribute('aria-expanded', false);
+                    self.button.focus();
+                }
+            });
+
+            self.trapFocus( self.nav );
+
+            if ( self.nav.querySelectorAll( '.submenu' ) ) {
+                self.initSubNav();
+            }
+
+        },
+
+        trapFocus: function( element )
+        {
+            // @see https://hidde.blog/using-javascript-to-trap-focus-in-an-element/
+            let self = this;
+            let focusableEls = element.querySelectorAll('a[href]:not([disabled]):not(.is-fallback), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'),
+                firstFocusableEl = focusableEls[0],
+                lastFocusableEl = focusableEls[focusableEls.length - 1],
+                KEYCODE_TAB = 9;
+
+            element.addEventListener( 'keydown', function (e)
+            {
+                let isTabPressed = ( e.key === 'Tab' || e.keyCode === KEYCODE_TAB );
+
+                if (!isTabPressed) {
+                    return;
+                }
+
+                if ( self.button.getAttribute( 'aria-expanded' ) === 'false' ) {
+                    return;
+                }
+
+                if ( e.shiftKey )  /* shift + tab */
+                {
+                    if ( document.activeElement === firstFocusableEl )
+                    {
+                        lastFocusableEl.focus();
+                        e.preventDefault();
+                    }
+                } else /* tab */
+                {
+                    if ( document.activeElement === lastFocusableEl )
+                    {
+                        firstFocusableEl.focus();
+                        e.preventDefault();
+                    }
+                }
+            });
+        },
+
+        initSubNav: function()
         {
             let self = this;
             self.subnavs = self.nav.querySelectorAll( '.submenu' );
@@ -76,6 +150,7 @@
                 target.classList.remove( 'visible' );
             }
         },
+
     };
 
     win.project.navigation.init();

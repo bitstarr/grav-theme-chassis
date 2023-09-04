@@ -1,8 +1,8 @@
 .pager {
     display: flex;
     justify-content: center;
-	margin-top: var( --gap-saturn );
-	list-style: none;
+    margin-top: var( --gap-saturn );
+    list-style: none;
     text-align: center;
 
     &.is-first::before,

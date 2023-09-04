@@ -19,7 +19,7 @@
 {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="view-transition" content="same-origin">
+    <meta name="view-transition" content="same-origin" />
     <title>{{ doc_title }}</title>
 
     {% include 'partials/metadata.html.twig' %}
@@ -105,8 +105,8 @@
 {% block footer %}
     <footer class="footer wrapping" id="footer">
         <div class="wrapped">
-            <nav class="footer__nav">
-                <ul class="menu__item">
+            <nav class="footer__nav" aria-label="{{ 'THEME_C.NAV.FOOTER'|t|e }}">
+                <ul class="menu">
                 {% set menuItems = page.collection( {
                     items: {
                         '@taxonomy.navarea': 'footer'
@@ -123,11 +123,18 @@
                 </ul>
             </nav>
 
-            {% if theme_var('footer.social') %}
-                <ul class="footer__social">
-                {% for item in theme_var('footer.social') %}
+            {% if config.details.social %}
+                <ul class="footer__social" aria-label="{{ 'THEME_C.NAV.SOCIAL'|t|e }}">
+                {% for item in config.details.social %}
                     <li class="footer__social__item">
-                        <a href="{{ item.url }}" class="footer__social__link">{{ svg(item.icon, 'icon', { 'title': item.title })|raw }}</a>
+                        <a
+                            class="footer__social__link"
+                            href="{{ item.url }}"
+                            title="{{ item.title }}"
+                            aria-label="{{ item.title }}"
+                        >
+                        {{ svg(item.icon)|raw }}
+                        </a>
                     </li>
                 {% endfor %}
                 </ul>

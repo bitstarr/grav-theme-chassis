@@ -1,0 +1,28 @@
+:root {
+    view-transition-name: root;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+::view-transition-old(root) {
+    animation: fade .2s linear forwards;
+}
+
+::view-transition-new(root) {
+    animation: fade .3s linear reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: .001s;
+    }
+}

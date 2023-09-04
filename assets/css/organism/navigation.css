@@ -1,235 +1,215 @@
-/*
-    nice toggable nav for small screens w/o checkbox hack or js
-    @see: https://web.dev/building-a-sidenav-component/
-
-    make a nice mouse and keyboard nav
-    @see https://css-tricks.com/solved-with-css-dropdown-menus/
-
-    This is a baseline for a lot of cases.
-    Only Caveat is, that tablets or touch screen laptops are unable to access the submenus.
-    You can overthink your content strategy, provide on page navigations (like hubs) or add JS magic.
-    The most desirable goal is to have onlu one level of main navigation.
-
-    With a bit of JS (navigation.js) we add progressive enhancement and a lot of a11y
-    @see https://adrianroselli.com/2019/06/link-disclosure-widget-navigation.html
-
-    Please remember to reduce navigation complexity in best case to one level only - so
-    you can drop some the CSS code following and the JS at all.
-*/
-
 .navigation {
     /*
-        API:
-        --o-nav-layer-surface   background of layer
-        --o-nav-layer-ink       text color of layer (not links)
-        --o-nav-padding         general amount for spacings
-        --o-nav-lineheight      general line height
+        building a good navigation with a11y in mind
+        also providing a no JS fallback via CSS
+        @see https://web.dev/website-navigation/
     */
-    --_layer-bg: var( --o-nav-layer-surface, var( --default-surface ) );
-    --_layer-txt: var( --o-nav-layer-ink, var( --default-ink ) );
-    --_space: var( --o-nav-padding, .6em );
-    --_lineheight: var( --o-nav-lineheight, var( --font-line ) );
-    --_easeOutExpo: cubic-bezier( .16, 1, .3, 1 );
-    --_easeDuration: .6s;
-}
-.menu {
-    &__item {
-        display: flex;
-        flex-wrap: wrap;
-        position: relative;
-        line-height: var( --_lineheight );
-    }
-    &__link {
-        --color-hover: var( --default-secondary );
-        display: block;
-        padding: var( --_space );
 
-        &:focus-visible {
-            outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
-            outline-offset: var( --outline-offset, var( --outline-size ) );
-        }
+    --_n-easeFunc: cubic-bezier( .16, 1, .3, 1 );
+    --_n-easeDuration: .4s;
+    --_n-layer-bg: var( --o-nav-layer-surface, var( --default-surface ) );
+    --_n-layer-txt: var( --o-nav-layer-ink, var( --default-ink ) );
+    --_n-layer-pad: var( --o-nav-layer-pad, 1.5rem );
+    --_n-link-pad: var( --o-nav-link-pad, .3em );
+    --_n-lh: var( --o-nav-lineheight, var( --font-line ) );
+
+
+    & .active .menu__link,
+    & .open > .menu__link {
+        text-decoration: underline;
     }
 
-    &__expander {
-        display: block;
-        width: 1.5em;
-        height: calc( var( --_space ) * 2 + var( --_lineheight ) );
-        margin-left: -.5em;
-        padding: 0;
-        background-color: transparent;
-        background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" ><path fill="%23666" d="M256,298.3L256,298.3L256,298.3l174.2-167.2c4.3-4.2,11.4-4.1,15.8,0.2l30.6,29.9c4.4,4.3,4.5,11.3,0.2,15.5L264.1,380.9c-2.2,2.2-5.2,3.2-8.1,3c-3,0.1-5.9-0.9-8.1-3L35.2,176.7c-4.3-4.2-4.2-11.2,0.2-15.5L66,131.3c4.4-4.3,11.5-4.4,15.8-0.2L256,298.3z"/></svg>' );
-        background-size: .8em;
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 0;
-        transition: transform var( --_easeDuration );
-        transform-origin: 50%;
-
-        &[aria-expanded='true'] {
-            transform: rotate(180deg);
-        }
-
-        &[aria-controls]:focus-visible {
-            outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
-            outline-offset: var( --outline-offset, var( --outline-size ) );
-        }
-    }
-}
-
-@media (max-width: 39.99em) {
-    .navigation {
-        position: fixed;
-        z-index: 10;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: grid;
-        grid-template-columns: [nav] 3fr [escape] 1fr;
-
-        visibility: hidden;
-        transform: translateX( -110vw );
-        will-change: transform;
-        transition:
-            transform var( --_easeDuration ) var( --_easeOutExpo ),
-            visibility 0s linear var( --_easeDuration );
-
-        &:target {
-            visibility: visible;
-            transform: translateX(0);
-            transition: transform var( --_easeDuration ) var( --_easeOutExpo );
-        }
-
-        &__layer {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow-y: auto;
-            overscroll-behavior-y: contain;
-            padding: 1.5em;
-            color: var( --_layer-txt );
-            background-color: var( --_layer-bg );
-        }
-
-        &__open {
-            padding: 1ex var( --space, 1rem );
-            line-height: 1;
-
-            &:focus,
-            &:hover {
-                color: var( --default-secondary );
-            }
-
-            &:focus-visible {
-                outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
-                outline-offset: var( --outline-offset, var( --outline-size ) );
-            }
-        }
-
-        &__close {
-            background: linear-gradient( to left, transparent, hsl( 0 0% 0% / .3 ) );
-        }
-    }
     .menu {
+        display: flex;
+
         &__item {
-            white-space: nowrap;
+            position: relative;
         }
 
-        & > &__item > &__link {
-            font-weight: 700;
+        &__link {
+            display: block;
+            padding: var( --_n-link-pad );
         }
 
-        .active &__link {
+        &__link:hover,
+        &__link:focus {
             text-decoration: underline;
         }
 
         &__expander {
-            display: none;
+            display: block;
+            width: 1.5em;
+            height: calc( var( --_n-link-pad ) * 2 + var( --_n-lh ) );
+            margin-left: -.5em;
+            padding: 0;
+            background-color: transparent;
+            background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" ><path fill="%23666" d="M256,298.3L256,298.3L256,298.3l174.2-167.2c4.3-4.2,11.4-4.1,15.8,0.2l30.6,29.9c4.4,4.3,4.5,11.3,0.2,15.5L264.1,380.9c-2.2,2.2-5.2,3.2-8.1,3c-3,0.1-5.9-0.9-8.1-3L35.2,176.7c-4.3-4.2-4.2-11.2,0.2-15.5L66,131.3c4.4-4.3,11.5-4.4,15.8-0.2L256,298.3z"/></svg>' );
+            background-size: .8em;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 0;
+            transition: transform var( --_easeDuration );
+            transform-origin: 50%;
+
+            &[aria-expanded='true'] {
+                transform: rotate(180deg);
+            }
+
+            &[aria-controls]:focus-visible {
+                outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+                outline-offset: var( --outline-offset, var( --outline-size ) );
+            }
         }
     }
-    .submenu {
-        width: 100%;
-        padding-left: var( --_space );
-        padding-bottom: .3em;
 
-        & + & {
+    @media (max-width: 39.99em) {
+        &__overlay {
+            position: fixed;
+            z-index: 10;
+            inset: 0;
+            display: grid;
+            grid-template-columns: [nav] 3fr [escape] 1fr;
+            grid-template-rows: 1fr auto;
+            transform: var( --_n-transform, translateX( -110vw ) );
+            visibility: var( --_n-visibility, hidden );
+            will-change: transform;
+            transition:
+                transform var( --_n-easeDuration ) var( --_n-easeFunc ),
+                visibility .1s linear;
+
+            color: var( --_n-layer-txt );
+        }
+
+        &__abyss {
+            display: block;
+            background: hsl( 0 0% 0% / .3 );
+            background: linear-gradient( to left, transparent, hsl( 0 0% 0% / .3 ) );
+        }
+
+
+        [aria-expanded='true'] ~ &__overlay,
+        &__overlay:target {
+            --_n-visibility: visible;
+            --_n-transform: translateY(0);
+        }
+
+        .js & .is-fallback,
+        .no-js & .is-interactive {
             display: none;
         }
-    }
-}
 
-@media (min-width: 40em) {
-    .navigation {
-        --_easeDuration: .3s;
-        --_space: .4em;
+        &__open {
+            display: flex;
+            align-items: center;
+            gap: .3em;
+        }
+
+        &__close.is-fallback {
+            padding: var( --_n-layer-pad );
+            background-color: var( --_layer-bg );
+            border-top: .1em solid var( --default-border-ink );
+        }
+        .no-js &__abyss {
+            grid-row: span 2;
+        }
+
+        .menu {
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+            overscroll-behavior-y: contain;
+            padding: var( --_n-layer-pad );
+            background-color: var( --_n-layer-bg );
+
+            &__item {
+                font-size: 1.3rem;
+                /* border-block-end: .2em solid var( --default-primary-light ); */
+                /* padding: var( --_m-item-padding, .5rem 0 ); */
+            }
+
+            &__expander {
+                display: none;
+            }
+
+            .submenu {
+                width: 100%;
+                padding-left: var( --_space, .6em );
+
+                & + & {
+                    display: none;
+                }
+            }
+        }
+
+        & .menu > .menu__item > .menu__link {
+            font-weight: 700;
+        }
+    }
+
+    @media (min-width: 40em) {
 
         &__open,
         &__close {
             display: none;
         }
-    }
-    .menu {
-        display: flex;
 
-        .submenu.visible,
-        &__item:hover > .submenu,
-        &__item:focus-within > .submenu:not([id]),
-        &__item .submenu:hover,
-        &__item .submenu:focus {
-            visibility: visible;
-            opacity: 1;
-            display: block;
-            transform: rotateX(0);
+        .menu {
+            .submenu.visible,
+            &__item:hover > .submenu,
+            &__item:focus-within > .submenu:not([id]),
+            &__item .submenu:hover,
+            &__item .submenu:focus {
+                visibility: visible;
+                opacity: 1;
+                display: block;
+                transform: rotateX(0);
+                transition:
+                    transform var( --_easeDuration ) var( --_easeOutExpo ),
+                    opacity var( --_easeDuration ) ease-out;
+            }
+
+            &__item {
+                display: flex;
+            }
+        }
+
+
+        .submenu {
+            position: absolute;
+            z-index: 101;
+            left: 0;
+            top: calc( 100% + .05rem );
+            transform: rotateX( -90deg );
+            transform-origin: top center;
+            visibility: hidden;
+            min-width: 15ch;
+            padding: .5em 0;
+            background: var( --default-ui );
+            border-radius: 4px;
+            box-shadow: 0 .15em .25em hsl( 0 0% 0% / .25 );
+            opacity: .3;
             transition:
                 transform var( --_easeDuration ) var( --_easeOutExpo ),
-                opacity var( --_easeDuration ) ease-out;
-        }
+                opacity var( --_easeDuration ) ease-out,
+                visibility 0s linear var( --_easeDuration );
 
-        &--minor {
-            display: none;
+            &::after {
+                content: '';
+                position: absolute;
+                z-index: 102;
+                top: -.75em;
+                left: 10%;
+                border: .5rem solid transparent;
+                border-bottom-color: transparent;
+                border-bottom-color: #f3f3f3;
+                transform: translateX( -50% );
+                transition: opacity var( --_easeDuration ) ease-out;
+                will-change: opacity;
+            }
         }
-
-        &__link:hover,
-        &__link:focus,
-        .active &__link {
-            text-decoration: underline;
+        .submenu .menu__link {
+            width: 100%;
         }
-    }
-    .submenu {
-        position: absolute;
-        z-index: 101;
-        left: 0;
-        top: calc( 100% + .05rem );
-        transform: rotateX( -90deg );
-        transform-origin: top center;
-        visibility: hidden;
-        min-width: 15ch;
-        padding: .5em 0;
-        background: var( --default-ui );
-        border-radius: 4px;
-        box-shadow: 0 .15em .25em hsl( 0 0% 0% / .25 );
-        opacity: .3;
-        transition:
-            transform var( --_easeDuration ) var( --_easeOutExpo ),
-            opacity var( --_easeDuration ) ease-out,
-            visibility 0s linear var( --_easeDuration );
-
-        &::after {
-            content: '';
-            position: absolute;
-            z-index: 102;
-            top: -.75em;
-            left: 10%;
-            border: .5rem solid transparent;
-            border-bottom-color: transparent;
-            border-bottom-color: #f3f3f3;
-            transform: translateX( -50% );
-            transition: opacity var( --_easeDuration ) ease-out;
-            will-change: opacity;
-        }
-    }
-    .submenu .menu__link {
-        width: 100%;
     }
 }
 

@@ -6,13 +6,16 @@ We are using some node magic to help with boring and repetitive tasks. Please le
 
 ## Dependecies
 
-Chassis provides templates and styles for the following plugins (if you install and enable them…)
+Chassis provides templates, styles or functionality for the following plugins (if you install and enable them…)
 
 * breadcrumbs
+* [company-details](https://github.com/bitstarr/grav-plugin-company-details)
 * forms
 * markdown-details
 * markdown-notices
 * pagination
+* shortcode-core
+* [shortcode-gallery](https://github.com/bitstarr/grav-plugin-shortcode-gallery)
 
 ## File Structure
 
@@ -123,7 +126,7 @@ On port 3001 you can access the Browsersync control panel.
 
 ## Task Runner
 
-Wir use `gulp` as a task runner, which is wrapped in npm scripts to streamline workflows.
+Wir use node scripts as a task runner.
 
 | command | function |
 |---|---|

@@ -20,6 +20,7 @@
 
     padding: var( --gap-deci );
     color: var( --_txt );
+    text-wrap: pretty;
     background: var( --_bg );
     border-left: .4em solid var( --_brd );
 

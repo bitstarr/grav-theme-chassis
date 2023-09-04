@@ -1,6 +1,7 @@
 /* Settings, basic elements, fixes/homogenisation */
 @import 'base/var.css';
 @import 'base/theme.css';
+@import 'base/view-transition.css';
 @import 'base/superscale.css';
 @import 'base/reset.css';
 @import 'base/typography.css';

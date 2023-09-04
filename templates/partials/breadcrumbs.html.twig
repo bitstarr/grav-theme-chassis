@@ -3,7 +3,7 @@
 {% set divider = breadcrumbs_config.icon_divider_classes %}
 
 {% if crumbs|length > 1 or breadcrumbs_config.show_all %}
-<nav class="breadcrumb wrapping" itemscope itemtype="http://schema.org/BreadcrumbList">
+<nav class="breadcrumb wrapping" itemscope itemtype="http://schema.org/BreadcrumbList" aria-label="{{ 'THEME_C.NAV.BREADCRUMBS'|t|e }}">
 <ol class="wrapped">
     {% for crumb in crumbs %}
     <li class="item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">

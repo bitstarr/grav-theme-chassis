@@ -2,18 +2,27 @@
 {% set page_title = page.header.headline|default( page.title ) %}
 {% extends 'partials/base.html.twig' %}
 
+{# no need to notice a page collection all the time with this template #}
+{% set options = {
+    items: {'@self.modules': ''},
+    'order': {'by': 'folder', 'dir': 'asc'}
+} %}
+{% set modules = page.collection(options) %}
+
 {% block content %}
     <div class="wrapping">
-        <h1 class="headline">
-            {{ page_title }}
-        </h1>
+        {% if header.hero.headline is not defined %}
+            <h1 class="headline">
+                {{ page_title }}
+            </h1>
+        {% endif %}
         {% if page.content|length %}
             <div class="textflow">
                 {{ page.content|raw }}
             </div>
         {% endif %}
     </div>
-    {% for module in page.collection() %}
+    {% for module in modules %}
         {# <a id="{{ module.menu|hyphenize }}"></a> #}
         {{ module.content|raw }}
     {% endfor %}

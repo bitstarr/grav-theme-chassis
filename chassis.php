@@ -13,7 +13,7 @@ class Chassis extends Theme
             'onThemeInitialized'    => ['onThemeInitialized', 0],
             'onTwigLoader'          => ['onTwigLoader', 0],
             'onTwigInitialized'     => ['onTwigInitialized', 0],
-            // 'onAdminPageTypes'      => ['onAdminPageTypes', 0],
+            'onAdminPageTypes'      => ['onAdminPageTypes', 0],
             'onAdminModularPageTypes'      => ['onAdminModularPageTypes', 0],
             'onTwigSiteVariables'   => ['onTwigSiteVariables', 0],
             'onShortcodeHandlers'   => ['onShortcodeHandlers', 0],
@@ -82,6 +82,29 @@ class Chassis extends Theme
         $list = array_intersect_key( $list, $event['types'] );
         // remove unwanted
         // unset( $list['modular/default'] );
+        // sort
+        asort( $list );
+
+        $event['types'] = $list;
+    }
+
+    /*
+        Define Custom Names for Page Templates
+    */
+    public function onAdminPageTypes( $event )
+    {
+        $names = [
+            'default' => 'Standard-Seite',
+            'modular' => 'Modulbasierte Seite',
+        ];
+        // merge arrays
+        $list = array_replace( $event['types'], $names );
+        // drop these that are currently not detected by grav
+        $list = array_intersect_key( $list, $event['types'] );
+        // remove unwanted
+        unset( $list['robots'] );
+        // sort
+        asort( $list );
 
         $event['types'] = $list;
     }

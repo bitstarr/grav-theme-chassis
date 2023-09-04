@@ -54,6 +54,7 @@ html {
     --outline-size: max( 2px, .08em );
     --outline-style: solid;
     --outline-ink: hsl( var( --raspberry-4 ) );
+    /* --outline-offset: .2em; */
 
     /*
         Component (form) Specific

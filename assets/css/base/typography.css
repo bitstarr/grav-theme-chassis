@@ -29,8 +29,8 @@ body {
 :where( sub, sup ) {
     font-size: 75%;
     line-height: 0;
-	position: relative;
-	vertical-align: baseline;
+    position: relative;
+    vertical-align: baseline;
 }
 :where( sub ) { bottom: -.25em; }
 :where( sup ) { top: -.5em; }
@@ -44,6 +44,10 @@ body {
     text-decoration: underline dotted;
 
     &:hover { cursor: help; }
+}
+
+:where( h1, h2, h3, h4, h5, h6 ) {
+    text-wrap: balance;
 }
 
 /*
@@ -99,3 +103,10 @@ q { quotes: '\201E' '\201C' '\201A' '\2018'; }
 q::before { content: open-quote; }
 q::after { content: close-quote; }
 */
+
+/* A11y basiscs */
+/* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
+:is( a, button, input, textarea, select, summary ):focus-visible {
+    outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+    outline-offset: var( --outline-offset, var( --outline-size ) );
+}

@@ -1,4 +1,4 @@
-title: Page Content
+title: Modular Page
 extends@:
   type: default
   context: blueprints://pages
@@ -10,6 +10,10 @@ form:
       active: 1
 
       fields:
+
+        content:
+          fields:
+
 
         advanced:
           fields:
@@ -34,32 +38,3 @@ form:
                       1: THEME_C.PAGE.HIDE
                   validate:
                       type: bool
-
-        hero:
-          type: tab
-          title: THEME_C.HERO.IMAGE
-          ordering@: -2
-          fields:
-            #
-            # Custom way to use hero images
-            # All available hero images get stored in /_heros and you can select from a them
-            #
-
-            header.hero.image:
-              type: pagemediaselect
-              label: THEME_C.HERO.IMAGE
-              # folder: 'page://_heros'
-              preview_images: true
-              accept:
-                - .jpg
-                - .jpeg
-
-            header.hero.headline:
-              type: text
-              label: THEME_C.HERO.HEADLINE
-              toggleable: true
-
-            header.hero.author:
-              type: text
-              label: THEME_C.HERO.SOURCE
-              toggleable: true

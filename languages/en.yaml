@@ -1,17 +1,31 @@
 THEME_C:
   NAV:
     MENU: Menu
+    MAIN_MENU: Main Navigation
+    SR_MAIN: Main
+    SR_FOOT: Closing
     REVEAL: Open Menu
     HIDE: Hide Menu
+    TOGGLE: Open/Close Menu
     SUBMENU: Submenu
     SUBMENU_REVEAL: Show Submenu
     SUBMENU_HIDE: Hide Submenu
     CURRENT_PAGE: Current Page
+    BREADCRUMBS: Breadcrumbs
+    FOOTER: Conclusive
+    SOCIAL: Social Media
   PAGE:
     MENU_CLASSES: CSS Classes for Menu Entry
     BREADCRUMB: Breadcrumb
     SHOW: Show
     HIDE: Hide
+  MODULE:
+    SELECT_REFERENCE: Select Module
+    REFERENCE_HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
+    HIDE_TITLE: Hide Title
+    TABS: Tabs
+    Title: Title
+    CONTENT: Content
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image

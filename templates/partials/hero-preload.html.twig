@@ -5,19 +5,19 @@
 {%- set hero_image = media_directory('page://_heros')[page.header.hero.image] -%}
 {%- if hero_image %}
     {%- set images = {
-        640: hero_image.cropZoom(640,320).quality(70),
-        960: hero_image.cropZoom(960,240).quality(70),
-        1280: hero_image.cropZoom(1280,320).quality(70),
-        1920: hero_image.cropZoom(1920,480).quality(70),
+        640: hero_image.cropZoom(640,320).quality(70).url,
+        960: hero_image.cropZoom(960,240).quality(70).url,
+        1280: hero_image.cropZoom(1280,320).quality(70).url,
+        1920: hero_image.cropZoom(1920,480).quality(70).url,
     } -%}
     {%- set srcset = [] -%}
     {%- for key,item in images %}
-        {%- set srcset = srcset|merge( [ item.url ~ ' ' ~ key ~ 'w' ] ) -%}
+        {%- set srcset = srcset|merge( [ item ~ ' ' ~ key ~ 'w' ] ) -%}
     {% endfor -%}
 <link
     rel="preload"
     as="image"
-    href="{{ images|first.url }}"
+    href="{{ images|first }}"
     imagesrcset="{{ srcset|join(', ')}}"
     imagesizes="100vw"
 />
