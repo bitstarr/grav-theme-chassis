@@ -20,6 +20,7 @@
 /* global */
 @import 'organism/header.css';
 @import 'organism/navigation.css';
+@import 'organism/babel.css';
 @import 'organism/footer.css';
 @import 'organism/breadcrumbs.css';
 @import 'organism/textflow.css';
