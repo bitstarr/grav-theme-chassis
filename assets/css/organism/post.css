@@ -1,0 +1,43 @@
+.post {
+    &__header {
+        margin-bottom: var( --gap );
+    }
+
+    &__title {
+        margin-bottom: .5ex;
+        margin-left: -.075em; /* inlining line start with adjacent elements */
+        font-size: 2em;
+        line-height: 1.1;
+        hyphens: auto;
+    }
+
+    &__image {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    &__date,
+    &__imagecaption {
+        font-size: .8em;
+        color: var( --default-muted );
+    }
+
+    &__visual {
+        margin-bottom: var( --gap );
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &__imagecaption {
+        padding-block-start: 1ex;
+    }
+
+    &__navigation {
+        margin-top: var( --gap-deca );
+    }
+}

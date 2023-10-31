@@ -14,7 +14,7 @@
     --_n-lh: var( --o-nav-lineheight, var( --font-line ) );
 
 
-    & .active .menu__link,
+    & .active > .menu__link,
     & .open > .menu__link {
         text-decoration: underline;
     }
@@ -90,7 +90,7 @@
         [aria-expanded='true'] ~ &__overlay,
         &__overlay:target {
             --_n-visibility: visible;
-            --_n-transform: translateY(0);
+            --_n-transform: translateX(0);
         }
 
         .js & .is-fallback,

@@ -1,4 +1,7 @@
 THEME_C:
+  A11Y:
+    SKIP2CONTENT: Skip to content
+    SKIP2TOP: Back to top
   NAV:
     MENU: Menu
     MAIN_MENU: Main Navigation

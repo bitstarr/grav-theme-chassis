@@ -1,28 +1,25 @@
 .vh,
-.screen-reader-text {
-    position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0;
-    border: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
+.visually-hidden {
+    position: fixed;
+    z-index: 20;
 
-    &.focusable:active,
-    &.focusable:focus {
+    &:not(:focus):not(:active) {
         position: absolute;
-        left: 5px;
-        top: 5px;
-        z-index: 1000;
-        clip: initial;
-        width: auto;
-        height: auto;
-        padding: 1ex;
-        text-decoration: none;
-        text-transform: none;
-        background-color: #111;
-        color: #eee;
+        width: 1px;
+        height: 1px;
+        clip-path: inset(50%);
+        overflow: hidden;
+        white-space: nowrap;
     }
+}
+
+.skiplink {
+    display: block;
+    top: 1rem;
+    left: 1rem;
+    padding: 1em;
+    background-color: #111;
+    color: #eee;
 }
 
 .u-hidden { display: none; }
@@ -47,6 +44,11 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
+}
+
+a.u-tel {
+    color: currentcolor;
+    text-decoration: none;
 }
 
 .noscroll {
