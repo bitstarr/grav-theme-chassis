@@ -42,7 +42,7 @@
 
     @media (max-width: 39.99em) {
         &__link:nth-child(2) {
-            border-top: 1px solid var( --default-border );
+            border-top: 1px solid var( --default-border-ink );
         }
     }
     @media (min-width: 40em) {
@@ -51,6 +51,7 @@
         }
         &__link {
             width: 50%;
+            padding-inline: var( --gap );
 
             &[rel='next'] {
                 padding-right: var( --gap );
@@ -69,7 +70,7 @@
             }
             &:nth-child(2) {
                 padding-left: var( --gap );
-                border-left: 1px solid var( --default-border );
+                border-left: 1px solid var( --default-border-ink );
             }
         }
     }

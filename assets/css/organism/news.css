@@ -1,0 +1,33 @@
+.news {
+    & + & {
+        margin-top: var( --gap-kilo );
+    }
+
+    &__header {
+        margin-bottom: var( --gap );
+    }
+
+    &__title {
+        margin-bottom: .5ex;
+        margin-left: -.075em; /* inlining line start with adjacent elements */
+        font-size: 2em;
+        line-height: 1.1;
+        hyphens: auto;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: var( --gap );
+    }
+
+    &__date {
+        font-size: .8em;
+        color: var( --default-muted );
+    }
+
+    & + .pager {
+        margin-top: var( --gap-kilo  );
+    }
+}

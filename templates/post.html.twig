@@ -21,7 +21,7 @@
                 {% if page.header.hide_summary != true %}
                     {{ page.summary|raw }}
                 {% endif %}
-                <a name="continue vh"></a>
+                <a name="continue"></a>
                 {{ page.content|slice(page.summary|length)|raw }}
             {% else %}
                 {{ page.content|raw }}

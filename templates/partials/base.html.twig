@@ -71,6 +71,8 @@
 
 {% block header %}
     <header class="header wrapping">
+        <a href="#content" class="skiplink visually-hidden">{{ 'THEME_C.A11Y.SKIP2CONTENT'|t|e }}</a>
+
         <div class="wrapped">
             <a class="logo" href="{{ home_url }}">
                 {{ svg('logo', 'logo__img icon', { 'title': site.title })|raw }}
@@ -87,23 +89,23 @@
     </header>
 {% endblock %}
 
-{% block hero %}
-    {% if page.header.hero.image %}
-        {% include 'partials/hero.html.twig' %}
-    {% endif %}
-{% endblock %}
+<main class="main" id="content">
+    {% block hero %}
+        {% if page.header.hero.image %}
+            {% include 'partials/hero.html.twig' %}
+        {% endif %}
+    {% endblock %}
 
-{% block breadcrumbs %}
-    {% if config.plugins.breadcrumbs.enabled and page.header.hide_breadcrumbs == false %}
-        {% include 'partials/breadcrumbs.html.twig' %}
-    {% endif %}
-{% endblock %}
+    {% block breadcrumbs %}
+        {% if config.plugins.breadcrumbs.enabled and page.header.hide_breadcrumbs == false %}
+            {% include 'partials/breadcrumbs.html.twig' %}
+        {% endif %}
+    {% endblock %}
 
-{% block body %}
-    <main class="main">
+    {% block body %}
         {% block content %}{% endblock %}
-    </main>
-{% endblock %}
+    {% endblock %}
+</main>
 
 {% block footer %}
     <footer class="footer wrapping" id="footer">
@@ -142,6 +144,10 @@
                 {% endfor %}
                 </ul>
             {% endif %}
+
+            <a href="#top" class="footer__elevator" aria-label="{{ 'THEME_C.A11Y.SKIP2TOP'|t|e }}" title="{{ 'THEME_C.A11Y.SKIP2TOP'|t|e }}">
+                {{ svg('up')|raw }}
+            </a>
         </div>
     </footer>
 {% endblock %}
