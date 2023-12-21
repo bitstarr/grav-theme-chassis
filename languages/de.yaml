@@ -25,10 +25,15 @@ THEME_C:
   MODULE:
     SELECT_REFERENCE: Modul auswählen
     REFERENCE_HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
-    HIDE_TITLE: Überschrift verbergen
-    TABS: Tabs
     TITLE: Titel
+    HIDE_TITLE: Überschrift verbergen
     CONTENT: Inhalt
+    THUMBNAIL: Vorschaubild
+    TABS: Tabs
+    CAROUSEL: Karusell
+    CAROUSEL_IMGWIDTH: Bildbreite
+    CAROUSEL_IMGWIDTH_HELP: Setze die Breite auf 0 um Zoom/Beschnitt zu vermiden
+    CAROUSEL_IMGHEIGHT: Bildhöhe
   HERO:
     IMAGE: Titelbild
     HEADLINE: Überschrift auf dem Titelbild

@@ -1,3 +1,4 @@
+{% spaceless %}
 {% set modular_classes = [
     'modular',
     'wrapping',
@@ -6,6 +7,7 @@
 {% if page.header.layout_alt %}
     {% set modular_classes = modular_classes|merge( ['modular--alt'] ) %}
 {% endif %}
+{% endspaceless %}
 
 <section class="{{ modular_classes|join( ' ' )|trim }}">
     <h2 class="modular__title">{{ page.title }}</h2>

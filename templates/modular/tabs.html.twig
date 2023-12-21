@@ -1,4 +1,18 @@
-<section class="modular wrapping tabs tabs--default">
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--tabs',
+    'wrapping',
+    'tabs',
+    'tabs--default',
+] %}
+
+{% if page.header.layout_alt %}
+    {% set modular_classes = modular_classes|merge( ['modular--alt'] ) %}
+{% endif %}
+{% endspaceless %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
     {% if header.hide_title != true -%}
     <h2 class="modular__title">{{ page.title }}</h2>
     {% endif -%}

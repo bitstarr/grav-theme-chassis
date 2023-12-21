@@ -10,6 +10,7 @@ body {
     background: var( --default-surface );
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
+    hanging-punctuation: first allow-end last;
 }
 
 :where( pre, code, kbd, samp ) {
@@ -77,7 +78,7 @@ body {
     Remove text indentation from table contents in Chrome, Edge, and Safari.
     Set Numbers in tabular format
 */
-:where(table) {
+:where( table ) {
     border-collapse: collapse;
     border-color: currentcolor;
     text-indent: 0;
