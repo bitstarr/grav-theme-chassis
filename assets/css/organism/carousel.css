@@ -15,6 +15,7 @@
 
     --_sb-track: var( --o-carousel-scrollTrack, var( --scrollbar-track ) );
     --_sb-thumb: var( --o-carousel-scrollThumb, var( --scrollbar-thumb ) );
+    --outline-offset: calc( var( --outline-size ) * -1 );
 
     display: flex;
     gap: 1em;
