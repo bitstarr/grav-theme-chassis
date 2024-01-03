@@ -64,6 +64,7 @@
     {# {% include 'partials/matomo.html.twig' %} #}
 {% else %}
     <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}">
+    <meta name="robots" content="noindex,nofollow">
 {% endif -%}
 
 </head>

@@ -27,7 +27,7 @@ printf "${MAGENTA}Creating Favicons${NC}\n"
 
 mkdir -p "$2"
 
-convert -background none "$1/favicon.svg" -define icon:auto-resize=32,16 -alpha off -colors 128 "$2/favicon.ico"
+convert -background none "$1/favicon.svg" -define icon:auto-resize=32,16 -background none -colors 128 "$2/favicon.ico"
 
 convert -background none -resize 512x512 "$1/favicon.svg" "$2/favicon-512.png"
 convert -background none -resize 192x192 "$1/favicon.svg" "$2/favicon-192.png"

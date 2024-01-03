@@ -156,8 +156,9 @@ This is a bit trickey since grav has more than one place to set the name. In ord
 * Change the name in `/blueprints.yaml`
 * In the file formerly known as `/chassis.php` rename the class name, mind the capital first letter `class Chassis extends Theme` -> `class Picasso extends Theme`
 * There are occurrences regarding the utility class in the same file, rename and follow the capitalization
-* iI `/classes/Utils.php` rename the namespace definition, mind the capitalization
+* In `/classes/Utils.php` rename the namespace definition, mind the capitalization
 * Make sure all occurrences of utility functions in the template folder are renamed (search for chassis in files)
+* Set new theme in `user/config/system.yaml`
 
 When using a dash in the theme name, you will have to CamelCase (upper camel case) the namespaces and class names.
 
