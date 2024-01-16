@@ -25,10 +25,15 @@ THEME_C:
   MODULE:
     SELECT_REFERENCE: Select Module
     REFERENCE_HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
-    HIDE_TITLE: Hide Title
-    TABS: Tabs
     Title: Title
+    HIDE_TITLE: Hide Title
     CONTENT: Content
+    THUMBNAIL: Thumbnail Image
+    TABS: Tabs
+    CAROUSEL: Carousel
+    CAROUSEL_IMGWIDTH: Image Width
+    CAROUSEL_IMGWIDTH_HELP: Set width to 0 to avoid cropping/zooming
+    CAROUSEL_IMGHEIGHT: Image Height
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image

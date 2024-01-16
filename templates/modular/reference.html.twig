@@ -1,0 +1,9 @@
+{% if header.reference -%}
+{% spaceless %}
+{% set reference = page.collection( {
+    items: { '@page.page': header.reference },
+    filter: {'module': true }
+} ) %}
+{% endspaceless %}
+{{ reference|first.content|raw }}
+{% endif -%}

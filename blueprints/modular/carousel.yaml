@@ -1,0 +1,85 @@
+title: Carousel
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+
+            content:
+              unset@: true
+
+            carousel:
+              type: section
+              title: THEME_C.MODULE.CAROUSEL
+              underline: true
+              fields:
+                header.carousel:
+                  type: list
+                  # label: THEME_C.MODULE.TABS
+                  style: vertical
+                  controls: both
+                  fields:
+                    .image:
+                        type: filepicker
+                        label: THEME_C.MODULE.THUMBNAIL
+                        size: medium
+                        folder: '@self'
+                        preview_images: true
+                        accept:
+                            - .jpg
+                            - .jpeg
+                        validate:
+                          required: true
+                    # .content:
+                    #   type: editor
+                    #   label: THEME_C.MODULE.CONTENT
+                    #   rows: 3
+
+                header.carouselWidth:
+                  type: text
+                  label: THEME_C.MODULE.CAROUSEL_IMGWIDTH
+                  help: THEME_C.MODULE.CAROUSEL_IMGWIDTH_HELP
+                  size: small
+                  default: 350
+                  validate:
+                    required: true
+                    type: int
+                    min: 0
+                    max: 2000
+                header.carouselHeight:
+                  type: text
+                  label: THEME_C.MODULE.CAROUSEL_IMGHEIGHT
+                  size: small
+                  default: 500
+                  validate:
+                    required: true
+                    type: int
+                    min: 100
+                    max: 2000
+
+            publishing:
+              type: section
+              title: PLUGIN_ADMIN.PUBLISHING
+              underline: true
+              ordering@: 99
+              fields:
+                header.published:
+                  type: toggle
+                  toggleable: true
+                  label: PLUGIN_ADMIN.PUBLISHED
+                  help: PLUGIN_ADMIN.PUBLISHED_HELP
+                  highlight: 1
+                  size: medium
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
+
+        options:
+          unset@: true
+        advanced:
+          unset@: true

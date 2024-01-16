@@ -30,7 +30,7 @@
 
 
     &--default {
-        --_brdw: var( --o-tabs-border, .125em );
+        --_brdw: var( --o-tabs-border, min( 2px, .15em ) );
         --_brd: var( --o-tabs-border-color, var( --default-border-ink) );
         --_hvr: var( --o-tabs-border-hover, var( --default-primary-light ) );
         --_bg: var( --o-tabs-surface, var( --default-surface ) );
@@ -38,6 +38,7 @@
     }
     &--default &__toggle {
         display: block;
+        height: 100%;
         text-align: center;
         padding: var( --gap-deci );
         border: var( --_brdw ) solid transparent;

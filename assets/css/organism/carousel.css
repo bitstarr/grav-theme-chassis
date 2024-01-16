@@ -1,0 +1,48 @@
+.carousel {
+    /*
+        carousel with cool alignment to content
+        @see https://www.smashingmagazine.com/2023/12/css-scroll-snapping-aligned-global-page-layout-case-study/
+    */
+
+    --bodyPadding: 1em; /* has to corrispond with global body padding */
+    --offsetWidth: calc(
+        ((100% - (min(var(--wrapper), 100%) + (var(--bodyPadding) * 2))) / 2) + (var(--bodyPadding) * 2)
+    );
+    @media (min-width: 70rem) {
+        /* since we use fancy grid for wrapping, this is necassary */
+        --bodyPadding: 0em;
+    }
+
+    --_sb-track: var( --o-carousel-scrollTrack, var( --scrollbar-track ) );
+    --_sb-thumb: var( --o-carousel-scrollThumb, var( --scrollbar-thumb ) );
+    --outline-offset: calc( var( --outline-size ) * -1 );
+
+    display: flex;
+    gap: 1em;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start:  var( --offsetWidth );
+    padding-inline: var( --offsetWidth );
+    padding-block: 1em;
+
+    scrollbar-color: var( --_sb-thumb ) var( --_sb-track );
+    scrollbar-width: thin;
+
+    &:focus,
+    &:focus-within {
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+        outline-offset: var( --outline-offset, var( --outline-size ) );
+    }
+
+    > * {
+        /* flex: 0 0 20em; */
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+
+    & img {
+        /* aspect-ratio: 3 / 4; */
+        object-fit: cover;
+        width: 100%;
+    }
+}

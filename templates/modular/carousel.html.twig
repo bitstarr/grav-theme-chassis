@@ -1,0 +1,47 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--carousel',
+] %}
+
+{% if page.header.layout_alt %}
+    {% set modular_classes = modular_classes|merge( ['modular--alt'] ) %}
+{% endif %}
+
+{% set width = header.carouselWidth|default( 350 ) %}
+{% set height = header.carouselHeight|default( 500 ) %}
+{% set attrHeight = height %}
+{% set attrWidth = width %}
+
+{% if height == 0 %}
+    {% set height = null %}
+{% elseif width == 0 %}
+    {% set width = null %}
+{% endif %}
+
+{% endspaceless %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    <div class="carousel">
+        {% for object in header.carousel %}
+            {% set image = page.media[ object.image ] -%}
+            {% set src = image.cropResize( width, height ).url %}
+            {% if height == null %}
+                {% set attrHeight = ( image.height / image.width * width )|round %}
+            {% elseif width == null %}
+                {% set attrWidth = ( image.width / image.height * height )|round %}
+            {% else %}
+                {% set src = image.cropZoom( width, height ).url %}
+            {% endif %}
+            <div class="carousel__item" data-index="{{ loop.index }}">
+                <img
+                    class="image"
+                    src="{{ src }}"
+                    width={{ attrWidth }}
+                    height={{ attrHeight }}
+                    alt="{{ image.metadata.alt }}"
+                >
+            </div>
+        {% endfor %}
+    </div>
+</section>

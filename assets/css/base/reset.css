@@ -59,7 +59,9 @@ display:revert; revert to element instead of attribute */
 */
 html {
     overflow-y: scroll;
-    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 /*
@@ -71,6 +73,12 @@ html, body { height: 100%;}
 /* the following line is already done by our main reset… */
 /* :focus:not( :focus-visible ) { outline: 0; } */
 html:focus-within { scroll-behavior: smooth; }
+
+
+/* Anything that has been anchored to should have extra scroll margin (at least in main) */
+:where( main :target ) {
+    scroll-margin-block: 5ex;
+}
 
 /* stylelint-enable selector-list-comma-newline-after */
 

@@ -28,6 +28,7 @@
 @import 'organism/details.css';
 @import 'organism/tabs.css';
 @import 'organism/bullets.css';
+@import 'organism/carousel.css';
 /* specific */
 @import 'organism/hero.css';
 @import 'organism/modular.css';
