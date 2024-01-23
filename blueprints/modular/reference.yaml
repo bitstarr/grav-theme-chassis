@@ -45,5 +45,3 @@ form:
                     type: bool
         options:
           unset@: true
-        advanced:
-          unset@: true

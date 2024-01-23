@@ -81,6 +81,7 @@
                 transition: opacity var( --d-o, .2s );
             }
             &:not(.switch) {
+                flex-shrink: 0;
                 border-radius: .2em;
 
                 &:after {
@@ -101,6 +102,7 @@
             }
 
             &.switch {
+                flex-shrink: 0;
                 width: 2.6em;
                 border-radius: .7em;
 

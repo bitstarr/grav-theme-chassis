@@ -99,7 +99,7 @@
         "faviconsmin": "node .tasks/faviconsmin.mjs",
         "watch:css": "npx onchange $npm_package_config_css/*.css $npm_package_config_css/**/*.css -- npm run css",
         "watch:js": "npx onchange $npm_package_config_js/*.{js,json} $npm_package_config_js/**/*.{js,json} -- npm run js",
-        "watch:img": "npx onchange $npm_package_config_img/**/*.{jpg,gif,png,svg} -- npm img",
+        "watch:img": "npx onchange $npm_package_config_img/**/*.{jpg,gif,png,svg} -- npm run imgmin",
         "watch:icons": "npx onchange $npm_package_config_icons/**/*.svg -- npm run icons",
         "watch:sprite": "npx onchange $npm_package_config_icons/**/*.svg -- npm run sprite",
         "watch": "run-p watch:*",
@@ -108,7 +108,7 @@
         "sync": "run-p sync:*",
         "todo": "grep -lir --color --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=var --exclude=package.json 'todo'",
         "clean": "rm -rf $npm_package_config_dist/*",
-        "dev": "run-p css js img icons",
+        "dev": "run-p css js imgmin icons",
         "build": "npm run lint && run-p cssmin jsmin imgmin icons fonts"
     }
 }

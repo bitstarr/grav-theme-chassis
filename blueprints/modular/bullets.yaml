@@ -48,5 +48,3 @@ form:
 
         options:
           unset@: true
-        advanced:
-          unset@: true

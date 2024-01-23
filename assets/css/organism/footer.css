@@ -16,6 +16,10 @@
     color: var( --_txt );
     background-color: var( --_bg );
 
+    .wrapped {
+        position: relative;
+    }
+
     &__nav {
         .menu {
             display: flex;
@@ -43,5 +47,12 @@
         &__link {
             padding: var( --gap-deci );
         }
+    }
+
+    &__elevator {
+        padding: 1rem;
+        position: absolute;
+        inset-inline-end: -1rem;
+        inset-block-end: -1rem;
     }
 }
