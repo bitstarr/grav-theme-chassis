@@ -50,7 +50,7 @@
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}
-    {% if config.system.env.state == 'dev' %}
+    {% if config.site.env.state == 'dev' %}
         {% do assets.addJs('theme://dist/js/dev.js', { group:'bottom' }) %}
     {% endif %}
 {% endblock %}
@@ -60,10 +60,10 @@
     {{ assets.js()|raw }}
 {% endblock %}
 
-{%- if config.system.env.state == 'production' %}
+{%- if config.site.env.state == 'production' %}
     {# {% include 'partials/matomo.html.twig' %} #}
 {% else %}
-    <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.system.env.state }}">
+    <link rel="icon" href="{{ url('theme://assets/favicons/favicon.php') }}?letter={{ site.title|first }}&env={{ config.site.env.state }}">
     <meta name="robots" content="noindex,nofollow">
 {% endif -%}
 

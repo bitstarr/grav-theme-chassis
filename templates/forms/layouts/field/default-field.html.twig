@@ -1,6 +1,6 @@
 {%- set wrap_tag = 'div' -%}
 {%- set label_tag = 'label' -%}
-{%- if field.type in [ 'radio' ] -%}
+{%- if field.type in [ 'radio', 'checkboxes' ] -%}
     {%- set wrap_tag = 'fieldset' -%}
     {%- set label_tag = 'legend' -%}
 {%- endif -%}

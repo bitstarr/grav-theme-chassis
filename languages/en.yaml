@@ -17,6 +17,13 @@ THEME_C:
     BREADCRUMBS: Breadcrumbs
     FOOTER: Conclusive
     SOCIAL: Social Media
+  SITE:
+    ENV_STATUS: Enviroment Status
+    ENV_PROD: Production
+    ENV_STG: Stage
+    ENV_PRV: Preview
+    ENV_DEV: Development
+    ENV_BANNER: Show Banner
   PAGE:
     MENU_CLASSES: CSS Classes for Menu Entry
     BREADCRUMB: Breadcrumb
