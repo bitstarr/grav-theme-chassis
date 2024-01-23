@@ -23,16 +23,17 @@ form:
                   controls: both
                   fields:
                     .image:
-                        type: filepicker
-                        label: THEME_C.MODULE.THUMBNAIL
-                        size: medium
-                        folder: '@self'
-                        preview_images: true
-                        accept:
-                            - .jpg
-                            - .jpeg
-                        validate:
-                          required: true
+                      type: filepicker
+                      label: THEME_C.MODULE.THUMBNAIL
+                      size: medium
+                      folder: '@self'
+                      preview_images: true
+                      accept:
+                        - .png
+                        - .jpg
+                        - .jpeg
+                      validate:
+                        required: true
                     # .content:
                     #   type: editor
                     #   label: THEME_C.MODULE.CONTENT
@@ -80,6 +81,4 @@ form:
                     type: bool
 
         options:
-          unset@: true
-        advanced:
           unset@: true
