@@ -1,0 +1,48 @@
+.downloads {
+
+    &__item + &__item {
+        margin-top: var( --gap-centi );
+    }
+
+    .link {
+        text-decoration: underline;
+    }
+
+    .title {
+        font-size: 1.1em;
+        font-weight: 700;
+        margin-bottom: .3em;
+    }
+    .description {
+        margin-bottom: .5em;
+    }
+
+
+
+    &--compact &__item {
+        font-size: 1.1em;
+    }
+
+    &--verbose &__item {
+        display: grid;
+        grid-template-columns: clamp( 5rem, 25%, 10rem ) 1fr;
+        gap: var( --gap );
+
+        .thumbnail {
+            /* width: clamp( 5rem, 25%, 10rem ); */
+            object-fit: contain;
+        }
+    }
+
+    &--verbose &__item + &__item {
+        margin-top: var( --gap );
+    }
+
+    &--verbose .thumbnail .icon {
+        display: block;
+        width: 50%;
+        height: auto;
+        margin-inline: auto;
+    }
+
+}

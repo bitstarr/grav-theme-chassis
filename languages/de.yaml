@@ -22,6 +22,7 @@ THEME_C:
     BREADCRUMB: Breadcrumb
     SHOW: Anzeigen
     HIDE: Verbergen
+    SYSTEMIC: Das ist eine System-Seite und du kannst hier nichts tun.
   SITE:
     ENV_STATUS: Enviroment Status
     ENV_PROD: Production
@@ -30,17 +31,46 @@ THEME_C:
     ENV_DEV: Development
     ENV_BANNER: Banner anzeigen
   MODULE:
-    SELECT_REFERENCE: Modul auswählen
-    REFERENCE_HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
     TITLE: Titel
-    HIDE_TITLE: Überschrift verbergen
     CONTENT: Inhalt
+    DESCRIPTION: Beschreibung
+    FILE: Datei
+    IMAGE: Bild
     THUMBNAIL: Vorschaubild
+    TEXT: Text
+    URL: URL
+    ICON: Icon
+    ENTRIES: Einträge
     TABS: Tabs
-    CAROUSEL: Karusell
-    CAROUSEL_IMGWIDTH: Bildbreite
-    CAROUSEL_IMGWIDTH_HELP: Setze die Breite auf 0 um Zoom/Beschnitt zu vermiden
-    CAROUSEL_IMGHEIGHT: Bildhöhe
+    LAYOUT:
+      OPTIONS: Layout Optionen
+      HIDE_TITLE: Überschrift verbergen
+      INVERT: Invertieren
+      FLIP: Reihenfolge umkehren
+    REFERENCE:
+      SELECT: Modul auswählen
+      HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
+    CAROUSEL:
+      CONFIGURE: Karusell konfigurieren
+      IMGWIDTH: Bildbreite
+      IMGWIDTH_HELP: Setze die Breite auf 0 um Zoom/Beschnitt zu vermiden
+      IMGHEIGHT: Bildhöhe
+    QUOTE:
+      AUTHOR: Autor
+      NAME: Name
+      POSITION: Job/Titel/Position
+      PORTRAIT: Portrait
+      PORTR_POS: Portrait Position
+      PORTR_BEFORE: Vor Zitat
+      PORTR_AFTER: Nach Zitat
+    DOWNLOADS:
+      DOWNLOADS: Downloads
+      LAYOUT: Darstellung
+      LAYOUT_COMPACT: Kompakt
+      LAYOUT_VERBOSE: Ausführlich
+      LAYOUT_HELP: Bei der ausführlichen Darstellung werden Vorschaubild und Beschreibung angezeigt
+      THUMBNAIL_SEPARATE: Abweichendes Vorschaubild
+    ACCORDION_NOTICE: Dieses Modul zeigt ein Akkordeon, bestehend aus den Inhalten von dessen Unterseiten. Von denen werden Titel und Textinhalt automatisch ausgelesen.
   HERO:
     IMAGE: Titelbild
     HEADLINE: Überschrift auf dem Titelbild
@@ -56,6 +86,13 @@ THEME_C:
     POSTED_IN: Abgelegt in
     TAGS: Schlagworte
     ARCHIVE_OF: Archiv für
+  VIDEO:
+    EMBEDDED_VIDEO: Eingebettetes Video
+    PRIVACY: Hier befindet sich ein eingebetteter externer Inhalt. Wenn Sie diesen Inhalt laden, werden personenbezogene Daten an diese Plattform und eventuell weitere Dritte übertragen.
+    LOAD_ONCE: Inhalt einmal laden
+    LOAD_ALWAYS: Inhalte immer laden
+    WATCH_AT_YT: Bei YouTube ansehen
+    WATCH_AT_VIMEO: Bei Vimoe ansehen
   TICKER:
     DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Drücke Shift+T um diese Nachricht auszublenden +++
     STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++ Drücke Shift+T um diese Nachricht auszublenden +++

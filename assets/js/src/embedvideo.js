@@ -33,9 +33,14 @@
             // show mesasge for every iframe, create element after iframe
             self.frames.forEach( function( frame )
             {
-                var message = doc.createElement( 'div' );
+                let messageContent = self.message;
+                if ( frame.nextElementSibling.tagName == 'NOSCRIPT' )
+                {
+                    messageContent += '<p>' + frame.nextElementSibling.innerHTML + '</p>';
+                }
+                let message = doc.createElement( 'div' );
                 message.classList.add( 'embedvideo__privacy' );
-                message.innerHTML = self.message;
+                message.innerHTML = messageContent;
                 message.querySelector( 'button[data-action="show_embedded_content"]' ).addEventListener( 'click', self.enableEmbed );
                 message.querySelector( 'button[data-action="show_embedded_content_always"]' ).addEventListener( 'click', self.enableAllEmbeds );
                 frame.insertAdjacentElement( 'afterend', message );

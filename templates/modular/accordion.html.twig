@@ -1,0 +1,36 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--accordion',
+    'wrapping',
+] %}
+
+{# no need to notice a page collection all the time with this template #}
+{% set options = {
+    items: {'@self.children': ''},
+    'order': {'by': 'folder', 'dir': 'asc'}
+} %}
+{% set stack = page.collection(options) %}
+
+{% endspaceless %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    {% if header.layout.hide_title != true -%}
+    <h2 class="modular__title">{{ page.title }}</h2>
+    {% endif -%}
+
+    {% for object in stack %}
+
+        <div class="details details--accordion js-details" data-expanded="true">
+            <h3 class="details__title">
+                <button class="details__trigger" aria-expanded="true">
+                    {{ object.title }}
+                </button>
+            </h3>
+            <div class="details__content textflow">
+                {{ object.content|markdown|raw}}
+            </div>
+        </div>
+
+    {% endfor %}
+</section>

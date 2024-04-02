@@ -7,6 +7,15 @@ form:
   fields:
     tabs:
       fields:
+        system:
+          type: tab
+          title: System
+          fields:
+            hint:
+              type: display
+              style: vertical
+              outerclasses: user-notice is-warning
+              content: THEME_C.PAGE.SYSTEMIC
         content:
           unset@: true
         options:

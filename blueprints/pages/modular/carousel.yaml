@@ -1,5 +1,5 @@
 title: Carousel
-extends@: default
+extends@: modular/default
 
 form:
   fields:
@@ -11,14 +11,13 @@ form:
             content:
               unset@: true
 
-            carousel:
+            _carousel:
               type: section
-              title: THEME_C.MODULE.CAROUSEL
+              title: THEME_C.MODULE.CAROUSEL.CONFIGURE
               underline: true
               fields:
                 header.carousel:
                   type: list
-                  # label: THEME_C.MODULE.TABS
                   style: vertical
                   controls: both
                   fields:
@@ -41,8 +40,8 @@ form:
 
                 header.carouselWidth:
                   type: text
-                  label: THEME_C.MODULE.CAROUSEL_IMGWIDTH
-                  help: THEME_C.MODULE.CAROUSEL_IMGWIDTH_HELP
+                  label: THEME_C.MODULE.CAROUSEL.IMGWIDTH
+                  help: THEME_C.MODULE.CAROUSEL.IMGWIDTH_HELP
                   size: small
                   default: 350
                   validate:
@@ -52,7 +51,7 @@ form:
                     max: 2000
                 header.carouselHeight:
                   type: text
-                  label: THEME_C.MODULE.CAROUSEL_IMGHEIGHT
+                  label: THEME_C.MODULE.CAROUSEL.IMGHEIGHT
                   size: small
                   default: 500
                   validate:
@@ -61,24 +60,8 @@ form:
                     min: 100
                     max: 2000
 
-            publishing:
+            _publish:
               type: section
-              title: PLUGIN_ADMIN.PUBLISHING
-              underline: true
-              ordering@: 99
-              fields:
-                header.published:
-                  type: toggle
-                  toggleable: true
-                  label: PLUGIN_ADMIN.PUBLISHED
-                  help: PLUGIN_ADMIN.PUBLISHED_HELP
-                  highlight: 1
-                  size: medium
-                  options:
-                    1: PLUGIN_ADMIN.YES
-                    0: PLUGIN_ADMIN.NO
-                  validate:
-                    type: bool
-
-        options:
-          unset@: true
+              import@:
+                type: partials/publish
+                context: blueprints://

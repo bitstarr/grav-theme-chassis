@@ -5,8 +5,11 @@
     class
 ] %}
 <div class="embedvideo">
-    <iframe class="{{ modular_classes|join( ' ' )|trim }}" width="800" height="450" src="" data-src="{{ url }}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope" loading="lazy" allowfullscreen title="{{ 'THEME_C.VIDEO.EMBEDDED_VIDEO'|t }}" data-privacy="{{ 'THEME_C.VIDEO.PRIVACY'|t }}" data-once="{{ 'THEME_C.VIDEO.LOAD_ONCE'|t }}" data-always="{{ 'THEME_C.VIDEO.LOAD_ALWAYS'|t }}"></iframe>
+    <iframe class="{{ classes|join( ' ' )|trim }}" width="800" height="450" src="" data-src="{{ url }}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope" loading="lazy" allowfullscreen title="{{ 'THEME_C.VIDEO.EMBEDDED_VIDEO'|t }}" data-privacy="{{ 'THEME_C.VIDEO.PRIVACY'|t }}" data-once="{{ 'THEME_C.VIDEO.LOAD_ONCE'|t }}" data-always="{{ 'THEME_C.VIDEO.LOAD_ALWAYS'|t }}"></iframe>
     <noscript>
-        <a href="https://youtube.com/watch?v={{ id }}">{{ 'THEME_C.VIDEO.WATCH_AT_YT'|t }}</a>
+        <a class="source" href="https://youtube.com/watch?v={{ id }}">{{ 'THEME_C.VIDEO.WATCH_AT_YT'|t }}</a>
     </noscript>
 </div>
+
+
+{% do addInlineJs('window.foo = "bar"', {group: 'bottom'}) %}

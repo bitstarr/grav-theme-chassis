@@ -1,0 +1,32 @@
+title: Reference
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      active: 1
+      fields:
+        content:
+          fields:
+            content:
+              type: ignore
+            header.media_order:
+              type: ignore
+
+            header.reference:
+              type: pages
+              size: medium
+              label: THEME_C.MODULE.REFERENCE.SELECT
+              show_all: false
+              show_modular: true
+              show_root: false
+
+            reference_hint:
+              type: display
+              content: THEME_C.MODULE.REFERENCE.HINT
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

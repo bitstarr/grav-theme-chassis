@@ -23,9 +23,6 @@
     <title>{{ doc_title }}</title>
 
     {% include 'partials/metadata.html.twig' %}
-    {%- if page.header.hero.image %}
-        {%- include 'partials/hero-preload.html.twig' -%}
-    {% endif -%}
     <link rel="canonical" href="{{ page.url(true, true) }}">
 {% endblock head %}
 

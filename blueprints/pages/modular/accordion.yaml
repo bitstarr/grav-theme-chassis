@@ -1,0 +1,37 @@
+title: Accordion
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+
+            hint:
+              type: display
+              style: vertical
+              outerclasses: user-notice
+              content: THEME_C.MODULE.ACCORDION_NOTICE
+
+            _layout:
+              type: section
+              title: THEME_C.MODULE.LAYOUT.OPTIONS
+              underline: true
+              import@:
+                type: partials/layout-title
+                context: blueprints://
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

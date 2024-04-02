@@ -23,6 +23,7 @@
     &__nav {
         .menu {
             display: flex;
+            flex-wrap: wrap;
             font-size: .9em;
         }
 

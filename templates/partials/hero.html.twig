@@ -1,42 +1,53 @@
 <div class="hero">
-{% if page.header.hero.image matches '~^\/|^https?:\/\/~' %}
-    <img class="hero__img" src="{{ page.header.hero.image }}" alt="" fetchpriority="high">
+{% if header.hero.image matches '~^\/|^https?:\/\/~' %}
+    <img class="hero__img" src="{{ header.hero.image }}" alt="" fetchpriority="high">
 {% else %}
-    {% set hero_image = page.media[page.header.hero.image] %}
+    {% set hero_image = page.media[header.hero.image] %}
     {# use the following fo a central header image storage in /_heros folder #}
-    {# {% set hero_image = media_directory('page://_heros')[page.header.hero.image] %} #}
+    {# {% set hero_image = media_directory('page://_heros')[header.hero.image] %} #}
 
-    {% set image = {
+    {% set images = {
         640: hero_image.cropZoom(640,320).quality(70).url,
         960: hero_image.cropZoom(960,240).quality(70).url,
         1280: hero_image.cropZoom(1280,320).quality(70).url,
         1920: hero_image.cropZoom(1920,480).quality(70).url,
     } %}
     <picture>
-        <source srcset="{{ image[640] }}" media="(max-width: 549px)">
-        <source srcset="{{ image[1920] }}" media="(min-width: 1280px)">
-        <source srcset="{{ image[1280] }}" media="(min-width: 960px)">
-        <source srcset="{{ image[960] }}" media="(min-width: 550px)">
+        <source srcset="{{ images[640] }}" media="(max-width: 549px)">
+        <source srcset="{{ images[1920] }}" media="(min-width: 1280px)">
+        <source srcset="{{ images[1280] }}" media="(min-width: 960px)">
+        <source srcset="{{ images[960] }}" media="(min-width: 550px)">
         <img class="hero__img"
-            src="{{ image[640] }}"
+            src="{{ images[640] }}"
             width="640"
             height="160"
             alt=""
             fetchpriority="high"
             >
     </picture>
+
+    {%- set srcset = [] -%}
+    {%- for key,item in images %}
+        {%- set srcset = srcset|merge( [ item ~ ' ' ~ key ~ 'w' ] ) -%}
+    {% endfor -%}
+    {%- do assets.addLink(images|first, {
+        rel: 'preload',
+        as: 'image',
+        imagesizes: '100vw',
+        imagesrcset: srcset|join(', ')|e,
+        }) -%}
 {% endif %}
-{% if page.header.hero.author %}
+{% if header.hero.author %}
     <span class="hero__author">
-        {{ page.header.hero.author }}
+        {{ header.hero.author }}
     </span>
 {% endif %}
 
-{% if page.header.hero.headline %}
+{% if header.hero.headline %}
     <div class="wrapper">
         <h1 class="hero__title">
             <span class="padded">
-                {{ page.header.hero.headline }}
+                {{ header.hero.headline }}
             </span>
         </h1>
     </div>

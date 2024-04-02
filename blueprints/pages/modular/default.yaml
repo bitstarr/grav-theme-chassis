@@ -1,17 +1,20 @@
-title: base
-'@extends':
-  type: default
+title: Default
+extends@: default
 
 form:
   fields:
     tabs:
       fields:
-        content:
-          fields:
+        # content:
+          # fields:
             # content:
             #   unset@: true
-            header.media_order:
-              ordering@: 99
+            # header.media_order:
+            #   ordering@: 99
+
+        options:
+          unset@: true
+
         advanced:
           fields:
             overrides:

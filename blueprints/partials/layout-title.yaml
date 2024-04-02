@@ -1,0 +1,12 @@
+form:
+  fields:
+    header.layout.hide_title:
+      type: toggle
+      toggleable: true
+      label: THEME_C.MODULE.LAYOUT.HIDE_TITLE
+      highlight: 1
+      options:
+        1: PLUGIN_ADMIN.YES
+        0: PLUGIN_ADMIN.NO
+      validate:
+        type: bool

@@ -1,0 +1,69 @@
+title: Downloads
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+
+            downloads:
+              type: section
+              title: THEME_C.MODULE.DOWNLOADS.DOWNLOADS
+              underline: true
+              fields:
+                header.downloads:
+                  type: list
+                  # label: THEME_C.MODULE.TABS
+                  style: vertical
+                  controls: both
+                  fields:
+                    .title:
+                      type: text
+                      label: THEME_C.MODULE.TITLE
+                      validate:
+                        required: true
+                    .file:
+                      type: pagemediaselect
+                      label: THEME_C.MODULE.FILE
+                      validate:
+                        required: true
+                    .description:
+                      type: textarea
+                      label: THEME_C.MODULE.DESCRIPTION
+                      rows: 2
+                    .thumbnail:
+                      type: pagemediaselect
+                      label: THEME_C.MODULE.DOWNLOADS.THUMBNAIL_SEPARATE
+                      preview_images: true
+                      accept:
+                        - .jpg
+                        - .jpeg
+                        - .png
+
+
+            _layout:
+              type: section
+              title: THEME_C.MODULE.LAYOUT.OPTIONS
+              underline: true
+              import@:
+                type: partials/layout-title
+                context: blueprints://
+              fields:
+                header.layout.type:
+                  type: radio
+                  label: THEME_C.MODULE.DOWNLOADS.LAYOUT
+                  help: THEME_C.MODULE.DOWNLOADS.LAYOUT_HELP
+                  default: 'compact'
+                  options:
+                      'compact': THEME_C.MODULE.DOWNLOADS.LAYOUT_COMPACT
+                      'verbose': THEME_C.MODULE.DOWNLOADS.LAYOUT_VERBOSE
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

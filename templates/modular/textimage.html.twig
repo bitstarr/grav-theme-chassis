@@ -1,0 +1,48 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--textimage',
+    'textimage',
+    'wrapping',
+] %}
+
+{% if header.layout.flipped %}
+    {% set modular_classes = modular_classes|merge( ['is-flipped'] ) %}
+{% endif %}
+
+{% set image = page.media[ header.image ] %}
+{% endspaceless %}
+
+{% if image %}
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    <div class="textimage__wrap">
+        {% if header.layout.hide_title != true -%}
+            <h2 class="textimage__title">
+                {{ page.title|raw }}
+            </h2>
+        {% endif %}
+        <img class="textimage__image"
+            src="{{ image.cropResize(640,null).quality(70).url }}"
+            width="{{ image.width }}"
+            height="{{ image.height }}"
+            alt=""
+            loading="lazy"
+            decoding="async" />
+        <div class="textimage__content">
+            <div class="textflow">
+                {{ page.content|raw }}
+
+                {% if header.callout.url and header.callout.label %}
+                <p>
+                    <a class="button" href="{{ header.callout.url }}"{% if header.callout.external %} target="_blank"{% endif %}>
+                        {{ header.callout.label }}
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+    {{ dump( 'Text-Image Modular: You need to select an image' ) }}
+{% endif %}
