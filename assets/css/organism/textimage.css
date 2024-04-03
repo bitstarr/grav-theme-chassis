@@ -1,30 +1,5 @@
 .textimage {
-    --_areas:
-        'title'
-        'image'
-        'content';
-    --_col-gap: var( --gap-deca );
-
-    &__wrap {
-        display: grid;
-        grid-template-areas: var( --_areas );
-        grid-template-rows: auto 1fr;
-        gap: 0 var( --_col-gap );
-
-        @media (min-width: 49em) {
-            --_areas:
-                'image title'
-                'image content';
-            grid-template-columns: .9fr 1fr;
-            align-items: start;
-
-            .is-flipped & {
-                --_areas:
-                    'title image'
-                    'content image';
-            }
-        }
-    }
+    container: textimage / inline-size;
 
     &__title {
         grid-area: title;
@@ -33,7 +8,7 @@
         font-weight: 700;
         color: var( --color-primary );
 
-        @media( min-width: 44em) {
+        @container textimage (inline-size > 34em) {
             font-size: clamp( var( --size-deca ), 3.6vw, var( --size-kilo ) );
         }
     }
@@ -41,11 +16,6 @@
     &__image {
         grid-area: image;
         margin-bottom: var( --gap );
-
-        @media( min-width: 49em) {
-            position: sticky;
-            top: var( --gap-deca );
-        }
     }
 
     &__content {
@@ -56,7 +26,36 @@
         }
     }
 
-    @media ( min-width: 60em ) {
-        --_col-gap: var( --gap-hecto );
+    @container textimage (inline-size > 39em) {
+        &__shell {
+            --_areas:
+                'image title'
+                'image content';
+            --_col-gap: var( --gap-deca );
+
+            display: grid;
+            gap: 0 var( --_col-gap );
+            grid-template-areas: var( --_areas );
+            grid-template-rows: auto 1fr;
+            grid-template-columns: .9fr 1fr;
+            align-items: start;
+        }
+
+        .is-flipped &__shell {
+            --_areas:
+                'title image'
+                'content image';
+        }
+
+        &__image {
+            position: sticky;
+            top: var( --gap-deca );
+        }
+    }
+
+    @container textimage (inline-size > 43em) {
+        &__shell {
+            --_col-gap: var( --gap-hecto );
+        }
     }
 }

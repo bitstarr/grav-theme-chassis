@@ -2,7 +2,6 @@
 {% set modular_classes = [
     'modular',
     'modular--textimage',
-    'textimage',
     'wrapping',
 ] %}
 
@@ -15,7 +14,8 @@
 
 {% if image %}
 <section class="{{ modular_classes|join( ' ' )|trim }}">
-    <div class="textimage__wrap">
+    <div class="textimage">
+    <div class="textimage__shell">
         {% if header.layout.hide_title != true -%}
             <h2 class="textimage__title">
                 {{ page.title|raw }}
@@ -41,6 +41,7 @@
                 {% endif %}
             </div>
         </div>
+    </div>
     </div>
 </section>
 {% else %}

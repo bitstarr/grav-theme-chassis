@@ -47,7 +47,7 @@
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}
-    {% if config.site.env.state == 'dev' %}
+    {% if config.system.env.state == 'dev' %}
         {% do assets.addJs('theme://dist/js/dev.js', { group:'bottom' }) %}
     {% endif %}
 {% endblock %}
@@ -74,7 +74,7 @@
         <div class="wrapped">
             <a class="logo" href="{{ home_url }}">
                 {{ svg('logo', 'logo__img icon', { 'title': site.title })|raw }}
-                {{ site.title }}
+                {# {{ site.title }} #}
             </a>
 
             {% block header_navigation %}
