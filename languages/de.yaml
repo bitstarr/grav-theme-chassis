@@ -70,6 +70,12 @@ THEME_C:
       LAYOUT_VERBOSE: Ausführlich
       LAYOUT_HELP: Bei der ausführlichen Darstellung werden Vorschaubild und Beschreibung angezeigt
       THUMBNAIL_SEPARATE: Abweichendes Vorschaubild
+    NOTICE:
+      STATUS: Status
+      0: Standard (grau)
+      1: Erfolg (grün)
+      2: Warnung (orange)
+      3: Fehler (rot)
     ACCORDION_NOTICE: Dieses Modul zeigt ein Akkordeon, bestehend aus den Inhalten von dessen Unterseiten. Von denen werden Titel und Textinhalt automatisch ausgelesen.
   HERO:
     IMAGE: Titelbild

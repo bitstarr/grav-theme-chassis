@@ -70,6 +70,12 @@ THEME_C:
       LAYOUT_VERBOSE: Verbose
       LAYOUT_HELP: With the verbose layout, thumbnail and description will be displayed
       THUMBNAIL_SEPARATE: Divergent thumbnail image
+    NOTICE:
+      STATUS: Status
+      0: Default (grey)
+      1: Succsess (green)
+      2: Warning (orange)
+      3: Error (red)
     ACCORDION_NOTICE: This module shows an accordion consisting of the contents of its subpages. The title and text content are automatically read from these.
   HERO:
     IMAGE: Hero Image
