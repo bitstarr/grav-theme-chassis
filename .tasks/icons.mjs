@@ -22,7 +22,8 @@ const config = {
                     {
                         name: 'removeViewBox',
                         active: false,
-                    },                    {
+                    },
+                    {
                         name: 'removeDimensions',
                         active: true,
                     },

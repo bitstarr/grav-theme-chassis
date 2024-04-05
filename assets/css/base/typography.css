@@ -82,7 +82,7 @@ body {
     border-collapse: collapse;
     border-color: currentcolor;
     text-indent: 0;
-    font-variant-numeric: lining-nums tabular-nums;
+    font-variant-numeric: lining-nums tabular-nums diagonal-fractions;
 }
 
 :where( td, td img ) { vertical-align: top; }
