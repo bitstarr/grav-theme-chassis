@@ -17,7 +17,7 @@ THEME_C:
     BREADCRUMBS: Breadcrumbs
     FOOTER: Conclusive
     SOCIAL: Social Media
-  SITE:
+  SYSTEM:
     ENV_STATUS: Enviroment Status
     ENV_PROD: Production
     ENV_STG: Stage

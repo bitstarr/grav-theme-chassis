@@ -23,7 +23,7 @@ THEME_C:
     SHOW: Anzeigen
     HIDE: Verbergen
     SYSTEMIC: Das ist eine System-Seite und du kannst hier nichts tun.
-  SITE:
+  SYSTEM:
     ENV_STATUS: Enviroment Status
     ENV_PROD: Production
     ENV_STG: Stage
