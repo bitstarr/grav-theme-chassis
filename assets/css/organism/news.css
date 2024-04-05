@@ -30,4 +30,24 @@
     & + .pager {
         margin-top: var( --gap-kilo  );
     }
+
+    &__archive + &__archive {
+        margin-top: var( --gap-hecto );
+    }
+
+    &__dateArchive {
+        .list {
+            columns: 15ch auto;
+        }
+    }
+
+    &__tagList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1ex;
+
+        .post + & {
+            margin-top: var( --gap-deca );
+        }
+    }
 }

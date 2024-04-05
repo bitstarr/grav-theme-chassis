@@ -52,4 +52,16 @@
         --_txt: var( --o-notice-ink-error );
         --_brd: var( --o-notice-frame-error, #d0103a );
     }
+
+    &:has( .icon ) {
+        position: relative;
+        border-left-width: calc( 2 * var( --gap-deci ) + 1em );
+    }
+
+    .icon {
+        position: absolute;
+        left: calc( -1 * var( --gap-deci ) );
+        translate: -100% 0;
+        color: var( --_bg );
+    }
 }

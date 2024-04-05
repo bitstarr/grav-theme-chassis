@@ -6,7 +6,7 @@
     'bullets',
 ] %}
 
-{% if page.header.layout.inverted %}
+{% if header.layout.inverted %}
     {% set modular_classes = modular_classes|merge( ['is-inverted'] ) %}
 {% endif %}
 {% endspaceless %}
@@ -14,7 +14,7 @@
 {% if header.bullets %}
     <div class="{{ modular_classes|join( ' ' )|trim }}">
         <div class="wrapped">
-            {% if page.header.layout.show_title %}
+            {% if header.layout.hide_title != true -%}
             <h2 class="modular__title" >{{ page.title }}</h2>
             {% endif %}
             <ul class="bullets__list">

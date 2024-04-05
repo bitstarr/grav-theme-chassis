@@ -1,0 +1,24 @@
+{% set modular_classes = [
+    'modular',
+    'modular--notice',
+    'wrapping'
+] %}
+
+{% set level = {
+    0: 'default',
+    1: 'success',
+    2: 'warning',
+    3: 'error',
+} %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    <div class="notice notice--{{ level[ header.level|default( '0' ) ] }}">
+        {% if header.icon %}
+            {{ svg( header.icon )|raw }}
+        {% endif %}
+        <h2 class="notice__title">{{ page.title }}</h2>
+        <div class="textflow">
+            {{ page.content|raw }}
+        </div>
+    </div>
+</section>

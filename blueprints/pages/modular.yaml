@@ -6,13 +6,10 @@ extends@:
 form:
   fields:
     tabs:
-      type: tabs
-      active: 1
-
       fields:
 
-        content:
-          fields:
+        # content:
+          # fields:
 
 
         advanced:

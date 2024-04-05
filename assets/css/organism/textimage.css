@@ -1,0 +1,61 @@
+.textimage {
+    container: textimage / inline-size;
+
+    &__title {
+        grid-area: title;
+        margin-bottom: var( --gap );
+        font-size: var( --size-kilo );
+        font-weight: 700;
+        color: var( --color-primary );
+
+        @container textimage (inline-size > 34em) {
+            font-size: clamp( var( --size-deca ), 3.6vw, var( --size-kilo ) );
+        }
+    }
+
+    &__image {
+        grid-area: image;
+        margin-bottom: var( --gap );
+    }
+
+    &__content {
+        grid-area: content;
+
+        .contact__address {
+            margin-top: var( --base-line );
+        }
+    }
+
+    @container textimage (inline-size > 39em) {
+        &__shell {
+            --_areas:
+                'image title'
+                'image content';
+            --_col-gap: var( --gap-deca );
+
+            display: grid;
+            gap: 0 var( --_col-gap );
+            grid-template-areas: var( --_areas );
+            grid-template-rows: auto 1fr;
+            grid-template-columns: .9fr 1fr;
+            align-items: start;
+        }
+
+        .is-flipped &__shell {
+            --_areas:
+                'title image'
+                'content image';
+        }
+
+        &__image {
+            position: sticky;
+            top: var( --gap-deca );
+        }
+    }
+
+    @container textimage (inline-size > 43em) {
+        &__shell {
+            --_col-gap: var( --gap-hecto );
+        }
+    }
+}

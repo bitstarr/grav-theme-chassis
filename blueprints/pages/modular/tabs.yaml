@@ -1,0 +1,47 @@
+title: Tabs
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+
+            content:
+              unset@: true
+
+            tabs:
+              type: section
+              title: THEME_C.MODULE.TABS
+              underline: true
+              fields:
+                header.tabs:
+                  type: list
+                  # label: THEME_C.MODULE.TABS
+                  style: vertical
+                  controls: both
+                  max: 5
+                  fields:
+                    .title:
+                      type: text
+                      label: THEME_C.MODULE.TITLE
+                      style: vertical
+                    .content:
+                      type: editor
+                      label: THEME_C.MODULE.CONTENT
+                      rows: 3
+
+            _layout:
+              type: section
+              title: THEME_C.MODULE.LAYOUT.OPTIONS
+              underline: true
+              import@:
+                type: partials/layout-title
+                context: blueprints://
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

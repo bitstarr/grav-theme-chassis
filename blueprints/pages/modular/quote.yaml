@@ -1,0 +1,47 @@
+title: Quote
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            # content:
+            #   unset@: true
+            # header.media_order:
+            #   unset@: true
+
+            author:
+              type: section
+              title: THEME_C.MODULE.QUOTE.AUTHOR
+              underline: true
+              fields:
+                header.author.name:
+                  type: text
+                  label: THEME_C.MODULE.QUOTE.NAME
+                  size: medium
+                header.author.job:
+                  type: text
+                  label: THEME_C.MODULE.QUOTE.POSITION
+                  size: medium
+                header.image.file:
+                  type: pagemediaselect
+                  label: THEME_C.MODULE.QUOTE.PORTRAIT
+                  preview_images: true
+                  accept:
+                    - .jpg
+                    - .jpeg
+                header.image.position:
+                  type: radio
+                  label: THEME_C.MODULE.QUOTE.PORTR_POS
+                  default: ''
+                  options:
+                      '': THEME_C.MODULE.QUOTE.PORTR_BEFORE
+                      'after': THEME_C.MODULE.QUOTE.PORTR_AFTER
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

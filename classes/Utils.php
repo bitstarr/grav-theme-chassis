@@ -37,4 +37,31 @@ class Utils
 
         echo $links;
     }
+
+    public static function getIcons()
+    {
+        $grav = Grav::instance();
+        $path = $grav['locator']->findResources('theme://dist/icons/', false );
+
+        if ( !$path )
+        {
+            return;
+        }
+
+        $files = Folder::all( $path[0] );
+        $icons = [];
+
+        foreach( $files as $file )
+        {
+            if ( preg_match( "/^.*\.(svg)$/i", $file, $ext ) )
+            {
+                $name = pathinfo( $path[0] . '/' . $file, PATHINFO_FILENAME );
+                $icons[ $name ] = $name;
+            }
+        }
+
+        ksort( $icons );
+
+        return $icons;
+    }
 }

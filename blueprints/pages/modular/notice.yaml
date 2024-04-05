@@ -1,0 +1,33 @@
+title: Notice
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            header.media_order:
+              unset@: true
+
+            header.icon:
+              type: select
+              label: THEME_C.MODULE.ICON
+              toggleable: true
+              data-options@: '\Grav\Theme\Chassis\Utils::getIcons'
+
+            header.level:
+              ordering@: 4
+              type: select
+              label: THEME_C.MODULE.NOTICE.STATUS
+              options:
+                0: THEME_C.MODULE.NOTICE.0
+                1: THEME_C.MODULE.NOTICE.1
+                2: THEME_C.MODULE.NOTICE.2
+                3: THEME_C.MODULE.NOTICE.3
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

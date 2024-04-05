@@ -24,6 +24,10 @@ const config = {
                         active: false,
                     },
                     {
+                        name: 'removeDimensions',
+                        active: true,
+                    },
+                    {
                         name: 'convertStyleToAttrs',
                         active: true,
                     },

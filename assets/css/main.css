@@ -25,13 +25,16 @@
 @import 'organism/breadcrumbs.css';
 @import 'organism/textflow.css';
 @import 'organism/notice.css';
+@import 'organism/hero.css';
+@import 'organism/modular.css';
+/* specific */
 @import 'organism/details.css';
 @import 'organism/tabs.css';
 @import 'organism/bullets.css';
 @import 'organism/carousel.css';
-/* specific */
-@import 'organism/hero.css';
-@import 'organism/modular.css';
+@import 'organism/quote.css';
+@import 'organism/downloads.css';
+@import 'organism/textimage.css';
 
 
 /* layouts define the relations between modules on a specific page type */

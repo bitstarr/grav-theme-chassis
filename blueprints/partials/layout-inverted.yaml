@@ -1,0 +1,13 @@
+form:
+  fields:
+    header.layout.inverted:
+      type: toggle
+      toggleable: true
+      label: THEME_C.MODULE.LAYOUT.INVERT
+      highlight: 1
+      size: medium
+      options:
+        1: PLUGIN_ADMIN.YES
+        0: PLUGIN_ADMIN.NO
+      validate:
+        type: bool

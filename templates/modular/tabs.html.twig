@@ -7,13 +7,13 @@
     'tabs--default',
 ] %}
 
-{% if page.header.layout_alt %}
+{% if header.layout_alt %}
     {% set modular_classes = modular_classes|merge( ['modular--alt'] ) %}
 {% endif %}
 {% endspaceless %}
 
 <section class="{{ modular_classes|join( ' ' )|trim }}">
-    {% if header.hide_title != true -%}
+    {% if header.layout.hide_title != true -%}
     <h2 class="modular__title">{{ page.title }}</h2>
     {% endif -%}
 

@@ -1,0 +1,75 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--downloads',
+    'downloads',
+    'wrapping',
+] %}
+
+{% set size = 160 %}
+
+{% if header.layout.type == 'verbose' %}
+    {% set modular_classes = modular_classes|merge( ['downloads--verbose'] ) %}
+{% else %}
+    {% set modular_classes = modular_classes|merge( ['downloads--compact'] ) %}
+{% endif %}
+{% endspaceless %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    {% if header.layout.hide_title != true -%}
+    <h2 class="modular__title">{{ page.title }}</h2>
+    {% endif -%}
+
+    <ul class="downloads__list">
+        {% for item in header.downloads -%}
+            {% set file = page.media[item.file] %}
+        <li class="downloads__item">
+            {% if header.layout.type != 'verbose' %}
+                {{ svg('file-download')|raw }}
+                <a href="{{ file.url }}" class="link">
+                    {{ item.title }}
+                    <small>
+                    ({{ file.extension[0:4]|upper }},
+                    {{ file.size|nicefilesize }})
+                    </small>
+                </a>
+            {% else -%}
+                {% if page.media[item.thumbnail] -%}
+                    {% set thumbnail = page.media[item.thumbnail] %}
+                    <img
+                        class="thumbnail"
+                        src="{{ thumbnail.cropResize( size, null ).url }}"
+                        width={{ size }}
+                        height={{ ( thumbnail.height / thumbnail.width * size)|round }}
+                        alt="">
+                {% else -%}
+                    <span class="thumbnail">
+                        {{ svg('file')|raw }}
+                    </span>
+                {% endif -%}
+                <div class="content">
+                    <p class="title">
+                        {{ item.title }}
+                    </p>
+                    {% if item.description -%}
+                    <p class="description">
+                        {{ item.description|markdown|strip_tags('<strong><em><br>')|raw }}
+                    </p>
+                    {% endif -%}
+                    <p>
+                        {{ svg('download')|raw }}
+                        <a href="{{ file.url }}" class="link">
+                            {{ item.title }},
+                            <small>
+                            ({{ file.extension[0:4]|upper }},
+                            {{ file.size|nicefilesize }})
+                            </small>
+                        </a>
+                    </p>
+                </div>
+            {% endif -%}
+        </li>
+        {% endfor -%}
+    </ul>
+
+</section>

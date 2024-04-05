@@ -22,6 +22,9 @@
         content: '•  ';
         color: var( --o-textflow-list-accent, var( --default-primary) );
     }
+    ul ul li::marker {
+        color: var( --o-textflow-list-accentNested, var( --default-muted ) );
+    }
     li ol,
     li ul { margin-bottom: 0; }
     li + li {
@@ -53,6 +56,10 @@
     th {
         font-weight: 700;
         border-bottom: 2px solid var( --default-border-ink );
+    }
+    th[scope=row] {
+        border-bottom: 0;
+        border-top: 1px solid var( --default-border-ink );
     }
     th:empty { display: none; }
     tr + tr td { border-top: 1px solid var( --default-border-ink );  }

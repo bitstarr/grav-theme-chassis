@@ -17,7 +17,7 @@ THEME_C:
     BREADCRUMBS: Breadcrumbs
     FOOTER: Conclusive
     SOCIAL: Social Media
-  SITE:
+  SYSTEM:
     ENV_STATUS: Enviroment Status
     ENV_PROD: Production
     ENV_STG: Stage
@@ -29,18 +29,54 @@ THEME_C:
     BREADCRUMB: Breadcrumb
     SHOW: Show
     HIDE: Hide
+    SYSTEMIC: This is a system page. You can't do anything here.
   MODULE:
-    SELECT_REFERENCE: Select Module
-    REFERENCE_HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
     Title: Title
-    HIDE_TITLE: Hide Title
     CONTENT: Content
+    DESCRIPTION: Description
+    FILE: File
+    IMAGE: Image
     THUMBNAIL: Thumbnail Image
+    TEXT: Text
+    URL: URL
+    ICON: Icon
+    ENTRIES: Entries
     TABS: Tabs
-    CAROUSEL: Carousel
-    CAROUSEL_IMGWIDTH: Image Width
-    CAROUSEL_IMGWIDTH_HELP: Set width to 0 to avoid cropping/zooming
-    CAROUSEL_IMGHEIGHT: Image Height
+    LAYOUT:
+      OPTIONS: Layout options
+      HIDE_TITLE: Hide Title
+      INVERT: Invert
+      FLIP: Reverese Order
+    REFERENCE:
+      SELECT: Select Module
+      HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
+    CAROUSEL:
+      CONFIGURE: Carousel configuration
+      IMGWIDTH: Image Width
+      IMGWIDTH_HELP: Set width to 0 to avoid cropping/zooming
+      IMGHEIGHT: Image Height
+    QUOTE:
+      AUTHOR: Author
+      NAME: Name
+      POSITION: Job/Title/Position
+      PORTRAIT: Portrait
+      PORTR_POS: Portrait Position
+      PORTR_BEFORE: Before quote
+      PORTR_AFTER: After quote
+    DOWNLOADS:
+      DOWNLOADS: Downloads
+      LAYOUT: Layout
+      LAYOUT_COMPACT: Compact
+      LAYOUT_VERBOSE: Verbose
+      LAYOUT_HELP: With the verbose layout, thumbnail and description will be displayed
+      THUMBNAIL_SEPARATE: Divergent thumbnail image
+    NOTICE:
+      STATUS: Status
+      0: Default (grey)
+      1: Succsess (green)
+      2: Warning (orange)
+      3: Error (red)
+    ACCORDION_NOTICE: This module shows an accordion consisting of the contents of its subpages. The title and text content are automatically read from these.
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image
@@ -56,6 +92,13 @@ THEME_C:
     POSTED_IN: Posted in
     TAGS: Tags
     ARCHIVE_OF: Achive of
+  VIDEO:
+    EMBEDDED_VIDEO: Embedded Video
+    PRIVACY: Here you will find embedded external content. If you load this content, personal data will be transferred to this platform and possibly to other third parties.
+    LOAD_ONCE: Load once
+    LOAD_ALWAYS: Always load
+    WATCH_AT_YT: Watch at YouTube
+    WATCH_AT_VIMEO: Watch at Vimoe
   TICKER:
     DEV: +++ DEV Enviroment +++ Buckle up +++ Press Shift+T to hide this message +++
     STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++ Press Shift+T to hide this message +++

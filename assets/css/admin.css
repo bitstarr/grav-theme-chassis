@@ -1,5 +1,23 @@
 /* stylelint-disable */
 
+/* special user hints from blueprints */
+.user-notice .form-display-wrapper {
+    padding: 1em;
+    color: #222;
+    border: 1px solid var( --_brd, #b9e3ff );
+    border-left-width: 1ex;
+    background-color: var( --_bg, #e8f6ff );
+}
+.user-notice.is-warning {
+    --_brd: #b98300;
+    --_bg: #fff8ef;
+}
+.user-notice.is-important {
+    --_brd: #ff4647;
+    --_bg: #fff8f6;
+}
+
+
 /* page edit view content */
 #admin-main .form-tabs .tab__content {
     max-width: 80rem;

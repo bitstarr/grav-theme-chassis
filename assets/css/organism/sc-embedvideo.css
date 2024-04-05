@@ -30,8 +30,17 @@
             #989898;
         background-blend-mode: multiply, multiply;
 
-        .button {
-            margin: 1em 1ex;
+        .buttons {
+            --_space: clamp( .5rem, 7.5vw + -1rem, 2rem );
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1ex var( --_space );
+            margin: var( --_space );
+        }
+
+        .source {
+            --color-link: currentcolor;
         }
 
         @media (max-width: 40em) {
