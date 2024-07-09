@@ -98,7 +98,7 @@ THEME_C:
     LOAD_ONCE: Load once
     LOAD_ALWAYS: Always load
     WATCH_AT_YT: Watch at YouTube
-    WATCH_AT_VIMEO: Watch at Vimoe
+    WATCH_AT_VIMEO: Watch at Vimeo
   TICKER:
     DEV: +++ DEV Enviroment +++ Buckle up +++ Press Shift+T to hide this message +++
     STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++ Press Shift+T to hide this message +++

@@ -98,7 +98,7 @@ THEME_C:
     LOAD_ONCE: Inhalt einmal laden
     LOAD_ALWAYS: Inhalte immer laden
     WATCH_AT_YT: Bei YouTube ansehen
-    WATCH_AT_VIMEO: Bei Vimoe ansehen
+    WATCH_AT_VIMEO: Bei Vimeo ansehen
   TICKER:
     DEV: +++ DEV Umgebung +++ Festhalten, es könnte gefährlich werden! +++ Drücke Shift+T um diese Nachricht auszublenden +++
     STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++ Drücke Shift+T um diese Nachricht auszublenden +++
