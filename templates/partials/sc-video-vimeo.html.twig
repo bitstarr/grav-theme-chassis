@@ -7,6 +7,6 @@
 <div class="embedvideo">
     <iframe class="{{ classes|join( ' ' )|trim }}" width="800" height="450" src="" data-src="{{ url }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen title="{{ 'THEME_C.VIDEO.EMBEDDED_VIDEO'|t }}" data-privacy="{{ 'THEME_C.VIDEO.PRIVACY'|t }}" data-once="{{ 'THEME_C.VIDEO.LOAD_ONCE'|t }}" data-always="{{ 'THEME_C.VIDEO.LOAD_ALWAYS'|t }}"></iframe>
     <noscript>
-        <a href="https://vimeo.com/{{ id }}">{{ 'THEME_C.VIDEO.WATCH_AT_VIMEO'|t }}</a>
+        <a class="source" href="https://vimeo.com/{{ id }}">{{ 'THEME_C.VIDEO.WATCH_AT_VIMEO'|t }}</a>
     </noscript>
 </div>

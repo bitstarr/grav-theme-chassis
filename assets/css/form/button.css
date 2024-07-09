@@ -1,17 +1,32 @@
 .button {
     /*
         API:
-        --f-button-surface          background color
-        --f-button-ink              text color
-        --f-button-surface-hover    hover background color
-        --f-button-ink-hover        hover text color
-        --f-button-halo-hover       hover halo (boxshadow)
+        --f-b-background
+        --f-b-background-hover
+        --f-b-textcolor
+        --f-b-textcolor-hover
+        --f-b-border
+        --f-b-bordercolor-hover
+
+        --f-b-2nd-background
+        --f-b-2nd-background-hover
+        --f-b-2nd-textcolor
+        --f-b-2nd-textcolor-hover
+        --f-b-2nd-border
+        --f-b-2nd-bordercolor-hover
+
+        --f-b-3rd-textcolor
+        --f-b-3rd-textcolor-hover
+        --f-b-3nd-background-hover
     */
+
     --_bg: var( --f-button-surface, var( --default-primary) );
     --_txt: var( --f-button-ink, var( --default-on-primary ) );
-    --_hover-bg: var( --f-button-surface-hover, var( --default-primary-dark ) );
+    --_brd: var( --f-b-border, none );
+    --_hover-bg: var( --f-button-surface-hover, color-mix( in oklab, var( --default-primary ), #fff 30% ) );
     --_hover-txt: var( --f-button-ink-hover, var( --default-on-primary ) );
-    --_hover-halo: var( --f-button-halo-hover, var( --default-primary-light ) );
+    /* --_hover-halo: var( --f-button-halo-hover, var( --default-primary-light ) ); */
+    --_hover-brd-color: var( --f-b-bordercolor-hover, inherit );
 
     position: relative;
     z-index: 1;
@@ -19,13 +34,13 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 1em;
+    padding: .5em .75em;
     line-height: 1.2;
     text-align: center;
     color: var( --_txt );
     background: var( --_bg );
-    border: 0;
-    border-radius: 0;
+    border: var( --_brd );
+    border-radius: var( --default-radius, 0 );
     transition: background-color .2s;
     /*
     display: flex;
@@ -40,7 +55,7 @@
     &:not([disabled]):focus {
         --_bg: var( --_hover-bg );
         --_txt: var( --_hover-txt );
-        box-shadow: 0 0 0 .1em var( --_hover-halo );
+        /* box-shadow: 0 0 0 .1em var( --_hover-halo ); */
     }
 
     &[disabled] {
@@ -49,7 +64,31 @@
         cursor: not-allowed;
     }
 
+    &--secondary {
+        --_bg: var( --f-b-2nd-background, none );
+        --_txt: var( --f-b-2nd-textcolor, var( --default-primary ) );
+        --_brd: var( --f-b-2nd-border, .1em solid var( --default-primary ) );
+        --_hover-bg: var( --f-b-2nd-background-hover, var( --default-primary ) );
+        --_hover-txt: var( --f-b-2nd-textcolor-hover, var( --default-on-primary ) );
+        --_hover-brd-color: var( --f-b-2nd-bordercolor-hover, inherit );
+    }
+
+    &--quiet {
+        --_bg: none;
+        --_txt: var( --f-b-3rd-textcolor, var( --default-primary ) );
+        --_hover-txt: var( --f-b-3rd-textcolor-hover, var( --default-primary-dark ) );
+        --_hover-bg: var( --f-b-3rd-background-hover, var( --default-primary-light ) );
+        border: none;
+    }
+
     &--small {
-        padding: 1ex;
+        padding: .3em .5em;
+    }
+
+    & .icon:first-child {
+        margin-inline-end: 1ch;
+    }
+    & .icon:last-child {
+        margin-inline-start: 1ch;
     }
 }
