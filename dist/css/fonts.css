@@ -1,0 +1,38 @@
+/*
+    basic fontloading optimization is included in this theme.
+    for further ideas read:
+    https://simonhearne.com/2021/layout-shifts-webfonts/
+    a neat trick would be to use faux bolds or faux italics - but your design might not like this
+
+    Also consider to try a local font first:
+    https://twitter.com/argyleink/status/1223026734817087488
+*/
+@font-face {
+    font-family: 'Atkinson Chassis';
+    src: local('Atkinson Hyperlegible'),
+        url('../fonts/Atkinson-Hyperlegible-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: optional;
+}
+@font-face {
+    font-family: 'Atkinson Chassis';
+    src: local('Atkinson Hyperlegible'),
+        url('../fonts/Atkinson-Hyperlegible-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: optional;
+}
+@font-face {
+    font-family: 'Atkinson Chassis';
+    src: local('Atkinson Hyperlegible'),
+        url('../fonts/Atkinson-Hyperlegible-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: optional;
+}
+/* because cssnano will drop the whole file though */
+.font-loaded {
+    font-family: 'Atkinson Chassis';
+}
+/*# sourceMappingURL=fonts.css.map */

@@ -39,8 +39,8 @@ html {
         Brand Colors
     */
     --default-primary: hsl( var( --cerulean-4 ) );
-    --default-primary-dark: hsl( var( --cerulean-5 ) );
-    --default-primary-light: hsl( var( --cerulean-3 ) );
+    --default-primary-dark: color-mix( in oklab, var( --default-primary ), #000 30% );
+    --default-primary-light: color-mix( in oklab, var( --default-primary ), #fff 30% );
     --default-on-primary: #fff;
     --default-secondary: hsl( var( --raspberry-4 ) );
     --default-on-secondary: #fff;

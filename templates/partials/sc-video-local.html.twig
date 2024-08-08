@@ -1,0 +1,7 @@
+{% spaceless %}
+    {% set video = page.media[src] %}
+    {% set thumbnail = page.media[poster] %}
+{% endspaceless %}
+<video class="video" poster="{{ thumbnail.url }}" preload="auto" playsinline="" controls="">
+    <source src="{{ video.url }}" type="{{ video.mime }}">
+</video>
