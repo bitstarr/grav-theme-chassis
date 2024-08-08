@@ -1,0 +1,59 @@
+/* stylelint-disable */
+
+/* special user hints from blueprints */
+
+.user-notice .form-display-wrapper {
+    padding: 1em;
+    color: #222;
+    border: 1px solid var( --_brd, #b9e3ff );
+    border-left-width: 1ex;
+    background-color: var( --_bg, #e8f6ff );
+}
+
+.user-notice.is-warning {
+    --_brd: #b98300;
+    --_bg: #fff8ef;
+}
+
+.user-notice.is-important {
+    --_brd: #ff4647;
+    --_bg: #fff8f6;
+}
+
+/* page edit view content */
+
+#admin-main .form-tabs .tab__content {
+    max-width: 80rem;
+}
+
+/* editor content */
+
+.cm-s-paper.CodeMirror,
+#admin-main .admin-block .grav-editor-preview {
+    max-width: 60rem;
+}
+
+/* editor buttons */
+
+.fa-exclamation-circle.notice-info {
+    color: #666;
+}
+
+.fa-exclamation-circle.notice-success {
+    color: #008566;
+}
+
+.fa-exclamation-circle.notice-warning {
+    color: #ffb820;
+}
+
+.fa-exclamation-circle.notice-error {
+    color: #d0103a;
+}
+
+.grav-editor-toolbar .grav-editor-button-h1 {
+    display: none;
+}
+
+/* stylelint-endable */
+/*# sourceMappingURL=admin.css.map */

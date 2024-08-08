@@ -28,6 +28,8 @@ class VideoShortcode extends Shortcode
                 'color' => $sc->getParameter( 'color' ) ?: 'white',
                 'class' => $sc->getParameter( 'class' ),
                 'url' => null,
+                'src' => $sc->getParameter( 'src', $this->getBbCode($sc) ),
+                'poster' => $sc->getParameter( 'poster', $this->getBbCode($sc) ),
             ];
 
             if ( $options['id'] )
@@ -68,6 +70,11 @@ class VideoShortcode extends Shortcode
                 $options['url'] = $url;
                 return $this::vimeo( $options );
             }
+
+            if ( $options['src'] )
+            {
+                return $this::local( $options );
+            }
         });
     }
 
@@ -84,6 +91,15 @@ class VideoShortcode extends Shortcode
         $twig = $this->grav['twig'];
 
         $output = $twig->processTemplate( 'partials/sc-video-vimeo.html.twig', $options );
+        return $output;
+    }
+
+    private function local( $options ) {
+        /** @var Twig $twig */
+        $twig = $this->grav['twig'];
+        $options['page'] = $this->grav['page'];
+
+        $output = $twig->processTemplate( 'partials/sc-video-local.html.twig', $options );
         return $output;
     }
 }

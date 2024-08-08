@@ -1,9 +1,13 @@
 .embedvideo {
+    --color-hover: color-mix( in oklab, #fff, var( --default-primary ) 25% );
+    --outline-ink: #fff;
+
     position: relative;
     text-align: center;
     background-color: hsl( 0 0% 0% / .1 );
 
     &__media {
+        display: block;
         width: 100%;
         height: auto;
         aspect-ratio: 16/9;
@@ -48,4 +52,10 @@
             font-size: .8em;
         }
     }
+}
+
+.video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
 }
