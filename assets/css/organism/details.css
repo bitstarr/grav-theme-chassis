@@ -18,6 +18,12 @@
         border: 0;
         cursor: pointer;
     }
+    &__trigger::marker {
+        display: none;
+    }
+    &__trigger::-webkit-details-marker {
+        display: none;
+    }
 
     &__title {
         position: relative;
@@ -42,13 +48,6 @@
         transform: translate(0, -50%);
         height: .25rem;
         width: 1rem;
-    }
-
-    &__trigger::marker {
-        display: none;
-    }
-    &__trigger::-webkit-details-marker {
-        display: none;
     }
 
     &[data-expanded='false'] &__content {

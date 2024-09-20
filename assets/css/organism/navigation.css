@@ -106,7 +106,7 @@
 
         &__close.is-fallback {
             padding: var( --_n-layer-pad );
-            background-color: var( --_layer-bg );
+            background-color: var( --_n-layer-bg );
             border-top: .1em solid var( --default-border-ink );
         }
         .no-js &__abyss {
