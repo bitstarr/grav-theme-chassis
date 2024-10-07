@@ -99,6 +99,8 @@ html {
     --default-secondary: hsl( var( --raspberry-4 ) );
     --default-on-secondary: #fff;
 
+    --default-radius: .2em;
+
     --selection-ink: #111;
     --selection-surface: hsl( var( --cerulean-2 ) );
 
@@ -579,7 +581,7 @@ a.u-tel {
     color: var( --_text );
     background: var( --_background );
     border: .1em solid var( --_bordercolor );
-    border-radius: .3em;
+    border-radius: var( --default-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
     box-shadow: var( --_boxshadow, none );
@@ -638,89 +640,90 @@ input.text-input:not(:focus):not(:placeholder-shown):invalid,
 .button {
     /*
         API:
-        --f-b-background
-        --f-b-background-hover
-        --f-b-textcolor
-        --f-b-textcolor-hover
-        --f-b-border
-        --f-b-bordercolor-hover
-
-        --f-b-2nd-background
-        --f-b-2nd-background-hover
-        --f-b-2nd-textcolor
-        --f-b-2nd-textcolor-hover
-        --f-b-2nd-border
-        --f-b-2nd-bordercolor-hover
-
-        --f-b-3rd-textcolor
-        --f-b-3rd-textcolor-hover
-        --f-b-3nd-background-hover
+        --button-padding
+        --button-fontWeight
+        --button-color
+        --button-bg
+        --button-colorHover
+        --button-bgHover
+        --button-borderWidth
+        --button-borderColor
+        --button-radius
+        --button-iconSize
     */
+    --_padding: var( --button-padding, .5em 1em );
+    --_weight: var( --button-fontWeight, 400 );
+    --_base-color: var( --button-color, var( --default-on-primary ) );
+    --_base-bg: var( --button-bg, var( --default-primary ) );
+    --_color: var( --_base-color );
+    --_bg: var( --_base-bg );
+    --_colorHover: var( --button-colorHover, var( --_base-color ) );
+    --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) );
+    --_borderWidth: var( --button-borderWidth, .15em );
+    --_borderColor: var( --button-borderColor, var( --_bg ) );
+    --_radius: var( --button-radius, var( --default-radius ) );
 
-    --_bg: var( --f-button-surface, var( --default-primary) );
-    --_txt: var( --f-button-ink, var( --default-on-primary ) );
-    --_brd: var( --f-b-border, none );
-    --_hover-bg: var( --f-button-surface-hover, color-mix( in oklab, var( --default-primary ), #fff 30% ) );
-    --_hover-txt: var( --f-button-ink-hover, var( --default-on-primary ) );
-    /* --_hover-halo: var( --f-button-halo-hover, var( --default-primary-light ) ); */
-    --_hover-brd-color: var( --f-b-bordercolor-hover, inherit );
-
-    position: relative;
-    z-index: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: .5em .75em;
-    line-height: 1.2;
-    text-align: center;
-    color: var( --_txt );
+    gap: .5em;
+    padding: var( --_padding );
+
+    text-decoration: none;
+    font-weight: var( --_weight );
+    letter-spacing: .05ch;
+    /* line-height: 1.1; */
+
+    color: var( --_color );
     background: var( --_bg );
-    border: var( --_brd );
-    border-radius: var( --default-radius, 0 );
-    transition: background-color .2s;
+
+    border-width: var( --_borderWidth );
+    border-style: solid;
+    border-color: var( --_borderColor );
+    border-radius: var( --_radius );
+
+    cursor: pointer;
+    transition: background-color .2s, border-color .2s, scale .2s;
 }
-/*
-    display: flex;
-    width: fit-content
-    */
 a.button {
         text-decoration: none;
     }
 .button:not([disabled]):hover,
     .button:not([disabled]):focus {
-        --_bg: var( --_hover-bg );
-        --_txt: var( --_hover-txt );
-        /* box-shadow: 0 0 0 .1em var( --_hover-halo ); */
+        --_color: var( --_colorHover );
+        --_bg: var( --_bgHover );
+    }
+.button:active {
+        transform: scale( 99% );
     }
 .button[disabled] {
         opacity: .3;
         filter: saturate( 0 );
         cursor: not-allowed;
     }
-.button--secondary {
-        --_bg: var( --f-b-2nd-background, none );
-        --_txt: var( --f-b-2nd-textcolor, var( --default-primary ) );
-        --_brd: var( --f-b-2nd-border, .1em solid var( --default-primary ) );
-        --_hover-bg: var( --f-b-2nd-background-hover, var( --default-primary ) );
-        --_hover-txt: var( --f-b-2nd-textcolor-hover, var( --default-on-primary ) );
-        --_hover-brd-color: var( --f-b-2nd-bordercolor-hover, inherit );
+.button .icon {
+        height: var( --button-iconSize, 1.2cap );
+        width: auto;
+        flex: none;
     }
-.button--quiet {
-        --_bg: none;
-        --_txt: var( --f-b-3rd-textcolor, var( --default-primary ) );
-        --_hover-txt: var( --f-b-3rd-textcolor-hover, var( --default-primary-dark ) );
-        --_hover-bg: var( --f-b-3rd-background-hover, var( --default-primary-light ) );
-        border: none;
+.button.is-small {
+        --_padding: .3em .5em;
     }
-.button--small {
-        padding: .3em .5em;
+.button.is-alt {
+        --_base-color: var( --default-on-secondary );
+        --_base-bg: var( --default-secondary );
     }
-.button .icon:first-child {
-        margin-inline-end: 1ch;
+.button.is-quiet {
+        --_color: inherit;
+        --_colorHover: var( --default-hover );
+        --_bg: transparent;
+        --_bgHover: transparent;
+        --_borderColor: transparent;
     }
-.button .icon:last-child {
-        margin-inline-start: 1ch;
+.button.is-ghost {
+        --_color: var( --_base-bg );
+        --_bg: transparent;
+        --_borderColor: var( --_base-bg );
     }
 /*
     API:
@@ -1028,7 +1031,7 @@ a.button {
 
         .navigation__close.is-fallback {
             padding: var( --_n-layer-pad );
-            background-color: var( --_layer-bg );
+            background-color: var( --_n-layer-bg );
             border-top: .1em solid var( --default-border-ink );
         }
         .no-js .navigation__abyss {
@@ -1514,6 +1517,12 @@ a.button {
         border: 0;
         cursor: pointer;
     }
+.details__trigger::marker {
+        display: none;
+    }
+.details__trigger::-webkit-details-marker {
+        display: none;
+    }
 .details__title {
         position: relative;
         display: block;
@@ -1537,12 +1546,6 @@ a.button {
         transform: translate(0, -50%);
         height: .25rem;
         width: 1rem;
-    }
-.details__trigger::marker {
-        display: none;
-    }
-.details__trigger::-webkit-details-marker {
-        display: none;
     }
 .details[data-expanded='false'] .details__content {
         display: none;

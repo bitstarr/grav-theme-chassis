@@ -45,6 +45,8 @@ html {
     --default-secondary: hsl( var( --raspberry-4 ) );
     --default-on-secondary: #fff;
 
+    --default-radius: .2em;
+
     --selection-ink: #111;
     --selection-surface: hsl( var( --cerulean-2 ) );
 

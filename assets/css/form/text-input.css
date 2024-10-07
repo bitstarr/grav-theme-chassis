@@ -22,7 +22,7 @@
     color: var( --_text );
     background: var( --_background );
     border: .1em solid var( --_bordercolor );
-    border-radius: .3em;
+    border-radius: var( --default-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
     box-shadow: var( --_boxshadow, none );

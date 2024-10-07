@@ -1,0 +1,53 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'wrapping',
+] %}
+{% endspaceless %}
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+<style>
+.icongrid {
+    display: grid;
+    grid-template-columns: 2em 1fr;
+    gap: 1ex;
+    align-items: center;
+
+    dd {
+        margin: 0;
+    }
+
+    .icon {
+        fill: currentcolor;
+        height: 1em;
+        width: 1em;
+        overflow: hidden;
+        vertical-align: -.125em;
+        forced-color-adjust: auto;
+        font-size: 1.8em;
+    }
+}
+</style>
+    {% set icons = chassis.getIcons() %}
+    <dl class="icongrid">
+    {% for icon in icons %}
+        <dd>
+            {{ svg(icon)|raw }}
+        </dd>
+        <dt>
+            {{ icon }}
+        </dt>
+    {% endfor %}
+    </dl>
+    <style>
+        .icongrid {
+            display: grid;
+            grid-template-columns: 2em 1fr;
+            gap: 1ex;
+            align-items: center;
+
+            .icon {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</section>

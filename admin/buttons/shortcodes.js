@@ -72,6 +72,46 @@
                     ]
                 }
             });
+            Instance.addButton({
+                alignment: {
+                    identifier: 'alignment',
+                    title: 'Alignment',
+                    label: '<i class="fa fa-fw fa-align-left"></i>',
+                    modes: ['gfm', 'markdown'],
+                    children: [
+                        {
+                            'shortcodes-align-center': {
+                                identifier: 'shortcodes-align-center',
+                                title: 'Align Center',
+                                label: '<i class="fa fa-fw fa-align-center"></i>',
+                                modes: ['gfm', 'markdown'],
+                                action: function(_ref) {
+                                    var codemirror = _ref.codemirror, button = _ref.button;
+                                    button.on('click.editor.shortcodes-email', function() {
+                                        Instance.buttonStrategies.replaceSelections({ token: '$1', template: '[center]$1[/center]', codemirror: codemirror});
+                                        codemirror.focus();
+                                    });
+                                }
+                            }
+                        },
+                        {
+                            'shortcodes-align-right': {
+                                identifier: 'shortcodes-align-right',
+                                title: 'Align Right',
+                                label: '<i class="fa fa-fw fa-align-right"></i>',
+                                modes: ['gfm', 'markdown'],
+                                action: function(_ref) {
+                                    var codemirror = _ref.codemirror, button = _ref.button;
+                                    button.on('click.editor.shortcodes-email', function() {
+                                        Instance.buttonStrategies.replaceSelections({ token: '$1', template: '[right]$1[/right]', codemirror: codemirror});
+                                        codemirror.focus();
+                                    });
+                                }
+                            }
+                        },
+                    ]
+                }
+            });
         });
     });
 })(jQuery);
