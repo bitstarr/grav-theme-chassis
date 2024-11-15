@@ -1,13 +1,13 @@
 ::selection {
-    color: var( --selection-ink );
+    color: var( --selection-text );
     text-shadow: none;
-    background: var( --selection-surface );
+    background: var( --selection-fill );
 }
 
 body {
-    font: 1em/var( --font-line ) var( --font-default );
-    color: var( --default-ink );
-    background: var( --default-surface );
+    font: var(--size-0)/var( --global-lineHeight ) var( --font-default );
+    color: var( --global-text );
+    background: var( --global-fill );
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
     hanging-punctuation: first allow-end last;
@@ -55,8 +55,8 @@ body {
     Basic link styles
 */
 :where( a ) {
-    --_default: var( --color-link, var( --default-link ) );
-    --_hover: var( --color-hover, var( --default-hover ) );
+    --_default: var( --link-color, var( --global-link ) );
+    --_hover: var( --link-hover, var( --global-hover ) );
 
     text-decoration: none;
     color: var( --_color, var( --_default ) );
@@ -68,7 +68,7 @@ body {
     }
 }
 :where( a[href^='tel'] ) {
-    --color-link: inherit;
+    --link-color: inherit;
     cursor: inherit;
 }
 

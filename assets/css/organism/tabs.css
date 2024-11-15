@@ -1,11 +1,9 @@
 .tabs {
     /*
         API:
-        --o-tabs-surface          background color
-        --o-tabs-ink              text color
-        --o-tabs-border           border width
-        --o-tabs-border-color     border color
-        --o-tabs-border-hover     border color on hover
+        --o-tabs-borderWidth        border width
+        --o-tabs-borderColor        border color
+        --o-tabs-borderHover        border color on hover
     */
 
     &__head {
@@ -13,16 +11,20 @@
     }
 
     /* &__content {
-        margin-bottom: var( --gap-deca );
+        margin-bottom: var( --gap-m );
     } */
 
     &__title {
-        margin-bottom: var( --gap-deci );
+        margin-bottom: var( --gap-xs );
         font-size: 1.2em;
     }
 
     &.is-interactive &__head {
         display: flex;
+        align-items: flex-end;
+        gap: max( 1px, .15em );
+        margin-bottom: calc( -1 * var( --_borderWidth ) );
+        padding-inline: var( --_borderWidth );
     }
     &.is-interactive &__title{
         display: none;
@@ -30,32 +32,28 @@
 
 
     &--default {
-        --_brdw: var( --o-tabs-border, min( 2px, .15em ) );
-        --_brd: var( --o-tabs-border-color, var( --default-border-ink) );
-        --_hvr: var( --o-tabs-border-hover, var( --default-primary-light ) );
-        --_bg: var( --o-tabs-surface, var( --default-surface ) );
-        --_txt: var( --o-tabs-ink, var( --default-ink ) );
+        --_borderWidth: var( --o-tabs-borderWidth, min( 2px, .15em ) );
+        --_borderColor: var( --o-tabs-borderColor, var( --global-borderColor) );
+        --_hoverColor: var( --o-tabs-borderHover, var( --global-primary ) );
+        --_fill: #f9f9f9;
     }
     &--default &__toggle {
         display: block;
         height: 100%;
         text-align: center;
-        padding: var( --gap-deci );
-        border: var( --_brdw ) solid transparent;
-        border-bottom: 0;
-        background: var( --_bg );
+        padding: var( --gap-xs );
+        border-bottom: var( --_borderWidth ) solid var( --_borderColor, transparent );
+        background-color: var( --_fill );
     }
     &--default &__toggle:not( [aria-selected] ):hover {
-        box-shadow: inset 0 0 0 var( --_brdw ) var( --_hvr );
+        --_borderColor: var( --global-primary );
     }
     &--default &__toggle[aria-selected] {
-        position: relative;
-        top: var( --_brdw );
-        border-color: var( --_brd );
+        --_borderColor: var( --global-primary );
+        --_fill: color-mix( in oklab, var( --_hoverColor ), transparent 90% );
     }
     &--default.is-interactive &__content {
-        padding: var( --gap ) var( --gap-deci );
-        border: var( --_brdw ) solid var( --_brd );
-        background: var( --_bg );
+        padding: var( --gap ) var( --gap-s );
+        border: var( --_borderWidth ) solid var( --_borderColor );
     }
 }

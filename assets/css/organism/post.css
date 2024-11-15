@@ -20,7 +20,7 @@
     &__date,
     &__imagecaption {
         font-size: .8em;
-        color: var( --default-muted );
+        color: var( --global-muted );
     }
 
     &__visual {
@@ -38,6 +38,6 @@
     }
 
     &__navigation {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
     }
 }

@@ -6,13 +6,13 @@
         --o-footer-link         link text color
         --o-footer-hover        hover link text color
     */
-    --_bg: var( --o-footer-surface, var( --default-primary) );
-    --_txt: var( --o-footer-ink, var( --default-on-primary ) );
-    --color-link: var( --o-footer-link, currentcolor );
-    --color-hover: var( --o-footer-hover );
+    --_bg: var( --o-footer-surface, var( --global-primary) );
+    --_txt: var( --o-footer-ink, var( --global-onPrimary ) );
+    --link-color: var( --o-footer-link, currentcolor );
+    --link-hover: var( --o-footer-hover );
 
-    padding-top: var( --gap-deca );
-    padding-bottom: var( --gap-deca );
+    padding-top: var( --gap-m );
+    padding-bottom: var( --gap-m );
     color: var( --_txt );
     background-color: var( --_bg );
 
@@ -41,12 +41,12 @@
 
     &__social {
         display: flex;
-        margin-top: var( --font-line );
-        margin-left: calc( var( --gap-deci ) * -1 );
+        margin-top: var( --global-lineHeight );
+        margin-left: calc( var( --gap-xs ) * -1 );
         font-size: 1.5em;
 
         &__link {
-            padding: var( --gap-deci );
+            padding: var( --gap-xs );
         }
     }
 

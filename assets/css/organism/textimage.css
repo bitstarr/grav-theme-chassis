@@ -4,13 +4,8 @@
     &__title {
         grid-area: title;
         margin-bottom: var( --gap );
-        font-size: var( --size-kilo );
+        font-size: var( --size-3 );
         font-weight: 700;
-        color: var( --color-primary );
-
-        @container textimage (inline-size > 34em) {
-            font-size: clamp( var( --size-deca ), 3.6vw, var( --size-kilo ) );
-        }
     }
 
     &__image {
@@ -31,7 +26,7 @@
             --_areas:
                 'image title'
                 'image content';
-            --_col-gap: var( --gap-deca );
+            --_col-gap: var( --gap-m );
 
             display: grid;
             gap: 0 var( --_col-gap );
@@ -49,13 +44,13 @@
 
         &__image {
             position: sticky;
-            top: var( --gap-deca );
+            top: var( --gap-m );
         }
     }
 
     @container textimage (inline-size > 43em) {
         &__shell {
-            --_col-gap: var( --gap-hecto );
+            --_col-gap: var( --gap-l );
         }
     }
 }

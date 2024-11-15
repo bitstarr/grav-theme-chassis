@@ -3,8 +3,8 @@
         API:
         --o-bullets-surface     background color
         --o-bullets-ink         text color (title)
-        --color-link            link color
-        --color-hover           link hover color
+        --link-color            link color
+        --link-hover           link hover color
     */
     --_bg: var( --o-bullets-surface, transparent );
     --_txt: var( --o-bullets-ink, currentcolor);
@@ -29,16 +29,16 @@
     }
 
     &__icon {
-        margin-bottom: var( --gap-deci );
+        margin-bottom: var( --gap-xs );
         font-size: 4em;
     }
 
     &.is-inverted {
-        --o-bullets-surface: var( --default-primary);
-        --o-bullets-ink: var( --default-on-primary );
-        --color-link: var( --default-on-primary );
-        --color-hover: var( --default-secondary );
+        --o-bullets-surface: var( --global-primary);
+        --o-bullets-ink: var( --global-onPrimary );
+        --link-color: var( --global-onPrimary );
+        --link-hover: var( --global-secondary );
 
-        padding: var( --gap-deca ) 0;
+        padding: var( --gap-m ) 0;
     }
 }

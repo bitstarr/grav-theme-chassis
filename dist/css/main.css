@@ -9,7 +9,7 @@ html {
     --font-fancy: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
     */
 
-    --font-line: calc( 1em + .35rem );
+    --global-lineHeight: calc( 1em + .35rem );
     /*
         read about line-height: https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
         which will recommend something like calc( 1.1em + .25rem )
@@ -23,33 +23,45 @@ html {
 
     /*
         Spacing
-        @see https://en.wikipedia.org/wiki/Metric_prefix
-    */ /* default distance */
+    */
+    /* @link https://utopia.fyi/space/calculator?c=320,16,1.2,1240,20,1.25,5,2,&s=0.75|0.5,2|3|6|9|12,s-l&g=s,l,xl,12 */
 
-    /* font-sizes */
 
+    /*
+        Font sizes
+    */
+    /* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    /* Step -2: 11.1111px → 12.8px */
+    /* Step -1: 13.3333px → 16px */
+    /* Step 0: 16px → 20px */
+    /* Step 1: 19.2px → 25px */
+    /* Step 2: 23.04px → 31.25px */
+    /* Step 3: 27.648px → 39.0625px */
+    /* Step 4: 33.1776px → 48.8281px */
+    /* Step 5: 39.8131px → 61.0352px */
 }
 @media ( min-width: 40rem ) {
 html {
         --wrapper-offset: 4rem;
-
 }
     }
 html {
-    --gap-deci: .625rem;
-    --gap: 1.25rem;
-    --gap-deca: 2.5rem;
-    --gap-hecto: 4rem;
-    --gap-kilo: 8rem;
-    --gap-mega: 12rem;
-    --gap-giga: 16rem;
-    --size-deci: .8em;
-    --size-deca: 1.2em;
-    --size-hecto: 1.55em;
-    --size-kilo: 1.9em;
-    --size-mega: 2.3em;
-    --size-giga: 3em;
-
+    --gap-xs: clamp(0.5rem, 0.4565rem + 0.2174vw, 0.625rem);
+    --gap-s: clamp(0.75rem, 0.6848rem + 0.3261vw, 0.9375rem);
+    --gap: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    --gap-m: clamp(2rem, 1.8261rem + 0.8696vw, 2.5rem);
+    --gap-l: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
+    --gap-xl: clamp(6rem, 5.4783rem + 2.6087vw, 7.5rem);
+    --gap-2xl: clamp(9rem, 8.2174rem + 3.913vw, 11.25rem);
+    --gap-3xl: clamp(12rem, 10.9565rem + 5.2174vw, 15rem);
+    --size--2: clamp(0.6944rem, 0.6577rem + 0.1836vw, 0.8rem);
+    --size--1: clamp(0.8333rem, 0.7754rem + 0.2899vw, 1rem);
+    --size-0: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    --size-1: clamp(1.2rem, 1.0739rem + 0.6304vw, 1.5625rem);
+    --size-2: clamp(1.44rem, 1.2615rem + 0.8924vw, 1.9531rem);
+    --size-3: clamp(1.728rem, 1.4799rem + 1.2407vw, 2.4414rem);
+    --size-4: clamp(2.0736rem, 1.7334rem + 1.7011vw, 3.0518rem);
+    --size-5: clamp(2.4883rem, 2.027rem + 2.3067vw, 3.8147rem);
 }
 /* stylelint-endable */
 html {
@@ -57,59 +69,61 @@ html {
         Specific Colors, only raw HSL
         https://reasonable.work/colors/
     */
-    --raspberry-1: 357.78 99.6% 98.53%;
-    --raspberry-2: 357.11 99.89% 93.31%;
-    --raspberry-3: 346.49 100% 62.87%;
-    --raspberry-4: 338.06 99.91% 43.59%;
-    --raspberry-5: 339.67 99.94% 25.43%;
-    --raspberry-6: 341.96 99.97% 15.97%;
 
-    --cerulean-1: 204.68 99.99% 95.59%;
-    --cerulean-2: 203.62 100% 86.22%;
-    --cerulean-3: 195.6 99.93% 38.63%;
-    --cerulean-4: 195.86 99.98% 30.88%;
-    --cerulean-5: 197 99.88% 16.48%;
-    --cerulean-6: 199.33 99.94% 8.26%;
+    --raspberry-1: #fff8f8;
+    --raspberry-2: #ffdddf;
+    --raspberry-3: #ff426c;
+    --raspberry-4: #de0051;
+    --raspberry-5: #82002c;
+    --raspberry-6: #510018;
 
-    --gray-1: 194.33 0% 96.6%;
-    --gray-2: 194.33 0% 88.76%;
-    --gray-3: 194.33 0% 54.65%;
-    --gray-4: 194.33 0% 43.69%;
-    --gray-5: 194.33 0% 24.13%;
-    --gray-6: 194.33 0% 13.15%;
+    --cerulean-1: #e8f6ff;
+    --cerulean-2: #b9e3ff;
+    --cerulean-3: #0092c5;
+    --cerulean-4: #00749d;
+    --cerulean-5: #003c54;
+    --cerulean-6: #001d2a;
+
+    --gray-1: #f6f6f6;
+    --gray-2: #e2e2e2;
+    --gray-3: #8b8b8b;
+    --gray-4: #6f6f6f;
+    --gray-5: #3e3e3e;
+    --gray-6: #222222;
 
     /*
         Functional Colors
     */
-    --default-ink: #444;
-    --default-surface: #fff;
-    --default-muted: #707070;
-    --default-ui: #f4f4f4;
-    --default-border-ink: #ddd;
-    --default-link: hsl( var( --cerulean-4 ) );
-    --default-hover: hsl( var( --raspberry-4 ) );
+    --global-text: #444;
+    --global-fill: #fff;
+    --global-muted: #707070;
+    --global-ui: #f4f4f4;
+    --global-borderColor: #ddd;
+    --global-link: var( --cerulean-4 );
+    --global-hover: var( --raspberry-4 );
 
     /*
         Brand Colors
     */
-    --default-primary: hsl( var( --cerulean-4 ) );
-    --default-primary-dark: color-mix( in oklab, var( --default-primary ), #000 30% );
-    --default-primary-light: color-mix( in oklab, var( --default-primary ), #fff 30% );
-    --default-on-primary: #fff;
-    --default-secondary: hsl( var( --raspberry-4 ) );
-    --default-on-secondary: #fff;
+    --global-primary: var( --cerulean-4 );
+    --global-onPrimary: #fff;
+    /* --global-primary-dark: color-mix( in oklab, var( --global-primary ), #000 30% ); */
+    /* --global-primary-light: color-mix( in oklab, var( --global-primary ), #fff 30% ); */
+    --global-secondary: var( --raspberry-4 );
+    --global-onSecondary: #fff;
 
-    --default-radius: .2em;
+    --global-radius: .2em;
 
-    --selection-ink: #111;
-    --selection-surface: hsl( var( --cerulean-2 ) );
+
+    --selection-text: #111;
+    --selection-fill: var( --cerulean-2 );
 
     --scrollbar-track: hsl( 0 0% 100% / .2 );
-    --scrollbar-thumb: var( --default-primary );
+    --scrollbar-thumb: var( --global-primary );
 
     --outline-size: max( 2px, .08em );
     --outline-style: solid;
-    --outline-ink: hsl( var( --raspberry-4 ) );
+    --outline-ink: var( --raspberry-4 );
     /* --outline-offset: .2em; */
 
     /*
@@ -118,36 +132,34 @@ html {
     */
     --f-form-label-ink: #555;
     /* --f-form-placeholder: #777; */
-    /* --f-form-outline-ink: hsl( var( --cerulean-4 ) ); */
-    --f-form-error-ink: hsl( 0 100% 33% );
-    --f-form-error-surface: hsl( 0 100% 95% );
+    /* --f-form-outline-ink: var( --cerulean-4 ); */
+    /* --f-form-error-ink: #a80000; */
+    /* --f-form-error-surface: #ffe6e6; */
 
-    /* --f-input-ink: var( --default-ink ) */
+    /* --f-input-ink: var( --global-text ) */
     /* --f-input-surface: #fff; */
-    /* --f-input-border: var( --default-border-ink ); */
+    /* --f-input-border: var( --global-borderColor ); */
     /* --f-input-padding: .7rem; */
-    --f-input-border-hover: hsl( var( --cerulean-4 ) );
-    --f-input-halo-hover: hsl( var( --cerulean-3 ) / .2 );
-    /* --f-input-ink-disabled: hsl( var( --gray-4 ) ); */
-    /* --f-input-surface-disabled: hsl( var( --gray-1 ) ); */
-    /* --f-input-border-disabled: hsl( var( --gray-2 ) ); */
+    --f-input-border-hover: var( --cerulean-4 );
+    --f-input-halo-hover: color-mix( in oklab, var( --cerulean-3 ), transparent 20% );
+    /* --f-input-ink-disabled: var( --gray-4 ); */
+    /* --f-input-surface-disabled: var( --gray-1 ); */
+    /* --f-input-border-disabled: var( --gray-2 ); */
 
     /* --f-bool-ink-checked: #fff; */
-    /* --f-bool-surface-checked: hsl( var( --cerulean-4 ) ); */
-    /* --f-bool-ink-disabled: hsl( var( --gray-4 ) ); */
-    /* --f-bool-surface-disabled: hsl( var( --gray-1 ) ); */
+    /* --f-bool-surface-checked: var( --cerulean-4 ); */
+    /* --f-bool-ink-disabled: var( --gray-4 ); */
+    /* --f-bool-surface-disabled: var( --gray-1 ); */
 
     /* --f-dropdown-surface: #fff;  */
 
     /*
         Component (organism) Specific
     */
-    --o-footer-surface: hsl( var( --cerulean-6 ) );
+    --o-footer-surface: var( --cerulean-6 );
 
-    --o-headline-ink: hsl( var( --cerulean-6 ) );
+    --o-headline-ink: var( --cerulean-6 );
 
-    /* --o-tabs-border-color: var( --default-border-ink ); */
-    /* --o-tabs-border-hover: hsl( var( --cerulean-3 ) / .5 ); */
 }
 :root {
     view-transition-name: root;
@@ -202,7 +214,7 @@ html {
 :where( :not( html, iframe, canvas, img, svg, video, audio ):not( svg *, symbol * ) ) {
     all: unset;
     display: revert;
-    line-height: var( --font-line );
+    line-height: var( --global-lineHeight );
 }
 /*
   Use a more-intuitive box-sizing model.
@@ -277,14 +289,14 @@ html:focus-within { scroll-behavior: smooth; }
 }
 /* stylelint-endable */
 ::selection {
-    color: var( --selection-ink );
+    color: var( --selection-text );
     text-shadow: none;
-    background: var( --selection-surface );
+    background: var( --selection-fill );
 }
 body {
-    font: 1em/var( --font-line ) var( --font-default );
-    color: var( --default-ink );
-    background: var( --default-surface );
+    font: var(--size-0)/var( --global-lineHeight ) var( --font-default );
+    color: var( --global-text );
+    background: var( --global-fill );
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
     hanging-punctuation: first allow-end last;
@@ -326,8 +338,8 @@ body {
     Basic link styles
 */
 :where( a ) {
-    --_default: var( --color-link, var( --default-link ) );
-    --_hover: var( --color-hover, var( --default-hover ) );
+    --_default: var( --link-color, var( --global-link ) );
+    --_hover: var( --link-hover, var( --global-hover ) );
 
     text-decoration: none;
     color: var( --_color, var( --_default ) );
@@ -338,7 +350,7 @@ body {
         --_color: var( --_hover );
     }
 :where( a[href^='tel'] ) {
-    --color-link: inherit;
+    --link-color: inherit;
     cursor: inherit;
 }
 /*
@@ -449,8 +461,7 @@ q::after { content: close-quote; }
         position: absolute;
         width: 1px;
         height: 1px;
-        -webkit-clip-path: inset(50%);
-                clip-path: inset(50%);
+        clip-path: inset(50%);
         overflow: hidden;
         white-space: nowrap;
     }
@@ -465,10 +476,10 @@ q::after { content: close-quote; }
 .u-hidden { display: none; }
 .u-quiet,
 .u-muted {
-    --color-link: var( --default-muted );
-    --color-hover: var( --default-ink );
+    --link-color: var( --global-muted );
+    --link-hover: var( --global-text );
 
-    color: var( --default-muted );
+    color: var( --global-muted );
 }
 .u-quiet a, .u-muted a {
         text-decoration: underline;
@@ -524,8 +535,8 @@ a.u-tel {
         display: block;
     }
 .form :where( label, legend ) {
-        line-height: var( --font-line );
-        color: var( --f-form-label-ink, var( --default-ink ) );
+        line-height: var( --global-lineHeight );
+        color: var( --f-form-label-ink, var( --global-text ) );
     }
 :where( fieldset.form__field ) {
         display: flex;
@@ -568,20 +579,18 @@ a.u-tel {
         --f-input-surface-disabled  disabled background color
         --f-input-border-disabled   disabled border color
     */
-    --_text: var( --f-input-ink, var( --default-ink ) );
-    --_background: var( --f-input-surface, var( --default-surface) );
-    --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
+    --_text: var( --f-input-ink, var( --global-text ) );
+    --_background: var( --f-input-surface, var( --global-fill) );
+    --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
 
-    -webkit-appearance: none;
-
-            appearance: none;
+    appearance: none;
     width: 100%;
     padding: var( --f-input-padding, .7rem );
-    line-height: var( --font-line );
+    line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
     border: .1em solid var( --_bordercolor );
-    border-radius: var( --default-radius );
+    border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
     box-shadow: var( --_boxshadow, none );
@@ -591,30 +600,30 @@ label + .text-input {
         margin-top: .3rem;
     }
 .text-input:hover:not(:disabled) {
-            --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+            --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
             --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
         }
 .text-input:focus {
-        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+        --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
         --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
 input.text-input:not(:focus):not(:placeholder-shown):invalid,
     select.text-input:not([value='']):invalid {
-        --_background: var( --f-form-error-surface, hsl( 0 100% 95% ) );
-        --_bordercolor: var( --f-form-error-ink, hsl( 0 100% 33% ) );
-        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, hsl( 0 100% 33% ) );
+        --_background: var( --f-form-error-surface, #ffe6e6 );
+        --_bordercolor: var( --f-form-error-ink, #a80000 );
+        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, #a80000 );
     }
 .text-input:disabled {
-        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
-        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
-        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
+        --_text: var( --f-input-ink-disabled, var( --global-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --global-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
         opacity: .6;
         cursor: not-allowed;
     }
 .text-input[readonly] {
-        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
-        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
-        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
+        --_text: var( --f-input-ink-disabled, var( --global-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --global-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
     }
 .text-input[type='number'] {
         font-variant-numeric: tabular-nums;
@@ -626,13 +635,12 @@ input.text-input:not(:focus):not(:placeholder-shown):invalid,
         note that not setting the color to transparent may cause unwanted background when select options are shown.
     */
     padding-right: 1.5em;
-    -webkit-appearance: none;
-            appearance: none;
+    appearance: none;
     background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" ><path fill="%23666" d="M256,298.3L256,298.3L256,298.3l174.2-167.2c4.3-4.2,11.4-4.1,15.8,0.2l30.6,29.9c4.4,4.3,4.5,11.3,0.2,15.5L264.1,380.9c-2.2,2.2-5.2,3.2-8.1,3c-3,0.1-5.9-0.9-8.1-3L35.2,176.7c-4.3-4.2-4.2-11.2,0.2-15.5L66,131.3c4.4-4.3,11.5-4.4,15.8-0.2L256,298.3z"/></svg>' );
     background-size: .8em;
     background-repeat: no-repeat;
     background-position: calc( 100% - .5em ) center;
-    background-color: var( --f-dropdown-surface, var( --f-input-surface, var( --default-surface ) ) );
+    background-color: var( --f-dropdown-surface, var( --f-input-surface, var( --global-fill ) ) );
 }
 .dropdown option[value=''][disabled] {
         display: none;
@@ -653,15 +661,15 @@ input.text-input:not(:focus):not(:placeholder-shown):invalid,
     */
     --_padding: var( --button-padding, .5em 1em );
     --_weight: var( --button-fontWeight, 400 );
-    --_base-color: var( --button-color, var( --default-on-primary ) );
-    --_base-bg: var( --button-bg, var( --default-primary ) );
+    --_base-color: var( --button-color, var( --global-onPrimary ) );
+    --_base-bg: var( --button-bg, var( --global-primary ) );
     --_color: var( --_base-color );
     --_bg: var( --_base-bg );
     --_colorHover: var( --button-colorHover, var( --_base-color ) );
     --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) );
     --_borderWidth: var( --button-borderWidth, .15em );
     --_borderColor: var( --button-borderColor, var( --_bg ) );
-    --_radius: var( --button-radius, var( --default-radius ) );
+    --_radius: var( --button-radius, var( --global-radius ) );
 
     display: inline-flex;
     align-items: center;
@@ -710,12 +718,12 @@ a.button {
         --_padding: .3em .5em;
     }
 .button.is-alt {
-        --_base-color: var( --default-on-secondary );
-        --_base-bg: var( --default-secondary );
+        --_base-color: var( --global-onSecondary );
+        --_base-bg: var( --global-secondary );
     }
 .button.is-quiet {
         --_color: inherit;
-        --_colorHover: var( --default-hover );
+        --_colorHover: var( --global-hover );
         --_bg: transparent;
         --_bgHover: transparent;
         --_borderColor: transparent;
@@ -736,16 +744,14 @@ a.button {
         .form input[type='checkbox'],
         .form input[type='radio'] {
             --_background: var( --f-input-surface, transparent );
-            --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
-            --_tickcolor: var( --f-bool-surface-checked, var( --default-primary ) );
-            --_disable-bg: var( --f-bool-surface-disabled, var( --default-ui ) );
-            --_disable-fg: var( --f-bool-ink-disabled, var( --default-muted ) );
-            --_check-bg: var( --f-bool-surface-checked, var( --default-primary ) );
-            --_check-fg: var( --f-bool-ink-checked, var( --default-on-primary ) );
+            --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
+            --_tickcolor: var( --f-bool-surface-checked, var( --global-primary ) );
+            --_disable-bg: var( --f-bool-surface-disabled, var( --global-ui ) );
+            --_disable-fg: var( --f-bool-ink-disabled, var( --global-muted ) );
+            --_check-bg: var( --f-bool-surface-checked, var( --global-primary ) );
+            --_check-fg: var( --f-bool-ink-checked, var( --global-onPrimary ) );
 
-            -webkit-appearance: none;
-
-                    appearance: none;
+            appearance: none;
             position: relative;
             display: inline-block;
             height: 1.2em;
@@ -790,7 +796,7 @@ a.button {
                     opacity: .7;
                 }
                     .form input[type='checkbox']:hover:not(:checked):not(:disabled), .form input[type='checkbox']:focus:not(:checked):not(:disabled), .form input[type='radio']:hover:not(:checked):not(:disabled), .form input[type='radio']:focus:not(:checked):not(:disabled) {
-                        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+                        --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
                     }
             .form input[type='checkbox']:after {
                 content: '';
@@ -872,8 +878,8 @@ a.button {
 .levitate > label,
     .levitate > legend {
         font-size: .9em;
-        line-height: var( --font-line );
-        color: var( --f-form-label-ink, var( --default-muted ) );
+        line-height: var( --global-lineHeight );
+        color: var( --f-form-label-ink, var( --global-muted ) );
     }
 .levitate > label {
         position: absolute;
@@ -883,7 +889,7 @@ a.button {
     }
 .levitate > label + * {
         margin-top: 0;
-        padding-top: calc( var( --f-input-padding, .7rem ) + var( --font-line ) );
+        padding-top: calc( var( --f-input-padding, .7rem ) + var( --global-lineHeight ) );
     }
 /* simple self containing units */
 .icon {
@@ -908,14 +914,51 @@ a.button {
         margin-right: 1ex;
     }
 .headline {
-    margin-bottom: var( --gap-deca );
-    font-size: var( --size-mega );
+    margin-bottom: var( --gap-m );
+    font-size: var( --size-4 );
     line-height: calc( 1ex / .38 );
     text-wrap: balance;
     color: var( --o-headline-ink );
 }
 /* more copmplex modules */
 /* global */
+/*
+    center column with max-width and possibilities to break out - the grid way
+    @see https://codepen.io/bitstarr/pen/BajbPRa
+*/
+.wrapping {
+    display: grid;
+    grid-template-columns:
+        [full-start]
+        minmax(1em, 1fr)
+        [mid-start]
+        minmax(0, var( --wrapper-offset ))
+        [main-start]
+        minmax(0, var( --wrapper ))
+        [main-end]
+        minmax(0, var( --wrapper-offset ))
+        [mid-end]
+        minmax(1em, 1fr)
+        [full-end];
+    align-content: start;
+}
+.wrapping > * {
+    grid-column: main;
+}
+.breakout {
+    grid-column: full;
+    grid-template-columns: inherit;
+}
+.breakout--wrapping {
+    display: inherit;
+}
+.breakout--wrapping .wrapped {
+        grid-column: main;
+    }
+.breakout--mid {
+    grid-column: mid;
+    grid-template-columns: inherit;
+}
 .header {
     --_bg: var( --header-bg );
     --_txt: var( --header-text );
@@ -941,11 +984,11 @@ a.button {
 
     --_n-easeFunc: cubic-bezier( .16, 1, .3, 1 );
     --_n-easeDuration: .4s;
-    --_n-layer-bg: var( --o-nav-layer-surface, var( --default-surface ) );
-    --_n-layer-txt: var( --o-nav-layer-ink, var( --default-ink ) );
+    --_n-layer-bg: var( --o-nav-layer-surface, var( --global-fill ) );
+    --_n-layer-txt: var( --o-nav-layer-ink, var( --global-text ) );
     --_n-layer-pad: var( --o-nav-layer-pad, 1.5rem );
     --_n-link-pad: var( --o-nav-link-pad, .3em );
-    --_n-lh: var( --o-nav-lineheight, var( --font-line ) );
+    --_n-lh: var( --o-nav-lineheight, var( --global-lineHeight ) );
 }
 .navigation .active > .menu__link,
     .navigation .open > .menu__link {
@@ -1007,8 +1050,8 @@ a.button {
 
         .navigation__abyss {
             display: block;
-            background: hsl( 0 0% 0% / .3 );
-            background: linear-gradient( to left, transparent, hsl( 0 0% 0% / .3 ) );
+            background: rgb( 0 0 0 / .3 );
+            background: linear-gradient( to left, transparent, rgb( 0 0 0 / .3 ) );
         }
 
 
@@ -1032,7 +1075,7 @@ a.button {
         .navigation__close.is-fallback {
             padding: var( --_n-layer-pad );
             background-color: var( --_n-layer-bg );
-            border-top: .1em solid var( --default-border-ink );
+            border-top: .1em solid var( --global-borderColor );
         }
         .no-js .navigation__abyss {
             grid-row: span 2;
@@ -1049,7 +1092,7 @@ a.button {
 
             .navigation .menu__item {
                 font-size: 1.3rem;
-                /* border-block-end: .2em solid var( --default-primary-light ); */
+                /* border-block-end: .2em solid var( --global-primary ); */
                 /* padding: var( --_m-item-padding, .5rem 0 ); */
             }
 
@@ -1105,9 +1148,9 @@ a.button {
             visibility: hidden;
             min-width: 15ch;
             padding: .5em 0;
-            background: var( --default-ui );
+            background: var( --global-ui );
             border-radius: 4px;
-            box-shadow: 0 .15em .25em hsl( 0 0% 0% / .25 );
+            box-shadow: 0 .15em .25em rgb( 0 0 0 / .25 );
             opacity: .3;
             transition:
                 transform var( --_easeDuration ) var( --_easeOutExpo ),
@@ -1144,7 +1187,7 @@ a.button {
 }
 .babel .active {
         font-weight: 700;
-        --color-link: hsl( var( --default-ink ) );
+        --link-color: var( --global-text );
     }
 .babel__item {
         position: relative;
@@ -1173,13 +1216,13 @@ a.button {
         --o-footer-link         link text color
         --o-footer-hover        hover link text color
     */
-    --_bg: var( --o-footer-surface, var( --default-primary) );
-    --_txt: var( --o-footer-ink, var( --default-on-primary ) );
-    --color-link: var( --o-footer-link, currentcolor );
-    --color-hover: var( --o-footer-hover );
+    --_bg: var( --o-footer-surface, var( --global-primary) );
+    --_txt: var( --o-footer-ink, var( --global-onPrimary ) );
+    --link-color: var( --o-footer-link, currentcolor );
+    --link-hover: var( --o-footer-hover );
 
-    padding-top: var( --gap-deca );
-    padding-bottom: var( --gap-deca );
+    padding-top: var( --gap-m );
+    padding-bottom: var( --gap-m );
     color: var( --_txt );
     background-color: var( --_bg );
 }
@@ -1202,12 +1245,12 @@ a.button {
         }
 .footer__social {
         display: flex;
-        margin-top: var( --font-line );
-        margin-left: calc( var( --gap-deci ) * -1 );
+        margin-top: var( --global-lineHeight );
+        margin-left: calc( var( --gap-xs ) * -1 );
         font-size: 1.5em;
     }
 .footer__social__link {
-            padding: var( --gap-deci );
+            padding: var( --gap-xs );
         }
 .footer__elevator {
         padding: 1rem;
@@ -1222,9 +1265,9 @@ a.button {
         --o-footer-link         dedicated link text color
         --o-footer-hover        hover link text color
     */
-    --_txt: var( --o-breadcrumb-ink, var( --default-muted ) );
-    --color-link: var( --o-breadcrumb-link, currentcolor );
-    --color-hover: var( --o-breadcrumb-hover );
+    --_txt: var( --o-breadcrumb-ink, var( --global-muted ) );
+    --link-color: var( --o-breadcrumb-link, currentcolor );
+    --link-hover: var( --o-breadcrumb-hover );
 
     padding: 1em 0;
     font-size: .75em;
@@ -1270,7 +1313,7 @@ a.button {
 }
 .textflow > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-        margin-block-start: var( --flow-space, var( --font-line ) );
+        margin-block-start: var( --flow-space, var( --global-lineHeight ) );
     }
 .textflow ul,
     .textflow ol { margin-left: 1em; }
@@ -1279,10 +1322,10 @@ a.button {
 .textflow ul { list-style: disc; }
 .textflow ul li::marker {
         content: '•  ';
-        color: var( --o-textflow-list-accent, var( --default-primary) );
+        color: var( --o-textflow-list-accent, var( --global-primary) );
     }
 .textflow ul ul li::marker {
-        color: var( --o-textflow-list-accentNested, var( --default-muted ) );
+        color: var( --o-textflow-list-accentNested, var( --global-muted ) );
     }
 .textflow li ol,
     .textflow li ul { margin-bottom: 0; }
@@ -1292,41 +1335,40 @@ a.button {
 .textflow h2 + *,
     .textflow h3 + *,
     .textflow h4 + * {
-        --flow-space: calc( var( --font-line ) / 2 );
-        text-wrap: balance;
+        --flow-space: calc( var( --global-lineHeight ) / 2 );
     }
 .textflow h2,
     .textflow h3,
     .textflow h4 { font-weight: 700; }
 .textflow h2 {
-        font-size: var( --size-kilo );
-        color: var( --o-textflow-h2-accent, var( --default-primary) );
-        --flow-space: calc( var( --font-line ) * 1.5 );
+        font-size: var( --size-3 );
+        color: var( --o-textflow-h2-accent, var( --global-primary) );
+        --flow-space: calc( var( --global-lineHeight ) * 1.5 );
     }
-.textflow h3 { font-size: var( --size-hecto ); }
-.textflow h4 { font-size: var( --size-deca ); }
+.textflow h3 { font-size: var( --size-2 ); }
+.textflow h4 { font-size: var( --size-1 ); }
 .textflow hr { border: .1em solid; }
 .textflow table { width: 100%; }
 .textflow th {
         font-weight: 700;
-        border-bottom: 2px solid var( --default-border-ink );
+        border-bottom: 2px solid var( --global-borderColor );
     }
 .textflow th[scope=row] {
         border-bottom: 0;
-        border-top: 1px solid var( --default-border-ink );
+        border-top: 1px solid var( --global-borderColor );
     }
 .textflow th:empty { display: none; }
-.textflow tr + tr td { border-top: 1px solid var( --default-border-ink );  }
+.textflow tr + tr td { border-top: 1px solid var( --global-borderColor );  }
 .textflow :where( a ) { text-decoration: underline; }
 .textflow blockquote {
         position: relative;
         padding-left: 2rem;
-        font-size: var( --size-deca );
+        font-size: var( --size-1 );
         /**/
     }
 .textflow blockquote > * + * {
             /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-            margin-block-start: var( --flow-space, var( --font-line ) );
+            margin-block-start: var( --flow-space, var( --global-lineHeight ) );
         }
 .textflow blockquote:after,
         .textflow blockquote:before {
@@ -1352,12 +1394,12 @@ a.button {
             top: 0;
             bottom: 0;
             left: 0;
-            border-left: .4em solid var( --o-textflow-quote-accent, var( --default-primary) );
+            border-left: .4em solid var( --o-textflow-quote-accent, var( --global-primary) );
             opacity: .6;
         }
 .textflow :where( figure figcaption ) {
         margin-top: .4rem;
-        font-size: var( --size-deci );
+        font-size: var( --size--1 );
     }
 .textflow code {
         padding: .1rem .3rem .2rem;
@@ -1412,11 +1454,11 @@ a.button {
         --o-notice-ink-error
         --o-notice-frame-error
     */
-    --_bg: var( --o-notice-surface, var( --default-ui ) );
-    --_txt: var( --o-notice-ink, var( --default-ink ) );
-    --_brd: var( --o-notice-frame, var( --default-ink ) );
+    --_bg: var( --o-notice-surface, var( --global-ui ) );
+    --_txt: var( --o-notice-ink, var( --global-text ) );
+    --_brd: var( --o-notice-frame, var( --global-text ) );
 
-    padding: var( --gap-deci );
+    padding: var( --gap-xs );
     color: var( --_txt );
     text-wrap: pretty;
     background: var( --_bg );
@@ -1448,11 +1490,11 @@ a.button {
     }
 .notice:has( .icon ) {
         position: relative;
-        border-left-width: calc( 2 * var( --gap-deci ) + 1em );
+        border-left-width: calc( 2 * var( --gap-xs ) + 1em );
     }
 .notice .icon {
         position: absolute;
-        left: calc( -1 * var( --gap-deci ) );
+        left: calc( -1 * var( --gap-xs ) );
         translate: -100% 0;
         color: var( --_bg );
     }
@@ -1467,16 +1509,16 @@ a.button {
 .hero__title {
         position: absolute;
         left: 0;
-        bottom: var( --gap-deca );
+        bottom: var( --gap-m );
         font-size: 2em;
         font-weight: 700;
         color: #fff;
     }
 .hero__title .padded {
             display: inline;
-            padding: .1em var( --gap-deci );
+            padding: .1em var( --gap-xs );
             line-height: calc( 1.2em + ( 2 * .1em ) );
-            background: hsl( 0 0% 0% / .6 );
+            background: rgb( 0 0 0 / .6 );
             -webkit-box-decoration-break: clone;
                     box-decoration-break: clone;
         }
@@ -1487,24 +1529,24 @@ a.button {
         padding: 1ex;
         font-size: .6em;
         color: #fff;
-        background-color: hsl( 0 0% 0% / .7 );
+        background-color: rgb( 0 0 0 / .7 );
     }
 .modular + .modular {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
     }
 .modular__title {
-        margin-bottom: var( --gap-deca );
-        font-size: var( --size-kilo );
+        margin-bottom: var( --gap-m );
+        font-size: var( --size-3 );
         font-weight: 700;
     }
 /* specific */
 .details {
-    padding: var( --gap-deci ) var( --gap );
-    background: var( --default-ui );
-    border-bottom: 2px solid var( --default-border-ink );
+    padding: var( --gap-xs ) var( --gap );
+    background: var( --global-ui );
+    border-bottom: 2px solid var( --global-borderColor );
 }
 .details + .details {
-        margin-top: var( --font-line );
+        margin-top: var( --global-lineHeight );
     }
 .details__trigger {
         all: inherit;
@@ -1513,7 +1555,7 @@ a.button {
         align-items: center;
         width: 100%;
         margin: 0;
-        padding: var( --gap-deci ) 0;
+        padding: var( --gap-xs ) 0;
         border: 0;
         cursor: pointer;
     }
@@ -1556,64 +1598,62 @@ a.button {
     }
 /*
         API:
-        --o-tabs-surface          background color
-        --o-tabs-ink              text color
-        --o-tabs-border           border width
-        --o-tabs-border-color     border color
-        --o-tabs-border-hover     border color on hover
+        --o-tabs-borderWidth        border width
+        --o-tabs-borderColor        border color
+        --o-tabs-borderHover        border color on hover
     */
 .tabs__head {
         display: none;
     }
 /* &__content {
-        margin-bottom: var( --gap-deca );
+        margin-bottom: var( --gap-m );
     } */
 .tabs__title {
-        margin-bottom: var( --gap-deci );
+        margin-bottom: var( --gap-xs );
         font-size: 1.2em;
     }
 .tabs.is-interactive .tabs__head {
         display: flex;
+        align-items: flex-end;
+        gap: max( 1px, .15em );
+        margin-bottom: calc( -1 * var( --_borderWidth ) );
+        padding-inline: var( --_borderWidth );
     }
 .tabs.is-interactive .tabs__title{
         display: none;
     }
 .tabs--default {
-        --_brdw: var( --o-tabs-border, min( 2px, .15em ) );
-        --_brd: var( --o-tabs-border-color, var( --default-border-ink) );
-        --_hvr: var( --o-tabs-border-hover, var( --default-primary-light ) );
-        --_bg: var( --o-tabs-surface, var( --default-surface ) );
-        --_txt: var( --o-tabs-ink, var( --default-ink ) );
+        --_borderWidth: var( --o-tabs-borderWidth, min( 2px, .15em ) );
+        --_borderColor: var( --o-tabs-borderColor, var( --global-borderColor) );
+        --_hoverColor: var( --o-tabs-borderHover, var( --global-primary ) );
+        --_fill: #f9f9f9;
     }
 .tabs--default .tabs__toggle {
         display: block;
         height: 100%;
         text-align: center;
-        padding: var( --gap-deci );
-        border: var( --_brdw ) solid transparent;
-        border-bottom: 0;
-        background: var( --_bg );
+        padding: var( --gap-xs );
+        border-bottom: var( --_borderWidth ) solid var( --_borderColor, transparent );
+        background-color: var( --_fill );
     }
 .tabs--default .tabs__toggle:not( [aria-selected] ):hover {
-        box-shadow: inset 0 0 0 var( --_brdw ) var( --_hvr );
+        --_borderColor: var( --global-primary );
     }
 .tabs--default .tabs__toggle[aria-selected] {
-        position: relative;
-        top: var( --_brdw );
-        border-color: var( --_brd );
+        --_borderColor: var( --global-primary );
+        --_fill: color-mix( in oklab, var( --_hoverColor ), transparent 90% );
     }
 .tabs--default.is-interactive .tabs__content {
-        padding: var( --gap ) var( --gap-deci );
-        border: var( --_brdw ) solid var( --_brd );
-        background: var( --_bg );
+        padding: var( --gap ) var( --gap-s );
+        border: var( --_borderWidth ) solid var( --_borderColor );
     }
 .bullets {
     /*
         API:
         --o-bullets-surface     background color
         --o-bullets-ink         text color (title)
-        --color-link            link color
-        --color-hover           link hover color
+        --link-color            link color
+        --link-hover           link hover color
     */
     --_bg: var( --o-bullets-surface, transparent );
     --_txt: var( --o-bullets-ink, currentcolor);
@@ -1636,16 +1676,16 @@ a.button {
         text-align: center;
     }
 .bullets__icon {
-        margin-bottom: var( --gap-deci );
+        margin-bottom: var( --gap-xs );
         font-size: 4em;
     }
 .bullets.is-inverted {
-        --o-bullets-surface: var( --default-primary);
-        --o-bullets-ink: var( --default-on-primary );
-        --color-link: var( --default-on-primary );
-        --color-hover: var( --default-secondary );
+        --o-bullets-surface: var( --global-primary);
+        --o-bullets-ink: var( --global-onPrimary );
+        --link-color: var( --global-onPrimary );
+        --link-hover: var( --global-secondary );
 
-        padding: var( --gap-deca ) 0;
+        padding: var( --gap-m ) 0;
     }
 .carousel {
     /*
@@ -1682,7 +1722,6 @@ a.button {
 
     scrollbar-color: var( --_sb-thumb ) var( --_sb-track );
     scrollbar-width: thin;
-
 }
 .carousel:focus,
     .carousel:focus-within {
@@ -1745,7 +1784,7 @@ a.button {
                 top: -.3em;
                 display: block;
                 font-size: var( --_q-quote-size );
-                color: var( --o-quote-markColor, var( --default-primary ) );
+                color: var( --o-quote-markColor, var( --global-primary ) );
             }
 .quote__cite {
         display: block;
@@ -1813,15 +1852,9 @@ a.button {
 .textimage__title {
         grid-area: title;
         margin-bottom: var( --gap );
-        font-size: var( --size-kilo );
+        font-size: var( --size-3 );
         font-weight: 700;
-        color: var( --color-primary );
     }
-@container textimage (inline-size > 34em) {
-.textimage__title {
-            font-size: clamp( var( --size-deca ), 3.6vw, var( --size-kilo ) )
-    }
-        }
 .textimage__image {
         grid-area: image;
         margin-bottom: var( --gap );
@@ -1837,7 +1870,7 @@ a.button {
             --_areas:
                 'image title'
                 'image content';
-            --_col-gap: var( --gap-deca );
+            --_col-gap: var( --gap-m );
 
             display: grid;
             gap: 0 var( --_col-gap );
@@ -1855,52 +1888,15 @@ a.button {
 
         .textimage__image {
             position: sticky;
-            top: var( --gap-deca );
+            top: var( --gap-m );
         }
     }
 @container textimage (inline-size > 43em) {
         .textimage__shell {
-            --_col-gap: var( --gap-hecto );
+            --_col-gap: var( --gap-l );
         }
     }
 /* layouts define the relations between modules on a specific page type */
-/*
-    center column with max-width and possibilities to break out - the grid way
-    @see https://codepen.io/bitstarr/pen/BajbPRa
-*/
-.wrapping {
-    display: grid;
-    grid-template-columns:
-        [full-start]
-        minmax(1em, 1fr)
-        [mid-start]
-        minmax(0, var( --wrapper-offset ))
-        [main-start]
-        minmax(0, var( --wrapper ))
-        [main-end]
-        minmax(0, var( --wrapper-offset ))
-        [mid-end]
-        minmax(1em, 1fr)
-        [full-end];
-    align-content: start;
-}
-.wrapping > * {
-    grid-column: main;
-}
-.breakout {
-    grid-column: full;
-    grid-template-columns: inherit;
-}
-.breakout--wrapping {
-    display: inherit;
-}
-.breakout--wrapping .wrapped {
-        grid-column: main;
-    }
-.breakout--mid {
-    grid-column: mid;
-    grid-template-columns: inherit;
-}
 html {
     /* optional, colored scrollbar
     scrollbar-color: var( --base-scroll-thumb ) var( --base-scroll-track );
@@ -1915,32 +1911,12 @@ body > footer {
     position: sticky;
     top: 100vh;
 }
-@media( min-width: 55em ) {
-    body {
-        font-size: 1.2em;
-    }
-}
 body {
     scroll-behavior: smooth;
 }
 .main {
-    padding: var( --gap-deca ) 0 var( --gap-hecto );
+    padding: var( --gap-m ) 0 var( --gap-l );
 }
-/*
-.wrapper {
-    margin: 0 auto;
-    padding: 0 var( --gap );
-    max-width: var( --wrapper );
-}
-.wrapper--tight {
-    margin: 0 auto;
-    max-width: var( --wrapper );
-
-    @media (min-width: 50rem) {
-        padding: 0 var( --gap );
-    }
-}
-*/
 .t-page {
 
 }

@@ -26,10 +26,10 @@
 
 .u-quiet,
 .u-muted {
-    --color-link: var( --default-muted );
-    --color-hover: var( --default-ink );
+    --link-color: var( --global-muted );
+    --link-hover: var( --global-text );
 
-    color: var( --default-muted );
+    color: var( --global-muted );
 
     a {
         text-decoration: underline;

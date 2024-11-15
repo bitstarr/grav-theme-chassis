@@ -7,8 +7,8 @@
     & > label,
     & > legend {
         font-size: .9em;
-        line-height: var( --font-line );
-        color: var( --f-form-label-ink, var( --default-muted ) );
+        line-height: var( --global-lineHeight );
+        color: var( --f-form-label-ink, var( --global-muted ) );
     }
     & > label {
         position: absolute;
@@ -18,6 +18,6 @@
     }
     & > label + * {
         margin-top: 0;
-        padding-top: calc( var( --f-input-padding, .7rem ) + var( --font-line ) );
+        padding-top: calc( var( --f-input-padding, .7rem ) + var( --global-lineHeight ) );
     }
 }

@@ -1,6 +1,6 @@
 .headline {
-    margin-bottom: var( --gap-deca );
-    font-size: var( --size-mega );
+    margin-bottom: var( --gap-m );
+    font-size: var( --size-4 );
     line-height: calc( 1ex / .38 );
     text-wrap: balance;
     color: var( --o-headline-ink );

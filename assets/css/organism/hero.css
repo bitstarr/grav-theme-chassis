@@ -10,16 +10,16 @@
     &__title {
         position: absolute;
         left: 0;
-        bottom: var( --gap-deca );
+        bottom: var( --gap-m );
         font-size: 2em;
         font-weight: 700;
         color: #fff;
 
         .padded {
             display: inline;
-            padding: .1em var( --gap-deci );
+            padding: .1em var( --gap-xs );
             line-height: calc( 1.2em + ( 2 * .1em ) );
-            background: hsl( 0 0% 0% / .6 );
+            background: rgb( 0 0 0 / .6 );
             box-decoration-break: clone;
         }
     }
@@ -31,6 +31,6 @@
         padding: 1ex;
         font-size: .6em;
         color: #fff;
-        background-color: hsl( 0 0% 0% / .7 );
+        background-color: rgb( 0 0 0 / .7 );
     }
 }

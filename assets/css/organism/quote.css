@@ -45,7 +45,7 @@
                 top: -.3em;
                 display: block;
                 font-size: var( --_q-quote-size );
-                color: var( --o-quote-markColor, var( --default-primary ) );
+                color: var( --o-quote-markColor, var( --global-primary ) );
             }
         }
     }

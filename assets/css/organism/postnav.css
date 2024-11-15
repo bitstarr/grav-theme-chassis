@@ -1,8 +1,8 @@
 .postnav {
     &__link {
         /*
-        --color-link: var( --default-primary);
-        --color-hover: var( --default-secondary );
+        --link-color: var( --global-primary);
+        --link-hover: var( --global-secondary );
         */
 
         position: relative;
@@ -37,12 +37,12 @@
         font-size: .8em;
         line-height: 2;
         text-transform: uppercase;
-        color: var( --default-muted );
+        color: var( --global-muted );
     }
 
     @media (max-width: 39.99em) {
         &__link:nth-child(2) {
-            border-top: 1px solid var( --default-border-ink );
+            border-top: 1px solid var( --global-borderColor );
         }
     }
     @media (min-width: 40em) {
@@ -70,7 +70,7 @@
             }
             &:nth-child(2) {
                 padding-left: var( --gap );
-                border-left: 1px solid var( --default-border-ink );
+                border-left: 1px solid var( --global-borderColor );
             }
         }
     }

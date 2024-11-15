@@ -10,7 +10,7 @@
     background-size: .8em;
     background-repeat: no-repeat;
     background-position: calc( 100% - .5em ) center;
-    background-color: var( --f-dropdown-surface, var( --f-input-surface, var( --default-surface ) ) );
+    background-color: var( --f-dropdown-surface, var( --f-input-surface, var( --global-fill ) ) );
 
     option[value=''][disabled] {
         display: none;

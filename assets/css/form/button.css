@@ -14,15 +14,15 @@
     */
     --_padding: var( --button-padding, .5em 1em );
     --_weight: var( --button-fontWeight, 400 );
-    --_base-color: var( --button-color, var( --default-on-primary ) );
-    --_base-bg: var( --button-bg, var( --default-primary ) );
+    --_base-color: var( --button-color, var( --global-onPrimary ) );
+    --_base-bg: var( --button-bg, var( --global-primary ) );
     --_color: var( --_base-color );
     --_bg: var( --_base-bg );
     --_colorHover: var( --button-colorHover, var( --_base-color ) );
     --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) );
     --_borderWidth: var( --button-borderWidth, .15em );
     --_borderColor: var( --button-borderColor, var( --_bg ) );
-    --_radius: var( --button-radius, var( --default-radius ) );
+    --_radius: var( --button-radius, var( --global-radius ) );
 
     display: inline-flex;
     align-items: center;
@@ -78,13 +78,13 @@
     }
 
     &.is-alt {
-        --_base-color: var( --default-on-secondary );
-        --_base-bg: var( --default-secondary );
+        --_base-color: var( --global-onSecondary );
+        --_base-bg: var( --global-secondary );
     }
 
     &.is-quiet {
         --_color: inherit;
-        --_colorHover: var( --default-hover );
+        --_colorHover: var( --global-hover );
         --_bg: transparent;
         --_bgHover: transparent;
         --_borderColor: transparent;

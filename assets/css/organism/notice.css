@@ -14,11 +14,11 @@
         --o-notice-ink-error
         --o-notice-frame-error
     */
-    --_bg: var( --o-notice-surface, var( --default-ui ) );
-    --_txt: var( --o-notice-ink, var( --default-ink ) );
-    --_brd: var( --o-notice-frame, var( --default-ink ) );
+    --_bg: var( --o-notice-surface, var( --global-ui ) );
+    --_txt: var( --o-notice-ink, var( --global-text ) );
+    --_brd: var( --o-notice-frame, var( --global-text ) );
 
-    padding: var( --gap-deci );
+    padding: var( --gap-xs );
     color: var( --_txt );
     text-wrap: pretty;
     background: var( --_bg );
@@ -55,12 +55,12 @@
 
     &:has( .icon ) {
         position: relative;
-        border-left-width: calc( 2 * var( --gap-deci ) + 1em );
+        border-left-width: calc( 2 * var( --gap-xs ) + 1em );
     }
 
     .icon {
         position: absolute;
-        left: calc( -1 * var( --gap-deci ) );
+        left: calc( -1 * var( --gap-xs ) );
         translate: -100% 0;
         color: var( --_bg );
     }
