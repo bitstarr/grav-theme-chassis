@@ -51,19 +51,19 @@
         */
     }
 
-    .wrapped:has( .image ) {
+    &:has( .image ) {
         display: flex;
         flex-direction: var( --_dir, column );
         align-items: center;
     }
 
     @media (min-width: 50em) {
-        .wrapped:has( .image ) {
+        &:has( .image ) {
             --_dir: row;
             gap: var( --gap-m );
         }
 
-        &.is-flipped .figure {
+        .is-flipped & .figure {
             order: -1;
         }
     }

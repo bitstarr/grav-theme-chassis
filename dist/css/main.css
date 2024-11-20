@@ -1815,18 +1815,18 @@ a.button {
         }
         */
     }
-.quote .wrapped:has( .image ) {
+.quote:has( .image ) {
         display: flex;
         flex-direction: var( --_dir, column );
         align-items: center;
     }
 @media (min-width: 50em) {
-        .quote .wrapped:has( .image ) {
+        .quote:has( .image ) {
             --_dir: row;
             gap: var( --gap-m );
         }
 
-        .quote.is-flipped .figure {
+        .is-flipped .quote .figure {
             order: -1;
         }
     }
