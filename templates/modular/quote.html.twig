@@ -6,38 +6,42 @@
     'wrapping',
 ] %}
 
-{% set img = page.media[ header.image.file ].cropZoom(490,490).quality(70).url -%}
+{% set img = page.media[ header.image.file ] -%}
 
-{% if img %}
-    {% set modular_classes = modular_classes|merge( ['has-image'] ) %}
-{% endif %}
 {% if header.image.position == 'after' %}
     {% set modular_classes = modular_classes|merge( ['is-flipped'] ) %}
 {% endif %}
 {% endspaceless %}
 
 <section class="{{ modular_classes|join( ' ' )|trim }}">
-    <div class="quote__wrap">
+    <div class="wrapped">
+    {{dump(img)}}
         {% if img -%}
-        <div class="quote__image">
-            <img class="quote__picture" src="{{ img }}" width="490" height="490" alt="">
-        </div>
+            <img
+                class="image"
+                src="{{ img.cropZoom(490,490).quality(70).url }}"
+                width="490"
+                height="490"
+                alt="{{ img.metadata.alt }}"
+                loading="lazy"
+                decoding="async"
+            >
         {% endif -%}
 
-        <div class="quote__content">
-            <blockquote class="quote__quote">
+        <figure class="figure">
+            <blockquote class="content">
                 <div class="textflow">
                 {{ page.content|raw }}
                 </div>
-                <footer>
-                    <cite class="quote__cite">
-                        {{ header.author.name }}
-                        {% if header.author.job %}
-                        <br>{{ header.author.job }}
-                        {% endif %}
-                    </cite>
-                </footer>
             </blockquote>
-        </div>
+            <figcaption>
+                <cite class="citation">
+                    {{ header.author.name }}
+                    {% if header.author.job %}
+                    <br>{{ header.author.job }}
+                    {% endif %}
+                </cite>
+            </figcaption>
+        </figure>
     </div>
 </section>

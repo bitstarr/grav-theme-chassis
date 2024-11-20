@@ -7,18 +7,7 @@
     */
     --_q-quote-size: var( --o-quote-markSize, 9rem );
 
-    .has-image &__wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__image {
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-    }
-    &__picture {
+    .image {
         width: 100%;
         max-width: 15rem;
         aspect-ratio: 1;
@@ -26,7 +15,7 @@
         border-radius: 50%;
     }
 
-    &__quote {
+    .figure {
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -50,7 +39,7 @@
         }
     }
 
-    &__cite {
+    .citation {
         display: block;
         font-size: .9em;
         font-style: italic;
@@ -62,17 +51,19 @@
         */
     }
 
+    .wrapped:has( .image ) {
+        display: flex;
+        flex-direction: var( --_dir, column );
+        align-items: center;
+    }
+
     @media (min-width: 50em) {
-        .has-image &__wrap {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 1rem;
+        .wrapped:has( .image ) {
+            --_dir: row;
+            gap: var( --gap-m );
         }
 
-        .is-flipped &__wrap {
-            grid-template-columns: 2fr 1fr;
-        }
-        .is-flipped &__content {
+        &.is-flipped .figure {
             order: -1;
         }
     }
