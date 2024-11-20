@@ -14,9 +14,13 @@
 <section class="{{ modular_classes|join( ' ' )|trim }}">
     <div class="notice notice--{{ level[ header.level|default( '0' ) ] }}">
         {% if header.icon %}
+        <span class="visualizer">
             {{ svg( header.icon )|raw }}
+        </span>
         {% endif %}
-        <h2 class="notice__title">{{ page.title }}</h2>
+        <h2 class="title">
+            {{ page.title }}
+        </h2>
         <div class="textflow">
             {{ page.content|raw }}
         </div>

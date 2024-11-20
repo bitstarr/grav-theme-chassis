@@ -1489,14 +1489,36 @@ a.button {
         --_brd: var( --o-notice-frame-error, #d0103a );
     }
 .notice:has( .icon ) {
-        position: relative;
-        border-left-width: calc( 2 * var( --gap-xs ) + 1em );
+        /* position: relative; */
+        /* border-left-width: calc( 2 * var( --gap-xs ) + 1em ); */
+
+        display: grid;
+        grid-template-areas: 'icon title' 'icon text';
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+        padding: 0;
+        border-left: 0;
     }
-.notice .icon {
-        position: absolute;
-        left: calc( -1 * var( --gap-xs ) );
-        translate: -100% 0;
+.notice:has( .icon ) .title {
+            padding-block-start: var( --gap-s );
+            padding-inline: var( --gap-s );
+        }
+.notice:has( .icon ) .textflow {
+            padding: var( --gap-s );
+            padding-top: 0;
+        }
+.notice .title {
+        font-weight: 700;
+        margin-bottom: var( --gap-xs );
+    }
+.notice .visualizer {
+        grid-area: icon;
+        display: flex;
+        align-items: center;
+        padding: var( --gap-xs );
+        font-size: 1.2em;
         color: var( --_bg );
+        background-color: var( --_brd );
     }
 .hero {
     position: relative;
