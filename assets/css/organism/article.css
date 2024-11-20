@@ -1,6 +1,6 @@
 .article {
     & + & {
-        margin-top: var( --gap-hecto );
+        margin-top: var( --gap-l );
     }
 
     &__header {
@@ -42,7 +42,7 @@
     }
 
     &__footer {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
         font-size: .7em;
     }
 }

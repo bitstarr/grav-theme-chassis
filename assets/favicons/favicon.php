@@ -39,7 +39,7 @@
     */ ?>
     <rect class="bg" width="512" height="512" fill="var( --bg )" />
     <text x="50%" y="35%" fill="var( --fg )" dominant-baseline="middle" text-anchor="middle" class="letter">
-        <?php echo $letter ?>
+        <?php echo htmlentities($letter); ?>
     </text>
 <?php
 switch ( $_GET['env'] )

@@ -5,9 +5,9 @@
         --o-footer-link         dedicated link text color
         --o-footer-hover        hover link text color
     */
-    --_txt: var( --o-breadcrumb-ink, var( --default-muted ) );
-    --color-link: var( --o-breadcrumb-link, currentcolor );
-    --color-hover: var( --o-breadcrumb-hover );
+    --_txt: var( --o-breadcrumb-ink, var( --global-muted ) );
+    --link-color: var( --o-breadcrumb-link, currentcolor );
+    --link-hover: var( --o-breadcrumb-hover );
 
     padding: 1em 0;
     font-size: .75em;

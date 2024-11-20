@@ -34,7 +34,7 @@
         padding: .25em 1em;
     }
     /* &__link {
-        --color-hover: var( --default-secondary );
+        --link-hover: var( --global-secondary );
     } */
 
     &__link[rel='prev'],

@@ -18,6 +18,7 @@
 
 /* more copmplex modules */
 /* global */
+@import 'organism/wrapping.css';
 @import 'organism/header.css';
 @import 'organism/navigation.css';
 @import 'organism/babel.css';

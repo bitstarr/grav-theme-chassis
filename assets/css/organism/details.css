@@ -1,10 +1,10 @@
 .details {
-    padding: var( --gap-deci ) var( --gap );
-    background: var( --default-ui );
-    border-bottom: 2px solid var( --default-border-ink );
+    padding: var( --gap-xs ) var( --gap );
+    background: var( --global-ui );
+    border-bottom: 2px solid var( --global-borderColor );
 
     & + & {
-        margin-top: var( --font-line );
+        margin-top: var( --global-lineHeight );
     }
 
     &__trigger {
@@ -14,9 +14,15 @@
         align-items: center;
         width: 100%;
         margin: 0;
-        padding: var( --gap-deci ) 0;
+        padding: var( --gap-xs ) 0;
         border: 0;
         cursor: pointer;
+    }
+    &__trigger::marker {
+        display: none;
+    }
+    &__trigger::-webkit-details-marker {
+        display: none;
     }
 
     &__title {
@@ -42,13 +48,6 @@
         transform: translate(0, -50%);
         height: .25rem;
         width: 1rem;
-    }
-
-    &__trigger::marker {
-        display: none;
-    }
-    &__trigger::-webkit-details-marker {
-        display: none;
     }
 
     &[data-expanded='false'] &__content {

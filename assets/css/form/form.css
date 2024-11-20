@@ -34,8 +34,8 @@
     }
 
     :where( label, legend ) {
-        line-height: var( --font-line );
-        color: var( --f-form-label-ink, var( --default-ink ) );
+        line-height: var( --global-lineHeight );
+        color: var( --f-form-label-ink, var( --global-text ) );
     }
 
     :where( fieldset&__field ) {

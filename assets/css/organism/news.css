@@ -1,6 +1,6 @@
 .news {
     & + & {
-        margin-top: var( --gap-kilo );
+        margin-top: var( --gap-xl );
     }
 
     &__header {
@@ -24,15 +24,15 @@
 
     &__date {
         font-size: .8em;
-        color: var( --default-muted );
+        color: var( --global-muted );
     }
 
     & + .pager {
-        margin-top: var( --gap-kilo  );
+        margin-top: var( --gap-xl  );
     }
 
     &__archive + &__archive {
-        margin-top: var( --gap-hecto );
+        margin-top: var( --gap-l );
     }
 
     &__dateArchive {
@@ -47,7 +47,7 @@
         gap: 1ex;
 
         .post + & {
-            margin-top: var( --gap-deca );
+            margin-top: var( --gap-m );
         }
     }
 }

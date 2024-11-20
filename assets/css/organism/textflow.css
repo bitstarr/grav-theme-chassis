@@ -10,7 +10,7 @@
 
     & > * + * {
         /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-        margin-block-start: var( --flow-space, var( --font-line ) );
+        margin-block-start: var( --flow-space, var( --global-lineHeight ) );
     }
 
     ul,
@@ -20,10 +20,10 @@
     ul { list-style: disc; }
     ul li::marker {
         content: '•  ';
-        color: var( --o-textflow-list-accent, var( --default-primary) );
+        color: var( --o-textflow-list-accent, var( --global-primary) );
     }
     ul ul li::marker {
-        color: var( --o-textflow-list-accentNested, var( --default-muted ) );
+        color: var( --o-textflow-list-accentNested, var( --global-muted ) );
     }
     li ol,
     li ul { margin-bottom: 0; }
@@ -35,45 +35,44 @@
     h2 + *,
     h3 + *,
     h4 + * {
-        --flow-space: calc( var( --font-line ) / 2 );
-        text-wrap: balance;
+        --flow-space: calc( var( --global-lineHeight ) / 2 );
     }
 
     h2,
     h3,
     h4 { font-weight: 700; }
     h2 {
-        font-size: var( --size-kilo );
-        color: var( --o-textflow-h2-accent, var( --default-primary) );
-        --flow-space: calc( var( --font-line ) * 1.5 );
+        font-size: var( --size-3 );
+        color: var( --o-textflow-h2-accent, var( --global-primary) );
+        --flow-space: calc( var( --global-lineHeight ) * 1.5 );
     }
-    h3 { font-size: var( --size-hecto ); }
-    h4 { font-size: var( --size-deca ); }
+    h3 { font-size: var( --size-2 ); }
+    h4 { font-size: var( --size-1 ); }
 
     hr { border: .1em solid; }
 
     table { width: 100%; }
     th {
         font-weight: 700;
-        border-bottom: 2px solid var( --default-border-ink );
+        border-bottom: 2px solid var( --global-borderColor );
     }
     th[scope=row] {
         border-bottom: 0;
-        border-top: 1px solid var( --default-border-ink );
+        border-top: 1px solid var( --global-borderColor );
     }
     th:empty { display: none; }
-    tr + tr td { border-top: 1px solid var( --default-border-ink );  }
+    tr + tr td { border-top: 1px solid var( --global-borderColor );  }
 
     :where( a ) { text-decoration: underline; }
 
     blockquote {
         position: relative;
         padding-left: 2rem;
-        font-size: var( --size-deca );
+        font-size: var( --size-1 );
 
         & > * + * {
             /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
-            margin-block-start: var( --flow-space, var( --font-line ) );
+            margin-block-start: var( --flow-space, var( --global-lineHeight ) );
         }
 
         &:after,
@@ -100,7 +99,7 @@
             top: 0;
             bottom: 0;
             left: 0;
-            border-left: .4em solid var( --o-textflow-quote-accent, var( --default-primary) );
+            border-left: .4em solid var( --o-textflow-quote-accent, var( --global-primary) );
             opacity: .6;
         }
         /**/
@@ -108,7 +107,7 @@
 
     :where( figure figcaption ) {
         margin-top: .4rem;
-        font-size: var( --size-deci );
+        font-size: var( --size--1 );
     }
 
     code {

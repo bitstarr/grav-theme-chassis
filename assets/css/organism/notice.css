@@ -14,11 +14,11 @@
         --o-notice-ink-error
         --o-notice-frame-error
     */
-    --_bg: var( --o-notice-surface, var( --default-ui ) );
-    --_txt: var( --o-notice-ink, var( --default-ink ) );
-    --_brd: var( --o-notice-frame, var( --default-ink ) );
+    --_bg: var( --o-notice-surface, var( --global-ui ) );
+    --_txt: var( --o-notice-ink, var( --global-text ) );
+    --_brd: var( --o-notice-frame, var( --global-text ) );
 
-    padding: var( --gap-deci );
+    padding: var( --gap-xs );
     color: var( --_txt );
     text-wrap: pretty;
     background: var( --_bg );
@@ -54,14 +54,38 @@
     }
 
     &:has( .icon ) {
-        position: relative;
-        border-left-width: calc( 2 * var( --gap-deci ) + 1em );
+        /* position: relative; */
+        /* border-left-width: calc( 2 * var( --gap-xs ) + 1em ); */
+
+        display: grid;
+        grid-template-areas: 'icon title' 'icon text';
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+        padding: 0;
+        border-left: 0;
+
+        .title {
+            padding-block-start: var( --gap-s );
+            padding-inline: var( --gap-s );
+        }
+        .textflow {
+            padding: var( --gap-s );
+            padding-top: 0;
+        }
     }
 
-    .icon {
-        position: absolute;
-        left: calc( -1 * var( --gap-deci ) );
-        translate: -100% 0;
+    .title {
+        font-weight: 700;
+        margin-bottom: var( --gap-xs );
+    }
+
+    .visualizer {
+        grid-area: icon;
+        display: flex;
+        align-items: center;
+        padding: var( --gap-xs );
+        font-size: 1.2em;
         color: var( --_bg );
+        background-color: var( --_brd );
     }
 }

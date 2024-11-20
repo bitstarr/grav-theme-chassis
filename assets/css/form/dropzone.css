@@ -1,8 +1,8 @@
 
 .dropzone {
-    --_text: var( --f-input-ink, var( --default-ink ) );
-    --_background: var( --f-input-surface, var( --default-surface) );
-    --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
+    --_text: var( --f-input-ink, var( --global-text ) );
+    --_background: var( --f-input-surface, var( --global-fill) );
+    --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
 
     position: relative;
     min-height: 9em;

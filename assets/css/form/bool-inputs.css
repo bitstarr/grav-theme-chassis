@@ -10,12 +10,12 @@
         input[type='checkbox'],
         input[type='radio'] {
             --_background: var( --f-input-surface, transparent );
-            --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
-            --_tickcolor: var( --f-bool-surface-checked, var( --default-primary ) );
-            --_disable-bg: var( --f-bool-surface-disabled, var( --default-ui ) );
-            --_disable-fg: var( --f-bool-ink-disabled, var( --default-muted ) );
-            --_check-bg: var( --f-bool-surface-checked, var( --default-primary ) );
-            --_check-fg: var( --f-bool-ink-checked, var( --default-on-primary ) );
+            --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
+            --_tickcolor: var( --f-bool-surface-checked, var( --global-primary ) );
+            --_disable-bg: var( --f-bool-surface-disabled, var( --global-ui ) );
+            --_disable-fg: var( --f-bool-ink-disabled, var( --global-muted ) );
+            --_check-bg: var( --f-bool-surface-checked, var( --global-primary ) );
+            --_check-fg: var( --f-bool-ink-checked, var( --global-onPrimary ) );
 
             appearance: none;
             position: relative;
@@ -65,7 +65,7 @@
             &:focus {
                 &:not(:checked) {
                     &:not(:disabled) {
-                        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+                        --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
                     }
                 }
             }

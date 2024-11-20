@@ -21,7 +21,7 @@
 
     &:hover,
     &:focus {
-        --_bg: var( --o-tag-surface-hover, var( --default-primary) );
+        --_bg: var( --o-tag-surface-hover, var( --global-primary) );
         --_txt: var( --o-tag-ink-hover, var( --color-on-primary ) );
     }
     &:before {

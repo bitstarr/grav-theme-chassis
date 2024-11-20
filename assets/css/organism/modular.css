@@ -1,11 +1,11 @@
 .modular {
     & + & {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
     }
 
     &__title {
-        margin-bottom: var( --gap-deca );
-        font-size: var( --size-kilo );
+        margin-bottom: var( --gap-m );
+        font-size: var( --size-3 );
         font-weight: 700;
     }
 }

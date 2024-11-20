@@ -11,18 +11,18 @@
         --f-input-surface-disabled  disabled background color
         --f-input-border-disabled   disabled border color
     */
-    --_text: var( --f-input-ink, var( --default-ink ) );
-    --_background: var( --f-input-surface, var( --default-surface) );
-    --_bordercolor: var( --f-input-border, var( --default-border-ink ) );
+    --_text: var( --f-input-ink, var( --global-text ) );
+    --_background: var( --f-input-surface, var( --global-fill) );
+    --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
 
     appearance: none;
     width: 100%;
     padding: var( --f-input-padding, .7rem );
-    line-height: var( --font-line );
+    line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
     border: .1em solid var( --_bordercolor );
-    border-radius: .3em;
+    border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
     box-shadow: var( --_boxshadow, none );
@@ -34,32 +34,32 @@
 
     &:hover {
         &:not(:disabled) {
-            --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+            --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
             --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
         }
     }
     &:focus {
-        --_bordercolor: var( --f-input-border-hover, var( --default-primary ) );
+        --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
         --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
     input&:not(:focus):not(:placeholder-shown):invalid,
     select&:not([value='']):invalid {
-        --_background: var( --f-form-error-surface, hsl( 0 100% 95% ) );
-        --_bordercolor: var( --f-form-error-ink, hsl( 0 100% 33% ) );
-        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, hsl( 0 100% 33% ) );
+        --_background: var( --f-form-error-surface, #ffe6e6 );
+        --_bordercolor: var( --f-form-error-ink, #a80000 );
+        --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, #a80000 );
     }
 
     &:disabled {
-        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
-        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
-        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
+        --_text: var( --f-input-ink-disabled, var( --global-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --global-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
         opacity: .6;
         cursor: not-allowed;
     }
     &[readonly] {
-        --_text: var( --f-input-ink-disabled, var( --default-muted ) );
-        --_background: var( --f-input-surface-disabled, var( --default-ui ) );
-        --_bordercolor: var( --f-input-border-disabled, var( --default-border-ink) );
+        --_text: var( --f-input-ink-disabled, var( --global-muted ) );
+        --_background: var( --f-input-surface-disabled, var( --global-ui ) );
+        --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
     }
 
     &[type='number'] {

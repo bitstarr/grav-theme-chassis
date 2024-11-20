@@ -22,7 +22,7 @@
 
     .tag:hover,
     .tag:focus {
-        --_bg: var( --o-tag-surface-hover, var( --default-primary) );
+        --_bg: var( --o-tag-surface-hover, var( --global-primary) );
         --_txt: var( --o-tag-ink-hover, var( --color-on-primary ) );
     }
 
@@ -51,7 +51,7 @@
         border-radius: 50%;
     }
 .article + .article {
-        margin-top: var( --gap-hecto );
+        margin-top: var( --gap-l );
     }
 .article__header {
         display: flex;
@@ -89,7 +89,7 @@
         position: relative;
     }
 .article__footer {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
         font-size: .7em;
     }
 .pager {
@@ -126,7 +126,7 @@
         padding: .25em 1em;
     }
 /* &__link {
-        --color-hover: var( --default-secondary );
+        --link-hover: var( --global-secondary );
     } */
 .pager__link[rel='prev'],
     .pager__link[rel='next'] {
@@ -161,8 +161,8 @@
     }
 .postnav__link {
         /*
-        --color-link: var( --default-primary);
-        --color-hover: var( --default-secondary );
+        --link-color: var( --global-primary);
+        --link-hover: var( --global-secondary );
         */
 
         position: relative;
@@ -193,11 +193,11 @@
         font-size: .8em;
         line-height: 2;
         text-transform: uppercase;
-        color: var( --default-muted );
+        color: var( --global-muted );
     }
 @media (max-width: 39.99em) {
         .postnav__link:nth-child(2) {
-            border-top: 1px solid var( --default-border-ink );
+            border-top: 1px solid var( --global-borderColor );
         }
     }
 @media (min-width: 40em) {
@@ -226,15 +226,15 @@
             }
             .postnav__link:nth-child(2) {
                 padding-left: var( --gap );
-                border-left: 1px solid var( --default-border-ink );
+                border-left: 1px solid var( --global-borderColor );
             }
     }
 .t-blog .blog,
     .t-blog .pager {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
     }
 .t-post .postnav {
-        margin-top: var( --gap-deca );
+        margin-top: var( --gap-m );
     }
 
 

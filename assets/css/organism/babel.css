@@ -5,7 +5,7 @@
 
     .active {
         font-weight: 700;
-        --color-link: hsl( var( --default-ink ) );
+        --link-color: var( --global-text );
     }
 
     &__item {

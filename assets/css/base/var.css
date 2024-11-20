@@ -8,7 +8,7 @@ html {
     --font-fancy: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
     */
 
-    --font-line: calc( 1em + .35rem );
+    --global-lineHeight: calc( 1em + .35rem );
     /*
         read about line-height: https://hugogiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
         which will recommend something like calc( 1.1em + .25rem )
@@ -25,23 +25,37 @@ html {
 
     /*
         Spacing
-        @see https://en.wikipedia.org/wiki/Metric_prefix
     */
-    --gap-deci: .625rem;
-    --gap: 1.25rem; /* default distance */
-    --gap-deca: 2.5rem;
-    --gap-hecto: 4rem;
-    --gap-kilo: 8rem;
-    --gap-mega: 12rem;
-    --gap-giga: 16rem;
+    /* @link https://utopia.fyi/space/calculator?c=320,16,1.2,1240,20,1.25,5,2,&s=0.75|0.5,2|3|6|9|12,s-l&g=s,l,xl,12 */
+    --gap-xs: clamp(0.5rem, 0.4565rem + 0.2174vw, 0.625rem);
+    --gap-s: clamp(0.75rem, 0.6848rem + 0.3261vw, 0.9375rem);
+    --gap: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    --gap-m: clamp(2rem, 1.8261rem + 0.8696vw, 2.5rem);
+    --gap-l: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
+    --gap-xl: clamp(6rem, 5.4783rem + 2.6087vw, 7.5rem);
+    --gap-2xl: clamp(9rem, 8.2174rem + 3.913vw, 11.25rem);
+    --gap-3xl: clamp(12rem, 10.9565rem + 5.2174vw, 15rem);
 
-    /* font-sizes */
-    --size-deci: .8em;
-    --size-deca: 1.2em;
-    --size-hecto: 1.55em;
-    --size-kilo: 1.9em;
-    --size-mega: 2.3em;
-    --size-giga: 3em;
 
+    /*
+        Font sizes
+    */
+    /* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    /* Step -2: 11.1111px → 12.8px */
+    --size--2: clamp(0.6944rem, 0.6577rem + 0.1836vw, 0.8rem);
+    /* Step -1: 13.3333px → 16px */
+    --size--1: clamp(0.8333rem, 0.7754rem + 0.2899vw, 1rem);
+    /* Step 0: 16px → 20px */
+    --size-0: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    /* Step 1: 19.2px → 25px */
+    --size-1: clamp(1.2rem, 1.0739rem + 0.6304vw, 1.5625rem);
+    /* Step 2: 23.04px → 31.25px */
+    --size-2: clamp(1.44rem, 1.2615rem + 0.8924vw, 1.9531rem);
+    /* Step 3: 27.648px → 39.0625px */
+    --size-3: clamp(1.728rem, 1.4799rem + 1.2407vw, 2.4414rem);
+    /* Step 4: 33.1776px → 48.8281px */
+    --size-4: clamp(2.0736rem, 1.7334rem + 1.7011vw, 3.0518rem);
+    /* Step 5: 39.8131px → 61.0352px */
+    --size-5: clamp(2.4883rem, 2.027rem + 2.3067vw, 3.8147rem);
 }
 /* stylelint-endable */
