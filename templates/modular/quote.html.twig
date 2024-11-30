@@ -1,6 +1,5 @@
 {% spaceless %}
 {% set modular_classes = [
-    'quote',
     'modular',
     'modular--quote',
     'wrapping',
@@ -14,8 +13,7 @@
 {% endspaceless %}
 
 <section class="{{ modular_classes|join( ' ' )|trim }}">
-    <div class="wrapped">
-    {{dump(img)}}
+    <div class="quote">
         {% if img -%}
             <img
                 class="image"
