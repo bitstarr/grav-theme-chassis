@@ -47,6 +47,9 @@ THEME_C:
       HIDE_TITLE: Überschrift verbergen
       INVERT: Invertieren
       FLIP: Reihenfolge umkehren
+      LAYOUT: Darstellung
+      GRID: Raster
+      COLUMNS: Spalten
     REFERENCE:
       SELECT: Modul auswählen
       HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
@@ -77,6 +80,7 @@ THEME_C:
       2: Warnung (orange)
       3: Fehler (rot)
     ACCORDION_NOTICE: Dieses Modul zeigt ein Akkordeon, bestehend aus den Inhalten von dessen Unterseiten. Von denen werden Titel und Textinhalt automatisch ausgelesen.
+    GALLERY_NOTICE: Die Reihenfolge der Bilder entspricht der Reihenfolge der Seitenmedien. Du kannst sie oben per Drag & Drop ändern.
   HERO:
     IMAGE: Titelbild
     HEADLINE: Überschrift auf dem Titelbild

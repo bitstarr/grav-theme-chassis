@@ -1,7 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 
 import { minify } from 'terser';
@@ -47,6 +47,14 @@ await glob( '*.json', { cwd: cwd } ).then( files =>
             thisBundle.lib.forEach( function( item )
             {
                 collection[ item ] = fs.readFileSync( path.join( '.', 'node_modules', item ), 'utf8' );
+            });
+        }
+        // local libs (non node_modules)
+        if ( typeof thisBundle.vendor == 'object' ) {
+            thisBundle.vendor.forEach( function( item )
+            {
+                collection[ item ] = fs.readFileSync( path.join( config.src, 'vendor', item ), 'utf8' );
+
             });
         }
         // now our own code

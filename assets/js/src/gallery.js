@@ -15,9 +15,10 @@
             {
                 self.galleries.forEach( function( gallery )
                 {
-                    Chocolat( gallery.querySelectorAll( 'a' ), {
-                        loop: true,
-                        fullScreen: false,
+                    const prvs = new Parvus({
+                        hideScrollbar: false,
+                        gallerySelector: self.selector,
+                        selector: '.sc-gallery__link',
                     });
                 });
             }

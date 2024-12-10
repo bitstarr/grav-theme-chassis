@@ -17,7 +17,7 @@
         grid-area: content;
 
         .contact__address {
-            margin-top: var( --base-line );
+            margin-top: var( --global-lineHeight );
         }
     }
 

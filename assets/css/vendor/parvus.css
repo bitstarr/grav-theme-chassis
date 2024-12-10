@@ -1,0 +1,283 @@
+html {
+    --parvus-transition-duration: 300ms;
+    --parvus-transition-timing-function: cubic-bezier(.62, .16, .13, 1.01);
+    --parvus-background-color: rgb( 0 0 0 / .8 );
+    --parvus-color: #fff;
+    --parvus-btn-background-color: #000;
+    --parvus-btn-color: #eee;
+    --parvus-btn-hover-background-color: #222;
+    --parvus-btn-hover-color: #eee;
+    --parvus-btn-disabled-background-color: #444;
+    --parvus-btn-disabled-color: #fff;
+    --parvus-caption-background-color: transparent;
+    --parvus-caption-color: hsl(228deg 24% 23%);
+    --parvus-loading-error-background-color: hsl(0deg 0% 100%);
+    --parvus-loading-error-color: hsl(228deg 24% 23%);
+    --parvus-loader-background-color: hsl(23deg 40% 96%);
+    --parvus-loader-color: hsl(228deg 24% 23%);
+}
+
+body:has(.parvus[aria-hidden=false]) {
+    touch-action: none;
+}
+
+/**
+   * Parvus trigger
+   *
+   */
+.parvus-trigger:has(img) {
+    display: block;
+    position: relative;
+}
+
+.parvus-trigger:has(img) .parvus-zoom__indicator {
+    align-items: center;
+    background-color: var(--parvus-btn-background-color);
+    color: var(--parvus-btn-color);
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    position: absolute;
+    inset-inline-end: .5rem;
+    inset-block-start: .5rem;
+}
+
+.parvus-trigger:has(img) img {
+    display: block;
+}
+
+/**
+   * Parvus
+   *
+   */
+.parvus {
+    box-sizing: border-box;
+    contain: strict;
+    inset: 0;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    position: fixed;
+    z-index: 1337;
+}
+
+.parvus *,
+.parvus *::before,
+.parvus *::after {
+    box-sizing: border-box;
+}
+
+.parvus[aria-hidden=true] {
+    display: none;
+}
+
+.parvus__overlay {
+    background-color: var(--parvus-background-color);
+    color: var(--parvus-color);
+    inset: 0;
+    position: absolute;
+}
+
+.parvus__slider {
+    inset: 0;
+    position: absolute;
+}
+
+.parvus__slider[aria-hidden=true] {
+    display: none;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    .parvus__slider--animate:not(.parvus__slider--is-dragging) {
+        transition: transform var(--parvus-transition-duration) var(--parvus-transition-timing-function);
+        will-change: transform;
+    }
+}
+
+.parvus__slider--is-draggable {
+    cursor: grab;
+}
+
+.parvus__slider--is-dragging {
+    cursor: grabbing;
+}
+
+.parvus__slide {
+    block-size: 100%;
+    display: grid;
+    inline-size: 100%;
+    padding-block: 3.75rem 1rem;
+    padding-inline: 1rem;
+    place-items: center;
+}
+
+.parvus__slide img {
+    block-size: auto;
+    display: block;
+    inline-size: auto;
+    margin-inline: auto;
+    transform-origin: left top;
+}
+
+.parvus__content--error {
+    background-color: var(--parvus-loading-error-background-color);
+    color: var(--parvus-loading-error-color);
+    padding-block: .5rem;
+    padding-inline: 1rem;
+}
+
+.parvus__caption {
+    background-color: var(--parvus-caption-background-color);
+    color: var(--parvus-caption-color);
+    padding-block-start: .5rem;
+    text-align: start;
+}
+
+.parvus__loader {
+    display: inline-block;
+    block-size: 6.25rem;
+    inset-inline-start: 50%;
+    position: absolute;
+    inset-block-start: 50%;
+    transform: translate(-50%, -50%);
+    inline-size: 6.25rem;
+}
+
+.parvus__loader::before {
+    animation: spin 1s infinite;
+    border-radius: 100%;
+    border: .25rem solid var(--parvus-loader-background-color);
+    border-block-start-color: var(--parvus-loader-color);
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.parvus__toolbar {
+    align-items: center;
+    display: flex;
+    inset-block-start: 1rem;
+    inset-inline: 1rem;
+    justify-content: space-between;
+    position: absolute;
+    color: var(--parvus-color);
+}
+
+.parvus__controls {
+    display: flex;
+    gap: .5rem;
+}
+
+.parvus__btn {
+    appearance: none;
+    background-color: var(--parvus-btn-background-color);
+    background-image: none;
+    border-radius: 0;
+    border: .06rem solid transparent;
+    color: var(--parvus-btn-color);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    padding: .3rem;
+    position: relative;
+    touch-action: manipulation;
+    will-change: transform, opacity;
+    z-index: 7;
+}
+
+.parvus__btn:hover,
+.parvus__btn:focus-visible {
+    background-color: var(--parvus-btn-hover-background-color);
+    color: var(--parvus-btn-hover-color);
+}
+
+.parvus__btn--previous {
+    inset-inline-start: 0;
+    position: absolute;
+    inset-block-start: calc(50svh - 1rem);
+    transform: translateY(-50%);
+}
+
+.parvus__btn--next {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-start: calc(50svh - 1rem);
+    transform: translateY(-50%);
+}
+
+.parvus__btn svg {
+    pointer-events: none;
+}
+
+.parvus__btn[aria-hidden=true] {
+    display: none;
+}
+
+.parvus__btn[aria-disabled=true] {
+    background-color: var(--parvus-btn-disabled-background-color);
+    color: var(--parvus-btn-disabled-color);
+}
+
+.parvus__counter {
+    position: relative;
+    z-index: 7;
+}
+
+.parvus__counter[aria-hidden=true] {
+    display: none;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+
+    .parvus__overlay,
+    .parvus__counter,
+    .parvus__btn--close,
+    .parvus__btn--previous,
+    .parvus__btn--next,
+    .parvus__caption {
+        transition: transform var(--parvus-transition-duration) var(--parvus-transition-timing-function), opacity var(--parvus-transition-duration) var(--parvus-transition-timing-function);
+        will-change: transform, opacity;
+    }
+
+    .parvus--is-opening .parvus__overlay,
+    .parvus--is-opening .parvus__counter,
+    .parvus--is-opening .parvus__btn--close,
+    .parvus--is-opening .parvus__btn--previous,
+    .parvus--is-opening .parvus__btn--next,
+    .parvus--is-opening .parvus__caption,
+    .parvus--is-closing .parvus__overlay,
+    .parvus--is-closing .parvus__counter,
+    .parvus--is-closing .parvus__btn--close,
+    .parvus--is-closing .parvus__btn--previous,
+    .parvus--is-closing .parvus__btn--next,
+    .parvus--is-closing .parvus__caption {
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__counter,
+    .parvus--is-vertical-closing .parvus__btn--close {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__btn--previous {
+        transform: translate(-100%, -50%);
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__btn--next {
+        transform: translate(100%, -50%);
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__caption {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

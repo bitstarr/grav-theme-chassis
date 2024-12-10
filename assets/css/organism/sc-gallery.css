@@ -1,7 +1,7 @@
 .sc-gallery {
-    --grid-layout-gap: var( --gap );
-    --grid-column-count: 4;
-    --grid-item--min-width: 12rem;
+    --_grid-layoutGap: var( --gap );
+    --_grid-columnCount: 4;
+    --_grid-itemMinWidth: 12rem;
 
 
     box-sizing: border-box;
@@ -19,16 +19,16 @@
     }
 
     &--grid {
-        --gap-count: calc( var( --grid-column-count ) - 1 );
-        --total-gap-width: calc( var( --gap-count ) * var( --grid-layout-gap ) );
-        --grid-item--max-width: calc( ( 100% - var( --total-gap-width ) ) / var( --grid-column-count ) );
+        --_gapCount: calc( var( --_grid-columnCount ) - 1 );
+        --_totalGapWidth: calc( var( --_gapCount ) * var( --_grid-layoutGap ) );
+        --_grid-itemMaxWidth: calc( ( 100% - var( --_totalGapWidth ) ) / var( --_grid-columnCount ) );
 
         display: grid;
-        grid-template-columns: repeat( auto-fill, minmax( max( var( --grid-item--min-width ), var( --grid-item--max-width ) ), 1fr ) );
-        grid-gap: var(--grid-layout-gap);
+        grid-template-columns: repeat( auto-fill, minmax( max( var( --_grid-itemMinWidth ), var( --_grid-itemMaxWidth ) ), 1fr ) );
+        grid-gap: var(--_grid-layoutGap);
 
         @media (max-width: 45em) {
-            --grid-item--min-width: 9rem;
+            --_grid-itemMinWidth: 9rem;
         }
     }
 
@@ -50,31 +50,31 @@
 
     /* columns --------- */
     &--columns {
-        --column-count: 2;
-        --column-gap: 1rem;
+        --_column-count: 2;
+        --_column-gap: 1rem;
     }
 
-    &--columns &__figure {
-        margin-bottom: var( --column-gap );
+    &--columns > * {
+        margin-bottom: var( --_column-gap );
     }
 
     @media (min-width: 45em) {
         &--columns {
-            columns: var( --column-count );
-            gap: var( --column-gap );
+            columns: var( --_column-count );
+            gap: var( --_column-gap );
         }
     }
 
     /* list --------- */
     &--list {
-        --list-gap: 1rem;
+        --_list-gap: 1rem;
     }
     &--list &__figure {
         display: flex;
-        gap: var( --list-gap );
+        gap: var( --_list-gap );
     }
     &--list &__figure + &__figure {
-        margin-top: var( --list-gap );
+        margin-top: var( --_list-gap );
     }
     &--list &__link,
     &--list &__figure > &__image {

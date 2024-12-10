@@ -1,6 +1,6 @@
 .embedvideo {
     --link-hover: color-mix( in oklab, #fff, var( --global-primary ) 25% );
-    --outline-ink: #fff;
+    --outline-color: #fff;
 
     position: relative;
     text-align: center;

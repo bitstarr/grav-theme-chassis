@@ -57,7 +57,7 @@ html {
 
     --outline-size: max( 2px, .08em );
     --outline-style: solid;
-    --outline-ink: var( --raspberry-4 );
+    --outline-color: var( --raspberry-4 );
     /* --outline-offset: .2em; */
 
     /*
@@ -92,6 +92,6 @@ html {
     */
     --o-footer-surface: var( --cerulean-6 );
 
-    --o-headline-ink: var( --cerulean-6 );
+    --headline-color: var( --cerulean-6 );
 
 }

@@ -1,13 +1,13 @@
 .tag {
     /*
         API:
-        --o-tag-surface         background
-        --o-tag-ink             text color
-        --o-tag-surface-hover   background on hover
-        --o-tag-ink-hover       text color on hover
+        --tag-backgroundColor           background
+        --tag-text                      text color
+        --tag-backgroundColor-hover     background on hover
+        --tag-text-hover                text color on hover
     */
-    --_bg: var( --o-tag-surface, #888 );
-    --_txt: var( --o-tag-ink, #fff );
+    --_bg: var( --tag-backgroundColor, #888 );
+    --_txt: var( --tag-text, #fff );
 
     position: relative;
     display: inline-block;
@@ -21,8 +21,8 @@
 
     &:hover,
     &:focus {
-        --_bg: var( --o-tag-surface-hover, var( --global-primary) );
-        --_txt: var( --o-tag-ink-hover, var( --color-on-primary ) );
+        --_bg: var( --tag-backgroundColor-hover, var( --global-primary) );
+        --_txt: var( --tag-text-hover, var( --color-on-primary ) );
     }
     &:before {
         content: '';

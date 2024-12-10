@@ -1,9 +1,9 @@
 .tabs {
     /*
         API:
-        --o-tabs-borderWidth        border width
-        --o-tabs-borderColor        border color
-        --o-tabs-borderHover        border color on hover
+        --tabs-borderWidth        border width
+        --tabs-borderColor        border color
+        --tabs-borderHover        border color on hover
     */
 
     &__head {
@@ -32,9 +32,9 @@
 
 
     &--default {
-        --_borderWidth: var( --o-tabs-borderWidth, min( 2px, .15em ) );
-        --_borderColor: var( --o-tabs-borderColor, var( --global-borderColor) );
-        --_hoverColor: var( --o-tabs-borderHover, var( --global-primary ) );
+        --_borderWidth: var( --tabs-borderWidth, min( 2px, .15em ) );
+        --_borderColor: var( --tabs-borderColor, var( --global-borderColor) );
+        --_hoverColor: var( --tabs-borderHover, var( --global-primary ) );
         --_fill: #f9f9f9;
     }
     &--default &__toggle {

@@ -32,7 +32,7 @@
 
     &:focus,
     &:focus-within {
-        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
         outline-offset: var( --outline-offset, var( --outline-size ) );
     }
 

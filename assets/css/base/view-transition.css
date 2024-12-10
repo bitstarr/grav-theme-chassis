@@ -1,5 +1,5 @@
-:root {
-    view-transition-name: root;
+@view-transition {
+    navigation: auto;
 }
 
 @keyframes fade {

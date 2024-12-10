@@ -1,7 +1,7 @@
 .pager {
     display: flex;
     justify-content: center;
-    margin-top: var( --gap-saturn );
+    margin-top: var( --gap-l );
     list-style: none;
     text-align: center;
 
