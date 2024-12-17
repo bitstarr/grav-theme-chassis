@@ -43,7 +43,7 @@
     :where( fieldset&__field ) {
         display: flex;
         flex-wrap: wrap;
-        gap: var( --f-input-padding, .7rem );
+        gap: var( --f-input-padding, .7rem ) 1.3em;
     }
     :where( fieldset&__field.rows ) {
         flex-direction: column;

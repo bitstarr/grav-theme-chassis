@@ -151,7 +151,16 @@
     &__wrap {
         display: inline-flex;
         align-items: start;
-        gap: .6em;
-        padding: .2em 1em .2em 0;
+        gap: 1ex;
+        padding: .2em 0;
+
+        &:has( :focus-visible ) {
+            outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+            outline-offset: var( --outline-offset, var( --outline-size ) );
+        }
+    }
+
+    input& {
+        outline: 0;
     }
 }

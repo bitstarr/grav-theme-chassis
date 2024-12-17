@@ -543,7 +543,7 @@ a.u-tel {
 :where( fieldset.form__field ) {
         display: flex;
         flex-wrap: wrap;
-        gap: var( --f-input-padding, .7rem );
+        gap: var( --f-input-padding, .7rem ) 1.3em;
     }
 :where( fieldset.form__field.rows ) {
         flex-direction: column;
@@ -876,8 +876,15 @@ a.button {
 .bool__wrap {
         display: inline-flex;
         align-items: start;
-        gap: .6em;
-        padding: .2em 1em .2em 0;
+        gap: 1ex;
+        padding: .2em 0;
+    }
+.bool__wrap:has( :focus-visible ) {
+            outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
+            outline-offset: var( --outline-offset, var( --outline-size ) );
+        }
+input.bool {
+        outline: 0;
     }
 .encapsulate {
     /*
