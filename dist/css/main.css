@@ -879,7 +879,7 @@ a.button {
         gap: 1ex;
         padding: .2em 0;
     }
-.bool__wrap:has( :focus-visible ) {
+.bool__wrap:has( input:focus-visible ) {
             outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
             outline-offset: var( --outline-offset, var( --outline-size ) );
         }

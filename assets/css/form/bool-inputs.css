@@ -154,7 +154,7 @@
         gap: 1ex;
         padding: .2em 0;
 
-        &:has( :focus-visible ) {
+        &:has( input:focus-visible ) {
             outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
             outline-offset: var( --outline-offset, var( --outline-size ) );
         }
