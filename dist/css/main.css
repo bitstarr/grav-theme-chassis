@@ -98,7 +98,7 @@ html {
     --global-fill: #fff;
     --global-muted: #707070;
     --global-ui: #f4f4f4;
-    --global-borderColor: #ddd;
+    --global-borderColor: #949494;
     --global-link: var( --cerulean-4 );
     --global-hover: var( --raspberry-4 );
 
@@ -400,12 +400,12 @@ q::after { content: close-quote; }
 /* Address inconsistent `text-transform` inheritance for `button` and `select`. */
 :where( button, select ) { text-transform: none; }
 /**
- * Correct the inability to style buttons in iOS and Safari.
- * Improve usability and consistency of cursor style
+ * 1 Correct the inability to style buttons in iOS and Safari.
+ * 2 Improve usability and consistency of cursor style
  */
 :where( button, input:is( [type='button' i], [type='reset' i], [type='submit' i] ) ) {
-    -webkit-appearance: button; /* 2 */
-    cursor: pointer; /* 3 */
+    -webkit-appearance: button; /* 1 */
+    cursor: pointer; /* 2 */
 }
 :where( button[disabled], input[disabled] ) { cursor: default; }
 /**
@@ -512,6 +512,8 @@ a.u-tel {
         --f-form-error-surface      error background
     */
 
+    --outline-color: var( --global-primary );
+
     display: grid;
     gap: var( --gap );
 }
@@ -542,6 +544,10 @@ a.u-tel {
         display: flex;
         flex-wrap: wrap;
         gap: var( --f-input-padding, .7rem );
+    }
+:where( fieldset.form__field.rows ) {
+        flex-direction: column;
+        flex-wrap: nowrap;
     }
 :where( fieldset legend.form__label ) {
         float: left;
@@ -589,11 +595,11 @@ a.u-tel {
     line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
-    border: .1em solid var( --_bordercolor );
+    border: min( .1em, 1px ) solid var( --_bordercolor );
     border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
-    box-shadow: var( --_boxshadow, none );
+    /* box-shadow: var( --_boxshadow, none ); */
     resize: vertical;
 }
 label + .text-input {
@@ -607,8 +613,10 @@ label + .text-input {
         --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
         --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
-input.text-input:not(:focus):not(:placeholder-shown):invalid,
-    select.text-input:not([value='']):invalid {
+input.text-input:not(:focus):user-invalid,
+    select.text-input:user-invalid,
+    fieldset.text-input:has( :user-invalid ) {
+        --f-dropdown-surface: var( --f-form-error-surface, #ffe6e6 );
         --_background: var( --f-form-error-surface, #ffe6e6 );
         --_bordercolor: var( --f-form-error-ink, #a80000 );
         --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, #a80000 );
@@ -857,7 +865,9 @@ a.button {
         }
 
             .form input[type='radio']:checked {
-                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .25em, var( --_check-bg ) .27em );
+                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .3em, var( --_check-bg ) .3em );
+                /* --_background: var( --_check-fg ); */
+                box-shadow: 0 0 0 .24em var( --_check-bg ) inset
             }
             .form input[type='radio']:disabled:checked {
                 --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );
@@ -873,6 +883,8 @@ a.button {
     /*
         since this part is dependend on .text-input, it inherits/uses its custom properties
     */
+    --_spacing: var( --f-input-padding, .7rem );
+
     position: relative;
 }
 .levitate > label,
@@ -884,13 +896,24 @@ a.button {
 .levitate > label {
         position: absolute;
         z-index: 1;
-        top: calc( var( --f-input-padding, .7rem ) * .5 );
-        left: var( --f-input-padding, .7rem );
+        top: calc( var( --_spacing ) * .5 );
+        left: var( --_spacing );
     }
 .levitate > label + * {
         margin-top: 0;
-        padding-top: calc( var( --f-input-padding, .7rem ) + var( --global-lineHeight ) );
+        padding-top: calc( var( --_spacing ) + var( --global-lineHeight ) );
     }
+.levitate:has( :user-invalid ):after {
+            content: '';
+            position: absolute;
+            top: var( --_spacing );
+            right: var( --_spacing );
+            width: .9em;
+            height: .9em;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="%23a80000"><path d="M15 0 H17 L32 29 L31 30 L1 30 L0 29 z M19 8 L13 8 L14 20 L18 20 z M16 22 A3 3 0 0 0 16 28 A3 3 0 0 0 16 22"></path></svg>' );
+        }
 /* simple self containing units */
 .icon {
     fill: currentcolor;

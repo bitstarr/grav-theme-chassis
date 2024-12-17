@@ -2,6 +2,8 @@
     /*
         since this part is dependend on .text-input, it inherits/uses its custom properties
     */
+    --_spacing: var( --f-input-padding, .7rem );
+
     position: relative;
 
     & > label,
@@ -13,11 +15,25 @@
     & > label {
         position: absolute;
         z-index: 1;
-        top: calc( var( --f-input-padding, .7rem ) * .5 );
-        left: var( --f-input-padding, .7rem );
+        top: calc( var( --_spacing ) * .5 );
+        left: var( --_spacing );
     }
     & > label + * {
         margin-top: 0;
-        padding-top: calc( var( --f-input-padding, .7rem ) + var( --global-lineHeight ) );
+        padding-top: calc( var( --_spacing ) + var( --global-lineHeight ) );
+    }
+
+    &:has( :user-invalid ) {
+        &:after {
+            content: '';
+            position: absolute;
+            top: var( --_spacing );
+            right: var( --_spacing );
+            width: .9em;
+            height: .9em;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="%23a80000"><path d="M15 0 H17 L32 29 L31 30 L1 30 L0 29 z M19 8 L13 8 L14 20 L18 20 z M16 22 A3 3 0 0 0 16 28 A3 3 0 0 0 16 22"></path></svg>' );
+        }
     }
 }
