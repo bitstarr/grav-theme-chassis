@@ -572,7 +572,7 @@ a.u-tel {
         max-width: 15em;
         font-size: 1.2em;
     }
-.text-input {
+.inputpeel {
     /*
         API:
         --f-input-ink               input text color
@@ -602,38 +602,38 @@ a.u-tel {
     /* box-shadow: var( --_boxshadow, none ); */
     resize: vertical;
 }
-label + .text-input {
+label + .inputpeel {
         margin-top: .3rem;
     }
-.text-input:hover:not(:disabled) {
+.inputpeel:hover:not(:disabled) {
             --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
             --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
         }
-.text-input:focus {
+.inputpeel:focus {
         --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
         --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
-input.text-input:not(:focus):user-invalid,
-    select.text-input:user-invalid,
-    fieldset.text-input:has( :user-invalid ) {
+input.inputpeel:not(:focus):user-invalid,
+    select.inputpeel:user-invalid,
+    fieldset.inputpeel:has( :user-invalid ) {
         --f-dropdown-surface: var( --f-form-error-surface, #ffe6e6 );
         --_background: var( --f-form-error-surface, #ffe6e6 );
         --_bordercolor: var( --f-form-error-ink, #a80000 );
         --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, #a80000 );
     }
-.text-input:disabled {
+.inputpeel:disabled {
         --_text: var( --f-input-ink-disabled, var( --global-muted ) );
         --_background: var( --f-input-surface-disabled, var( --global-ui ) );
         --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
         opacity: .6;
         cursor: not-allowed;
     }
-.text-input[readonly] {
+.inputpeel[readonly] {
         --_text: var( --f-input-ink-disabled, var( --global-muted ) );
         --_background: var( --f-input-surface-disabled, var( --global-ui ) );
         --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
     }
-.text-input[type='number'] {
+.inputpeel[type='number'] {
         font-variant-numeric: tabular-nums;
     }
 .dropdown {
@@ -879,31 +879,31 @@ a.button {
         gap: .6em;
         padding: .2em 1em .2em 0;
     }
-.levitate {
+.encapsulate {
     /*
-        since this part is dependend on .text-input, it inherits/uses its custom properties
+        since this part is dependend on .inputpeel, it inherits/uses its custom properties
     */
     --_spacing: var( --f-input-padding, .7rem );
 
     position: relative;
 }
-.levitate > label,
-    .levitate > legend {
+.encapsulate > label,
+    .encapsulate > legend {
         font-size: .9em;
         line-height: var( --global-lineHeight );
         color: var( --f-form-label-ink, var( --global-muted ) );
     }
-.levitate > label {
+.encapsulate > label {
         position: absolute;
         z-index: 1;
         top: calc( var( --_spacing ) * .5 );
         left: var( --_spacing );
     }
-.levitate > label + * {
+.encapsulate > label + * {
         margin-top: 0;
         padding-top: calc( var( --_spacing ) + var( --global-lineHeight ) );
     }
-.levitate:has( :user-invalid ):after {
+.encapsulate:has( :user-invalid ):after {
             content: '';
             position: absolute;
             top: var( --_spacing );

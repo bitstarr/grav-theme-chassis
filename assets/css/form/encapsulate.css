@@ -1,6 +1,6 @@
-.levitate {
+.encapsulate {
     /*
-        since this part is dependend on .text-input, it inherits/uses its custom properties
+        since this part is dependend on .inputpeel, it inherits/uses its custom properties
     */
     --_spacing: var( --f-input-padding, .7rem );
 

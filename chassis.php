@@ -57,9 +57,9 @@ class Chassis extends Theme
             'form_field_label_classes' => 'form__label',
             // 'form_field_outer_data_classes' => 'col-9',
             'form_field_input_classes' => '',
-            'form_field_text_classes' => 'text-input',
-            'form_field_textarea_classes' => 'text-input',
-            'form_field_select_classes' => 'text-input dropdown',
+            'form_field_text_classes' => 'inputpeel',
+            'form_field_textarea_classes' => 'inputpeel',
+            'form_field_select_classes' => 'inputpeel dropdown',
             'form_field_radio_classes' => 'form__radio radio',
             'form_field_checkbox_classes' => 'form__checkbox checkbox',
         ];
