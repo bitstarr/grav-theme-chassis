@@ -1,6 +1,6 @@
 html {
-    /* optional, colored scrollbar
-    scrollbar-color: var( --base-scroll-thumb ) var( --base-scroll-track );
+    /* optional, global colored scrollbar
+    scrollbar-color: var( --scrollbar-thumb ) var( --scrollbar-track );
     scrollbar-width: thin;
     /**/
 }

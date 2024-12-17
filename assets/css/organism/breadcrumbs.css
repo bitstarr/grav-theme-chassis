@@ -13,13 +13,6 @@
     font-size: .75em;
     color: var( --_txt );
 
-    .link {
-    }
-    .link:focus-visible {
-        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
-        outline-offset: var( --outline-offset, var( --outline-size ) );
-    }
-
     .item {
         display: inline;
     }

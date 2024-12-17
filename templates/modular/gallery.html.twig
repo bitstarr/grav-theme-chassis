@@ -1,0 +1,41 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--gallery',
+    'wrapping',
+] %}
+
+{% set types = {
+    grid: {
+        width: 250,
+        height: 250,
+    },
+    column: {
+        width: 500,
+        height: null,
+    }
+} %}
+
+{% set layout = header.layout|default( 'grid' ) %}
+{% endspaceless %}
+
+<section class="{{ modular_classes|join( ' ' )|trim }}">
+    <div class="sc-gallery sc-gallery--{{ layout }}">
+        {% for filename in header.media_order|split(',') %}
+            {% set file = page.media[ filename ] %}
+            <a class="sc-gallery__link" href="{{ file.cropResize(1600,1600).url }}">
+                {% if layout == 'grid' %}
+                    {{ file
+                        .cropZoom( types[layout].width, types[layout].height )
+                        .loading('lazy').html( null, image.alt, 'sc-gallery__image' )|raw
+                    }}
+                {% elseif layout == 'columns' %}
+                    {{ file
+                        .cropResize( types[layout].width, types[layout].height )
+                        .loading('lazy').html( null, image.alt, 'sc-gallery__image' )|raw
+                    }}
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+</section>

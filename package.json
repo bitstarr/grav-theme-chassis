@@ -35,7 +35,7 @@
         "vinyl": "*"
     },
     "optionalDeps": {
-        "chocolat": "1.0.4"
+        "parvus": "3.0.0"
     },
     "resourceDeps": {
         "a11y-test": "https://github.com/matuzo/a11y-tests.css",

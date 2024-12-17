@@ -11,12 +11,12 @@
 :where( button, select ) { text-transform: none; }
 
 /**
- * Correct the inability to style buttons in iOS and Safari.
- * Improve usability and consistency of cursor style
+ * 1 Correct the inability to style buttons in iOS and Safari.
+ * 2 Improve usability and consistency of cursor style
  */
 :where( button, input:is( [type='button' i], [type='reset' i], [type='submit' i] ) ) {
-    -webkit-appearance: button; /* 2 */
-    cursor: pointer; /* 3 */
+    -webkit-appearance: button; /* 1 */
+    cursor: pointer; /* 2 */
 }
 :where( button[disabled], input[disabled] ) { cursor: default; }
 

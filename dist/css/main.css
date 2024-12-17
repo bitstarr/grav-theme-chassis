@@ -98,7 +98,7 @@ html {
     --global-fill: #fff;
     --global-muted: #707070;
     --global-ui: #f4f4f4;
-    --global-borderColor: #ddd;
+    --global-borderColor: #949494;
     --global-link: var( --cerulean-4 );
     --global-hover: var( --raspberry-4 );
 
@@ -123,7 +123,7 @@ html {
 
     --outline-size: max( 2px, .08em );
     --outline-style: solid;
-    --outline-ink: var( --raspberry-4 );
+    --outline-color: var( --raspberry-4 );
     /* --outline-offset: .2em; */
 
     /*
@@ -158,11 +158,11 @@ html {
     */
     --o-footer-surface: var( --cerulean-6 );
 
-    --o-headline-ink: var( --cerulean-6 );
+    --headline-color: var( --cerulean-6 );
 
 }
-:root {
-    view-transition-name: root;
+@view-transition {
+    navigation: auto;
 }
 @keyframes fade {
     from {
@@ -386,7 +386,7 @@ q::after { content: close-quote; }
 /* A11y basiscs */
 /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
 :is( a, button, input, textarea, select, summary ):focus-visible {
-    outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+    outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
     outline-offset: var( --outline-offset, var( --outline-size ) );
 }
 /* Form Fixes / Normalisations */
@@ -400,12 +400,12 @@ q::after { content: close-quote; }
 /* Address inconsistent `text-transform` inheritance for `button` and `select`. */
 :where( button, select ) { text-transform: none; }
 /**
- * Correct the inability to style buttons in iOS and Safari.
- * Improve usability and consistency of cursor style
+ * 1 Correct the inability to style buttons in iOS and Safari.
+ * 2 Improve usability and consistency of cursor style
  */
 :where( button, input:is( [type='button' i], [type='reset' i], [type='submit' i] ) ) {
-    -webkit-appearance: button; /* 2 */
-    cursor: pointer; /* 3 */
+    -webkit-appearance: button; /* 1 */
+    cursor: pointer; /* 2 */
 }
 :where( button[disabled], input[disabled] ) { cursor: default; }
 /**
@@ -461,8 +461,7 @@ q::after { content: close-quote; }
         position: absolute;
         width: 1px;
         height: 1px;
-        -webkit-clip-path: inset(50%);
-                clip-path: inset(50%);
+        clip-path: inset(50%);
         overflow: hidden;
         white-space: nowrap;
     }
@@ -513,6 +512,8 @@ a.u-tel {
         --f-form-error-surface      error background
     */
 
+    --outline-color: var( --global-primary );
+
     display: grid;
     gap: var( --gap );
 }
@@ -544,6 +545,10 @@ a.u-tel {
         flex-wrap: wrap;
         gap: var( --f-input-padding, .7rem );
     }
+:where( fieldset.form__field.rows ) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
 :where( fieldset legend.form__label ) {
         float: left;
         width: 100%;
@@ -567,7 +572,7 @@ a.u-tel {
         max-width: 15em;
         font-size: 1.2em;
     }
-.text-input {
+.inputpeel {
     /*
         API:
         --f-input-ink               input text color
@@ -584,51 +589,51 @@ a.u-tel {
     --_background: var( --f-input-surface, var( --global-fill) );
     --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
 
-    -webkit-appearance: none;
-
-            appearance: none;
+    appearance: none;
     width: 100%;
     padding: var( --f-input-padding, .7rem );
     line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
-    border: .1em solid var( --_bordercolor );
+    border: min( .1em, 1px ) solid var( --_bordercolor );
     border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
-    box-shadow: var( --_boxshadow, none );
+    /* box-shadow: var( --_boxshadow, none ); */
     resize: vertical;
 }
-label + .text-input {
+label + .inputpeel {
         margin-top: .3rem;
     }
-.text-input:hover:not(:disabled) {
+.inputpeel:hover:not(:disabled) {
             --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
             --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
         }
-.text-input:focus {
+.inputpeel:focus {
         --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
         --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
-input.text-input:not(:focus):not(:placeholder-shown):invalid,
-    select.text-input:not([value='']):invalid {
+input.inputpeel:not(:focus):user-invalid,
+    select.inputpeel:user-invalid,
+    fieldset.inputpeel:has( :user-invalid ) {
+        --f-dropdown-surface: var( --f-form-error-surface, #ffe6e6 );
         --_background: var( --f-form-error-surface, #ffe6e6 );
         --_bordercolor: var( --f-form-error-ink, #a80000 );
         --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, #a80000 );
     }
-.text-input:disabled {
+.inputpeel:disabled {
         --_text: var( --f-input-ink-disabled, var( --global-muted ) );
         --_background: var( --f-input-surface-disabled, var( --global-ui ) );
         --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
         opacity: .6;
         cursor: not-allowed;
     }
-.text-input[readonly] {
+.inputpeel[readonly] {
         --_text: var( --f-input-ink-disabled, var( --global-muted ) );
         --_background: var( --f-input-surface-disabled, var( --global-ui ) );
         --_bordercolor: var( --f-input-border-disabled, var( --global-borderColor) );
     }
-.text-input[type='number'] {
+.inputpeel[type='number'] {
         font-variant-numeric: tabular-nums;
     }
 .dropdown {
@@ -638,8 +643,7 @@ input.text-input:not(:focus):not(:placeholder-shown):invalid,
         note that not setting the color to transparent may cause unwanted background when select options are shown.
     */
     padding-right: 1.5em;
-    -webkit-appearance: none;
-            appearance: none;
+    appearance: none;
     background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" ><path fill="%23666" d="M256,298.3L256,298.3L256,298.3l174.2-167.2c4.3-4.2,11.4-4.1,15.8,0.2l30.6,29.9c4.4,4.3,4.5,11.3,0.2,15.5L264.1,380.9c-2.2,2.2-5.2,3.2-8.1,3c-3,0.1-5.9-0.9-8.1-3L35.2,176.7c-4.3-4.2-4.2-11.2,0.2-15.5L66,131.3c4.4-4.3,11.5-4.4,15.8-0.2L256,298.3z"/></svg>' );
     background-size: .8em;
     background-repeat: no-repeat;
@@ -755,9 +759,7 @@ a.button {
             --_check-bg: var( --f-bool-surface-checked, var( --global-primary ) );
             --_check-fg: var( --f-bool-ink-checked, var( --global-onPrimary ) );
 
-            -webkit-appearance: none;
-
-                    appearance: none;
+            appearance: none;
             position: relative;
             display: inline-block;
             height: 1.2em;
@@ -863,7 +865,9 @@ a.button {
         }
 
             .form input[type='radio']:checked {
-                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .25em, var( --_check-bg ) .27em );
+                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .3em, var( --_check-bg ) .3em );
+                /* --_background: var( --_check-fg ); */
+                box-shadow: 0 0 0 .24em var( --_check-bg ) inset
             }
             .form input[type='radio']:disabled:checked {
                 --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );
@@ -875,28 +879,41 @@ a.button {
         gap: .6em;
         padding: .2em 1em .2em 0;
     }
-.levitate {
+.encapsulate {
     /*
-        since this part is dependend on .text-input, it inherits/uses its custom properties
+        since this part is dependend on .inputpeel, it inherits/uses its custom properties
     */
+    --_spacing: var( --f-input-padding, .7rem );
+
     position: relative;
 }
-.levitate > label,
-    .levitate > legend {
+.encapsulate > label,
+    .encapsulate > legend {
         font-size: .9em;
         line-height: var( --global-lineHeight );
         color: var( --f-form-label-ink, var( --global-muted ) );
     }
-.levitate > label {
+.encapsulate > label {
         position: absolute;
         z-index: 1;
-        top: calc( var( --f-input-padding, .7rem ) * .5 );
-        left: var( --f-input-padding, .7rem );
+        top: calc( var( --_spacing ) * .5 );
+        left: var( --_spacing );
     }
-.levitate > label + * {
+.encapsulate > label + * {
         margin-top: 0;
-        padding-top: calc( var( --f-input-padding, .7rem ) + var( --global-lineHeight ) );
+        padding-top: calc( var( --_spacing ) + var( --global-lineHeight ) );
     }
+.encapsulate:has( :user-invalid ):after {
+            content: '';
+            position: absolute;
+            top: var( --_spacing );
+            right: var( --_spacing );
+            width: .9em;
+            height: .9em;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="%23a80000"><path d="M15 0 H17 L32 29 L31 30 L1 30 L0 29 z M19 8 L13 8 L14 20 L18 20 z M16 22 A3 3 0 0 0 16 28 A3 3 0 0 0 16 22"></path></svg>' );
+        }
 /* simple self containing units */
 .icon {
     fill: currentcolor;
@@ -924,7 +941,7 @@ a.button {
     font-size: var( --size-4 );
     line-height: calc( 1ex / .38 );
     text-wrap: balance;
-    color: var( --o-headline-ink );
+    color: var( --headline-color );
 }
 /* more copmplex modules */
 /* global */
@@ -1033,7 +1050,7 @@ a.button {
                 transform: rotate(180deg);
             }
 .navigation .menu__expander[aria-controls]:focus-visible {
-                outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+                outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
                 outline-offset: var( --outline-offset, var( --outline-size ) );
             }
 @media (max-width: 39.99em) {
@@ -1279,12 +1296,6 @@ a.button {
     font-size: .75em;
     color: var( --_txt );
 }
-.breadcrumb .link {
-    }
-.breadcrumb .link:focus-visible {
-        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
-        outline-offset: var( --outline-offset, var( --outline-size ) );
-    }
 .breadcrumb .item {
         display: inline;
     }
@@ -1310,9 +1321,9 @@ a.button {
 .textflow {
     /*
         API:
-        --o-textflow-list-accent    bullet list points color
-        --o-textflow-h2-accent      h2 text color
-        --o-textflow-quote-accent   blockquote accent color
+        --textflow-list-accent    bullet list points color
+        --textflow-h2-accent      h2 text color
+        --textflow-quote-accent   blockquote accent color
     */
 
     text-wrap: pretty;
@@ -1328,10 +1339,10 @@ a.button {
 .textflow ul { list-style: disc; }
 .textflow ul li::marker {
         content: '•  ';
-        color: var( --o-textflow-list-accent, var( --global-primary) );
+        color: var( --textflow-list-accent, var( --global-primary) );
     }
 .textflow ul ul li::marker {
-        color: var( --o-textflow-list-accentNested, var( --global-muted ) );
+        color: var( --textflow-list-accentNested, var( --global-muted ) );
     }
 .textflow li ol,
     .textflow li ul { margin-bottom: 0; }
@@ -1348,7 +1359,7 @@ a.button {
     .textflow h4 { font-weight: 700; }
 .textflow h2 {
         font-size: var( --size-3 );
-        color: var( --o-textflow-h2-accent, var( --global-primary) );
+        color: var( --textflow-h2-accent, var( --global-primary) );
         --flow-space: calc( var( --global-lineHeight ) * 1.5 );
     }
 .textflow h3 { font-size: var( --size-2 ); }
@@ -1400,7 +1411,7 @@ a.button {
             top: 0;
             bottom: 0;
             left: 0;
-            border-left: .4em solid var( --o-textflow-quote-accent, var( --global-primary) );
+            border-left: .4em solid var( --textflow-quote-accent, var( --global-primary) );
             opacity: .6;
         }
 .textflow :where( figure figcaption ) {
@@ -1447,22 +1458,22 @@ a.button {
 .notice {
     /*
         API:
-        --o-notice-surface          background
-        --o-notice-ink              text color
-        --o-notice-frame            border color
-        --o-notice-surface-success
-        --o-notice-ink-success
-        --o-notice-frame-success
-        --o-notice-surface-warning
-        --o-notice-ink-warning
-        --o-notice-frame-warning
-        --o-notice-surface-error
-        --o-notice-ink-error
-        --o-notice-frame-error
+        --notice-backgroundColor
+        --notice-text
+        --notice-borderColor
+        --notice-success-backgroundColor
+        --notice-success-text
+        --notice-success-borderColor
+        --notice-warning-backgroundColor
+        --notice-warning-text
+        --notice-warning-borderColor
+        --notice-error-backgroundColor
+        --notice-error-text
+        --notice-error-borderColor
     */
-    --_bg: var( --o-notice-surface, var( --global-ui ) );
-    --_txt: var( --o-notice-ink, var( --global-text ) );
-    --_brd: var( --o-notice-frame, var( --global-text ) );
+    --_bg: var( --notice-backgroundColor, var( --global-ui ) );
+    --_txt: var( --notice-text, var( --global-text ) );
+    --_brd: var( --notice-borderColor, var( --global-text ) );
 
     padding: var( --gap-xs );
     color: var( --_txt );
@@ -1480,24 +1491,21 @@ a.button {
                     text-decoration: underline dashed;
         }
 .notice--success {
-        --_bg: var( --o-notice-surface-success, #e5f3ef );
-        --_txt: var( --o-notice-ink-success );
-        --_brd: var( --o-notice-frame-success, #008566 );
+        --_bg: var( --notice-success-backgroundColor, #e5f3ef );
+        --_txt: var( --notice-success-text );
+        --_brd: var( --notice-success-borderColor, #008566 );
     }
 .notice--warning {
-        --_bg: var( --o-notice-surface-warning, #fcf8f2 );
-        --_txt: var( --o-notice-ink-warning );
-        --_brd: var( --o-notice-frame-warning, #ffb820 );
+        --_bg: var( --notice-warning-backgroundColor, #fcf8f2 );
+        --_txt: var( --notice-warning-text );
+        --_brd: var( --notice-warning-borderColor, #ffb820 );
     }
 .notice--error {
-        --_bg: var( --o-notice-surface-error, #fdf7f7 );
-        --_txt: var( --o-notice-ink-error );
-        --_brd: var( --o-notice-frame-error, #d0103a );
+        --_bg: var( --notice-error-backgroundColor, #fdf7f7 );
+        --_txt: var( --notice-error-text );
+        --_brd: var( --notice-error-borderColor, #d0103a );
     }
 .notice:has( .icon ) {
-        /* position: relative; */
-        /* border-left-width: calc( 2 * var( --gap-xs ) + 1em ); */
-
         display: grid;
         grid-template-areas: 'icon title' 'icon text';
         grid-template-columns: auto 1fr;
@@ -1626,9 +1634,9 @@ a.button {
     }
 /*
         API:
-        --o-tabs-borderWidth        border width
-        --o-tabs-borderColor        border color
-        --o-tabs-borderHover        border color on hover
+        --tabs-borderWidth        border width
+        --tabs-borderColor        border color
+        --tabs-borderHover        border color on hover
     */
 .tabs__head {
         display: none;
@@ -1651,9 +1659,9 @@ a.button {
         display: none;
     }
 .tabs--default {
-        --_borderWidth: var( --o-tabs-borderWidth, min( 2px, .15em ) );
-        --_borderColor: var( --o-tabs-borderColor, var( --global-borderColor) );
-        --_hoverColor: var( --o-tabs-borderHover, var( --global-primary ) );
+        --_borderWidth: var( --tabs-borderWidth, min( 2px, .15em ) );
+        --_borderColor: var( --tabs-borderColor, var( --global-borderColor) );
+        --_hoverColor: var( --tabs-borderHover, var( --global-primary ) );
         --_fill: #f9f9f9;
     }
 .tabs--default .tabs__toggle {
@@ -1753,7 +1761,7 @@ a.button {
 }
 .carousel:focus,
     .carousel:focus-within {
-        outline: var( --outline-size ) var( --outline-style ) var( --outline-ink );
+        outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
         outline-offset: var( --outline-offset, var( --outline-size ) );
     }
 .carousel > * {
@@ -1769,11 +1777,11 @@ a.button {
 .quote {
     /*
         API:
-        --o-quote-fontSize      Font size of quote text
-        --o-quote-markSize      Font size of the stilized quote mark
-        --o-quote-markColor     Color of this mark
+        --quote-fontSize      Font size of quote text
+        --quote-markSize      Font size of the stilized quote mark
+        --quote-markColor     Color of this mark
     */
-    --_q-quote-size: var( --o-quote-markSize, 9rem );
+    --_q-quote-size: var( --quote-markSize, 9rem );
 
 }
 .quote .image {
@@ -1793,7 +1801,7 @@ a.button {
 .quote .figure .textflow {
             position: relative;
             padding-top: calc( var( --_q-quote-size ) / 3 );
-            font-size: var( --o-qoute-fontSize, 1em );
+            font-size: var( --qoute-fontSize, 1em );
         }
 .quote .figure .textflow::before {
                 content: '„';
@@ -1802,7 +1810,7 @@ a.button {
                 top: -.3em;
                 display: block;
                 font-size: var( --_q-quote-size );
-                color: var( --o-quote-markColor, var( --global-primary ) );
+                color: var( --quote-markColor, var( --global-primary ) );
             }
 .quote .citation {
         display: block;
@@ -1882,7 +1890,7 @@ a.button {
         grid-area: content;
     }
 .textimage__content .contact__address {
-            margin-top: var( --base-line );
+            margin-top: var( --global-lineHeight );
         }
 @container textimage (inline-size > 39em) {
         .textimage__shell {
@@ -1917,8 +1925,8 @@ a.button {
     }
 /* layouts define the relations between modules on a specific page type */
 html {
-    /* optional, colored scrollbar
-    scrollbar-color: var( --base-scroll-thumb ) var( --base-scroll-track );
+    /* optional, global colored scrollbar
+    scrollbar-color: var( --scrollbar-thumb ) var( --scrollbar-track );
     scrollbar-width: thin;
     /**/
 }
@@ -1942,12 +1950,344 @@ body {
 .t-error .errorcode {
         margin-top: var( --gap );
         font-size: .6em;
-        color: var( --text-quiet );
+        color: var( --global-muted );
     }
 /* vendor (third-party) sprecific */
+.sc-gallery {
+    --_grid-layoutGap: var( --gap );
+    --_grid-columnCount: 4;
+    --_grid-itemMinWidth: 12rem;
+
+
+    box-sizing: border-box;
+}
+.sc-gallery :where(*, *::before, *::after) {
+        box-sizing: inherit;
+    }
+.sc-gallery__link {
+        display: block;
+    }
+.sc-gallery__image {
+        display: block;
+    }
+.sc-gallery--grid {
+        --_gapCount: calc( var( --_grid-columnCount ) - 1 );
+        --_totalGapWidth: calc( var( --_gapCount ) * var( --_grid-layoutGap ) );
+        --_grid-itemMaxWidth: calc( ( 100% - var( --_totalGapWidth ) ) / var( --_grid-columnCount ) );
+
+        display: grid;
+        grid-template-columns: repeat( auto-fill, minmax( max( var( --_grid-itemMinWidth ), var( --_grid-itemMaxWidth ) ), 1fr ) );
+        grid-gap: var(--_grid-layoutGap);
+    }
+@media (max-width: 45em) {
+.sc-gallery--grid {
+            --_grid-itemMinWidth: 9rem
+    }
+        }
+/* mixed --------- */
+.sc-gallery--grid .sc-gallery__image,
+    .sc-gallery--columns .sc-gallery__image {
+        width: 100%;
+        height: auto;
+        max-width: auto;
+    }
+.sc-gallery--grid .sc-gallery__caption,
+    .sc-gallery--columns .sc-gallery__caption {
+        margin-top: .3em;
+        font-size: .9em;
+        -webkit-hyphens: auto;
+                hyphens: auto;
+    }
+/* columns --------- */
+.sc-gallery--columns {
+        --_column-count: 2;
+        --_column-gap: 1rem;
+    }
+.sc-gallery--columns > * {
+        margin-bottom: var( --_column-gap );
+    }
+@media (min-width: 45em) {
+        .sc-gallery--columns {
+            columns: var( --_column-count );
+            gap: var( --_column-gap );
+        }
+    }
+/* list --------- */
+.sc-gallery--list {
+        --_list-gap: 1rem;
+    }
+.sc-gallery--list .sc-gallery__figure {
+        display: flex;
+        gap: var( --_list-gap );
+    }
+.sc-gallery--list .sc-gallery__figure + .sc-gallery__figure {
+        margin-top: var( --_list-gap );
+    }
+.sc-gallery--list .sc-gallery__link,
+    .sc-gallery--list .sc-gallery__figure > .sc-gallery__image {
+        flex: 1 1 30%;
+        min-width: 8em;
+        max-width: 10em;
+    }
+.sc-gallery--list .sc-gallery__caption {
+        width: 70%;
+        flex-shrink: 1;
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+html {
+    --parvus-transition-duration: 300ms;
+    --parvus-transition-timing-function: cubic-bezier(.62, .16, .13, 1.01);
+    --parvus-background-color: rgb( 0 0 0 / .8 );
+    --parvus-color: #fff;
+    --parvus-btn-background-color: #000;
+    --parvus-btn-color: #eee;
+    --parvus-btn-hover-background-color: #222;
+    --parvus-btn-hover-color: #eee;
+    --parvus-btn-disabled-background-color: #444;
+    --parvus-btn-disabled-color: #fff;
+    --parvus-caption-background-color: transparent;
+    --parvus-caption-color: hsl(228deg 24% 23%);
+    --parvus-loading-error-background-color: hsl(0deg 0% 100%);
+    --parvus-loading-error-color: hsl(228deg 24% 23%);
+    --parvus-loader-background-color: hsl(23deg 40% 96%);
+    --parvus-loader-color: hsl(228deg 24% 23%);
+}
+body:has(.parvus[aria-hidden=false]) {
+    touch-action: none;
+}
+/**
+   * Parvus trigger
+   *
+   */
+.parvus-trigger:has(img) {
+    display: block;
+    position: relative;
+}
+.parvus-trigger:has(img) .parvus-zoom__indicator {
+    align-items: center;
+    background-color: var(--parvus-btn-background-color);
+    color: var(--parvus-btn-color);
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    position: absolute;
+    inset-inline-end: .5rem;
+    inset-block-start: .5rem;
+}
+.parvus-trigger:has(img) img {
+    display: block;
+}
+/**
+   * Parvus
+   *
+   */
+.parvus {
+    box-sizing: border-box;
+    contain: strict;
+    inset: 0;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    position: fixed;
+    z-index: 1337;
+}
+.parvus *,
+.parvus *::before,
+.parvus *::after {
+    box-sizing: border-box;
+}
+.parvus[aria-hidden=true] {
+    display: none;
+}
+.parvus__overlay {
+    background-color: var(--parvus-background-color);
+    color: var(--parvus-color);
+    inset: 0;
+    position: absolute;
+}
+.parvus__slider {
+    inset: 0;
+    position: absolute;
+}
+.parvus__slider[aria-hidden=true] {
+    display: none;
+}
+@media screen and (prefers-reduced-motion: no-preference) {
+    .parvus__slider--animate:not(.parvus__slider--is-dragging) {
+        transition: transform var(--parvus-transition-duration) var(--parvus-transition-timing-function);
+        will-change: transform;
+    }
+}
+.parvus__slider--is-draggable {
+    cursor: grab;
+}
+.parvus__slider--is-dragging {
+    cursor: grabbing;
+}
+.parvus__slide {
+    block-size: 100%;
+    display: grid;
+    inline-size: 100%;
+    padding-block: 3.75rem 1rem;
+    padding-inline: 1rem;
+    place-items: center;
+}
+.parvus__slide img {
+    block-size: auto;
+    display: block;
+    inline-size: auto;
+    margin-inline: auto;
+    transform-origin: left top;
+}
+.parvus__content--error {
+    background-color: var(--parvus-loading-error-background-color);
+    color: var(--parvus-loading-error-color);
+    padding-block: .5rem;
+    padding-inline: 1rem;
+}
+.parvus__caption {
+    background-color: var(--parvus-caption-background-color);
+    color: var(--parvus-caption-color);
+    padding-block-start: .5rem;
+    text-align: start;
+}
+.parvus__loader {
+    display: inline-block;
+    block-size: 6.25rem;
+    inset-inline-start: 50%;
+    position: absolute;
+    inset-block-start: 50%;
+    transform: translate(-50%, -50%);
+    inline-size: 6.25rem;
+}
+.parvus__loader::before {
+    animation: spin 1s infinite;
+    border-radius: 100%;
+    border: .25rem solid var(--parvus-loader-background-color);
+    border-block-start-color: var(--parvus-loader-color);
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+}
+.parvus__toolbar {
+    align-items: center;
+    display: flex;
+    inset-block-start: 1rem;
+    inset-inline: 1rem;
+    justify-content: space-between;
+    position: absolute;
+    color: var(--parvus-color);
+}
+.parvus__controls {
+    display: flex;
+    gap: .5rem;
+}
+.parvus__btn {
+    appearance: none;
+    background-color: var(--parvus-btn-background-color);
+    background-image: none;
+    border-radius: 0;
+    border: .06rem solid transparent;
+    color: var(--parvus-btn-color);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    padding: .3rem;
+    position: relative;
+    touch-action: manipulation;
+    will-change: transform, opacity;
+    z-index: 7;
+}
+.parvus__btn:hover,
+.parvus__btn:focus-visible {
+    background-color: var(--parvus-btn-hover-background-color);
+    color: var(--parvus-btn-hover-color);
+}
+.parvus__btn--previous {
+    inset-inline-start: 0;
+    position: absolute;
+    inset-block-start: calc(50svh - 1rem);
+    transform: translateY(-50%);
+}
+.parvus__btn--next {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-start: calc(50svh - 1rem);
+    transform: translateY(-50%);
+}
+.parvus__btn svg {
+    pointer-events: none;
+}
+.parvus__btn[aria-hidden=true] {
+    display: none;
+}
+.parvus__btn[aria-disabled=true] {
+    background-color: var(--parvus-btn-disabled-background-color);
+    color: var(--parvus-btn-disabled-color);
+}
+.parvus__counter {
+    position: relative;
+    z-index: 7;
+}
+.parvus__counter[aria-hidden=true] {
+    display: none;
+}
+@media screen and (prefers-reduced-motion: no-preference) {
+
+    .parvus__overlay,
+    .parvus__counter,
+    .parvus__btn--close,
+    .parvus__btn--previous,
+    .parvus__btn--next,
+    .parvus__caption {
+        transition: transform var(--parvus-transition-duration) var(--parvus-transition-timing-function), opacity var(--parvus-transition-duration) var(--parvus-transition-timing-function);
+        will-change: transform, opacity;
+    }
+
+    .parvus--is-opening .parvus__overlay,
+    .parvus--is-opening .parvus__counter,
+    .parvus--is-opening .parvus__btn--close,
+    .parvus--is-opening .parvus__btn--previous,
+    .parvus--is-opening .parvus__btn--next,
+    .parvus--is-opening .parvus__caption,
+    .parvus--is-closing .parvus__overlay,
+    .parvus--is-closing .parvus__counter,
+    .parvus--is-closing .parvus__btn--close,
+    .parvus--is-closing .parvus__btn--previous,
+    .parvus--is-closing .parvus__btn--next,
+    .parvus--is-closing .parvus__caption {
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__counter,
+    .parvus--is-vertical-closing .parvus__btn--close {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__btn--previous {
+        transform: translate(-100%, -50%);
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__btn--next {
+        transform: translate(100%, -50%);
+        opacity: 0;
+    }
+
+    .parvus--is-vertical-closing .parvus__caption {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 /*
-@import 'organism/sc-gallery.css';
 @import 'organism/sc-embedvideo.css';
-@import 'vendor/chocolat.css';
 */
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,38 @@
+title: Gallery
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+            # header.media_order:
+            #   ordering@: 99
+
+            _layout:
+              type: section
+              title: THEME_C.MODULE.LAYOUT.OPTIONS
+              underline: true
+              fields:
+                header.layout:
+                  type: select
+                  label: THEME_C.MODULE.LAYOUT.LAYOUT
+                  options:
+                    grid: THEME_C.MODULE.LAYOUT.GRID
+                    columns: THEME_C.MODULE.LAYOUT.COLUMNS
+                  default: grid
+                  size: small
+                hint:
+                  type: display
+                  style: vertical
+                  outerclasses: user-notice
+                  content: THEME_C.MODULE.GALLERY_NOTICE
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

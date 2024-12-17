@@ -1,22 +1,22 @@
 .notice {
     /*
         API:
-        --o-notice-surface          background
-        --o-notice-ink              text color
-        --o-notice-frame            border color
-        --o-notice-surface-success
-        --o-notice-ink-success
-        --o-notice-frame-success
-        --o-notice-surface-warning
-        --o-notice-ink-warning
-        --o-notice-frame-warning
-        --o-notice-surface-error
-        --o-notice-ink-error
-        --o-notice-frame-error
+        --notice-backgroundColor
+        --notice-text
+        --notice-borderColor
+        --notice-success-backgroundColor
+        --notice-success-text
+        --notice-success-borderColor
+        --notice-warning-backgroundColor
+        --notice-warning-text
+        --notice-warning-borderColor
+        --notice-error-backgroundColor
+        --notice-error-text
+        --notice-error-borderColor
     */
-    --_bg: var( --o-notice-surface, var( --global-ui ) );
-    --_txt: var( --o-notice-ink, var( --global-text ) );
-    --_brd: var( --o-notice-frame, var( --global-text ) );
+    --_bg: var( --notice-backgroundColor, var( --global-ui ) );
+    --_txt: var( --notice-text, var( --global-text ) );
+    --_brd: var( --notice-borderColor, var( --global-text ) );
 
     padding: var( --gap-xs );
     color: var( --_txt );
@@ -36,27 +36,24 @@
     }
 
     &--success {
-        --_bg: var( --o-notice-surface-success, #e5f3ef );
-        --_txt: var( --o-notice-ink-success );
-        --_brd: var( --o-notice-frame-success, #008566 );
+        --_bg: var( --notice-success-backgroundColor, #e5f3ef );
+        --_txt: var( --notice-success-text );
+        --_brd: var( --notice-success-borderColor, #008566 );
     }
 
     &--warning {
-        --_bg: var( --o-notice-surface-warning, #fcf8f2 );
-        --_txt: var( --o-notice-ink-warning );
-        --_brd: var( --o-notice-frame-warning, #ffb820 );
+        --_bg: var( --notice-warning-backgroundColor, #fcf8f2 );
+        --_txt: var( --notice-warning-text );
+        --_brd: var( --notice-warning-borderColor, #ffb820 );
     }
 
     &--error {
-        --_bg: var( --o-notice-surface-error, #fdf7f7 );
-        --_txt: var( --o-notice-ink-error );
-        --_brd: var( --o-notice-frame-error, #d0103a );
+        --_bg: var( --notice-error-backgroundColor, #fdf7f7 );
+        --_txt: var( --notice-error-text );
+        --_brd: var( --notice-error-borderColor, #d0103a );
     }
 
     &:has( .icon ) {
-        /* position: relative; */
-        /* border-left-width: calc( 2 * var( --gap-xs ) + 1em ); */
-
         display: grid;
         grid-template-areas: 'icon title' 'icon text';
         grid-template-columns: auto 1fr;

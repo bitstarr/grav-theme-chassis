@@ -1,11 +1,11 @@
 .quote {
     /*
         API:
-        --o-quote-fontSize      Font size of quote text
-        --o-quote-markSize      Font size of the stilized quote mark
-        --o-quote-markColor     Color of this mark
+        --quote-fontSize      Font size of quote text
+        --quote-markSize      Font size of the stilized quote mark
+        --quote-markColor     Color of this mark
     */
-    --_q-quote-size: var( --o-quote-markSize, 9rem );
+    --_q-quote-size: var( --quote-markSize, 9rem );
 
     .image {
         width: 100%;
@@ -25,7 +25,7 @@
         .textflow {
             position: relative;
             padding-top: calc( var( --_q-quote-size ) / 3 );
-            font-size: var( --o-qoute-fontSize, 1em );
+            font-size: var( --qoute-fontSize, 1em );
 
             &::before {
                 content: '„';
@@ -34,7 +34,7 @@
                 top: -.3em;
                 display: block;
                 font-size: var( --_q-quote-size );
-                color: var( --o-quote-markColor, var( --global-primary ) );
+                color: var( --quote-markColor, var( --global-primary ) );
             }
         }
     }

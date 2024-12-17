@@ -1,9 +1,9 @@
 .textflow {
     /*
         API:
-        --o-textflow-list-accent    bullet list points color
-        --o-textflow-h2-accent      h2 text color
-        --o-textflow-quote-accent   blockquote accent color
+        --textflow-list-accent    bullet list points color
+        --textflow-h2-accent      h2 text color
+        --textflow-quote-accent   blockquote accent color
     */
 
     text-wrap: pretty;
@@ -20,10 +20,10 @@
     ul { list-style: disc; }
     ul li::marker {
         content: '•  ';
-        color: var( --o-textflow-list-accent, var( --global-primary) );
+        color: var( --textflow-list-accent, var( --global-primary) );
     }
     ul ul li::marker {
-        color: var( --o-textflow-list-accentNested, var( --global-muted ) );
+        color: var( --textflow-list-accentNested, var( --global-muted ) );
     }
     li ol,
     li ul { margin-bottom: 0; }
@@ -43,7 +43,7 @@
     h4 { font-weight: 700; }
     h2 {
         font-size: var( --size-3 );
-        color: var( --o-textflow-h2-accent, var( --global-primary) );
+        color: var( --textflow-h2-accent, var( --global-primary) );
         --flow-space: calc( var( --global-lineHeight ) * 1.5 );
     }
     h3 { font-size: var( --size-2 ); }
@@ -99,7 +99,7 @@
             top: 0;
             bottom: 0;
             left: 0;
-            border-left: .4em solid var( --o-textflow-quote-accent, var( --global-primary) );
+            border-left: .4em solid var( --textflow-quote-accent, var( --global-primary) );
             opacity: .6;
         }
         /**/

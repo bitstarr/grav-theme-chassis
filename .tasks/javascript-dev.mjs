@@ -1,7 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 
 import concat from 'concat';
@@ -65,6 +65,13 @@ await glob( '*.json', { cwd: cwd } ).then( files =>
                 thisBundle.lib.forEach( function( item )
                 {
                     collection.push( path.join( '.', 'node_modules', item ) );
+                });
+            }
+            // local libs (non node_modules)
+            if ( typeof thisBundle.vendor == 'object' ) {
+                thisBundle.vendor.forEach( function( item )
+                {
+                    collection.push( path.join( config.src, 'vendor', item ) );
                 });
             }
             // now our own code

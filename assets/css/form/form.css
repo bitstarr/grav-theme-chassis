@@ -8,6 +8,8 @@
         --f-form-error-surface      error background
     */
 
+    --outline-color: var( --global-primary );
+
     display: grid;
     gap: var( --gap );
 
@@ -42,6 +44,10 @@
         display: flex;
         flex-wrap: wrap;
         gap: var( --f-input-padding, .7rem );
+    }
+    :where( fieldset&__field.rows ) {
+        flex-direction: column;
+        flex-wrap: nowrap;
     }
     :where( fieldset legend&__label ) {
         float: left;

@@ -3,5 +3,5 @@
     font-size: var( --size-4 );
     line-height: calc( 1ex / .38 );
     text-wrap: balance;
-    color: var( --o-headline-ink );
+    color: var( --headline-color );
 }

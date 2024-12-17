@@ -10,7 +10,7 @@
     "globals": {
         "Grav": true,
         "project": true,
-        "Chocolat": true
+        "Parvus": true
     },
     "rules": {
         "indent": [

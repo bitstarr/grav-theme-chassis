@@ -1,26 +1,11 @@
 
 module.exports = [{
-    /*
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "parserOptions": {
-        "ecmaVersion": 2024
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-        "Grav": true,
-        "project": true,
-        "Chocolat": true
-    },
-    */
     languageOptions: {
         ecmaVersion: 2022,
         "globals": {
             "Grav": true,
             "project": true,
-            "Chocolat": true
+            "Parvus": true
         },
     },
     "rules": {

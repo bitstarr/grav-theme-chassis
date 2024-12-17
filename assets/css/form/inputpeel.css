@@ -1,4 +1,4 @@
-.text-input {
+.inputpeel {
     /*
         API:
         --f-input-ink               input text color
@@ -21,11 +21,11 @@
     line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
-    border: .1em solid var( --_bordercolor );
+    border: min( .1em, 1px ) solid var( --_bordercolor );
     border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
-    box-shadow: var( --_boxshadow, none );
+    /* box-shadow: var( --_boxshadow, none ); */
     resize: vertical;
 
     label + & {
@@ -42,8 +42,10 @@
         --_bordercolor: var( --f-input-border-hover, var( --global-primary ) );
         --_boxshadow: 0 0 0 .1em var( --f-input-halo-hover );
     }
-    input&:not(:focus):not(:placeholder-shown):invalid,
-    select&:not([value='']):invalid {
+    input&:not(:focus):user-invalid,
+    select&:user-invalid,
+    fieldset&:has( :user-invalid ) {
+        --f-dropdown-surface: var( --f-form-error-surface, #ffe6e6 );
         --_background: var( --f-form-error-surface, #ffe6e6 );
         --_bordercolor: var( --f-form-error-ink, #a80000 );
         --_boxshadow: inset 0 0 0 .1em var( --f-form-error-ink, #a80000 );

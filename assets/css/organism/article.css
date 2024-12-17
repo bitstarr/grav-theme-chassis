@@ -33,7 +33,7 @@
         order: -1;
         margin-bottom: 1ex;
         font-weight: 700;
-        color: var( --color-muted );
+        color: var( --global-muted );
     }
     &__date {
         display: flex;

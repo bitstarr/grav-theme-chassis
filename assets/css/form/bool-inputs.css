@@ -136,7 +136,9 @@
             border-radius: 50%;
 
             &:checked {
-                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .25em, var( --_check-bg ) .27em );
+                --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .3em, var( --_check-bg ) .3em );
+                /* --_background: var( --_check-fg ); */
+                box-shadow: 0 0 0 .24em var( --_check-bg ) inset
             }
             &:disabled:checked {
                 --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );

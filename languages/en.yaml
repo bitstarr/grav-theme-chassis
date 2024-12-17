@@ -47,6 +47,9 @@ THEME_C:
       HIDE_TITLE: Hide Title
       INVERT: Invert
       FLIP: Reverese Order
+      LAYOUT: Layout
+      GRID: Grid
+      COLUMNS: Columns
     REFERENCE:
       SELECT: Select Module
       HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
@@ -77,6 +80,7 @@ THEME_C:
       2: Warning (orange)
       3: Error (red)
     ACCORDION_NOTICE: This module shows an accordion consisting of the contents of its subpages. The title and text content are automatically read from these.
+    GALLERY_NOTICE: The order of the images corresponds to the order of the page media. You can change them above using drag & drop.
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image

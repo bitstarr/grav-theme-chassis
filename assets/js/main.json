@@ -1,12 +1,15 @@
 {
     "lib": [],
     "stock": [
-        "chocolat/dist/js/chocolat.js",
         "embedvideo.js"
+    ],
+    "vendor": [
+        "parvus.js"
     ],
     "src": [
         "base.js",
         "navigation.js",
+        "gallery.js",
         "details.js",
         "tabs.js"
     ]

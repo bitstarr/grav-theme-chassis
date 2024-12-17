@@ -44,8 +44,8 @@
 @import 'template/error.css';
 
 /* vendor (third-party) sprecific */
-/*
 @import 'organism/sc-gallery.css';
+@import 'vendor/parvus.css';
+/*
 @import 'organism/sc-embedvideo.css';
-@import 'vendor/chocolat.css';
 */
