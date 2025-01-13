@@ -109,6 +109,7 @@ html {
     --global-onPrimary: #fff;
     /* --global-primary-dark: color-mix( in oklab, var( --global-primary ), #000 30% ); */
     /* --global-primary-light: color-mix( in oklab, var( --global-primary ), #fff 30% ); */
+    /* --global-primary-light: oklch(from var( --global-primary ) calc(l * 1.3) c h); */
     --global-secondary: var( --raspberry-4 );
     --global-onSecondary: #fff;
 
@@ -142,6 +143,7 @@ html {
     /* --f-input-padding: .7rem; */
     --f-input-border-hover: var( --cerulean-4 );
     --f-input-halo-hover: color-mix( in oklab, var( --cerulean-3 ), transparent 20% );
+    /* --f-input-halo-hover: rgb(from var( --cerulean-3 ) r g b / 20%); */
     /* --f-input-ink-disabled: var( --gray-4 ); */
     /* --f-input-surface-disabled: var( --gray-1 ); */
     /* --f-input-border-disabled: var( --gray-2 ); */
@@ -313,14 +315,14 @@ body {
 :where( small ) { font-size: 85%; }
 :where( strong, th ) { font-weight: 700; }
 :where( em ) { font-style: italic; }
+/* https://css-tricks.com/fluid-superscripts-and-subscripts/ */
 :where( sub, sup ) {
-    font-size: 75%;
-    line-height: 0;
+    font-size: calc(0.5em + 4px);
     position: relative;
     vertical-align: baseline;
 }
-:where( sub ) { bottom: -.25em; }
-:where( sup ) { top: -.5em; }
+:where( sub ) { top: calc(0.42em - 1.66px); }
+:where( sup ) { top: calc(-0.83em + 3.32px); }
 :where( abbr ) {
     font-variant: small-caps;
     text-transform: lowercase;
@@ -674,7 +676,8 @@ input.inputpeel:not(:focus):user-invalid,
     --_color: var( --_base-color );
     --_bg: var( --_base-bg );
     --_colorHover: var( --button-colorHover, var( --_base-color ) );
-    --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) );
+    /* --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) ); */
+    --_bgHover: var( --button-bgHover, oklch( from var( --_base-bg ) calc(l * 1.2 ) c h ) );
     --_borderWidth: var( --button-borderWidth, .15em );
     --_borderColor: var( --button-borderColor, var( --_bg ) );
     --_radius: var( --button-radius, var( --global-radius ) );
