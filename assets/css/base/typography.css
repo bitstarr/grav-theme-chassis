@@ -27,14 +27,14 @@ body {
 :where( strong, th ) { font-weight: 700; }
 :where( em ) { font-style: italic; }
 
+/* https://css-tricks.com/fluid-superscripts-and-subscripts/ */
 :where( sub, sup ) {
-    font-size: 75%;
-    line-height: 0;
+    font-size: calc(0.5em + 4px);
     position: relative;
     vertical-align: baseline;
 }
-:where( sub ) { bottom: -.25em; }
-:where( sup ) { top: -.5em; }
+:where( sub ) { top: calc(0.42em - 1.66px); }
+:where( sup ) { top: calc(-0.83em + 3.32px); }
 
 :where( abbr ) {
     font-variant: small-caps;

@@ -1,0 +1,56 @@
+{% set tpl_body_classes = 't-contact' %}
+{% set page_title = page.header.headline|default( page.title ) %}
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <div class="wrapping">
+        <h1 class="headline">
+            {{ page_title }}
+        </h1>
+    </div>
+
+    {% if config.details.address %}
+    <div class="profile modular wrapping">
+        <div class="profile__info">
+            <p class="profile__address">
+                {{ config.details.name }}<br>
+                {{ config.details.address|nl2br }}
+            </p>
+            <ul class="profile__bullets">
+                {% if config.details.phone %}
+                <li class="item">
+                    {{ svg( 'phone', null, { title: 'Telefon' } )|raw }}
+                    <a href="tel:{{ config.details.phone|replace({' ': '', '-': '', '/': ''}) }}" class="u-tel">
+                        {{ config.details.phone }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if config.details.fax %}
+                <li class="item">
+                    {{ svg( 'print', null, { title: 'Fax' } )|raw }}
+                    {{ config.details.fax }}
+                </li>
+                {% endif %}
+                {% if config.details.email %}
+                <li class="item">
+                    {{ svg( 'mail', null, { title: 'E-Mail' } )|raw }}
+                    <a href="mailto:{{ config.details.email|safe_email }}">
+                        {{ config.details.email|safe_email }}
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% else %}
+        <div class="modular wrapping">
+            <div class="textflow">
+                {{ page.content|raw }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="modular wrapping">
+        {% include "forms/form.html.twig" with { form: forms('kontakt') } %}
+    </div>
+{% endblock %}

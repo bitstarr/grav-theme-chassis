@@ -19,7 +19,8 @@
     --_color: var( --_base-color );
     --_bg: var( --_base-bg );
     --_colorHover: var( --button-colorHover, var( --_base-color ) );
-    --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) );
+    /* --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) ); */
+    --_bgHover: var( --button-bgHover, oklch( from var( --_base-bg ) calc(l * 1.2 ) c h ) );
     --_borderWidth: var( --button-borderWidth, .15em );
     --_borderColor: var( --button-borderColor, var( --_bg ) );
     --_radius: var( --button-radius, var( --global-radius ) );
