@@ -48,7 +48,7 @@
             background-repeat: no-repeat;
             background-position: center;
             border: 0;
-            transition: transform var( --_easeDuration );
+            transition: transform var( --_n-easeDuration );
             transform-origin: 50%;
 
             &[aria-expanded='true'] {
@@ -164,8 +164,8 @@
                 display: block;
                 transform: rotateX(0);
                 transition:
-                    transform var( --_easeDuration ) var( --_easeOutExpo ),
-                    opacity var( --_easeDuration ) ease-out;
+                    transform var( --_n-easeDuration ) var( --_n-easeFunc ),
+                    opacity var( --_n-easeDuration ) ease-out;
             }
 
             &__item {
@@ -189,9 +189,9 @@
             box-shadow: 0 .15em .25em rgb( 0 0 0 / .25 );
             opacity: .3;
             transition:
-                transform var( --_easeDuration ) var( --_easeOutExpo ),
-                opacity var( --_easeDuration ) ease-out,
-                visibility 0s linear var( --_easeDuration );
+                transform var( --_n-easeDuration ) var( --_n-easeFunc ),
+                opacity var( --_n-easeDuration ) ease-out,
+                visibility 0s linear var( --_n-easeDuration );
 
             &::after {
                 content: '';
@@ -203,7 +203,7 @@
                 border-bottom-color: transparent;
                 border-bottom-color: #f3f3f3;
                 transform: translateX( -50% );
-                transition: opacity var( --_easeDuration ) ease-out;
+                transition: opacity var( --_n-easeDuration ) ease-out;
                 will-change: opacity;
             }
         }
@@ -215,6 +215,6 @@
 
 @media (prefers-reduced-motion: reduce) {
     .navigation {
-        --_easeDuration: 1ms;
+        --_n-easeDuration: 1ms;
     }
 }

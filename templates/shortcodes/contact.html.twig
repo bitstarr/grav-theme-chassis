@@ -1,0 +1,20 @@
+<p>
+    {{ config.details.company }}<br>
+    {{ config.details.name }}<br>
+    {{ config.details.address|nl2br }}
+</p>
+<p>
+    {% if config.details.phone %}
+        {{ svg( 'phone', null, { title: 'Telefon' } )|raw }}
+        <a href="tel:{{ config.details.phone|replace({' ': '', '-': '', '/': ''}) }}" class="u-tel">
+            {{ config.details.phone }}
+        </a>
+    {% endif %}
+    {% if config.details.email %}
+        <br>
+        {{ svg( 'mail', null, { title: 'E-Mail' } )|raw }}
+        <a href="mailto:{{ config.details.email|safe_email }}">
+            {{ config.details.email|safe_email }}
+        </a>
+    {% endif %}
+</p>
