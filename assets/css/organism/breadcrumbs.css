@@ -9,9 +9,12 @@
     --link-color: var( --o-breadcrumb-link, currentcolor );
     --link-hover: var( --o-breadcrumb-hover );
 
-    padding: 1em 0;
-    font-size: .75em;
+    padding: var( --gap-xs ) 0;
     color: var( --_txt );
+
+    .wrapped {
+        font-size: .75em;
+    }
 
     .item {
         display: inline;

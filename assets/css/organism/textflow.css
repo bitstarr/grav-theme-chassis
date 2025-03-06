@@ -44,7 +44,7 @@
     h2 {
         font-size: var( --size-3 );
         color: var( --textflow-h2-accent, var( --global-primary) );
-        --flow-space: calc( var( --global-lineHeight ) * 1.5 );
+        --flow-space: calc( var( --global-lineHeight ) * 1.2 );
     }
     h3 { font-size: var( --size-2 ); }
     h4 { font-size: var( --size-1 ); }

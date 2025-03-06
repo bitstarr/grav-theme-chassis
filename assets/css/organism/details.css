@@ -1,5 +1,7 @@
 .details {
-    padding: var( --gap-xs ) var( --gap );
+    --_vSpace: var( --gap );
+    --_hSpace: var( --gap );
+
     background: var( --global-ui );
     border-bottom: 2px solid var( --global-borderColor );
 
@@ -14,7 +16,7 @@
         align-items: center;
         width: 100%;
         margin: 0;
-        padding: var( --gap-xs ) 0;
+        padding: var( --_hSpace ) var( --_vSpace );
         border: 0;
         cursor: pointer;
     }
@@ -24,30 +26,40 @@
     &__trigger::-webkit-details-marker {
         display: none;
     }
+    .js &__trigger {
+        padding-right: calc( var( --_vSpace ) + 1rem );
+    }
 
     &__title {
         position: relative;
         display: block;
         font-weight: 700;
     }
+    .js &__title::before,
+    .js &__title::after {
+        content: '';
+    }
     &__title::before,
     &__title::after {
-        content: '';
         position: absolute;
         top: 50%;
         background: currentcolor;
     }
     &__title::after {
-        right: .5rem;
+        right: calc( var( --_vSpace ) + .5rem );
         transform: translate(50%, -50%);
         height: 1rem;
         width: .25rem;
     }
     &__title::before {
-        right: 0;
+        right: var( --_vSpace );
         transform: translate(0, -50%);
         height: .25rem;
         width: 1rem;
+    }
+
+    &__content {
+        padding: 0 var( --_vSpace ) var( --_hSpace );
     }
 
     &[data-expanded='false'] &__content {

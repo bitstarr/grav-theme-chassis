@@ -65,6 +65,11 @@ class Chassis extends Theme
         ];
 
         $twig->twig_vars = array_merge($twig->twig_vars, $form_class_variables);
+
+        require_once __DIR__ . '/classes/Utils.php';
+        $twig->twig()->addFilter(
+            new \Twig_SimpleFilter('tel_clean', [new Utils, 'phoneNumberCleanUp'])
+        );
     }
 
     /*

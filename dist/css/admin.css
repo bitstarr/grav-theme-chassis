@@ -55,5 +55,58 @@
     display: none;
 }
 
+[data-grav-field="list"] li[data-collection-item] .item-actions [data-action] {
+    padding: 8px;
+}
+
+/* make the quick trays more usable */
+
+#admin-nav-quick-tray {
+    padding-left: 21px;
+}
+
+#admin-nav-quick-tray li {
+        width: auto;
+    }
+
+#admin-nav-quick-tray a {
+        display: block;
+        padding: 5px;
+    }
+
+/* make lines clickable in flex-lists */
+
+#directory .vuetable.table tr {
+        position: relative;
+    }
+
+#directory .vuetable.table .edit-action,
+    #directory .vuetable.table .delete-action {
+        padding: 2px 12px;
+        border-radius: 3px;
+        transition: background-color .2s, color .2s;
+    }
+
+#directory .vuetable.table .edit-action:hover, #directory .vuetable.table .delete-action:hover {
+            background: #ddd;
+        }
+
+#directory .vuetable.table .edit-action::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+#directory .vuetable.table .delete-action {
+        position: relative;
+        z-index: 3;
+    }
+
+#directory .vuetable.table .delete-action:hover {
+            color: #fff !important;
+            background: #a00;
+        }
+
 /* stylelint-endable */
 /*# sourceMappingURL=admin.css.map */

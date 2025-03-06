@@ -8,6 +8,7 @@ module.exports = [{
             "Parvus": true
         },
     },
+    'ignores': [ '**/vendor/*'],
     "rules": {
         "indent": [
             "error",

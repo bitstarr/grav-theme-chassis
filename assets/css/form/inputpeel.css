@@ -21,7 +21,7 @@
     line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
-    border: min( .1em, 1px ) solid var( --_bordercolor );
+    border: max( .1em, 1px ) solid var( --_bordercolor );
     border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;

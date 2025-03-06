@@ -317,12 +317,12 @@ body {
 :where( em ) { font-style: italic; }
 /* https://css-tricks.com/fluid-superscripts-and-subscripts/ */
 :where( sub, sup ) {
-    font-size: calc(0.5em + 4px);
+    font-size: calc( .5em + 4px );
     position: relative;
     vertical-align: baseline;
 }
-:where( sub ) { top: calc(0.42em - 1.66px); }
-:where( sup ) { top: calc(-0.83em + 3.32px); }
+:where( sub ) { top: calc( .42em - 1.66px ); }
+:where( sup ) { top: calc( -.83em + 3.32px) ; }
 :where( abbr ) {
     font-variant: small-caps;
     text-transform: lowercase;
@@ -597,7 +597,7 @@ a.u-tel {
     line-height: var( --global-lineHeight );
     color: var( --_text );
     background: var( --_background );
-    border: min( .1em, 1px ) solid var( --_bordercolor );
+    border: max( .1em, 1px ) solid var( --_bordercolor );
     border-radius: var( --global-radius );
     box-shadow: 0 0 0 transparent;
     transition: border-color .3s, box-shadow .2s;
@@ -655,6 +655,7 @@ input.inputpeel:not(:focus):user-invalid,
 .dropdown option[value=''][disabled] {
         display: none;
     }
+/* @import 'dropzone.css'; */
 .button {
     /*
         API:
@@ -870,7 +871,7 @@ a.button {
             .form input[type='radio']:checked {
                 --_background: radial-gradient(circle, var( --_check-fg ) 0%, var( --_check-fg ) .3em, var( --_check-bg ) .3em );
                 /* --_background: var( --_check-fg ); */
-                box-shadow: 0 0 0 .24em var( --_check-bg ) inset
+                box-shadow: 0 0 0 .24em var( --_check-bg ) inset;
             }
             .form input[type='radio']:disabled:checked {
                 --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );
@@ -1053,7 +1054,7 @@ input.bool {
             background-repeat: no-repeat;
             background-position: center;
             border: 0;
-            transition: transform var( --_easeDuration );
+            transition: transform var( --_n-easeDuration );
             transform-origin: 50%;
         }
 .navigation .menu__expander[aria-expanded='true'] {
@@ -1162,8 +1163,8 @@ input.bool {
                 display: block;
                 transform: rotateX(0);
                 transition:
-                    transform var( --_easeDuration ) var( --_easeOutExpo ),
-                    opacity var( --_easeDuration ) ease-out;
+                    transform var( --_n-easeDuration ) var( --_n-easeFunc ),
+                    opacity var( --_n-easeDuration ) ease-out;
             }
 
             .navigation .menu__item {
@@ -1186,9 +1187,9 @@ input.bool {
             box-shadow: 0 .15em .25em rgb( 0 0 0 / .25 );
             opacity: .3;
             transition:
-                transform var( --_easeDuration ) var( --_easeOutExpo ),
-                opacity var( --_easeDuration ) ease-out,
-                visibility 0s linear var( --_easeDuration );
+                transform var( --_n-easeDuration ) var( --_n-easeFunc ),
+                opacity var( --_n-easeDuration ) ease-out,
+                visibility 0s linear var( --_n-easeDuration );
         }
 
             .navigation .submenu::after {
@@ -1201,7 +1202,7 @@ input.bool {
                 border-bottom-color: transparent;
                 border-bottom-color: #f3f3f3;
                 transform: translateX( -50% );
-                transition: opacity var( --_easeDuration ) ease-out;
+                transition: opacity var( --_n-easeDuration ) ease-out;
                 will-change: opacity;
             }
         .navigation .submenu .menu__link {
@@ -1210,7 +1211,7 @@ input.bool {
     }
 @media (prefers-reduced-motion: reduce) {
     .navigation {
-        --_easeDuration: 1ms;
+        --_n-easeDuration: 1ms;
     }
 }
 .babel {
@@ -1302,10 +1303,12 @@ input.bool {
     --link-color: var( --o-breadcrumb-link, currentcolor );
     --link-hover: var( --o-breadcrumb-hover );
 
-    padding: 1em 0;
-    font-size: .75em;
+    padding: var( --gap-xs ) 0;
     color: var( --_txt );
 }
+.breadcrumb .wrapped {
+        font-size: .75em;
+    }
 .breadcrumb .item {
         display: inline;
     }
@@ -1370,7 +1373,7 @@ input.bool {
 .textflow h2 {
         font-size: var( --size-3 );
         color: var( --textflow-h2-accent, var( --global-primary) );
-        --flow-space: calc( var( --global-lineHeight ) * 1.5 );
+        --flow-space: calc( var( --global-lineHeight ) * 1.2 );
     }
 .textflow h3 { font-size: var( --size-2 ); }
 .textflow h4 { font-size: var( --size-1 ); }
@@ -1481,16 +1484,19 @@ input.bool {
         --notice-error-text
         --notice-error-borderColor
     */
-    --_bg: var( --notice-backgroundColor, var( --global-ui ) );
+    --_bg: var( --notice-backgroundColor, #fff );
     --_txt: var( --notice-text, var( --global-text ) );
-    --_brd: var( --notice-borderColor, var( --global-text ) );
+    --_brd: var( --notice-borderColor, var( --global-primary ) );
 
-    padding: var( --gap-xs );
+    padding: var( --gap-s );
     color: var( --_txt );
     text-wrap: pretty;
     background: var( --_bg );
-    border-left: .4em solid var( --_brd );
+    border: max( 1px, .08em ) solid var( --_brd );
 }
+.notice:not( :has( .visualizer ) ) {
+        border-bottom: .4em solid var( --_brd );
+    }
 .notice:empty { display: none; }
 .notice a {
         text-decoration: underline;
@@ -1515,7 +1521,7 @@ input.bool {
         --_txt: var( --notice-error-text );
         --_brd: var( --notice-error-borderColor, #d0103a );
     }
-.notice:has( .icon ) {
+.notice:has( .visualizer ) {
         display: grid;
         grid-template-areas: 'icon title' 'icon text';
         grid-template-columns: auto 1fr;
@@ -1523,11 +1529,11 @@ input.bool {
         padding: 0;
         border-left: 0;
     }
-.notice:has( .icon ) .title {
+.notice:has( .visualizer ) .title {
             padding-block-start: var( --gap-s );
             padding-inline: var( --gap-s );
         }
-.notice:has( .icon ) .textflow {
+.notice:has( .visualizer ) .textflow {
             padding: var( --gap-s );
             padding-top: 0;
         }
@@ -1543,6 +1549,10 @@ input.bool {
         font-size: 1.2em;
         color: var( --_bg );
         background-color: var( --_brd );
+    }
+.notice > * + * {
+        /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
+        margin-block-start: var( --flow-space, var( --font-line ) );
     }
 .hero {
     position: relative;
@@ -1578,7 +1588,7 @@ input.bool {
         background-color: rgb( 0 0 0 / .7 );
     }
 .modular + .modular {
-        margin-top: var( --gap-m );
+        margin-top: var( --gap-l );
     }
 .modular__title {
         margin-bottom: var( --gap-m );
@@ -1587,7 +1597,9 @@ input.bool {
     }
 /* specific */
 .details {
-    padding: var( --gap-xs ) var( --gap );
+    --_vSpace: var( --gap );
+    --_hSpace: var( --gap );
+
     background: var( --global-ui );
     border-bottom: 2px solid var( --global-borderColor );
 }
@@ -1601,7 +1613,7 @@ input.bool {
         align-items: center;
         width: 100%;
         margin: 0;
-        padding: var( --gap-xs ) 0;
+        padding: var( --_hSpace ) var( --_vSpace );
         border: 0;
         cursor: pointer;
     }
@@ -1611,29 +1623,38 @@ input.bool {
 .details__trigger::-webkit-details-marker {
         display: none;
     }
+.js .details__trigger {
+        padding-right: calc( var( --_vSpace ) + 1rem );
+    }
 .details__title {
         position: relative;
         display: block;
         font-weight: 700;
     }
+.js .details__title::before,
+    .js .details__title::after {
+        content: '';
+    }
 .details__title::before,
     .details__title::after {
-        content: '';
         position: absolute;
         top: 50%;
         background: currentcolor;
     }
 .details__title::after {
-        right: .5rem;
+        right: calc( var( --_vSpace ) + .5rem );
         transform: translate(50%, -50%);
         height: 1rem;
         width: .25rem;
     }
 .details__title::before {
-        right: 0;
+        right: var( --_vSpace );
         transform: translate(0, -50%);
         height: .25rem;
         width: 1rem;
+    }
+.details__content {
+        padding: 0 var( --_vSpace ) var( --_hSpace );
     }
 .details[data-expanded='false'] .details__content {
         display: none;

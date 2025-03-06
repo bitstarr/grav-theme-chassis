@@ -6,8 +6,15 @@
 <p>
     {% if config.details.phone %}
         {{ svg( 'phone', null, { title: 'Telefon' } )|raw }}
-        <a href="tel:{{ config.details.phone|replace({' ': '', '-': '', '/': ''}) }}" class="u-tel">
+        <a href="tel:{{ config.details.phone|tel_clean }}" class="u-tel">
             {{ config.details.phone }}
+        </a>
+    {% endif %}
+    {% if config.details.fax %}
+        <br>
+        {{ svg( 'fax', null, { title: 'Fax' } )|raw }}
+        <a href="tel:{{ config.details.fax|tel_clean }}" class="u-tel">
+            {{ config.details.fax}}
         </a>
     {% endif %}
     {% if config.details.email %}
