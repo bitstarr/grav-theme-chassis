@@ -1,6 +1,6 @@
 .modular {
     & + & {
-        margin-top: var( --gap-m );
+        margin-top: var( --gap-l );
     }
 
     &__title {

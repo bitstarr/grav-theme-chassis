@@ -46,4 +46,58 @@
 .grav-editor-toolbar .grav-editor-button-h1 {
     display: none;
 }
+
+[data-grav-field="list"] li[data-collection-item] .item-actions [data-action] {
+    padding: 8px;
+}
+
+/* make the quick trays more usable */
+#admin-nav-quick-tray {
+    padding-left: 21px;
+
+    li {
+        width: auto;
+    }
+    a {
+        display: block;
+        padding: 5px;
+    }
+}
+
+/* make lines clickable in flex-lists */
+#directory .vuetable.table {
+    tr {
+        position: relative;
+    }
+
+
+    .edit-action,
+    .delete-action {
+        padding: 2px 12px;
+        border-radius: 3px;
+        transition: background-color .2s, color .2s;
+
+        &:hover {
+            background: #ddd;
+        }
+    }
+
+    .edit-action {
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+    }
+    .delete-action {
+        position: relative;
+        z-index: 3;
+
+        &:hover {
+            color: #fff !important;
+            background: #a00;
+        }
+    }
+}
 /* stylelint-endable */

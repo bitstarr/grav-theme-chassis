@@ -12,6 +12,9 @@ form:
             # header.media_order:
             #   ordering@: 99
 
+        hero:
+          unset@: true
+
         options:
           unset@: true
 

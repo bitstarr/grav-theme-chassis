@@ -14,7 +14,7 @@
 
 {% endspaceless %}
 
-<section class="{{ modular_classes|join( ' ' )|trim }}">
+<div class="{{ modular_classes|join( ' ' )|trim }}">
     {% if header.layout.hide_title != true -%}
     <h2 class="modular__title">{{ page.title }}</h2>
     {% endif -%}
@@ -33,4 +33,4 @@
         </div>
 
     {% endfor %}
-</section>
+</div>

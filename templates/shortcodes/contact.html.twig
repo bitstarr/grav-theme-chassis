@@ -1,0 +1,27 @@
+<p>
+    {{ config.details.company }}<br>
+    {{ config.details.name }}<br>
+    {{ config.details.address|nl2br }}
+</p>
+<p>
+    {% if config.details.phone %}
+        {{ svg( 'phone', null, { title: 'Telefon' } )|raw }}
+        <a href="tel:{{ config.details.phone|tel_clean }}" class="u-tel">
+            {{ config.details.phone }}
+        </a>
+    {% endif %}
+    {% if config.details.fax %}
+        <br>
+        {{ svg( 'fax', null, { title: 'Fax' } )|raw }}
+        <a href="tel:{{ config.details.fax|tel_clean }}" class="u-tel">
+            {{ config.details.fax}}
+        </a>
+    {% endif %}
+    {% if config.details.email %}
+        <br>
+        {{ svg( 'mail', null, { title: 'E-Mail' } )|raw }}
+        <a href="mailto:{{ config.details.email|safe_email }}">
+            {{ config.details.email|safe_email }}
+        </a>
+    {% endif %}
+</p>

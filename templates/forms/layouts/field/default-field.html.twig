@@ -15,7 +15,7 @@
     {% block contents %}
         {% if show_label %}
             {{- form_field_toggleable -}}
-            <{{ label_tag }} class="{{ layout_form_field_label_classes }}{{ form_field_label_trim }}" {% if field.id %}for="{{ form_field_for }}"{% endif %}>
+            <{{ label_tag }} class="{{ layout_form_field_label_classes }}{{ form_field_label_trim }}" {% if field.id and label_tag != 'legend' %}for="{{ form_field_for }}"{% endif %}>
                 {%- block label -%}
                     {%- if form_field_help -%}
                         <span class="label-text">{{ form_field_label }}</span>
@@ -40,7 +40,7 @@
                     name="{{ (scope ~ field.name)|fieldName }}"
                     value="{{ value|join(', ')|e }}"
                     {% block input_attributes %}{% endblock %}
-                />
+                >
                 {% block append %}{% endblock append %}
                 {% if inline_errors and errors %}
                 <div class="{{ form_field_inline_error_classes }}">

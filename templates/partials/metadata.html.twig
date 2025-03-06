@@ -1,4 +1,4 @@
-{# <link rel="preconnect" href="https://matomo-url" crossorigin /> #}
+{# <link rel="preconnect" href="https://matomo-url" crossorigin> #}
 {{ chassis.preloadFonts() }}
 
 {%- for meta in page.metadata %}
@@ -10,4 +10,4 @@
 {% if page.metadata['twitter:image'] is not defined %}
     <meta property="twitter:image" content="{{ base_url_absolute }}{{ url('theme://dist/img/social.png') }}">
 {% endif %}
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large_image">

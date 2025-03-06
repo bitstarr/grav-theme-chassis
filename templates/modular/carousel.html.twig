@@ -21,7 +21,7 @@
 
 {% endspaceless %}
 
-<section class="{{ modular_classes|join( ' ' )|trim }}">
+<div class="{{ modular_classes|join( ' ' )|trim }}">
     <div class="carousel">
         {% for object in header.carousel %}
             {% set image = page.media[ object.image ] -%}
@@ -44,4 +44,4 @@
             </div>
         {% endfor %}
     </div>
-</section>
+</div>

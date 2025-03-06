@@ -14,15 +14,19 @@
         --notice-error-text
         --notice-error-borderColor
     */
-    --_bg: var( --notice-backgroundColor, var( --global-ui ) );
+    --_bg: var( --notice-backgroundColor, #fff );
     --_txt: var( --notice-text, var( --global-text ) );
-    --_brd: var( --notice-borderColor, var( --global-text ) );
+    --_brd: var( --notice-borderColor, var( --global-primary ) );
 
-    padding: var( --gap-xs );
+    padding: var( --gap-s );
     color: var( --_txt );
     text-wrap: pretty;
     background: var( --_bg );
-    border-left: .4em solid var( --_brd );
+    border: max( 1px, .08em ) solid var( --_brd );
+
+    &:not( :has( .visualizer ) ) {
+        border-bottom: .4em solid var( --_brd );
+    }
 
     &:empty { display: none; }
 
@@ -53,7 +57,7 @@
         --_brd: var( --notice-error-borderColor, #d0103a );
     }
 
-    &:has( .icon ) {
+    &:has( .visualizer ) {
         display: grid;
         grid-template-areas: 'icon title' 'icon text';
         grid-template-columns: auto 1fr;
@@ -84,5 +88,10 @@
         font-size: 1.2em;
         color: var( --_bg );
         background-color: var( --_brd );
+    }
+
+    & > * + * {
+        /* flow-space https://piccalil.li/quick-tip/flow-utility/ */
+        margin-block-start: var( --flow-space, var( --font-line ) );
     }
 }

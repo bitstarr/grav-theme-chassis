@@ -5,11 +5,14 @@
     --_bordercolor: var( --f-input-border, var( --global-borderColor ) );
 
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 9em;
     padding: 1rem;
     color: var( --_text );
     background: var( --_background );
-    border: .1em solid var( --_bordercolor );
+    border: max( .1em, 1px ) solid var( --_bordercolor );
     border-radius: .3em;
     box-shadow: var( --_boxshadow, 0 0 0 transparent );
     transition: border-color .3s, box-shadow .2s;
@@ -66,7 +69,7 @@
 }
 
 .dropzone .dz-preview.dz-file-preview .dz-image {
-    border-radius: 20px;
+    border-radius: 1ex;
     background: #999;
     background: linear-gradient(to bottom, #eee, #ddd);
 }
@@ -84,15 +87,20 @@
 }
 
 .dropzone .dz-preview .dz-remove {
-    font-size: 14px;
-    text-align: center;
     display: block;
+    margin-top: .3em;
+    font-size: .9em;
+    text-align: center;
+    color: #333;
+    background-color: #ddd;
+    border-radius: 1ex;
     cursor: pointer;
-    border: none;
+    transition: color .2s, background-color .2s;
 }
 
 .dropzone .dz-preview .dz-remove:hover {
-    text-decoration: underline;
+    color: #fff;
+    background-color: #a00;
 }
 
 .dropzone .dz-preview:hover .dz-details {
@@ -108,7 +116,7 @@
     font-size: 13px;
     min-width: 100%;
     max-width: 100%;
-    padding: 2em 1em;
+    padding: 1em 1ex;
     text-align: center;
     color: rgba(0, 0, 0, .9);
     line-height: 150%;

@@ -29,12 +29,12 @@ body {
 
 /* https://css-tricks.com/fluid-superscripts-and-subscripts/ */
 :where( sub, sup ) {
-    font-size: calc(0.5em + 4px);
+    font-size: calc( .5em + 4px );
     position: relative;
     vertical-align: baseline;
 }
-:where( sub ) { top: calc(0.42em - 1.66px); }
-:where( sup ) { top: calc(-0.83em + 3.32px); }
+:where( sub ) { top: calc( .42em - 1.66px ); }
+:where( sup ) { top: calc( -.83em + 3.32px) ; }
 
 :where( abbr ) {
     font-variant: small-caps;

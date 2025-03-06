@@ -13,7 +13,7 @@
 {% endspaceless %}
 
 {% if image %}
-<section class="{{ modular_classes|join( ' ' )|trim }}">
+<div class="{{ modular_classes|join( ' ' )|trim }}">
     <div class="textimage">
     <div class="textimage__shell">
         {% if header.layout.hide_title != true -%}
@@ -27,7 +27,7 @@
             height="{{ image.height }}"
             alt=""
             loading="lazy"
-            decoding="async" />
+            decoding="async" >
         <div class="textimage__content">
             <div class="textflow">
                 {{ page.content|raw }}
@@ -43,7 +43,7 @@
         </div>
     </div>
     </div>
-</section>
+</div>
 {% else %}
     {{ dump( 'Text-Image Modular: You need to select an image' ) }}
 {% endif %}

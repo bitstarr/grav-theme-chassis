@@ -18,6 +18,8 @@ form:
               content: THEME_C.PAGE.SYSTEMIC
         content:
           unset@: true
+        hero:
+          unset@: true
         options:
           unset@: true
         advanced:

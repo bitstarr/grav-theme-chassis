@@ -31,7 +31,7 @@ class Utils
             if ( preg_match( "/^.*\.(woff|woff2)$/i", $file, $ext ) )
             {
                 $url = $path[0] . '/' . $file;
-                $links .= '<link rel="preload" href="/' . $url . '" as="font" type="font/' . $ext[1] . '" crossorigin />'. "\n";
+                $links .= '<link rel="preload" href="/' . $url . '" as="font" type="font/' . $ext[1] . '" crossorigin>'. "\n";
             }
         }
 
@@ -56,6 +56,10 @@ class Utils
             if ( preg_match( "/^.*\.(svg)$/i", $file, $ext ) )
             {
                 $name = pathinfo( $path[0] . '/' . $file, PATHINFO_FILENAME );
+                if ( strstr( $name, 'logo' ) )
+                {
+                    continue;
+                }
                 $icons[ $name ] = $name;
             }
         }
@@ -63,5 +67,11 @@ class Utils
         ksort( $icons );
 
         return $icons;
+    }
+
+    public static function phoneNumberCleanUp( $input )
+    {
+        $output = preg_replace( '~\s|-|\/|\(.*\)|\.~', '', $input );
+        return $output;
     }
 }
