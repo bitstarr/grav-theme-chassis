@@ -10,7 +10,7 @@
 {% set modules = page.collection(options) %}
 
 {% block content %}
-    <div class="wrapping">
+    <div class="modudlar wrapping">
         {% if header.hero.headline is not defined %}
             <h1 class="headline">
                 {{ page_title }}
@@ -22,6 +22,7 @@
             </div>
         {% endif %}
     </div>
+
     {% for module in modules %}
         {# <a id="{{ module.menu|hyphenize }}"></a> #}
         {{ module.content|raw }}

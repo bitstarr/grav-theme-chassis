@@ -4,12 +4,15 @@
     'wrapping',
 ] %}
 
+{% if header.id %}
+    {% set id = ' id="' ~ header.id ~ '"' %}
+{% endif %}
 {% if header.layout_alt %}
     {% set modular_classes = modular_classes|merge( ['modular--alt'] ) %}
 {% endif %}
 {% endspaceless %}
 
-<div class="{{ modular_classes|join( ' ' )|trim }}">
+<div class="{{ modular_classes|join( ' ' )|trim }}"{{ id|raw }}>
     <h2 class="modular__title">{{ page.title }}</h2>
     <div class="textflow">
         {{ page.content|raw }}

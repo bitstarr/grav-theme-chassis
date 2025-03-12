@@ -22,6 +22,12 @@ form:
           fields:
             overrides:
               security: admin.super
+              fields:
+                _publish:
+                  type: section
+                  import@:
+                    type: partials/id
+                    context: blueprints://
             routes_only:
               security: admin.super
             admin_only:

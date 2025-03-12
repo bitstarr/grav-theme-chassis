@@ -1,0 +1,7 @@
+form:
+  fields:
+    header.id:
+      type: slug
+      toggleable: true
+      label: THEME_C.MODULE.ID
+      autocomplete: off

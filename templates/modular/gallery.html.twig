@@ -17,13 +17,14 @@
 } %}
 
 {% set layout = header.layout|default( 'grid' ) %}
+{% set group = 'g' ~ random() %}
 {% endspaceless %}
 
 <div class="{{ modular_classes|join( ' ' )|trim }}">
     <div class="sc-gallery sc-gallery--{{ layout }}">
         {% for filename in header.media_order|split(',') -%}
             {% set file = page.media[ filename ] -%}
-            <a class="sc-gallery__link" href="{{ file.cropResize(1600,1600).url }}">
+            <a class="sc-gallery__link" href="{{ file.cropResize(1600,1600).url }}" data-group="{{ group }}">
                 {% if layout == 'grid' -%}
                     {% set image = file.cropZoom( types[layout].width, types[layout].height ) -%}
                 {% elseif layout == 'columns' -%}
