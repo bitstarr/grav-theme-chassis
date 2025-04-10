@@ -17,7 +17,6 @@
                 {
                     const prvs = new Parvus({
                         hideScrollbar: false,
-                        gallerySelector: self.selector,
                         selector: '.sc-gallery__link',
                     });
                 });

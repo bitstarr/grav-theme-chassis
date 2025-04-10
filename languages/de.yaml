@@ -40,6 +40,7 @@ THEME_C:
     TEXT: Text
     URL: URL
     ICON: Icon
+    ID: Anker-ID
     ENTRIES: Einträge
     TABS: Tabs
     LAYOUT:

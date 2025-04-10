@@ -45,7 +45,6 @@ form:
         advanced:
           fields:
             overrides:
-              security: admin.super
               header.hide_breadcrumbs:
                 type: toggle
                 label: THEME_C.PAGE.BREADCRUMB
@@ -57,7 +56,5 @@ form:
                     1: THEME_C.PAGE.HIDE
                 validate:
                     type: bool
-            routes_only:
-              security: admin.super
             admin_only:
               security: admin.super
