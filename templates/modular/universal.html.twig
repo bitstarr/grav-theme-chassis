@@ -1,0 +1,73 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--universal',
+    'wrapping',
+] %}
+
+{% set element_classes = [
+    'universal',
+] %}
+{% if header.layout.flipped %}
+    {% set element_classes = element_classes|merge( ['is-flipped'] ) %}
+{% endif %}
+{% if header.layout.spread == 'mid' %}
+    {% set element_classes = element_classes|merge( ['breakout--mid'] ) %}
+{% endif %}
+{% if header.layout.spread == 'full' %}
+    {% set element_classes = element_classes|merge( ['breakout'] ) %}
+{% endif %}
+{% if header.layout.columns != null %}
+    {% set element_classes = element_classes|merge( ['is-' ~ header.layout.columns ] ) %}
+{% endif %}
+
+{% set image = page.media[ header.image ] %}
+{% set audiovideo = page.media[ header.audioVideo ] %}
+
+{% if audiovideo -%}
+    {% set hasMedia = 'audiovideo' %}
+{% elseif header.externalVideo %}
+    {% set hasMedia = 'extvid' %}
+{% elseif image %}
+    {% set hasMedia = 'image' %}
+{% endif -%}
+
+{% endspaceless %}
+
+<div class="{{ modular_classes|join( ' ' )|trim }}">
+    <div class="{{ element_classes|join( ' ' )|trim }}">
+        <div class="universal__shell shell">
+            {% if header.layout.hide_title != true and page.content|length > 0 -%}
+                <h2 class="universal__title">
+                    {{ page.title|raw }}
+                </h2>
+            {% endif -%}
+
+            {% if hasMedia -%}
+                <figure class="universal__media media">
+                {% include 'partials/universal-' ~ hasMedia ~ '.html.twig' with {
+                    image: image,
+                    isNarrow: page.content|length,
+                    audiovideo: audiovideo,
+                    externalVideo: header.externalVideo
+                } -%}
+                {% if header.caption -%}
+                    <figcaption class="caption">
+                        {{ header.caption }}
+                    </figcaption>
+                {% endif -%}
+                </figure>
+            {% endif -%}
+
+            {% if page.content -%}
+                <div class="universal__content content textflow">
+                    {{ page.content|raw }}
+
+                    {% if header.calltoaction.label -%}
+                        {% include 'partials/calltoaction.html.twig' with { header: header } -%}
+                    {% endif -%}
+                </div>
+            {% endif -%}
+        </div>
+    </div>
+</div>

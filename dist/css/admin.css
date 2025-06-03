@@ -20,6 +20,12 @@
     --_bg: #fff8f6;
 }
 
+/* nicer fieldsets */
+
+.form-fieldset {
+    background-color: #fff;
+}
+
 /* page edit view content */
 
 #admin-main .form-tabs .tab__content {

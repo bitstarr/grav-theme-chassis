@@ -127,7 +127,7 @@ class Chassis extends Theme
         // if( $page->isPage() ) {}
 
         // admin & editor styles
-        $assets->addCss( 'theme://dist/css/admin.css' );
+        $assets->addCss( 'theme://dist/css/admin.css', 1 );
         // editor buttons
         if ($this->config->get('plugins.markdown-notices.enabled')) {
             $assets->add( 'theme://admin/buttons/notice.js', [ 'defer' => true ] );

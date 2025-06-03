@@ -5,13 +5,6 @@
     'wrapping',
 ] %}
 
-{# no need to notice a page collection all the time with this template #}
-{% set options = {
-    items: {'@self.children': ''},
-    'order': {'by': 'folder', 'dir': 'asc'}
-} %}
-{% set stack = page.collection(options) %}
-
 {% endspaceless %}
 
 <div class="{{ modular_classes|join( ' ' )|trim }}">
@@ -19,8 +12,7 @@
     <h2 class="modular__title">{{ page.title }}</h2>
     {% endif -%}
 
-    {% for object in stack %}
-
+    {% for object in header.items -%}
         <div class="details details--accordion js-details" data-expanded="true">
             <h3 class="details__title">
                 <button class="details__trigger" aria-expanded="true">
@@ -31,6 +23,5 @@
                 {{ object.content|markdown|raw}}
             </div>
         </div>
-
-    {% endfor %}
+    {% endfor -%}
 </div>

@@ -11,7 +11,7 @@ form:
             content:
               unset@: true
 
-            tabs:
+            _tabs:
               type: section
               title: THEME_C.MODULE.TABS
               underline: true

@@ -1,0 +1,90 @@
+.universal {
+    container: universal / inline-size;
+
+    &__title {
+        grid-area: title;
+        margin-bottom: var( --gap );
+        font-size: var( --size-3 );
+        font-weight: 700;
+    }
+
+    &__media {
+        grid-area: image;
+    }
+
+    &__content {
+        grid-area: content;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .caption {
+        width: min( 100%, var( --wrapper  ) );
+        margin-inline: auto;
+    }
+
+    &:has( .media + .content ) {
+        .image {
+            margin-bottom: var( --gap );
+        }
+        .embedvideo {
+            aspect-ratio: unset;
+        }
+        .embedvideo__privacy {
+            position: static;
+        }
+    }
+
+    &:where( .is-2col, .is-3col ):not( :has( .media ) ) .content {
+        columns: var( --_col-size, 26ch );
+        column-gap: var( --_col-gap, var( --gap-m ) ) ;
+    }
+    &:where( .is-3col ) {
+        --_col-size: 23ch;
+    }
+    &.is-readable:not( :has( .media ) ) {
+        width: min( 100%, 60ch );
+        margin-inline: auto;
+    }
+
+    &.breakout:has( .content ) {
+        margin-inline: var( --gap );
+    }
+
+    @container universal (inline-size > 39em) {
+        &:has( .media + .content ) {
+            .shell {
+                display: grid;
+                gap: 0 var( --_col-gap );
+                grid-template-areas: var( --_areas );
+                grid-template-rows: auto 1fr;
+                grid-template-columns: .9fr 1fr;
+                align-items: start;
+            }
+            .media {
+                position: sticky;
+                top: var( --gap-m );
+            }
+        }
+
+        .shell {
+            --_areas:
+                'image title'
+                'image content';
+            --_col-gap: var( --gap-m );
+        }
+        .is-flipped .shell {
+            --_areas:
+                'title image'
+                'content image';
+        }
+    }
+
+    @container universal (inline-size > 43em) {
+        .shell {
+            --_col-gap: var( --gap-l );
+        }
+    }
+}

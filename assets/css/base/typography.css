@@ -51,6 +51,12 @@ body {
     text-wrap: balance;
 }
 
+:where( figure figcaption ) {
+    margin-block-start: var( --gap-xs );
+    font-size: var( --size--1 );
+    color: var( --global-muted );
+}
+
 /*
     Basic link styles
 */

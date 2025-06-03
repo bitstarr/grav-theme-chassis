@@ -1,0 +1,11 @@
+form:
+  fields:
+    header.layout.spread:
+      type: radio
+      label: THEME_C.MODULE.LAYOUT.SPREAD
+      toggleable: true
+      default: default
+      options:
+        default: THEME_C.MODULE.LAYOUT.DEFAULT
+        mid: THEME_C.MODULE.LAYOUT.WIDERWIDTH
+        full: THEME_C.MODULE.LAYOUT.FULLWIDTH

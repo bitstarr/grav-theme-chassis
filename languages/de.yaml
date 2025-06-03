@@ -17,43 +17,61 @@ THEME_C:
     BREADCRUMBS: Brotkrumen
     FOOTER: Abschluss
     SOCIAL: Social Media
-  PAGE:
-    MENU_CLASSES: CSS Klassen für Menü-Eintrag
-    BREADCRUMB: Breadcrumb
-    SHOW: Anzeigen
-    HIDE: Verbergen
-    SYSTEMIC: Das ist eine System-Seite und du kannst hier nichts tun.
-  SITE:
+  SYSTEM:
     ENV_STATUS: Enviroment Status
     ENV_PROD: Production
     ENV_STG: Stage
     ENV_PRV: Preview
     ENV_DEV: Development
     ENV_BANNER: Banner anzeigen
+  PAGE:
+    MENU_CLASSES: CSS Klassen für Menü-Eintrag
+    BREADCRUMB: Breadcrumb
+    SHOW: Anzeigen
+    HIDE: Verbergen
+    SYSTEMIC: Das ist eine System-Seite und du kannst hier nichts tun.
   MODULE:
     TITLE: Titel
     CONTENT: Inhalt
     DESCRIPTION: Beschreibung
     FILE: Datei
+    MEDIA: Medien
     IMAGE: Bild
     THUMBNAIL: Vorschaubild
+    AUDIOVIDEO: Audio/Video
+    EXT_VIDEO: Externes Video (YouTube/Vimeo)
+    CAPTION: Bildunterschrift
     TEXT: Text
     URL: URL
     ICON: Icon
     ID: Anker-ID
     ENTRIES: Einträge
     TABS: Tabs
+    ACCORDION: Akkordeon
     LAYOUT:
       OPTIONS: Layout Optionen
+      DEFAULT: Standard
       HIDE_TITLE: Überschrift verbergen
       INVERT: Invertieren
       FLIP: Reihenfolge umkehren
       LAYOUT: Darstellung
       GRID: Raster
       COLUMNS: Spalten
+      SPREAD: Ausbreitung
+      WIDERWIDTH: Breiter
+      FULLWIDTH: Volle Breite
     REFERENCE:
       SELECT: Modul auswählen
       HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
+    UNIVERSAL:
+      TEXTANDMEDIA: Text und Media Layout
+      MEDIAONLY: Media Only Layout
+      TEXTONLY: Text Only Layout
+      READABILITY: Spalten/Lesbarkeit
+      2COL: 2 Spalten (~50 Zeichen pro Zeile)
+      3COL: 3 Spalten (~38 Zeichen pro Zeile)
+      BEST: Lesbarkeit (80 Zeichen pro Zeile)
+      AUDIOCONTROL: Audio abspielen/pausieren
     CAROUSEL:
       CONFIGURE: Karusell konfigurieren
       IMGWIDTH: Bildbreite
@@ -80,7 +98,6 @@ THEME_C:
       1: Erfolg (grün)
       2: Warnung (orange)
       3: Fehler (rot)
-    ACCORDION_NOTICE: Dieses Modul zeigt ein Akkordeon, bestehend aus den Inhalten von dessen Unterseiten. Von denen werden Titel und Textinhalt automatisch ausgelesen.
     GALLERY_NOTICE: Die Reihenfolge der Bilder entspricht der Reihenfolge der Seitenmedien. Du kannst sie oben per Drag & Drop ändern.
   HERO:
     IMAGE: Titelbild
@@ -109,6 +126,13 @@ THEME_C:
     STAGE: +++ Stage-Server +++ Dies ist eine Vorschau des aktuellen Entwicklingsstandes +++ Drücke Shift+T um diese Nachricht auszublenden +++
     PREVIEW: +++ Preview-Server +++ Die Änderungen sind noch nicht im Live-System +++ Drücke Shift+T um diese Nachricht auszublenden +++
     FALLBACK: +++ Warum bist du hier? +++
+  CALLTOACTION:
+    OPTIONS: „Callt to action“ Link
+    PAGE: Seite
+    URL: URL
+    LABEL: Link-Text
+    EXTERNAL: In neuem Tab öffnen
+    EXTERNAL_HELP: Überlasse den Nutzer/innen die Entscheidung! Nutze diese Option sehr vorsichtig.
   FORM:
     FIELD:
       RECIPIENT: Bitte wählen Sie den Empfänger Ihrer Nachricht

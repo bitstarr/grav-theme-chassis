@@ -1,0 +1,31 @@
+form:
+  fields:
+    header.calltoaction.label:
+      type: text
+      label: THEME_C.CALLTOACTION.LABEL
+    header.calltoaction.page:
+      toggleable: true
+      type: pages
+      label: THEME_C.CALLTOACTION.PAGE
+      show_all: false
+      show_modular: false
+      show_root: false
+      default: ''
+      show_fullpath: true
+    header.calltoaction.url:
+      toggleable: true
+      type: text
+      label: THEME_C.CALLTOACTION.URL
+      validate:
+        type: url
+    # header.calltoaction.external:
+    #   type: toggle
+    #   toggleable: true
+    #   label: THEME_C.CALLTOACTION.EXTERNAL
+    #   help: THEME_C.CALLTOACTION.EXTERNAL_HELP
+    #   highlight: 1
+    #   options:
+    #     1: PLUGIN_ADMIN.YES
+    #     0: PLUGIN_ADMIN.NO
+    #   validate:
+    #     type: bool
