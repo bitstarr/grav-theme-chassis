@@ -23,6 +23,7 @@ form:
                     - .jpg
                     - .jpeg
                     - .png
+                    - .webp
 
                 header.audioVideo:
                   type: pagemediaselect

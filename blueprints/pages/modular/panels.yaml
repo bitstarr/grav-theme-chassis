@@ -1,0 +1,36 @@
+title: Panels
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+
+      fields:
+        content:
+          fields:
+            content:
+              unset@: true
+
+            _layout:
+              type: fieldset
+              title: THEME_C.MODULE.LAYOUT.OPTIONS
+              icon: th-large
+              import@2:
+                type: partials/layout-spread
+                context: blueprints://
+              fields:
+                header.layout.highlight:
+                  type: radio
+                  label: THEME_C.MODULE.PANELS.HIGHLIGHT
+                  default: left
+                  options:
+                    left: THEME_C.MODULE.LAYOUT.LEFT
+                    right: THEME_C.MODULE.LAYOUT.RIGHT
+                    top: THEME_C.MODULE.LAYOUT.TOP
+                    bottom: THEME_C.MODULE.LAYOUT.BOTTOM
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

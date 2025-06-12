@@ -37,6 +37,7 @@ THEME_C:
     FILE: File
     MEDIA: Media
     IMAGE: Image
+    IMAGES: Images
     THUMBNAIL: Thumbnail Image
     AUDIOVIDEO: Audio/Video
     EXT_VIDEO: External Video (YouTube/Vimeo)
@@ -60,6 +61,10 @@ THEME_C:
       SPREAD: Spread
       WIDERWIDTH: Wider
       FULLWIDTH: Full Width
+      LEFT: Left
+      RIGHT: Right
+      TOP: Top
+      BOTTOM: Bottom
     REFERENCE:
       SELECT: Select Module
       HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
@@ -99,6 +104,8 @@ THEME_C:
       2: Warning (orange)
       3: Error (red)
     GALLERY_NOTICE: The order of the images corresponds to the order of the page media. You can change them above using drag & drop.
+    PANELS:
+      HIGHLIGHT: Position of the large image
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image

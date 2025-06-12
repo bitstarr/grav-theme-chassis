@@ -37,6 +37,7 @@ THEME_C:
     FILE: Datei
     MEDIA: Medien
     IMAGE: Bild
+    IMAGES: Bilder
     THUMBNAIL: Vorschaubild
     AUDIOVIDEO: Audio/Video
     EXT_VIDEO: Externes Video (YouTube/Vimeo)
@@ -60,6 +61,10 @@ THEME_C:
       SPREAD: Ausbreitung
       WIDERWIDTH: Breiter
       FULLWIDTH: Volle Breite
+      LEFT: Links
+      RIGHT: Rechts
+      TOP: Oben
+      BOTTOM: Unten
     REFERENCE:
       SELECT: Modul auswählen
       HINT: Bitte darauf achten, dass diese Refenz nicht automatisch aktualisiert wird, wenn das Referenzierte Objekt in einen anderen Ordner verschoben wird.
@@ -99,6 +104,8 @@ THEME_C:
       2: Warnung (orange)
       3: Fehler (rot)
     GALLERY_NOTICE: Die Reihenfolge der Bilder entspricht der Reihenfolge der Seitenmedien. Du kannst sie oben per Drag & Drop ändern.
+    PANELS:
+      HIGHLIGHT: Position des großen Bildes
   HERO:
     IMAGE: Titelbild
     HEADLINE: Überschrift auf dem Titelbild

@@ -1732,6 +1732,49 @@ video.audiovideo,
 .no-js .visualizer .playpause {
         display: none;
     }
+.panels {
+    container: panels / inline-size;
+}
+.panels .shell {
+        display: grid;
+        gap: var( --_col-gap, var( --gap-m ) );
+    }
+.panels .image:not(:first-child) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+.panels .image:first-child {
+        grid-row: var( --_row );
+        grid-column: var( --_col );
+        width: 100%;
+        aspect-ratio: 1;
+    }
+@container panels (inline-size > 40em) {
+        .panels .shell {
+            /* left is default */
+            --_row: 1/2 span;
+            --_col: 1;
+            --_split: 6fr 4fr;
+
+            grid-template-columns: var( --_split );
+        }
+
+        .panels .shell[data-highlight='right'] {
+            --_col: 2;
+            --_split: 4fr 6fr;
+        }
+        .panels .shell[data-highlight='top'] {
+            --_row: 1;
+            --_col: 1/2 span;
+            --_split: 1fr 1fr;
+        }
+        .panels .shell[data-highlight='bottom'] {
+            --_row: 2;
+            --_col: 1/2 span;
+            --_split: 1fr 1fr;
+        }
+    }
 .details {
     --_vSpace: var( --gap );
     --_hSpace: var( --gap );

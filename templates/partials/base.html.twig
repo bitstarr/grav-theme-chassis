@@ -47,7 +47,7 @@
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}
-    {% if config.system.env.state == 'dev' %}
+    {% if config.site.env.state == 'dev' %}
         {% do assets.addJs('theme://dist/js/dev.js', { group:'bottom' }) %}
     {% endif %}
 {% endblock %}
