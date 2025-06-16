@@ -103,7 +103,13 @@ THEME_C:
       1: Erfolg (grün)
       2: Warnung (orange)
       3: Fehler (rot)
-    GALLERY_NOTICE: Die Reihenfolge der Bilder entspricht der Reihenfolge der Seitenmedien. Du kannst sie oben per Drag & Drop ändern.
+    GALLERY:
+      FORMAT: Bildformat
+      SQUARE: Quadratisch
+      PORTRAIT: Hochkant
+      LANDSCAPE: Querformat
+      MASONRY: Masonry
+      NOTICE: Die Reihenfolge der Bilder entspricht der Reihenfolge der Seitenmedien. Du kannst sie oben per Drag & Drop ändern.
     PANELS:
       HIGHLIGHT: Position des großen Bildes
   HERO:

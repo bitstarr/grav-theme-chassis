@@ -1,0 +1,73 @@
+.gallery {
+    --_col-count: 2;
+    --_col-gap: var( --gap );
+    --_gap-count: calc( var( --_col-count ) - 1 );
+    --_totalGapWidth: calc( var( --_gap-count ) * var( --_col-gap ) );
+    --_itemMinWidth: 9rem;
+    --_itemMaxWidth: calc( ( 100% - var( --_totalGapWidth ) ) / var( --_col-count ) );
+
+    &__container {
+        container: gallery / inline-size;
+    }
+
+    & {
+        display: grid;
+        gap: var( --_col-gap );
+        grid-template-columns: repeat( var( --_col-count ), 1fr );
+    }
+
+    &[data-cols='1'] {
+        --_col-count: 1;
+    }
+
+    &[data-format='masonry'] {
+        display: block;
+        columns: var( --_col-count );
+
+        .image {
+            margin-block-end: var( --_col-gap );
+        }
+    }
+
+    .breakout & {
+        margin-inline: var( --_col-gap );
+    }
+
+    .link {
+        display: block;
+    }
+    .image {
+        width: 100%;
+        height: auto;
+    }
+
+
+    @container gallery (inline-size > 20em) {
+        & {
+            --_itemMinWidth: 12rem;
+            grid-template-columns: repeat( auto-fill, minmax( max( var( --_itemMinWidth ), var( --_itemMaxWidth ) ), 1fr ) );
+        }
+        &[data-cols='3'] {
+            --_col-count: 3;
+        }
+        &[data-cols='4'] {
+            --_col-count: 4;
+            --_itemMinWidth: 10rem;
+        }
+        &[data-cols='5'] {
+            --_col-count: 5;
+            --_itemMinWidth: 8rem;
+        }
+    }
+    @container gallery (inline-size > 35em) {
+        & {
+            --_col-gap: var( --gap-m );
+        }
+    }
+
+    @container gallery (inline-size < 35em) {
+        &[data-format='masonry']:not([data-cols='1']) {
+            --_col-count: 2;
+        }
+    }
+}

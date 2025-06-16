@@ -103,7 +103,13 @@ THEME_C:
       1: Succsess (green)
       2: Warning (orange)
       3: Error (red)
-    GALLERY_NOTICE: The order of the images corresponds to the order of the page media. You can change them above using drag & drop.
+    GALLERY:
+      FORMAT: Image Format
+      SQUARE: Square
+      PORTRAIT: Portrait
+      LANDSCAPE: Landscape
+      MASONRY: Masonry
+      NOTICE: The order of the images corresponds to the order of the page media. You can change them above using drag & drop.
     PANELS:
       HIGHLIGHT: Position of the large image
   HERO:

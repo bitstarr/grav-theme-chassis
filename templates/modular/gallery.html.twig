@@ -5,33 +5,60 @@
     'wrapping',
 ] %}
 
-{% set types = {
-    grid: {
-        width: 250,
-        height: 250,
-    },
-    column: {
-        width: 500,
-        height: null,
-    }
-} %}
+{% set container_classes = [
+    'gallery__container',
+] %}
 
-{% set layout = header.layout|default( 'grid' ) %}
+{% if header.layout.spread == 'mid' %}
+    {% set container_classes = container_classes|merge( ['breakout--mid'] ) %}
+{% endif %}
+{% if header.layout.spread == 'full' %}
+    {% set container_classes = container_classes|merge( ['breakout'] ) %}
+{% endif %}
+
+{% set columns = header.layout.columns|default(3) %}
+{% set scope = header.layout.spread|default('default') %}
+{% set scopeWidth = {
+    default: 960,
+    mid: 1100,
+    full: 1920
+} %}
+{% set thumbWidth = ( scopeWidth[scope] / columns )|round( 0, 'ceil' ) %}
+
+{# 4/3 images #}
+{% set formats = {
+    square: [ thumbWidth, thumbWidth ],
+    landscape: [ thumbWidth, ( thumbWidth / 4 * 3 )|round( 0, 'ceil' ) ],
+    portrait: [ thumbWidth, ( thumbWidth / 3 * 4 )|round( 0, 'ceil' ) ],
+    masonry: [ thumbWidth, null ]
+} %}
+{% set format = header.layout.format|default('square') %}
+{% if columns == 1 %}
+    {% set format = 'masonry' %}
+{% endif %}
+
+{% if header.id %}
+    {% set id = ' id="' ~ header.id ~ '"' %}
+{% endif %}
 {% set group = 'g' ~ random() %}
 {% endspaceless %}
 
-<div class="{{ modular_classes|join( ' ' )|trim }}">
-    <div class="sc-gallery sc-gallery--{{ layout }}">
+<div class="{{ modular_classes|join( ' ' )|trim }}"{{ id|raw }}>
+    <div class="{{ container_classes|join( ' ' )|trim }}">
+        <div class="gallery" data-cols="{{ columns }}" data-format="{{ format }}">
         {% for filename in header.media_order|split(',') -%}
-            {% set file = page.media[ filename ] -%}
-            <a class="sc-gallery__link" href="{{ file.cropResize(1600,1600).url }}" data-group="{{ group }}">
-                {% if layout == 'grid' -%}
-                    {% set image = file.cropZoom( types[layout].width, types[layout].height ) -%}
-                {% elseif layout == 'columns' -%}
-                    {% set image = file.cropResize( types[layout].width, types[layout].height ) -%}
-                {% endif -%}
-                <img class="sc-gallery__image" src="{{ image.url }}" alt="{{ file.metadata.alt }}" loading="lazy">
+            {% spaceless -%}
+                {% set file = page.media[ filename ] -%}
+                {% if format != 'masonry' %}
+                    {% set thumbnail = file.cropZoom( formats[format][0], formats[format][1] ).url %}
+                {% else %}
+                    {% set thumbnail = file.cropResize( formats[format][0], formats[format][1] ).url %}
+                {% endif %}
+            {% endspaceless -%}
+            <a class="link" href="{{ file.url }}" data-group="{{ group }}">
+                <img class="image" src="{{ thumbnail}}" alt="{{ file.metadata.alt }}" loading="lazy">
             </a>
         {% endfor -%}
+        </div>
     </div>
 </div>

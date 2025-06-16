@@ -1,7 +1,7 @@
 html {
     --parvus-transition-duration: 300ms;
     --parvus-transition-timing-function: cubic-bezier(.62, .16, .13, 1.01);
-    --parvus-background-color: rgb( 0 0 0 / .8 );
+    --parvus-background-color: rgb(0 0 0 / .8);
     --parvus-color: #fff;
     --parvus-btn-background-color: #000;
     --parvus-btn-color: #eee;
@@ -17,14 +17,27 @@ html {
     --parvus-loader-color: hsl(228deg 24% 23%);
 }
 
-body:has(.parvus[aria-hidden=false]) {
+
+::view-transition-group(lightboximage) {
+    animation-duration: var(--parvus-transition-duration);
+    animation-timing-function: var(--parvus-transition-timing-function);
+    z-index: 7;
+}
+
+::view-transition-group(toolbar) {
+    z-index: 8;
+}
+
+body:has(.parvus[open]) {
     touch-action: none;
 }
 
+
+
 /**
-   * Parvus trigger
-   *
-   */
+ * Parvus trigger
+ *
+ */
 .parvus-trigger:has(img) {
     display: block;
     position: relative;
@@ -36,10 +49,10 @@ body:has(.parvus[aria-hidden=false]) {
     color: var(--parvus-btn-color);
     display: flex;
     justify-content: center;
-    padding: .5rem;
+    padding: 0.5rem;
     position: absolute;
-    inset-inline-end: .5rem;
-    inset-block-start: .5rem;
+    inset-inline-end: 0.5rem;
+    inset-block-start: 0.5rem;
 }
 
 .parvus-trigger:has(img) img {
@@ -47,27 +60,35 @@ body:has(.parvus[aria-hidden=false]) {
 }
 
 /**
-   * Parvus
-   *
-   */
+ * Parvus
+ *
+ */
 .parvus {
+    background-color: transparent;
+    block-size: 100%;
+    border: 0;
     box-sizing: border-box;
+    color: var(--parvus-color);
     contain: strict;
+    inline-size: 100%;
     inset: 0;
+    margin: 0;
+    max-block-size: unset;
+    max-inline-size: unset;
     overflow: hidden;
     overscroll-behavior: contain;
+    padding: 0;
     position: fixed;
-    z-index: 1337;
+}
+
+.parvus::backdrop {
+    display: none;
 }
 
 .parvus *,
 .parvus *::before,
 .parvus *::after {
     box-sizing: border-box;
-}
-
-.parvus[aria-hidden=true] {
-    display: none;
 }
 
 .parvus__overlay {
@@ -80,10 +101,7 @@ body:has(.parvus[aria-hidden=false]) {
 .parvus__slider {
     inset: 0;
     position: absolute;
-}
-
-.parvus__slider[aria-hidden=true] {
-    display: none;
+    transform: translateZ(0);
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {
@@ -95,17 +113,20 @@ body:has(.parvus[aria-hidden=false]) {
 
 .parvus__slider--is-draggable {
     cursor: grab;
+    touch-action: pan-y pinch-zoom;
 }
 
 .parvus__slider--is-dragging {
     cursor: grabbing;
+    touch-action: none;
 }
 
 .parvus__slide {
     block-size: 100%;
+    contain: layout;
     display: grid;
     inline-size: 100%;
-    padding-block: 3.75rem 1rem;
+    padding-block: 1rem;
     padding-inline: 1rem;
     place-items: center;
 }
@@ -115,20 +136,20 @@ body:has(.parvus[aria-hidden=false]) {
     display: block;
     inline-size: auto;
     margin-inline: auto;
-    transform-origin: left top;
+    transform: translateZ(0);
 }
 
 .parvus__content--error {
     background-color: var(--parvus-loading-error-background-color);
     color: var(--parvus-loading-error-color);
-    padding-block: .5rem;
+    padding-block: 0.5rem;
     padding-inline: 1rem;
 }
 
 .parvus__caption {
     background-color: var(--parvus-caption-background-color);
     color: var(--parvus-caption-color);
-    padding-block-start: .5rem;
+    padding-block-start: 0.5rem;
     text-align: start;
 }
 
@@ -143,11 +164,11 @@ body:has(.parvus[aria-hidden=false]) {
 }
 
 .parvus__loader::before {
-    animation: spin 1s infinite;
+    animation: spin 1s infinite linear;
     border-radius: 100%;
-    border: .25rem solid var(--parvus-loader-background-color);
+    border: 0.25rem solid var(--parvus-loader-background-color);
     border-block-start-color: var(--parvus-loader-color);
-    content: '';
+    content: "";
     inset: 0;
     position: absolute;
     z-index: 1;
@@ -159,13 +180,19 @@ body:has(.parvus[aria-hidden=false]) {
     inset-block-start: 1rem;
     inset-inline: 1rem;
     justify-content: space-between;
+    pointer-events: none;
     position: absolute;
-    color: var(--parvus-color);
+    view-transition-name: toolbar;
+    z-index: 8;
+}
+
+.parvus__toolbar>* {
+    pointer-events: auto;
 }
 
 .parvus__controls {
     display: flex;
-    gap: .5rem;
+    gap: 0.5rem;
 }
 
 .parvus__btn {
@@ -173,12 +200,12 @@ body:has(.parvus[aria-hidden=false]) {
     background-color: var(--parvus-btn-background-color);
     background-image: none;
     border-radius: 0;
-    border: .06rem solid transparent;
+    border: 0.0625rem solid transparent;
     color: var(--parvus-btn-color);
     cursor: pointer;
     display: flex;
     font: inherit;
-    padding: .3rem;
+    padding: 0.3125rem;
     position: relative;
     touch-action: manipulation;
     will-change: transform, opacity;
@@ -255,28 +282,37 @@ body:has(.parvus[aria-hidden=false]) {
     }
 
     .parvus--is-vertical-closing .parvus__counter,
-    .parvus--is-vertical-closing .parvus__btn--close {
+    .parvus--is-vertical-closing .parvus__btn--close,
+    .parvus--is-zooming .parvus__counter,
+    .parvus--is-zooming .parvus__btn--close {
         transform: translateY(-100%);
         opacity: 0;
     }
 
-    .parvus--is-vertical-closing .parvus__btn--previous {
+    .parvus--is-vertical-closing .parvus__btn--previous,
+    .parvus--is-zooming .parvus__btn--previous {
         transform: translate(-100%, -50%);
         opacity: 0;
     }
 
-    .parvus--is-vertical-closing .parvus__btn--next {
+    .parvus--is-vertical-closing .parvus__btn--next,
+    .parvus--is-zooming .parvus__btn--next {
         transform: translate(100%, -50%);
         opacity: 0;
     }
 
-    .parvus--is-vertical-closing .parvus__caption {
+    .parvus--is-vertical-closing .parvus__caption,
+    .parvus--is-zooming .parvus__caption {
         transform: translateY(100%);
         opacity: 0;
     }
 }
 
 @keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
     to {
         transform: rotate(360deg);
     }

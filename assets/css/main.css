@@ -32,6 +32,7 @@
 @import 'organism/universal.css';
 @import 'organism/audiovideo.css';
 @import 'organism/panels.css';
+@import 'organism/gallery.css';
 @import 'organism/details.css';
 @import 'organism/tabs.css';
 @import 'organism/bullets.css';
@@ -46,8 +47,8 @@
 @import 'template/error.css';
 
 /* vendor (third-party) sprecific */
-@import 'organism/sc-gallery.css';
 @import 'organism/sc-embedvideo.css';
 @import 'vendor/parvus.css';
 /*
+@import 'organism/sc-gallery.css';
 */
