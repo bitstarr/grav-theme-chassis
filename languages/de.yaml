@@ -54,6 +54,7 @@ THEME_C:
       DEFAULT: Standard
       HIDE_TITLE: Überschrift verbergen
       INVERT: Invertieren
+      ALTERNATE: Alternatives Layout
       FLIP: Reihenfolge umkehren
       LAYOUT: Darstellung
       GRID: Raster

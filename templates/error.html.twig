@@ -2,10 +2,15 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <div class="textflow wrapping">
-        {{ page.content|raw }}
-        <p class="errorcode">
-        {{ 'PLUGIN_ERROR.ERROR'|t }} {{ page.header.http_response_code }}
-        </p>
+    <div class="modular wrapping">
+        <h1 class="headline">
+            {{ page.title }}
+        </h1>
+        <div class="textflow">
+            {{ page.content|raw }}
+            <p class="errorcode">
+                {{ 'PLUGIN_ERROR.ERROR'|t }} {{ page.header.http_response_code }}
+            </p>
+        </div>
     </div>
 {% endblock %}

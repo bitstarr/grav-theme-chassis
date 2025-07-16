@@ -54,6 +54,7 @@ THEME_C:
       DEFAULT: Standard
       HIDE_TITLE: Hide Title
       INVERT: Invert
+      ALTERNATE: Alternative Layout
       FLIP: Reverese Order
       LAYOUT: Layout
       GRID: Grid

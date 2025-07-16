@@ -154,7 +154,7 @@
     {{ assets.js('bottom')|raw }}
 {% endblock %}
 
-{% if config.system.env.banner %}
+{% if config.site.env.banner %}
     {% include 'partials/ticker.html.twig' %}
 {% endif %}
 </body>
