@@ -4,7 +4,7 @@
     win.project = win.project || {};
 
     win.project.scGallery = {
-        selector: '.gallery',
+        selector: '.gallery:has(a)',
 
         init: function()
         {

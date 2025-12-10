@@ -11,6 +11,7 @@ body {
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
     hanging-punctuation: first allow-end last;
+    word-break: break-word;
 }
 
 :where( pre, code, kbd, samp ) {
@@ -95,6 +96,7 @@ body {
 :where( caption, th, td ) {
     padding: .5em;
     text-align: left;
+    word-break: normal;
 }
 
 /*

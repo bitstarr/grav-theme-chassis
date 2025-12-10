@@ -32,9 +32,12 @@
     {% set hasMedia = 'image' %}
 {% endif -%}
 
+{% if header.id %}
+    {% set id = ' id="' ~ header.id ~ '"' %}
+{% endif %}
 {% endspaceless %}
 
-<div class="{{ modular_classes|join( ' ' )|trim }}">
+<div class="{{ modular_classes|join( ' ' )|trim }}"{{ id|raw }}>
     <div class="{{ element_classes|join( ' ' )|trim }}">
         <div class="universal__shell shell">
             {% if header.layout.hide_title != true and page.content|length > 0 -%}

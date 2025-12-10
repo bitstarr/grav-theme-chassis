@@ -3,29 +3,29 @@
 {% if isNarrow %}
     {# narrow width #}
     {% set imageset = {
-        960: image.cropResize(960,null).quality(70).url,
+        960: 960,
     } %}
 {% elseif header.layout.spread == 'full' %}
     {# full screen width #}
     {% set imageset = {
-        550: image.cropResize(960,null).quality(70).url,
-        960: image.cropResize(1280,null).quality(70).url,
-        1280: image.cropResize(1920,null).quality(70).url,
-        1920: image.cropResize(2560,null).quality(70).url,
+        550: 960,
+        960: 1280,
+        1280: 1920,
+        1920: 2560,
     } %}
 {% elseif header.layout.spread == 'mid' %}
     {# broken out of wrapper #}
     {% set imageset = {
-        550: image.cropResize(960,null).quality(70).url,
-        1280: image.cropResize(1280,null).quality(70).url,
-        1920: image.cropResize(1920,null).quality(70).url,
+        550: 960,
+        1280: 1280,
+        1920: 1920,
     } %}
 {% else %}
     {# wrapper wide width #}
     {% set imageset = {
-        550: image.cropResize(960,null).quality(70).url,
-        1440: image.cropResize(1280,null).quality(70).url,
-        1920: image.cropResize(1440,null).quality(70).url,
+        550: 960,
+        1440: 1280,
+        1920: 1440,
     } %}
 {% endif %}
 {% endspaceless %}
@@ -43,8 +43,8 @@
 <picture>
     {% if imageset -%}
         <source srcset="{{ baseImage }}" media="(max-width: 549px)">
-        {% for breakpoint, source in imageset|reverse -%}
-            <source srcset="{{ source }}" media="(min-width: {{ breakpoint }}px)">
+        {% for breakpoint, width in imageset|reverse -%}
+            <source srcset="{{ image.cropResize(width,null).quality(75).url }}" media="(min-width: {{ breakpoint }}px)">
         {% endfor -%}
     {% endif -%}
     <img class="image"

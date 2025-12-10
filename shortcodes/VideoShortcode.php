@@ -82,7 +82,7 @@ class VideoShortcode extends Shortcode
         /** @var Twig $twig */
         $twig = $this->grav['twig'];
 
-        $output = $twig->processTemplate( 'partials/sc-video-youtube.html.twig', $options );
+        $output = $twig->processTemplate( 'shortcodes/video-youtube.html.twig', $options );
         return $output;
     }
 
@@ -90,7 +90,7 @@ class VideoShortcode extends Shortcode
         /** @var Twig $twig */
         $twig = $this->grav['twig'];
 
-        $output = $twig->processTemplate( 'partials/sc-video-vimeo.html.twig', $options );
+        $output = $twig->processTemplate( 'shortcodes/video-vimeo.html.twig', $options );
         return $output;
     }
 
@@ -99,7 +99,7 @@ class VideoShortcode extends Shortcode
         $twig = $this->grav['twig'];
         $options['page'] = $this->grav['page'];
 
-        $output = $twig->processTemplate( 'partials/sc-video-local.html.twig', $options );
+        $output = $twig->processTemplate( 'shortcodes/video-local.html.twig', $options );
         return $output;
     }
 }
