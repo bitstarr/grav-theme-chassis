@@ -166,6 +166,7 @@ html {
 @view-transition {
     navigation: auto;
 }
+
 @keyframes fade {
     from {
         opacity: 1;
@@ -175,12 +176,15 @@ html {
         opacity: 0;
     }
 }
+
 ::view-transition-old(root) {
     animation: fade .2s linear forwards;
 }
+
 ::view-transition-new(root) {
     animation: fade .3s linear reverse;
 }
+
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root),
     ::view-transition-new(root) {
@@ -218,17 +222,20 @@ html {
     display: revert;
     line-height: var( --global-lineHeight );
 }
+
 /*
   Use a more-intuitive box-sizing model.
 */
 *, *::before, *::after {
     box-sizing: border-box;
 }
+
 /* fix the feature of attribute hidden
 display:revert; revert to element instead of attribute */
 :where( [hidden] ){
     display: none;
 }
+
 /*
     Remove the margin on controls in Safari.
     Remove built-in form typography styles
@@ -237,6 +244,7 @@ display:revert; revert to element instead of attribute */
     margin: 0;
     font: inherit;
 }
+
 /*
     Remove list styles (bullets/numbers)
 */
@@ -244,6 +252,7 @@ display:revert; revert to element instead of attribute */
     list-style: none;
     counter-reset: revert;
 }
+
 /*
     Improve media defaults
 */
@@ -252,6 +261,7 @@ display:revert; revert to element instead of attribute */
     max-width: 100%;
     height: auto;
 }
+
 /*
     Always show scrollbar to prevent 'jumping' when pages transition (old school)
     Prevent adjustments of font size after orientation changes in iOS.
@@ -261,25 +271,38 @@ html {
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    scrollbar-gutter: stable;
 }
+
 /*
     Provide always full screen
 */
-html, body { height: 100%;}
+html, body { height: 100svh;}
+
 /* remember to define focus styles! */
 /* the following line is already done by our main reset… */
 /* :focus:not( :focus-visible ) { outline: 0; } */
 html:focus-within { scroll-behavior: smooth; }
+
+/* details/summary animated opening */
+html { interpolate-size: allow-keywords; }
+
 /* Anything that has been anchored to should have extra scroll margin (at least in main) */
 :where( main :target ) {
     scroll-margin-block: 5ex;
 }
+
 /* stylelint-enable selector-list-comma-newline-after */
+
 /* stylelint-disable */
 /*
     Remove all animations, transitions and smooth scroll for people that prefer not to see them
 */
 @media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+
     *,
     *::before,
     *::after {
@@ -295,6 +318,7 @@ html:focus-within { scroll-behavior: smooth; }
     text-shadow: none;
     background: var( --selection-fill );
 }
+
 body {
     font: var(--size-0)/var( --global-lineHeight ) var( --font-default );
     color: var( --global-text );
@@ -302,7 +326,9 @@ body {
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
     hanging-punctuation: first allow-end last;
+    word-break: break-word;
 }
+
 :where( pre, code, kbd, samp ) {
     font-family: monospace, monospace;
 }
@@ -312,9 +338,11 @@ body {
     white-space: pre-wrap; /* CSS 2.1 */
     word-wrap: break-word; /* IE */
 }
+
 :where( small ) { font-size: 85%; }
 :where( strong, th ) { font-weight: 700; }
 :where( em ) { font-style: italic; }
+
 /* https://css-tricks.com/fluid-superscripts-and-subscripts/ */
 :where( sub, sup ) {
     font-size: calc( .5em + 4px );
@@ -323,6 +351,7 @@ body {
 }
 :where( sub ) { top: calc( .42em - 1.66px ); }
 :where( sup ) { top: calc( -.83em + 3.32px) ; }
+
 :where( abbr ) {
     font-variant: small-caps;
     text-transform: lowercase;
@@ -333,14 +362,17 @@ body {
             text-decoration: underline dotted;
 }
 :where( abbr[title] ):hover { cursor: help; }
+
 :where( h1, h2, h3, h4, h5, h6 ) {
     text-wrap: balance;
 }
+
 :where( figure figcaption ) {
     margin-block-start: var( --gap-xs );
     font-size: var( --size--1 );
     color: var( --global-muted );
 }
+
 /*
     Basic link styles
 */
@@ -360,6 +392,7 @@ body {
     --link-color: inherit;
     cursor: inherit;
 }
+
 /*
     Removes spacing between cells in tables
     Correct table border color in Chrome, Edge, and Safari.
@@ -372,11 +405,14 @@ body {
     text-indent: 0;
     font-variant-numeric: lining-nums tabular-nums diagonal-fractions;
 }
+
 :where( td, td img ) { vertical-align: top; }
 :where( caption, th, td ) {
     padding: .5em;
     text-align: left;
+    word-break: normal;
 }
+
 /*
     if you want to set explicit quotation characters,
     define them langauage specific
@@ -390,6 +426,7 @@ q { quotes: '\201E' '\201C' '\201A' '\2018'; }
 q::before { content: open-quote; }
 q::after { content: close-quote; }
 */
+
 /* A11y basiscs */
 /* @see https://css-tricks.com/standardizing-focus-styles-with-css-custom-properties/ */
 :is( a, button, input, textarea, select, summary ):focus-visible {
@@ -404,8 +441,10 @@ q::after { content: close-quote; }
 }
 :where( label ) { cursor: pointer; }
 :where( textarea ) { resize: vertical; }
+
 /* Address inconsistent `text-transform` inheritance for `button` and `select`. */
 :where( button, select ) { text-transform: none; }
+
 /**
  * 1 Correct the inability to style buttons in iOS and Safari.
  * 2 Improve usability and consistency of cursor style
@@ -415,6 +454,7 @@ q::after { content: close-quote; }
     cursor: pointer; /* 2 */
 }
 :where( button[disabled], input[disabled] ) { cursor: default; }
+
 /**
  * Remove the inner border and padding of focus outlines in Firefox.
  */
@@ -422,12 +462,14 @@ q::after { content: close-quote; }
     border-style: none;
     padding: 0;
 }
+
 /**
  * We like our number inputs undecorated
  */
 :where( input[type='number'] ) { -moz-appearance: textfield; }
 ::-webkit-inner-spin-button { -webkit-appearance: none; }
 ::-webkit-outer-spin-button { -webkit-appearance: none; }
+
 /**
  * If we like decorations, we will need to give them shape:
  * Correct the cursor style of increment and decrement buttons in Safari.
@@ -438,6 +480,7 @@ q::after { content: close-quote; }
    height: auto;
 }
 */
+
 /**
  * 1. Correct the odd appearance in Chrome, Edge, and Safari.
  * 2. Correct the outline style in Safari.
@@ -446,11 +489,14 @@ q::after { content: close-quote; }
     -webkit-appearance: textfield; /* 1 */
     outline-offset: -2px; /* 2 */
 }
+
 /**
  * Remove the inner padding in Chrome, Edge, and Safari on macOS.
  */
 ::-webkit-search-cancel-button,
 ::-webkit-search-decoration { -webkit-appearance: none; }
+
+
 /**
 * 1. Correct the inability to style upload buttons in iOS and Safari.
 * 2. Change font properties to `inherit` in Safari.
@@ -472,6 +518,7 @@ q::after { content: close-quote; }
         overflow: hidden;
         white-space: nowrap;
     }
+
 .skiplink {
     display: block;
     top: 1rem;
@@ -480,7 +527,9 @@ q::after { content: close-quote; }
     background-color: #111;
     color: #eee;
 }
+
 .u-hidden { display: none; }
+
 .u-quiet,
 .u-muted {
     --link-color: var( --global-muted );
@@ -488,26 +537,31 @@ q::after { content: close-quote; }
 
     color: var( --global-muted );
 }
+
 .u-quiet a, .u-muted a {
         text-decoration: underline;
     }
+
 .u-quiet a:hover, .u-muted a:hover {
             -webkit-text-decoration: underline dashed;
                     text-decoration: underline dashed;
         }
+
 .u-hyphen {
     overflow-wrap: break-word;
     word-wrap: break-word;
-    -webkit-hyphens: auto;
-            hyphens: auto;
+    hyphens: auto;
 }
+
 a.u-tel {
     color: currentcolor;
     text-decoration: none;
 }
+
 .noscroll {
     overflow: hidden;
 }
+
 /* form components */
 .form {
     /*
@@ -524,20 +578,6 @@ a.u-tel {
     display: grid;
     gap: var( --gap );
 }
-/*
-    @media (min-width: 60em) {
-        grid-template-columns: 1fr 1fr;
-
-        & > * {
-            grid-column: span 2;
-        }
-
-        &__field:first-child,
-        &__field:nth-child(2) {
-            grid-column: span 1;
-        }
-    }
-    */
 .form ::placeholder { color: var( --f-input-placeholder, #777 ); }
 .form textarea,
     .form label {
@@ -552,6 +592,20 @@ a.u-tel {
         flex-wrap: wrap;
         gap: var( --f-input-padding, .7rem ) 1.3em;
     }
+/*
+    @media (min-width: 60em) {
+        grid-template-columns: 1fr 1fr;
+
+        & > * {
+            grid-column: span 2;
+        }
+
+        &__field:first-child,
+        &__field:nth-child(2) {
+            grid-column: span 1;
+        }
+    }
+    */
 :where( fieldset.form__field.rows ) {
         flex-direction: column;
         flex-wrap: nowrap;
@@ -683,7 +737,7 @@ input.inputpeel:not(:focus):user-invalid,
     --_bg: var( --_base-bg );
     --_colorHover: var( --button-colorHover, var( --_base-color ) );
     /* --_bgHover: var( --button-bgHover, color-mix( in oklab, var( --_base-bg ), #fff 20% ) ); */
-    --_bgHover: var( --button-bgHover, oklch( from var( --_base-bg ) calc(l * 1.2 ) c h ) );
+    --_bgHover: var( --button-bgHover, oklch( from var( --_base-bg ) calc( l * 1.2 ) c h ) );
     --_borderWidth: var( --button-borderWidth, .15em );
     --_borderColor: var( --button-borderColor, var( --_bg ) );
     --_radius: var( --button-radius, var( --global-radius ) );
@@ -882,16 +936,19 @@ a.button {
                 --_background: radial-gradient(circle, var( --_disable-fg ) 0%, var( --_disable-fg ) .25em, var( --_disable-bg ) .27em );
             }
 }
+
 .bool__wrap {
         display: inline-flex;
         align-items: start;
         gap: 1ex;
         padding: .2em 0;
     }
+
 .bool__wrap:has( input:focus-visible ) {
             outline: var( --outline-size ) var( --outline-style ) var( --outline-color );
             outline-offset: var( --outline-offset, var( --outline-size ) );
         }
+
 input.bool {
         outline: 0;
     }
@@ -930,6 +987,7 @@ input.bool {
             background-repeat: no-repeat;
             background-image: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="%23a80000"><path d="M15 0 H17 L32 29 L31 30 L1 30 L0 29 z M19 8 L13 8 L14 20 L18 20 z M16 22 A3 3 0 0 0 16 28 A3 3 0 0 0 16 22"></path></svg>' );
         }
+
 /* simple self containing units */
 .icon {
     fill: currentcolor;
@@ -959,6 +1017,7 @@ input.bool {
     text-wrap: balance;
     color: var( --headline-color );
 }
+
 /* more copmplex modules */
 /* global */
 /*
@@ -1214,6 +1273,7 @@ input.bool {
             width: 100%;
         }
     }
+
 @media (prefers-reduced-motion: reduce) {
     .navigation {
         --_n-easeDuration: 1ms;
@@ -1622,7 +1682,7 @@ input.bool {
         width: min( 100%, var( --wrapper  ) );
         margin-inline: auto;
     }
-.universal:has( .media + .content ) .image {
+.universal:has( .media + .content ) .media {
             margin-bottom: var( --gap );
         }
 .universal:has( .media + .content ) .embedvideo {
@@ -1680,6 +1740,7 @@ video.audiovideo,
     audio.audiovideo {
         width: 100%;
     }
+
 /* visualizer (image) for audio files */
 .visualizer {
     position: relative;
@@ -1905,18 +1966,9 @@ video.audiovideo,
     .details[data-expanded='true'] .details__title::after {
         display: none;
     }
-/*
-        API:
-        --tabs-borderWidth        border width
-        --tabs-borderColor        border color
-        --tabs-borderHover        border color on hover
-    */
 .tabs__head {
         display: none;
     }
-/* &__content {
-        margin-bottom: var( --gap-m );
-    } */
 .tabs__title {
         margin-bottom: var( --gap-xs );
         font-size: 1.2em;
@@ -1928,6 +1980,9 @@ video.audiovideo,
         margin-bottom: calc( -1 * var( --_borderWidth ) );
         padding-inline: var( --_borderWidth );
     }
+/* &__content {
+        margin-bottom: var( --gap-m );
+    } */
 .tabs.is-interactive .tabs__title{
         display: none;
     }
@@ -1937,6 +1992,12 @@ video.audiovideo,
         --_hoverColor: var( --tabs-borderHover, var( --global-primary ) );
         --_fill: #f9f9f9;
     }
+/*
+        API:
+        --tabs-borderWidth        border width
+        --tabs-borderColor        border color
+        --tabs-borderHover        border color on hover
+    */
 .tabs--default .tabs__toggle {
         display: block;
         height: 100%;
@@ -2146,6 +2207,8 @@ video.audiovideo,
         height: auto;
         margin-inline: auto;
     }
+
+
 /* layouts define the relations between modules on a specific page type */
 html {
     /* optional, global colored scrollbar
@@ -2153,6 +2216,8 @@ html {
     scrollbar-width: thin;
     /**/
 }
+
+
 /*
     Clever new sticky footer
     @see https://css-tricks.com/a-clever-sticky-footer-technique/
@@ -2161,9 +2226,12 @@ body > footer {
     position: sticky;
     top: 100vh;
 }
+
+
 body {
     scroll-behavior: smooth;
 }
+
 .main {
     padding: var( --gap-m ) 0 var( --gap-l );
 }
@@ -2175,6 +2243,7 @@ body {
         font-size: .6em;
         color: var( --global-muted );
     }
+
 /* vendor (third-party) sprecific */
 .embedvideo {
     --link-hover: color-mix( in oklab, #fff, var( --global-primary ) 25% );
@@ -2231,6 +2300,7 @@ body {
 .embedvideo .source {
         --link-color: currentcolor;
     }
+
 .video {
     width: 100%;
     height: auto;
@@ -2254,17 +2324,24 @@ html {
     --parvus-loader-background-color: hsl(23deg 40% 96%);
     --parvus-loader-color: hsl(228deg 24% 23%);
 }
+
+
 ::view-transition-group(lightboximage) {
     animation-duration: var(--parvus-transition-duration);
     animation-timing-function: var(--parvus-transition-timing-function);
     z-index: 7;
 }
+
 ::view-transition-group(toolbar) {
     z-index: 8;
 }
+
 body:has(.parvus[open]) {
     touch-action: none;
 }
+
+
+
 /**
  * Parvus trigger
  *
@@ -2273,6 +2350,7 @@ body:has(.parvus[open]) {
     display: block;
     position: relative;
 }
+
 .parvus-trigger:has(img) .parvus-zoom__indicator {
     align-items: center;
     background-color: var(--parvus-btn-background-color);
@@ -2284,9 +2362,11 @@ body:has(.parvus[open]) {
     inset-inline-end: 0.5rem;
     inset-block-start: 0.5rem;
 }
+
 .parvus-trigger:has(img) img {
     display: block;
 }
+
 /**
  * Parvus
  *
@@ -2308,39 +2388,47 @@ body:has(.parvus[open]) {
     padding: 0;
     position: fixed;
 }
+
 .parvus::backdrop {
     display: none;
 }
+
 .parvus *,
 .parvus *::before,
 .parvus *::after {
     box-sizing: border-box;
 }
+
 .parvus__overlay {
     background-color: var(--parvus-background-color);
     color: var(--parvus-color);
     inset: 0;
     position: absolute;
 }
+
 .parvus__slider {
     inset: 0;
     position: absolute;
     transform: translateZ(0);
 }
+
 @media screen and (prefers-reduced-motion: no-preference) {
     .parvus__slider--animate:not(.parvus__slider--is-dragging) {
         transition: transform var(--parvus-transition-duration) var(--parvus-transition-timing-function);
         will-change: transform;
     }
 }
+
 .parvus__slider--is-draggable {
     cursor: grab;
     touch-action: pan-y pinch-zoom;
 }
+
 .parvus__slider--is-dragging {
     cursor: grabbing;
     touch-action: none;
 }
+
 .parvus__slide {
     block-size: 100%;
     contain: layout;
@@ -2350,6 +2438,7 @@ body:has(.parvus[open]) {
     padding-inline: 1rem;
     place-items: center;
 }
+
 .parvus__slide img {
     block-size: auto;
     display: block;
@@ -2357,18 +2446,21 @@ body:has(.parvus[open]) {
     margin-inline: auto;
     transform: translateZ(0);
 }
+
 .parvus__content--error {
     background-color: var(--parvus-loading-error-background-color);
     color: var(--parvus-loading-error-color);
     padding-block: 0.5rem;
     padding-inline: 1rem;
 }
+
 .parvus__caption {
     background-color: var(--parvus-caption-background-color);
     color: var(--parvus-caption-color);
     padding-block-start: 0.5rem;
     text-align: start;
 }
+
 .parvus__loader {
     display: inline-block;
     block-size: 6.25rem;
@@ -2378,6 +2470,7 @@ body:has(.parvus[open]) {
     transform: translate(-50%, -50%);
     inline-size: 6.25rem;
 }
+
 .parvus__loader::before {
     animation: spin 1s infinite linear;
     border-radius: 100%;
@@ -2388,6 +2481,7 @@ body:has(.parvus[open]) {
     position: absolute;
     z-index: 1;
 }
+
 .parvus__toolbar {
     align-items: center;
     display: flex;
@@ -2399,13 +2493,16 @@ body:has(.parvus[open]) {
     view-transition-name: toolbar;
     z-index: 8;
 }
+
 .parvus__toolbar>* {
     pointer-events: auto;
 }
+
 .parvus__controls {
     display: flex;
     gap: 0.5rem;
 }
+
 .parvus__btn {
     appearance: none;
     background-color: var(--parvus-btn-background-color);
@@ -2422,40 +2519,49 @@ body:has(.parvus[open]) {
     will-change: transform, opacity;
     z-index: 7;
 }
+
 .parvus__btn:hover,
 .parvus__btn:focus-visible {
     background-color: var(--parvus-btn-hover-background-color);
     color: var(--parvus-btn-hover-color);
 }
+
 .parvus__btn--previous {
     inset-inline-start: 0;
     position: absolute;
     inset-block-start: calc(50svh - 1rem);
     transform: translateY(-50%);
 }
+
 .parvus__btn--next {
     position: absolute;
     inset-inline-end: 0;
     inset-block-start: calc(50svh - 1rem);
     transform: translateY(-50%);
 }
+
 .parvus__btn svg {
     pointer-events: none;
 }
+
 .parvus__btn[aria-hidden=true] {
     display: none;
 }
+
 .parvus__btn[aria-disabled=true] {
     background-color: var(--parvus-btn-disabled-background-color);
     color: var(--parvus-btn-disabled-color);
 }
+
 .parvus__counter {
     position: relative;
     z-index: 7;
 }
+
 .parvus__counter[aria-hidden=true] {
     display: none;
 }
+
 @media screen and (prefers-reduced-motion: no-preference) {
 
     .parvus__overlay,
@@ -2509,6 +2615,7 @@ body:has(.parvus[open]) {
         opacity: 0;
     }
 }
+
 @keyframes spin {
     from {
         transform: rotate(0deg);

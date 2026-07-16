@@ -23,6 +23,8 @@ class Chassis extends Theme
     public function onThemeInitialized()
     {
         if ($this->isAdmin()) {
+            \Grav\Common\Data\Blueprint::addAllowedDynamicCallable('\Grav\Theme\Chassis\Utils::getIcons');
+
             $this->enable([
                 'onAssetsInitialized' => ['onAdminAssetsInitialized', 0],
             ]);

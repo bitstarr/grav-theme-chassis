@@ -1,7 +1,6 @@
 /* stylelint-disable */
 
 /* special user hints from blueprints */
-
 .user-notice .form-display-wrapper {
     padding: 1em;
     color: #222;
@@ -9,50 +8,41 @@
     border-left-width: 1ex;
     background-color: var( --_bg, #e8f6ff );
 }
-
 .user-notice.is-warning {
     --_brd: #b98300;
     --_bg: #fff8ef;
 }
-
 .user-notice.is-important {
     --_brd: #ff4647;
     --_bg: #fff8f6;
 }
 
 /* nicer fieldsets */
-
 .form-fieldset {
     background-color: #fff;
 }
 
 /* page edit view content */
-
 #admin-main .form-tabs .tab__content {
     max-width: 80rem;
 }
 
 /* editor content */
-
 .cm-s-paper.CodeMirror,
 #admin-main .admin-block .grav-editor-preview {
     max-width: 60rem;
 }
 
 /* editor buttons */
-
 .fa-exclamation-circle.notice-info {
     color: #666;
 }
-
 .fa-exclamation-circle.notice-success {
     color: #008566;
 }
-
 .fa-exclamation-circle.notice-warning {
     color: #ffb820;
 }
-
 .fa-exclamation-circle.notice-error {
     color: #d0103a;
 }
@@ -66,53 +56,43 @@
 }
 
 /* make the quick trays more usable */
-
 #admin-nav-quick-tray {
     padding-left: 21px;
 }
-
 #admin-nav-quick-tray li {
         width: auto;
     }
-
 #admin-nav-quick-tray a {
         display: block;
         padding: 5px;
     }
 
 /* make lines clickable in flex-lists */
-
 #directory .vuetable.table tr {
         position: relative;
     }
-
 #directory .vuetable.table .edit-action,
     #directory .vuetable.table .delete-action {
         padding: 2px 12px;
         border-radius: 3px;
         transition: background-color .2s, color .2s;
     }
-
 #directory .vuetable.table .edit-action:hover, #directory .vuetable.table .delete-action:hover {
             background: #ddd;
         }
-
 #directory .vuetable.table .edit-action::after {
             content: '';
             position: absolute;
             inset: 0;
             z-index: 1;
         }
-
 #directory .vuetable.table .delete-action {
         position: relative;
         z-index: 3;
     }
-
 #directory .vuetable.table .delete-action:hover {
             color: #fff !important;
             background: #a00;
         }
-
 /* stylelint-endable */
 /*# sourceMappingURL=admin.css.map */

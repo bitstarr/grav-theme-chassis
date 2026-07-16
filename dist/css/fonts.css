@@ -15,6 +15,7 @@
     font-style: normal;
     font-display: optional;
 }
+
 @font-face {
     font-family: 'Atkinson Chassis';
     src: local('Atkinson Hyperlegible'),
@@ -23,6 +24,7 @@
     font-style: italic;
     font-display: optional;
 }
+
 @font-face {
     font-family: 'Atkinson Chassis';
     src: local('Atkinson Hyperlegible'),
@@ -31,6 +33,7 @@
     font-style: normal;
     font-display: optional;
 }
+
 /* because cssnano will drop the whole file though */
 .font-loaded {
     font-family: 'Atkinson Chassis';
