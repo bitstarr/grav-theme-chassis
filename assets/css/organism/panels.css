@@ -1,0 +1,47 @@
+.panels {
+    container: panels / inline-size;
+
+    .shell {
+        display: grid;
+        gap: var( --_col-gap, var( --gap-m ) );
+    }
+
+    .image:not(:first-child) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image:first-child {
+        grid-row: var( --_row );
+        grid-column: var( --_col );
+        width: 100%;
+        aspect-ratio: 1;
+    }
+
+    @container panels (inline-size > 40em) {
+        .shell {
+            /* left is default */
+            --_row: 1/2 span;
+            --_col: 1;
+            --_split: 6fr 4fr;
+
+            grid-template-columns: var( --_split );
+        }
+
+        .shell[data-highlight='right'] {
+            --_col: 2;
+            --_split: 4fr 6fr;
+        }
+        .shell[data-highlight='top'] {
+            --_row: 1;
+            --_col: 1/2 span;
+            --_split: 1fr 1fr;
+        }
+        .shell[data-highlight='bottom'] {
+            --_row: 2;
+            --_col: 1/2 span;
+            --_split: 1fr 1fr;
+        }
+    }
+}

@@ -31,29 +31,53 @@ THEME_C:
     HIDE: Hide
     SYSTEMIC: This is a system page. You can't do anything here.
   MODULE:
-    Title: Title
+    TITLE: Title
     CONTENT: Content
     DESCRIPTION: Description
     FILE: File
+    MEDIA: Media
     IMAGE: Image
+    IMAGES: Images
     THUMBNAIL: Thumbnail Image
+    AUDIOVIDEO: Audio/Video
+    EXT_VIDEO: External Video (YouTube/Vimeo)
+    CAPTION: Image Caption
     TEXT: Text
     URL: URL
     ICON: Icon
     ID: Anchor-ID
     ENTRIES: Entries
     TABS: Tabs
+    ACCORDION: Accordion
     LAYOUT:
       OPTIONS: Layout options
+      DEFAULT: Standard
       HIDE_TITLE: Hide Title
       INVERT: Invert
+      ALTERNATE: Alternative Layout
       FLIP: Reverese Order
       LAYOUT: Layout
       GRID: Grid
       COLUMNS: Columns
+      SPREAD: Spread
+      WIDERWIDTH: Wider
+      FULLWIDTH: Full Width
+      LEFT: Left
+      RIGHT: Right
+      TOP: Top
+      BOTTOM: Bottom
     REFERENCE:
       SELECT: Select Module
       HINT: Please note that this reference will not be automatically updated if the referenced module is moved to another folder.
+    UNIVERSAL:
+      TEXTANDMEDIA: Text and Media Layout
+      MEDIAONLY: Media Only Layout
+      TEXTONLY: Text Only Layout
+      READABILITY: Columns/Readability
+      2COL: 2 Columns (~50 Characters per line)
+      3COL: 3 Columns (~38 Characters per line)
+      BEST: Readable (80 Characters per line)
+      AUDIOCONTROL: Play/pause audio
     CAROUSEL:
       CONFIGURE: Carousel configuration
       IMGWIDTH: Image Width
@@ -80,8 +104,15 @@ THEME_C:
       1: Succsess (green)
       2: Warning (orange)
       3: Error (red)
-    ACCORDION_NOTICE: This module shows an accordion consisting of the contents of its subpages. The title and text content are automatically read from these.
-    GALLERY_NOTICE: The order of the images corresponds to the order of the page media. You can change them above using drag & drop.
+    GALLERY:
+      FORMAT: Image Format
+      SQUARE: Square
+      PORTRAIT: Portrait
+      LANDSCAPE: Landscape
+      MASONRY: Masonry
+      NOTICE: The order of the images corresponds to the order of the page media. You can change them above using drag & drop.
+    PANELS:
+      HIGHLIGHT: Position of the large image
   HERO:
     IMAGE: Hero Image
     HEADLINE: Headline on top of Hero Image
@@ -109,6 +140,13 @@ THEME_C:
     STAGE: +++ Stage Enviroment +++ This is a preview of the current development state +++ Press Shift+T to hide this message +++
     PREVIEW: +++ Preview Enviroment +++ These changes are not part of the live enviroment yet +++ Press Shift+T to hide this message +++
     FALLBACK: +++ Why are you here? +++
+  CALLTOACTION:
+    OPTIONS: Call to action link
+    PAGE: Page
+    URL: URL
+    LABEL: Link text
+    EXTERNAL: Open in new tab
+    EXTERNAL_HELP: Leave the decision to the user! Use this option very carefully.
   FORM:
     FIELD:
       RECIPIENT: Please select the recipient of your message

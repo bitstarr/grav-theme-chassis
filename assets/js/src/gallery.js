@@ -4,7 +4,7 @@
     win.project = win.project || {};
 
     win.project.scGallery = {
-        selector: '.sc-gallery',
+        selector: '.gallery:has(a)',
 
         init: function()
         {
@@ -17,7 +17,7 @@
                 {
                     const prvs = new Parvus({
                         hideScrollbar: false,
-                        selector: '.sc-gallery__link',
+                        selector: '.link'
                     });
                 });
             }

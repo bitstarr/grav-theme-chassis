@@ -53,7 +53,7 @@
                     </p>
                     {% if item.description -%}
                     <p class="description">
-                        {{ item.description|markdown|strip_tags('<strong><em><br>')|raw }}
+                        {{ item.description|markdown|striptags('<strong><em><br>')|raw }}
                     </p>
                     {% endif -%}
                     <p>

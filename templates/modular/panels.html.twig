@@ -1,0 +1,73 @@
+{% spaceless %}
+{% set modular_classes = [
+    'modular',
+    'modular--panels',
+    'wrapping',
+] %}
+
+{% set element_classes = [
+    'panels',
+] %}
+
+{% if header.layout.spread == 'mid' %}
+    {% set element_classes = element_classes|merge( ['breakout--mid'] ) %}
+{% endif %}
+{% if header.layout.spread == 'full' %}
+    {% set element_classes = element_classes|merge( ['breakout'] ) %}
+{% endif %}
+
+{% if header.id %}
+    {% set id = ' id="' ~ header.id ~ '"' %}
+{% endif %}
+
+{% set layout = header.layout.highlight|default('left') %}
+{% set spread = header.layout.spread|default('default') %}
+{# left/right: vertical #}
+{# top/bottom: horizontal #}
+{% set split = ( header.layout.highlight in [ 'top', 'bottom' ] ) ? 'horizontal' : 'vertical' %}
+{% set sizes = {
+    'vertical': {
+        'full': {
+            alpha: [1280, 1280],
+            omega: [1280, 860],
+        },
+        'mid': {
+            alpha: [720, 720],
+            omega: [720, 480],
+        },
+        'default': {
+            alpha: [640, 640],
+            omega: [640, 430],
+        }
+    },
+    'horizontal': {
+        'full': {
+            alpha: [1920, 1920],
+            omega: [960, 640],
+        },
+        'mid': {
+            alpha: [1280, 1280],
+            omega: [960, 640],
+        },
+        'default': {
+            alpha: [960, 960],
+            omega: [720, 480],
+        }
+    }
+} %}
+{% set setup = sizes[split][spread] %}
+{# square and 6/4 #}
+{% endspaceless %}
+
+<div class="{{ modular_classes|join( ' ' )|trim }}"{{ id|raw }}>
+    <div class="{{ element_classes|join( ' ' )|trim }}">
+        <div class="panels__shell shell" data-highlight="{{ layout }}">
+        {% for filename in header.media_order|split(',')|slice(0, 3) -%}
+            {% set file = page.media[ filename ] -%}
+            {% set size = ( loop.index == 1 ) ? 'alpha' : 'omega' %}
+            {% set image = file.cropZoom( setup[size][0], setup[size][1] ).quality(70) -%}
+            <img class="panels__image image" src="{{ image.url }}" alt="{{ file.metadata.alt }}" loading="lazy">
+        {% endfor -%}
+        </div>
+    </div>
+</div>

@@ -5,49 +5,43 @@
 ] %}
 {% endspaceless %}
 <div class="{{ modular_classes|join( ' ' )|trim }}">
-<style>
-.icongrid {
-    display: grid;
-    grid-template-columns: 2em 1fr;
-    gap: 1ex;
-    align-items: center;
+    <style>
+    .icongrid {
+        columns: 12em;
 
-    dd {
-        margin: 0;
-    }
+        dd, dt {
+            margin: 0;
+        }
 
-    .icon {
-        fill: currentcolor;
-        height: 1em;
-        width: 1em;
-        overflow: hidden;
-        vertical-align: -.125em;
-        forced-color-adjust: auto;
-        font-size: 1.8em;
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 1ex;
+            padding: 1ex 0;
+        }
+
+        .icon {
+            fill: currentcolor;
+            height: 1em;
+            width: 1em;
+            overflow: hidden;
+            vertical-align: -.125em;
+            forced-color-adjust: auto;
+            font-size: 1.8em;
+        }
     }
-}
-</style>
+    </style>
     {% set icons = chassis.getIcons() %}
     <dl class="icongrid">
     {% for icon in icons %}
-        <dd>
-            {{ svg(icon)|raw }}
-        </dd>
-        <dt>
-            {{ icon }}
-        </dt>
+        <div class="item">
+            <dd>
+                {{ svg(icon)|raw }}
+            </dd>
+            <dt>
+                {{ icon }}
+            </dt>
+        </div>
     {% endfor %}
     </dl>
-    <style>
-        .icongrid {
-            display: grid;
-            grid-template-columns: 2em 1fr;
-            gap: 1ex;
-            align-items: center;
-
-            .icon {
-                font-size: 1.8em;
-            }
-        }
-    </style>
 </div>

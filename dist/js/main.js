@@ -2,12 +2,10 @@
  * Parvus
  *
  * @author Benjamin de Oostfrees
- * @version 2.6.0
+ * @version 3.0.0
  * @url https://github.com/deoostfrees/parvus
  *
  * MIT license
- *
- * Customized version in order to predate improvments that are not released.
  */
 
 (function (global, factory) {
@@ -38,35 +36,72 @@
     return BROWSER_WINDOW.innerWidth - document.documentElement.clientWidth;
   };
 
-  var en = {
-    lightboxLabel: 'This is a dialog window that overlays the main content of the page. The modal displays the enlarged image. Pressing the Escape key will close the modal and bring you back to where you were on the page.',
-    lightboxLoadingIndicatorLabel: 'Image loading',
-    lightboxLoadingError: 'The requested image cannot be loaded.',
-    controlsLabel: 'Controls',
-    previousButtonLabel: 'Previous image',
-    nextButtonLabel: 'Next image',
-    closeButtonLabel: 'Close dialog window',
-    sliderLabel: 'Images',
-    slideLabel: 'Image'
+  /**
+   * Add zoom indicator to element
+   *
+   * @param {HTMLElement} el - The element to add the zoom indicator to
+   * @param {Object} config - Options object
+   */
+  const addZoomIndicator = (el, config) => {
+    if (el.querySelector('img') && el.querySelector('.parvus-zoom__indicator') === null) {
+      const LIGHTBOX_INDICATOR_ICON = document.createElement('div');
+      LIGHTBOX_INDICATOR_ICON.className = 'parvus-zoom__indicator';
+      LIGHTBOX_INDICATOR_ICON.innerHTML = config.lightboxIndicatorIcon;
+      el.appendChild(LIGHTBOX_INDICATOR_ICON);
+    }
   };
 
-  var de = {
-    lightboxLabel: 'Dies ist ein Dialogfenster, das den Hauptinhalt der Seite überlagert. Das Modal zeigt das vergrößerte Bild an. Durch Drücken der Escape-Taste wird das Modal geschlossen und Sie gelangen zurück zu Ihrem vorherigen Standpunkt auf der Seite.',
-    lightboxLoadingIndicatorLabel: 'Bild wird geladen',
-    lightboxLoadingError: 'Das angeforderte Bild kann nicht geladen werden.',
-    controlsLabel: 'Steuerungen',
-    previousButtonLabel: 'Vorheriges Bild',
-    nextButtonLabel: 'Nächstes Bild',
-    closeButtonLabel: 'Dialogfenster schließen',
-    sliderLabel: 'Bilder',
-    slideLabel: 'Bild'
+  /**
+   * Remove zoom indicator for element
+   *
+   * @param {HTMLElement} el - The element to remove the zoom indicator to
+   */
+  const removeZoomIndicator = el => {
+    if (el.querySelector('img') && el.querySelector('.parvus-zoom__indicator') !== null) {
+      const LIGHTBOX_INDICATOR_ICON = el.querySelector('.parvus-zoom__indicator');
+      el.removeChild(LIGHTBOX_INDICATOR_ICON);
+    }
   };
 
+  const l10n = {
+    'en': {
+      lightboxLabel: 'This is a dialog window that overlays the main content of the page. The modal displays the enlarged image. Pressing the Escape key will close the modal and bring you back to where you were on the page.',
+      lightboxLoadingIndicatorLabel: 'Image loading',
+      lightboxLoadingError: 'The requested image cannot be loaded.',
+      controlsLabel: 'Controls',
+      previousButtonLabel: 'Previous image',
+      nextButtonLabel: 'Next image',
+      closeButtonLabel: 'Close dialog window',
+      sliderLabel: 'Images',
+      slideLabel: 'Image'
+    },
+
+  'de': {
+      lightboxLabel: 'Dies ist ein Dialogfenster, das den Hauptinhalt der Seite überlagert. Das Modal zeigt das vergrößerte Bild an. Durch Drücken der Escape-Taste wird das Modal geschlossen und Sie gelangen zurück zu Ihrem vorherigen Standpunkt auf der Seite.',
+      lightboxLoadingIndicatorLabel: 'Bild wird geladen',
+      lightboxLoadingError: 'Das angeforderte Bild kann nicht geladen werden.',
+      controlsLabel: 'Steuerungen',
+      previousButtonLabel: 'Vorheriges Bild',
+      nextButtonLabel: 'Nächstes Bild',
+      closeButtonLabel: 'Dialogfenster schließen',
+      sliderLabel: 'Bilder',
+      slideLabel: 'Bild'
+    },
+  }
+
+  function getLang() {
+    let lang = ( typeof l10n[ document.documentElement.lang ] ) ? document.documentElement.lang : 'en';
+    console.log( lang );
+    return l10n[ lang ];
+  }
+
+  /**
+   * Parvus Lightbox
+   *
+   * @param {Object} userOptions - User configuration options
+   * @returns {Object} Parvus instance
+   */
   function Parvus(userOptions) {
-    /**
-     * Global variables
-     *
-     */
     const BROWSER_WINDOW = window;
     const GROUP_ATTRIBUTES = {
       triggerElements: [],
@@ -75,6 +110,7 @@
       contentElements: []
     };
     const GROUPS = {};
+    const activePointers = new Map();
     let groupIdCounter = 0;
     let newGroup = null;
     let activeGroup = null;
@@ -95,11 +131,14 @@
     let isDraggingX = false;
     let isDraggingY = false;
     let pointerDown = false;
-    let lastFocus = null;
+    let currentScale = 1;
+    let isPinching = false;
+    let isTap = false;
+    let pinchStartDistance = 0;
+    let lastPointersId = null;
     let offset = null;
     let offsetTmp = null;
     let resizeTicking = false;
-    let transitionDuration = null;
     let isReducedMotion = true;
 
     /**
@@ -111,9 +150,9 @@
     const mergeOptions = userOptions => {
       // Default options
       const DEFAULT_OPTIONS = {
-        loadEmpty: false,
         selector: '.lightbox',
         gallerySelector: null,
+        zoomIndicator: false,
         captions: true,
         captionsSelector: 'self',
         captionsAttribute: 'data-caption',
@@ -121,16 +160,14 @@
         swipeClose: true,
         simulateTouch: true,
         threshold: 50,
-        backFocus: true,
         hideScrollbar: true,
-        transitionDuration: 300,
-        transitionTimingFunction: 'cubic-bezier(0.62, 0.16, 0.13, 1.01)',
         lightboxIndicatorIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>',
         previousButtonIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" stroke="currentColor"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18" /></svg>',
         nextButtonIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" stroke="currentColor"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="9 6 15 12 9 18" /></svg>',
         closeButtonIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>',
-        l10n: de
+        l10n: getLang()
       };
+
       const MERGED_OPTIONS = {
         ...DEFAULT_OPTIONS,
         ...userOptions
@@ -153,28 +190,28 @@
     const reducedMotionCheck = () => {
       if (MOTIONQUERY.matches) {
         isReducedMotion = true;
-        transitionDuration = 0.1;
       } else {
         isReducedMotion = false;
-        transitionDuration = config.transitionDuration;
       }
     };
 
     /**
-     * Get the group from element
+     * Retrieves or creates a group identifier for the given element
      *
-     * @param {HTMLElement} el - The element to retrieve the group from
-     * @return {String} - The group of the element
+     * @param {HTMLElement} el - DOM element to get or assign a group to
+     * @returns {string} The group identifier associated with the element
      */
     const getGroup = el => {
-      // Check if the data attribute "group" exists or set an alternative value
-      const EL_GROUP = el.dataset.group || `default-${groupIdCounter}`;
-      ++groupIdCounter;
-
-      // Set the "group" data attribute if it doesn't exist
-      if (!el.hasAttribute('data-group')) {
-        el.setAttribute('data-group', EL_GROUP);
+      // Return existing group identifier if already assigned
+      if (el.dataset.group) {
+        return el.dataset.group;
       }
+
+      // Generate new unique group identifier using counter
+      const EL_GROUP = `default-${groupIdCounter++}`;
+
+      // Assign the new group identifier to element's dataset
+      el.dataset.group = EL_GROUP;
       return EL_GROUP;
     };
 
@@ -184,11 +221,16 @@
      * @param {HTMLElement} el - The element to be added
      */
     const add = el => {
-      if (!lightbox) {
-        return;
-      }
-      if (!(el.tagName === 'A' && el.hasAttribute('href') || el.tagName === 'BUTTON' && el.hasAttribute('data-target'))) {
+      // Check element type and attributes
+      const IS_VALID_LINK = el.tagName === 'A' && el.hasAttribute('href');
+      const IS_VALID_BUTTON = el.tagName === 'BUTTON' && el.hasAttribute('data-target');
+      if (!IS_VALID_LINK && !IS_VALID_BUTTON) {
         throw new Error('Use a link with the \'href\' attribute or a button with the \'data-target\' attribute. Both attributes must contain a path to the image file.');
+      }
+
+      // Check if the lightbox already exists
+      if (!lightbox) {
+        createLightbox();
       }
       newGroup = getGroup(el);
       if (!GROUPS[newGroup]) {
@@ -198,6 +240,9 @@
         throw new Error('Ups, element already added.');
       }
       GROUPS[newGroup].triggerElements.push(el);
+      if (config.zoomIndicator) {
+        addZoomIndicator(el, config);
+      }
       el.classList.add('parvus-trigger');
       el.addEventListener('click', triggerParvus);
       if (isOpen() && newGroup === activeGroup) {
@@ -222,20 +267,61 @@
         return;
       }
       const EL_GROUP = getGroup(el);
+      const GROUP = GROUPS[EL_GROUP];
 
       // Check if element exists
-      if (!GROUPS[EL_GROUP] || !GROUPS[EL_GROUP].triggerElements.includes(el)) {
+      if (!GROUP) {
         return;
       }
-      const EL_INDEX = GROUPS[EL_GROUP].triggerElements.indexOf(el);
-      GROUPS[EL_GROUP].triggerElements.splice(EL_INDEX, 1);
-      GROUPS[EL_GROUP].sliderElements.splice(EL_INDEX, 1);
+      const EL_INDEX = GROUP.triggerElements.indexOf(el);
+      if (EL_INDEX === -1) {
+        return;
+      }
+      const IS_CURRENT_EL = isOpen() && EL_GROUP === activeGroup && EL_INDEX === currentIndex;
 
-      // Remove lightbox indicator icon
+      // Remove group data
+      if (GROUP.contentElements[EL_INDEX]) {
+        const content = GROUP.contentElements[EL_INDEX];
+        if (content.tagName === 'IMG') {
+          content.src = '';
+          content.srcset = '';
+        }
+      }
+
+      // Remove DOM element
+      const sliderElement = GROUP.sliderElements[EL_INDEX];
+      if (sliderElement && sliderElement.parentNode) {
+        sliderElement.parentNode.removeChild(sliderElement);
+      }
+
+      // Remove all array elements
+      GROUP.triggerElements.splice(EL_INDEX, 1);
+      GROUP.sliderElements.splice(EL_INDEX, 1);
+      GROUP.contentElements.splice(EL_INDEX, 1);
+      if (config.zoomIndicator) {
+        removeZoomIndicator(el);
+      }
       if (isOpen() && EL_GROUP === activeGroup) {
-        updateAttributes();
-        updateSliderNavigationStatus();
-        updateCounter();
+        if (IS_CURRENT_EL) {
+          if (GROUP.triggerElements.length === 0) {
+            close();
+          } else if (currentIndex >= GROUP.triggerElements.length) {
+            select(GROUP.triggerElements.length - 1);
+          } else {
+            updateAttributes();
+            updateSliderNavigationStatus();
+            updateCounter();
+          }
+        } else if (EL_INDEX < currentIndex) {
+          currentIndex--;
+          updateAttributes();
+          updateSliderNavigationStatus();
+          updateCounter();
+        } else {
+          updateAttributes();
+          updateSliderNavigationStatus();
+          updateCounter();
+        }
       }
 
       // Unbind click event handler
@@ -248,21 +334,19 @@
      *
      */
     const createLightbox = () => {
+      // Use DocumentFragment to batch DOM operations
+      const fragment = document.createDocumentFragment();
+
       // Create the lightbox container
-      lightbox = document.createElement('div');
+      lightbox = document.createElement('dialog');
       lightbox.setAttribute('role', 'dialog');
       lightbox.setAttribute('aria-modal', 'true');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightbox.setAttribute('tabindex', '-1');
       lightbox.setAttribute('aria-label', config.l10n.lightboxLabel);
       lightbox.classList.add('parvus');
 
       // Create the lightbox overlay container
       lightboxOverlay = document.createElement('div');
       lightboxOverlay.classList.add('parvus__overlay');
-
-      // Add the lightbox overlay container to the lightbox container
-      lightbox.appendChild(lightboxOverlay);
 
       // Create the toolbar
       toolbar = document.createElement('div');
@@ -278,18 +362,12 @@
       controls.setAttribute('role', 'group');
       controls.setAttribute('aria-label', config.l10n.controlsLabel);
 
-      // Add the controls to the right toolbar item
-      toolbarRight.appendChild(controls);
-
       // Create the close button
       closeButton = document.createElement('button');
       closeButton.className = 'parvus__btn parvus__btn--close';
       closeButton.setAttribute('type', 'button');
       closeButton.setAttribute('aria-label', config.l10n.closeButtonLabel);
       closeButton.innerHTML = config.closeButtonIcon;
-
-      // Add the close button to the controls
-      controls.appendChild(closeButton);
 
       // Create the previous button
       previousButton = document.createElement('button');
@@ -298,9 +376,6 @@
       previousButton.setAttribute('aria-label', config.l10n.previousButtonLabel);
       previousButton.innerHTML = config.previousButtonIcon;
 
-      // Add the previous button to the controls
-      controls.appendChild(previousButton);
-
       // Create the next button
       nextButton = document.createElement('button');
       nextButton.className = 'parvus__btn parvus__btn--next';
@@ -308,25 +383,28 @@
       nextButton.setAttribute('aria-label', config.l10n.nextButtonLabel);
       nextButton.innerHTML = config.nextButtonIcon;
 
-      // Add the next button to the controls
-      controls.appendChild(nextButton);
-
       // Create the counter
       counter = document.createElement('div');
       counter.className = 'parvus__counter';
 
+      // Add the control buttons to the controls
+      controls.append(closeButton, previousButton, nextButton);
+
       // Add the counter to the left toolbar item
       toolbarLeft.appendChild(counter);
 
+      // Add the controls to the right toolbar item
+      toolbarRight.appendChild(controls);
+
       // Add the toolbar items to the toolbar
-      toolbar.appendChild(toolbarLeft);
-      toolbar.appendChild(toolbarRight);
+      toolbar.append(toolbarLeft, toolbarRight);
 
-      // Add the toolbar to the lightbox container
-      lightbox.appendChild(toolbar);
+      // Add the overlay and the toolbar to the lightbox
+      lightbox.append(lightboxOverlay, toolbar);
+      fragment.appendChild(lightbox);
 
-      // Add the lightbox container to the body
-      document.body.appendChild(lightbox);
+      // Add to document body
+      document.body.appendChild(fragment);
     };
 
     /**
@@ -336,9 +414,6 @@
     const createSlider = () => {
       const SLIDER = document.createElement('div');
       SLIDER.className = 'parvus__slider';
-
-      // Hide the slider
-      SLIDER.setAttribute('aria-hidden', 'true');
 
       // Update the slider reference in GROUPS
       GROUPS[activeGroup].slider = SLIDER;
@@ -350,7 +425,8 @@
     /**
      * Get next slide index
      *
-     * @param {Number} index
+     * @param {Number} curentIndex - Current slide index
+     * @returns {number} Index of the next available slide or -1 if none found
      */
     const getNextSlideIndex = currentIndex => {
       const SLIDE_ELEMENTS = GROUPS[activeGroup].sliderElements;
@@ -366,8 +442,8 @@
     /**
      * Get previous slide index
      *
-     * @param {number} index - The current slide index
-     * @returns {number} - The index of the previous slide, or -1 if there is no previous slide
+     * @param {number} currentIndex - Current slide index
+     * @returns {number} Index of the previous available slide or -1 if no found
      */
     const getPreviousSlideIndex = currentIndex => {
       const SLIDE_ELEMENTS = GROUPS[activeGroup].sliderElements;
@@ -388,35 +464,43 @@
       if (GROUPS[activeGroup].sliderElements[index] !== undefined) {
         return;
       }
-      const SLIDER_ELEMENT = document.createElement('div');
-      const SLIDER_ELEMENT_CONTENT = document.createElement('div');
-      const TRIGGER_ELEMENTS = GROUPS[activeGroup].triggerElements;
-      const TOTAL_TRIGGER_ELEMENTS = TRIGGER_ELEMENTS.length;
-      SLIDER_ELEMENT.className = 'parvus__slide';
-      SLIDER_ELEMENT.style.position = 'absolute';
-      SLIDER_ELEMENT.style.left = `${index * 100}%`;
-      SLIDER_ELEMENT.setAttribute('aria-hidden', 'true');
-      SLIDER_ELEMENT.appendChild(SLIDER_ELEMENT_CONTENT);
+      const FRAGMENT = document.createDocumentFragment();
+      const SLIDE_ELEMENT = document.createElement('div');
+      const SLIDE_ELEMENT_CONTENT = document.createElement('div');
+      const GROUP = GROUPS[activeGroup];
+      const TOTAL_TRIGGER_ELEMENTS = GROUP.triggerElements.length;
+      SLIDE_ELEMENT.className = 'parvus__slide';
+      SLIDE_ELEMENT.style.cssText = `
+      position: absolute;
+      left: ${index * 100}%;
+    `;
+      SLIDE_ELEMENT.setAttribute('aria-hidden', 'true');
 
-      // Add extra output for screen reader if there is more than one slide
+      // Add accessibility attributes if gallery has multiple slides
       if (TOTAL_TRIGGER_ELEMENTS > 1) {
-        SLIDER_ELEMENT.setAttribute('role', 'group');
-        SLIDER_ELEMENT.setAttribute('aria-label', `${config.l10n.slideLabel} ${index + 1}/${TOTAL_TRIGGER_ELEMENTS}`);
+        SLIDE_ELEMENT.setAttribute('role', 'group');
+        SLIDE_ELEMENT.setAttribute('aria-label', `${config.l10n.slideLabel} ${index + 1}/${TOTAL_TRIGGER_ELEMENTS}`);
       }
-      GROUPS[activeGroup].sliderElements[index] = SLIDER_ELEMENT;
+      SLIDE_ELEMENT.appendChild(SLIDE_ELEMENT_CONTENT);
+      FRAGMENT.appendChild(SLIDE_ELEMENT);
+      GROUP.sliderElements[index] = SLIDE_ELEMENT;
+
+      // Insert the slide element based on index position
       if (index >= currentIndex) {
+        // Insert the slide element after the current slide
         const NEXT_SLIDE_INDEX = getNextSlideIndex(index);
         if (NEXT_SLIDE_INDEX !== -1) {
-          GROUPS[activeGroup].sliderElements[NEXT_SLIDE_INDEX].before(SLIDER_ELEMENT);
+          GROUP.sliderElements[NEXT_SLIDE_INDEX].before(SLIDE_ELEMENT);
         } else {
-          GROUPS[activeGroup].slider.appendChild(SLIDER_ELEMENT);
+          GROUP.slider.appendChild(SLIDE_ELEMENT);
         }
       } else {
+        // Insert the slide element before the current slide
         const PREVIOUS_SLIDE_INDEX = getPreviousSlideIndex(index);
         if (PREVIOUS_SLIDE_INDEX !== -1) {
-          GROUPS[activeGroup].sliderElements[PREVIOUS_SLIDE_INDEX].after(SLIDER_ELEMENT);
+          GROUP.sliderElements[PREVIOUS_SLIDE_INDEX].after(SLIDE_ELEMENT);
         } else {
-          GROUPS[activeGroup].slider.prepend(SLIDER_ELEMENT);
+          GROUP.slider.prepend(SLIDE_ELEMENT);
         }
       }
     };
@@ -431,47 +515,39 @@
         return;
       }
       activeGroup = getGroup(el);
-      if (!GROUPS[activeGroup].triggerElements.includes(el)) {
-        throw new Error('Ups, I can\'t find the element.');
+      const GROUP = GROUPS[activeGroup];
+      const EL_INDEX = GROUP.triggerElements.indexOf(el);
+      if (EL_INDEX === -1) {
+        throw new Error('Ups, element not found in group.');
       }
-      currentIndex = GROUPS[activeGroup].triggerElements.indexOf(el);
-      lastFocus = document.activeElement;
+      currentIndex = EL_INDEX;
       history.pushState({
         parvus: 'close'
       }, 'Image', window.location.href);
       bindEvents();
-      const NON_LIGHTBOX_ELEMENTS = document.querySelectorAll('body > *:not([aria-hidden="true"])');
-      NON_LIGHTBOX_ELEMENTS.forEach(nonLightboxEl => {
-        nonLightboxEl.setAttribute('aria-hidden', 'true');
-        nonLightboxEl.classList.add('parvus-hidden');
-      });
       if (config.hideScrollbar) {
         document.body.style.marginInlineEnd = `${getScrollbarWidth()}px`;
         document.body.style.overflow = 'hidden';
       }
       lightbox.classList.add('parvus--is-opening');
-      lightbox.setAttribute('aria-hidden', 'false');
+      lightbox.showModal();
       createSlider();
       createSlide(currentIndex);
-      GROUPS[activeGroup].slider.setAttribute('aria-hidden', 'false');
       updateOffset();
       updateAttributes();
       updateSliderNavigationStatus();
       updateCounter();
-      setFocusToFirstItem();
       loadSlide(currentIndex);
       createImage(el, currentIndex, () => {
         loadImage(currentIndex, true);
         lightbox.classList.remove('parvus--is-opening');
-        GROUPS[activeGroup].slider.classList.add('parvus__slider--animate');
+        GROUP.slider.classList.add('parvus__slider--animate');
       });
       preload(currentIndex + 1);
       preload(currentIndex - 1);
 
       // Create and dispatch a new event
-      fire('open', {
-        source: el
-      });
+      dispatchCustomEvent('open');
     };
 
     /**
@@ -480,7 +556,7 @@
      */
     const close = () => {
       if (!isOpen()) {
-        throw new Error('Ups, I\'m already closed.');
+        return;
       }
       const IMAGE = GROUPS[activeGroup].contentElements[currentIndex];
       const THUMBNAIL = GROUPS[activeGroup].triggerElements[currentIndex];
@@ -489,36 +565,17 @@
       if (history.state?.parvus === 'close') {
         history.back();
       }
-      const NON_LIGHTBOX_ELEMENTS = document.querySelectorAll('.parvus-hidden');
-      NON_LIGHTBOX_ELEMENTS.forEach(nonLightboxEl => {
-        nonLightboxEl.removeAttribute('aria-hidden');
-        nonLightboxEl.classList.remove('parvus-hidden');
-      });
       lightbox.classList.add('parvus--is-closing');
-      requestAnimationFrame(() => {
-        const THUMBNAIL_SIZE = THUMBNAIL.getBoundingClientRect();
-        if (IMAGE && IMAGE.tagName === 'IMG') {
-          const IMAGE_SIZE = IMAGE.getBoundingClientRect();
-          const WIDTH_DIFFERENCE = THUMBNAIL_SIZE.width / IMAGE_SIZE.width;
-          const HEIGHT_DIFFERENCE = THUMBNAIL_SIZE.height / IMAGE_SIZE.height;
-          const X_DIFFERENCE = THUMBNAIL_SIZE.left - IMAGE_SIZE.left;
-          const Y_DIFFERENCE = THUMBNAIL_SIZE.top - IMAGE_SIZE.top;
-          IMAGE.style.transform = `translate(${X_DIFFERENCE}px, ${Y_DIFFERENCE}px) scale(${WIDTH_DIFFERENCE}, ${HEIGHT_DIFFERENCE})`;
-        }
-        IMAGE.style.opacity = 0;
-        IMAGE.style.transition = `transform ${transitionDuration}ms ${config.transitionTimingFunction}, opacity ${transitionDuration}ms ${config.transitionTimingFunction} ${transitionDuration / 2}ms`;
-      });
       const transitionendHandler = () => {
+        // Reset the image zoom (if ESC was pressed or went back in the browser history)
+        // after the ViewTransition (otherwise it looks bad)
+        if (isPinching) {
+          resetZoom(IMAGE);
+        }
         leaveSlide(currentIndex);
-        lastFocus = config.backFocus ? lastFocus : GROUPS[activeGroup].triggerElements[currentIndex];
-        lastFocus.focus({
-          preventScroll: true
-        });
-        lightbox.setAttribute('aria-hidden', 'true');
+        lightbox.close();
         lightbox.classList.remove('parvus--is-closing');
         lightbox.classList.remove('parvus--is-vertical-closing');
-        IMAGE.style.transform = '';
-        IMAGE.removeEventListener('transitionend', transitionendHandler);
         GROUPS[activeGroup].slider.remove();
         GROUPS[activeGroup].slider = null;
         GROUPS[activeGroup].sliderElements = [];
@@ -533,16 +590,25 @@
           document.body.style.overflow = '';
         }
       };
-      IMAGE.addEventListener('transitionend', transitionendHandler, {
-        once: true
-      });
-
-      // Create and dispatch a new event
-      fire('close', {
-        detail: {
-          source: GROUPS[activeGroup].triggerElements[currentIndex]
+      if (IMAGE && IMAGE.tagName === 'IMG') {
+        if (document.startViewTransition) {
+          IMAGE.style.viewTransitionName = 'lightboximage';
+          const transition = document.startViewTransition(() => {
+            IMAGE.style.opacity = '0';
+            IMAGE.style.viewTransitionName = null;
+            THUMBNAIL.style.viewTransitionName = 'lightboximage';
+          });
+          transition.finished.finally(() => {
+            transitionendHandler();
+            THUMBNAIL.style.viewTransitionName = null;
+          });
+        } else {
+          IMAGE.style.opacity = '0';
+          requestAnimationFrame(transitionendHandler);
         }
-      });
+      } else {
+        transitionendHandler();
+      }
     };
 
     /**
@@ -653,7 +719,7 @@
         const ERROR_CONTAINER = document.createElement('div');
         ERROR_CONTAINER.classList.add('parvus__content');
         ERROR_CONTAINER.classList.add('parvus__content--error');
-        ERROR_CONTAINER.innerHTML = `${config.l10n.lightboxLoadingError}`;
+        ERROR_CONTAINER.textContent = config.l10n.lightboxLoadingError;
         CONTENT_CONTAINER_EL.appendChild(ERROR_CONTAINER);
         contentElements[index] = ERROR_CONTAINER;
       }).finally(() => {
@@ -699,23 +765,15 @@
       const IMAGE = GROUPS[activeGroup].contentElements[index];
       if (IMAGE && IMAGE.tagName === 'IMG') {
         const THUMBNAIL = GROUPS[activeGroup].triggerElements[index];
-        if (animate) {
-          const IMAGE_SIZE = IMAGE.getBoundingClientRect();
-          const THUMBNAIL_SIZE = THUMBNAIL.getBoundingClientRect();
-          const WIDTH_DIFFERENCE = THUMBNAIL_SIZE.width / IMAGE_SIZE.width;
-          const HEIGHT_DIFFERENCE = THUMBNAIL_SIZE.height / IMAGE_SIZE.height;
-          const X_DIFFERENCE = THUMBNAIL_SIZE.left - IMAGE_SIZE.left;
-          const Y_DIFFERENCE = THUMBNAIL_SIZE.top - IMAGE_SIZE.top;
-          requestAnimationFrame(() => {
-            IMAGE.style.transform = `translate(${X_DIFFERENCE}px, ${Y_DIFFERENCE}px) scale(${WIDTH_DIFFERENCE}, ${HEIGHT_DIFFERENCE})`;
-            IMAGE.style.transition = 'transform 0s, opacity 0s';
-
-            // Animate the difference reversal on the next tick
-            requestAnimationFrame(() => {
-              IMAGE.style.transform = '';
-              IMAGE.style.opacity = '';
-              IMAGE.style.transition = `transform ${transitionDuration}ms ${config.transitionTimingFunction}, opacity ${transitionDuration / 2}ms ${config.transitionTimingFunction}`;
-            });
+        if (animate && document.startViewTransition) {
+          THUMBNAIL.style.viewTransitionName = 'lightboximage';
+          const transition = document.startViewTransition(() => {
+            IMAGE.style.opacity = '';
+            THUMBNAIL.style.viewTransitionName = null;
+            IMAGE.style.viewTransitionName = 'lightboximage';
+          });
+          transition.finished.finally(() => {
+            IMAGE.style.viewTransitionName = null;
           });
         } else {
           IMAGE.style.opacity = '';
@@ -724,49 +782,50 @@
         IMAGE.style.opacity = '';
       }
     };
+
+    /**
+     * Select a specific slide by index
+     *
+     * @param {number} index - Index of the slide to select
+     */
     const select = index => {
-      const OLD_INDEX = currentIndex;
       if (!isOpen()) {
         throw new Error("Oops, I'm closed.");
-      } else {
-        if (typeof index !== 'number' || isNaN(index)) {
-          throw new Error('Oops, no slide specified.');
-        }
-        const triggerElements = GROUPS[activeGroup].triggerElements;
-        if (index === currentIndex) {
-          throw new Error(`Oops, slide ${index} is already selected.`);
-        }
-        if (index < -1 || index >= triggerElements.length) {
-          throw new Error(`Oops, I can't find slide ${index}.`);
-        }
       }
-      if (GROUPS[activeGroup].sliderElements[index] !== undefined) {
+      if (typeof index !== 'number' || isNaN(index)) {
+        throw new Error('Oops, no slide specified.');
+      }
+      const GROUP = GROUPS[activeGroup];
+      const triggerElements = GROUP.triggerElements;
+      if (index === currentIndex) {
+        throw new Error(`Oops, slide ${index} is already selected.`);
+      }
+      if (index < 0 || index >= triggerElements.length) {
+        throw new Error(`Oops, I can't find slide ${index}.`);
+      }
+      const OLD_INDEX = currentIndex;
+      currentIndex = index;
+      if (GROUP.sliderElements[index]) {
         loadSlide(index);
       } else {
         createSlide(index);
-        createImage(GROUPS[activeGroup].triggerElements[index], index, () => {
+        createImage(GROUP.triggerElements[index], index, () => {
           loadImage(index);
         });
         loadSlide(index);
       }
-      currentIndex = index;
       updateOffset();
+      updateSliderNavigationStatus();
+      updateCounter();
       if (index < OLD_INDEX) {
-        updateSliderNavigationStatus();
         preload(index - 1);
-      } else if (index > OLD_INDEX) {
-        updateSliderNavigationStatus();
+      } else {
         preload(index + 1);
       }
       leaveSlide(OLD_INDEX);
-      updateCounter();
 
       // Create and dispatch a new event
-      fire('select', {
-        detail: {
-          source: GROUPS[activeGroup].triggerElements[currentIndex]
-        }
-      });
+      dispatchCustomEvent('select');
     };
 
     /**
@@ -828,19 +887,24 @@
         triggerElements
       } = GROUPS[activeGroup];
       const TOTAL_TRIGGER_ELEMENTS = triggerElements.length;
+      if (TOTAL_TRIGGER_ELEMENTS <= 1) {
+        return;
+      }
+
+      // Determine navigation state
       const FIRST_SLIDE = currentIndex === 0;
       const LAST_SLIDE = currentIndex === TOTAL_TRIGGER_ELEMENTS - 1;
-      if (TOTAL_TRIGGER_ELEMENTS > 1) {
-        if (FIRST_SLIDE) {
-          previousButton.setAttribute('aria-disabled', 'true');
-          nextButton.removeAttribute('aria-disabled');
-        } else if (LAST_SLIDE) {
-          previousButton.removeAttribute('aria-disabled');
-          nextButton.setAttribute('aria-disabled', 'true');
-        } else {
-          previousButton.removeAttribute('aria-disabled');
-          nextButton.removeAttribute('aria-disabled');
-        }
+
+      // Set previous button state
+      const PREV_DISABLED = FIRST_SLIDE ? 'true' : null;
+      if (previousButton.getAttribute('aria-disabled') === 'true' !== !!PREV_DISABLED) {
+        PREV_DISABLED ? previousButton.setAttribute('aria-disabled', 'true') : previousButton.removeAttribute('aria-disabled');
+      }
+
+      // Set next button state
+      const NEXT_DISABLED = LAST_SLIDE ? 'true' : null;
+      if (nextButton.getAttribute('aria-disabled') === 'true' !== !!NEXT_DISABLED) {
+        NEXT_DISABLED ? nextButton.setAttribute('aria-disabled', 'true') : nextButton.removeAttribute('aria-disabled');
       }
     };
 
@@ -854,9 +918,9 @@
     };
 
     /**
-     * Clear drag after touchend event
+     * Clear drag after pointerup event
      *
-     * This function clears the drag state after the touchend event is triggered.
+     * This function clears the drag state after the pointerup event is triggered.
      */
     const clearDrag = () => {
       drag = {
@@ -887,15 +951,17 @@
       } = GROUPS[activeGroup];
       const TOTAL_TRIGGER_ELEMENTS = triggerElements.length;
       if (isDraggingX) {
-        if (MOVEMENT_X > 2 && MOVEMENT_X_DISTANCE >= config.threshold && currentIndex > 0) {
-          previous();
-        } else if (MOVEMENT_X < 2 && MOVEMENT_X_DISTANCE >= config.threshold && currentIndex !== TOTAL_TRIGGER_ELEMENTS - 1) {
-          next();
-        } else {
-          updateOffset();
+        const IS_RIGHT_SWIPE = MOVEMENT_X > 0;
+        if (MOVEMENT_X_DISTANCE >= config.threshold) {
+          if (IS_RIGHT_SWIPE && currentIndex > 0) {
+            previous();
+          } else if (!IS_RIGHT_SWIPE && currentIndex < TOTAL_TRIGGER_ELEMENTS - 1) {
+            next();
+          }
         }
+        updateOffset();
       } else if (isDraggingY) {
-        if (MOVEMENT_Y_DISTANCE > 2 && config.swipeClose && MOVEMENT_Y_DISTANCE >= config.threshold) {
+        if (MOVEMENT_Y_DISTANCE >= config.threshold && config.swipeClose) {
           close();
         } else {
           lightbox.classList.remove('parvus--is-vertical-closing');
@@ -916,11 +982,10 @@
       const TOTAL_TRIGGER_ELEMENTS = TRIGGER_ELEMENTS.length;
       const SLIDER = GROUPS[activeGroup].slider;
       const SLIDER_ELEMENTS = GROUPS[activeGroup].sliderElements;
-      const IS_TOUCH = config.simulateTouch || isTouchDevice();
       const IS_DRAGGABLE = SLIDER.classList.contains('parvus__slider--is-draggable');
 
       // Add draggable class if neccesary
-      if (IS_TOUCH && config.swipeClose && !IS_DRAGGABLE || IS_TOUCH && TOTAL_TRIGGER_ELEMENTS > 1 && !IS_DRAGGABLE) {
+      if (config.simulateTouch && config.swipeClose && !IS_DRAGGABLE || config.simulateTouch && TOTAL_TRIGGER_ELEMENTS > 1 && !IS_DRAGGABLE) {
         SLIDER.classList.add('parvus__slider--is-draggable');
       } else {
         SLIDER.classList.remove('parvus__slider--is-draggable');
@@ -984,25 +1049,93 @@
       if (contentEl.tagName !== 'IMG') {
         return;
       }
-      const SLIDE_EL_STYLES = getComputedStyle(slideEl);
-      const CAPTION_EL = slideEl.querySelector('.parvus__caption');
-      const CAPTION_REC = CAPTION_EL ? CAPTION_EL.getBoundingClientRect().height : 0;
       const SRC_HEIGHT = contentEl.getAttribute('height');
       const SRC_WIDTH = contentEl.getAttribute('width');
-      let maxHeight = slideEl.offsetHeight;
-      let maxWidth = slideEl.offsetWidth;
-      maxHeight -= parseFloat(SLIDE_EL_STYLES.paddingTop) + parseFloat(SLIDE_EL_STYLES.paddingBottom) + parseFloat(CAPTION_REC);
-      maxWidth -= parseFloat(SLIDE_EL_STYLES.paddingLeft) + parseFloat(SLIDE_EL_STYLES.paddingRight);
-      const RATIO = Math.min(maxWidth / SRC_WIDTH || 0, maxHeight / SRC_HEIGHT);
-      const NEW_WIDTH = SRC_WIDTH * RATIO || 0;
-      const NEW_HEIGHT = SRC_HEIGHT * RATIO || 0;
-      if (SRC_HEIGHT > NEW_HEIGHT && SRC_HEIGHT < maxHeight && SRC_WIDTH > NEW_WIDTH && SRC_WIDTH < maxWidth || SRC_HEIGHT < NEW_HEIGHT && SRC_HEIGHT < maxHeight && SRC_WIDTH < NEW_WIDTH && SRC_WIDTH < maxWidth) {
-        contentEl.style.width = '';
-        contentEl.style.height = '';
-      } else {
-        contentEl.style.width = `${NEW_WIDTH}px`;
-        contentEl.style.height = `${NEW_HEIGHT}px`;
+      if (!SRC_HEIGHT || !SRC_WIDTH) {
+        return;
       }
+      const SLIDE_EL_STYLES = getComputedStyle(slideEl);
+      const HORIZONTAL_PADDING = parseFloat(SLIDE_EL_STYLES.paddingLeft) + parseFloat(SLIDE_EL_STYLES.paddingRight);
+      const VERTICAL_PADDING = parseFloat(SLIDE_EL_STYLES.paddingTop) + parseFloat(SLIDE_EL_STYLES.paddingBottom);
+      const CAPTION_EL = slideEl.querySelector('.parvus__caption');
+      const CAPTION_HEIGHT = CAPTION_EL ? CAPTION_EL.getBoundingClientRect().height : 0;
+      const MAX_WIDTH = slideEl.offsetWidth - HORIZONTAL_PADDING;
+      const MAX_HEIGHT = slideEl.offsetHeight - VERTICAL_PADDING - CAPTION_HEIGHT;
+      const RATIO = Math.min(MAX_WIDTH / SRC_WIDTH || 0, MAX_HEIGHT / SRC_HEIGHT || 0);
+      const NEW_WIDTH = SRC_WIDTH * RATIO;
+      const NEW_HEIGHT = SRC_HEIGHT * RATIO;
+      const USE_ORIGINAL_SIZE = SRC_WIDTH <= MAX_WIDTH && SRC_HEIGHT <= MAX_HEIGHT;
+      contentEl.style.width = USE_ORIGINAL_SIZE ? '' : `${NEW_WIDTH}px`;
+      contentEl.style.height = USE_ORIGINAL_SIZE ? '' : `${NEW_HEIGHT}px`;
+    };
+
+    /**
+     * Reset image zoom
+     *
+     * @param {HTMLImageElement} currentImg - The image
+     */
+    const resetZoom = currentImg => {
+      currentImg.style.transition = 'transform 0.3s ease';
+      currentImg.style.transform = '';
+      setTimeout(() => {
+        currentImg.style.transition = '';
+        currentImg.style.transformOrigin = '';
+      }, 300);
+      isPinching = false;
+      isTap = false;
+      currentScale = 1;
+      pinchStartDistance = 0;
+      lastPointersId = '';
+      lightbox.classList.remove('parvus--is-zooming');
+    };
+
+    /**
+     * Pinch zoom gesture
+     *
+     * @param {HTMLImageElement} currentImg - The image to zoom
+     */
+    const pinchZoom = currentImg => {
+      // Determine current finger positions
+      const POINTS = Array.from(activePointers.values());
+
+      // Calculate current distance between fingers
+      const CURRENT_DISTANCE = Math.hypot(POINTS[1].clientX - POINTS[0].clientX, POINTS[1].clientY - POINTS[0].clientY);
+
+      // Calculate the midpoint between the two points
+      const MIDPOINT_X = (POINTS[0].clientX + POINTS[1].clientX) / 2;
+      const MIDPOINT_Y = (POINTS[0].clientY + POINTS[1].clientY) / 2;
+
+      // Convert midpoint to relative position within the image
+      const IMG_RECT = currentImg.getBoundingClientRect();
+      const RELATIVE_X = (MIDPOINT_X - IMG_RECT.left) / IMG_RECT.width;
+      const RELATIVE_Y = (MIDPOINT_Y - IMG_RECT.top) / IMG_RECT.height;
+
+      // When pinch gesture is about to start or the finger IDs have changed
+      // Use a unique ID based on the pointer IDs to recognize changes
+      const CURRENT_POINTERS_ID = POINTS.map(p => p.pointerId).sort().join('-');
+      const IS_NEW_POINTER_COMBINATION = lastPointersId !== CURRENT_POINTERS_ID;
+      if (!isPinching || IS_NEW_POINTER_COMBINATION) {
+        isPinching = true;
+        lastPointersId = CURRENT_POINTERS_ID;
+
+        // Save the start distance and current scaling as a basis
+        pinchStartDistance = CURRENT_DISTANCE / currentScale;
+
+        // Store initial pinch position for this gesture
+        if (!currentImg.style.transformOrigin && currentScale === 1 || currentScale === 1 && IS_NEW_POINTER_COMBINATION) {
+          // Set the transform origin to the pinch midpoint
+          currentImg.style.transformOrigin = `${RELATIVE_X * 100}% ${RELATIVE_Y * 100}%`;
+        }
+        lightbox.classList.add('parvus--is-zooming');
+      }
+
+      // Calculate scaling factor based on distance change
+      const SCALE_FACTOR = CURRENT_DISTANCE / pinchStartDistance;
+
+      // Limit scaling to 1 - 3
+      currentScale = Math.min(Math.max(1, SCALE_FACTOR), 3);
+      currentImg.style.willChange = 'transform';
+      currentImg.style.transform = `scale(${currentScale})`;
     };
 
     /**
@@ -1032,15 +1165,6 @@
         close();
       }
       event.stopPropagation();
-    };
-
-    /**
-     * Set focus to the first item in the list
-     *
-     */
-    const setFocusToFirstItem = () => {
-      const FOCUSABLE_CHILDREN = getFocusableChildren(lightbox);
-      FOCUSABLE_CHILDREN[0].focus();
     };
 
     /**
@@ -1096,135 +1220,109 @@
     };
 
     /**
-     * Event handler for the mousedown event.
+     * Event handler for the pointerdown event.
      *
-     * This function is called when the mouse button is pressed down.
-     * It handles the necessary actions and logic related to the mousedown event.
+     * This function is triggered when a pointer becomes active buttons state.
+     * It handles the necessary actions and logic related to the pointerdown event.
      *
-     * @param {Event} event - The mousedown event object
+     * @param {Event} event - The pointerdown event object
      */
-    const mousedownHandler = event => {
+    const pointerdownHandler = event => {
       event.preventDefault();
       event.stopPropagation();
       isDraggingX = false;
       isDraggingY = false;
       pointerDown = true;
-      const {
-        pageX,
-        pageY
-      } = event;
-      drag.startX = pageX;
-      drag.startY = pageY;
-      const {
-        slider
-      } = GROUPS[activeGroup];
-      slider.classList.add('parvus__slider--is-dragging');
-      slider.style.willChange = 'transform';
-      lightboxOverlayOpacity = getComputedStyle(lightboxOverlay).opacity;
-    };
-
-    /**
-     * Event handler for the mousemove event.
-     *
-     * This function is called when the mouse is moved.
-     * It handles the necessary actions and logic related to the mousemove event.
-     *
-     * @param {Event} event - The mousemove event object
-     */
-    const mousemoveHandler = event => {
-      event.preventDefault();
-      if (pointerDown) {
-        const {
-          pageX,
-          pageY
-        } = event;
-        drag.endX = pageX;
-        drag.endY = pageY;
-        doSwipe();
-      }
-    };
-
-    /**
-     * Event handler for the mouseup event.
-     *
-     * This function is called when a mouse button is released.
-     * It handles the necessary actions and logic related to the mouseup event.
-     */
-    const mouseupHandler = event => {
-      event.stopPropagation();
-      pointerDown = false;
-      const {
-        slider
-      } = GROUPS[activeGroup];
-      slider.classList.remove('parvus__slider--is-dragging');
-      slider.style.willChange = '';
-      if (drag.endX || drag.endY) {
-        updateAfterDrag();
-      }
-      clearDrag();
-    };
-
-    /**
-     * Event handler for the touchstart event.
-     *
-     * This function is called when a touch interaction begins.
-     * It handles the necessary actions and logic related to the touchstart event.
-     *
-     * @param {Event} event - The touchstart event object
-     */
-    const touchstartHandler = event => {
-      event.stopPropagation();
-      isDraggingX = false;
-      isDraggingY = false;
-      const {
-        clientX,
-        clientY
-      } = event.changedTouches[0];
-      drag.startX = parseInt(clientX, 10);
-      drag.startY = parseInt(clientY, 10);
+      activePointers.set(event.pointerId, event);
+      drag.startX = event.pageX;
+      drag.startY = event.pageY;
+      drag.endX = event.pageX;
+      drag.endY = event.pageY;
       const {
         slider
       } = GROUPS[activeGroup];
       slider.classList.add('parvus__slider--is-dragging');
       slider.style.willChange = 'transform';
-      lightboxOverlayOpacity = getComputedStyle(lightboxOverlay).opacity;
+      isTap = activePointers.size === 1;
+      if (config.swipeClose) {
+        lightboxOverlayOpacity = getComputedStyle(lightboxOverlay).opacity;
+      }
     };
 
     /**
-     * Event handler for the touchmove event.
+     * Event handler for the pointermove event.
      *
-     * This function is called when the touch position changes during a touch interaction.
-     * It handles the necessary actions and logic related to the touchmove event.
+     * This function is triggered when a pointer changes coordinates.
+     * It handles the necessary actions and logic related to the pointermove event.
      *
-     * @param {Event} event - The touchmove event object
+     * @param {Event} event - The pointermove event object
      */
-    const touchmoveHandler = event => {
+    const pointermoveHandler = event => {
       event.preventDefault();
-      event.stopPropagation();
-      const {
-        clientX,
-        clientY
-      } = event.changedTouches[0];
-      drag.endX = parseInt(clientX, 10);
-      drag.endY = parseInt(clientY, 10);
+      if (!pointerDown) {
+        return;
+      }
+      const CURRENT_IMAGE = GROUPS[activeGroup].contentElements[currentIndex];
+
+      // Update pointer position
+      activePointers.set(event.pointerId, event);
+
+      // Zoom
+      if (CURRENT_IMAGE && CURRENT_IMAGE.tagName === 'IMG') {
+        if (activePointers.size === 2) {
+          pinchZoom(CURRENT_IMAGE);
+          return;
+        }
+        if (currentScale > 1) {
+          return;
+        }
+      }
+      drag.endX = event.pageX;
+      drag.endY = event.pageY;
       doSwipe();
     };
 
     /**
-     * Event handler for the touchend event.
+     * Event handler for the pointerup event.
      *
-     * This function is called when the touch interaction ends. It handles the necessary
-     * actions and logic related to the touchend event.
+     * This function is triggered when a pointer is no longer active buttons state.
+     * It handles the necessary actions and logic related to the pointerup event.
+     *
+     * @param {Event} event - The pointerup event object
      */
-    const touchendHandler = event => {
+    const pointerupHandler = event => {
       event.stopPropagation();
       const {
         slider
       } = GROUPS[activeGroup];
+      activePointers.delete(event.pointerId);
+      if (activePointers.size > 0) {
+        return;
+      }
+      pointerDown = false;
+      const CURRENT_IMAGE = GROUPS[activeGroup].contentElements[currentIndex];
+
+      // Reset zoom state by one tap
+      const MOVEMENT_X = Math.abs(drag.endX - drag.startX);
+      const MOVEMENT_Y = Math.abs(drag.endY - drag.startY);
+      const IS_TAP = MOVEMENT_X < 8 && MOVEMENT_Y < 8 && !isDraggingX && !isDraggingY && isTap;
       slider.classList.remove('parvus__slider--is-dragging');
       slider.style.willChange = '';
-      if (drag.endX || drag.endY) {
-        updateAfterDrag();
+      if (currentScale > 1) {
+        if (IS_TAP) {
+          resetZoom(CURRENT_IMAGE);
+        } else {
+          CURRENT_IMAGE.style.transform = `
+          scale(${currentScale})
+        `;
+        }
+      } else {
+        if (isPinching) {
+          resetZoom(CURRENT_IMAGE);
+        }
+        if (drag.endX || drag.endY) {
+          updateAfterDrag();
+        }
       }
       clearDrag();
     };
@@ -1236,6 +1334,9 @@
      * or vertical swipe based on the direction and angle of the swipe.
      */
     const doSwipe = () => {
+      const MOVEMENT_THRESHOLD = 1.5;
+      const MAX_OPACITY_DISTANCE = 100;
+      const DIRECTION_BIAS = 1.15;
       const {
         startX,
         endX,
@@ -1244,21 +1345,60 @@
       } = drag;
       const MOVEMENT_X = startX - endX;
       const MOVEMENT_Y = endY - startY;
+      const MOVEMENT_X_DISTANCE = Math.abs(MOVEMENT_X);
       const MOVEMENT_Y_DISTANCE = Math.abs(MOVEMENT_Y);
-      if (Math.abs(MOVEMENT_X) > 2 && !isDraggingY && GROUPS[activeGroup].triggerElements.length > 1) {
-        // Horizontal swipe
-        GROUPS[activeGroup].slider.style.transform = `translate3d(${offsetTmp - Math.round(MOVEMENT_X)}px, 0, 0)`;
-        isDraggingX = true;
-        isDraggingY = false;
-      } else if (Math.abs(MOVEMENT_Y) > 2 && !isDraggingX && config.swipeClose) {
-        // Vertical swipe
-        if (!isReducedMotion && MOVEMENT_Y_DISTANCE <= 100) {
-          lightboxOverlay.style.opacity = lightboxOverlayOpacity - MOVEMENT_Y_DISTANCE / 100;
+      const GROUP = GROUPS[activeGroup];
+      const SLIDER = GROUP.slider;
+      const TOTAL_SLIDES = GROUP.triggerElements.length;
+      const handleHorizontalSwipe = (movementX, distance) => {
+        const IS_FIRST_SLIDE = currentIndex === 0;
+        const IS_LAST_SLIDE = currentIndex === TOTAL_SLIDES - 1;
+        const IS_LEFT_SWIPE = movementX > 0;
+        const IS_RIGHT_SWIPE = movementX < 0;
+        if (IS_FIRST_SLIDE && IS_RIGHT_SWIPE || IS_LAST_SLIDE && IS_LEFT_SWIPE) {
+          const DAMPING_FACTOR = 1 / (1 + Math.pow(distance / 100, 0.15));
+          const REDUCED_MOVEMENT = movementX * DAMPING_FACTOR;
+          SLIDER.style.transform = `
+          translate3d(${offsetTmp - Math.round(REDUCED_MOVEMENT)}px, 0, 0)
+        `;
+        } else {
+          SLIDER.style.transform = `
+          translate3d(${offsetTmp - Math.round(movementX)}px, 0, 0)
+        `;
+        }
+      };
+      const handleVerticalSwipe = (movementY, distance) => {
+        if (!isReducedMotion && distance <= 100) {
+          const NEW_OVERLAY_OPACITY = Math.max(0, lightboxOverlayOpacity - distance / MAX_OPACITY_DISTANCE);
+          lightboxOverlay.style.opacity = NEW_OVERLAY_OPACITY;
         }
         lightbox.classList.add('parvus--is-vertical-closing');
-        GROUPS[activeGroup].slider.style.transform = `translate3d(${offsetTmp}px, ${Math.round(MOVEMENT_Y)}px, 0)`;
-        isDraggingX = false;
-        isDraggingY = true;
+        SLIDER.style.transform = `
+        translate3d(${offsetTmp}px, ${Math.round(movementY)}px, 0)
+      `;
+      };
+      if (isDraggingX || isDraggingY) {
+        if (isDraggingX) {
+          handleHorizontalSwipe(MOVEMENT_X, MOVEMENT_X_DISTANCE);
+        } else if (isDraggingY) {
+          handleVerticalSwipe(MOVEMENT_Y, MOVEMENT_Y_DISTANCE);
+        }
+        return;
+      }
+
+      // Direction detection based on the relative ratio of movements
+      if (MOVEMENT_X_DISTANCE > MOVEMENT_THRESHOLD || MOVEMENT_Y_DISTANCE > MOVEMENT_THRESHOLD) {
+        // Horizontal swipe if X-movement is stronger than Y-movement * DIRECTION_BIAS
+        if (MOVEMENT_X_DISTANCE > MOVEMENT_Y_DISTANCE * DIRECTION_BIAS && TOTAL_SLIDES > 1) {
+          isDraggingX = true;
+          isDraggingY = false;
+          handleHorizontalSwipe(MOVEMENT_X, MOVEMENT_X_DISTANCE);
+        } else if (MOVEMENT_Y_DISTANCE > MOVEMENT_X_DISTANCE * DIRECTION_BIAS && config.swipeClose) {
+          // Vertical swipe if Y-movement is stronger than X-movement * DIRECTION_BIAS
+          isDraggingX = false;
+          isDraggingY = true;
+          handleVerticalSwipe(MOVEMENT_Y, MOVEMENT_Y_DISTANCE);
+        }
       }
     };
 
@@ -1279,19 +1419,16 @@
       // Click event
       lightbox.addEventListener('click', clickHandler);
 
-      // Touch events
-      if (isTouchDevice()) {
-        lightbox.addEventListener('touchstart', touchstartHandler);
-        lightbox.addEventListener('touchmove', touchmoveHandler);
-        lightbox.addEventListener('touchend', touchendHandler);
-      }
-
-      // Mouse events
-      if (config.simulateTouch) {
-        lightbox.addEventListener('mousedown', mousedownHandler);
-        lightbox.addEventListener('mouseup', mouseupHandler);
-        lightbox.addEventListener('mousemove', mousemoveHandler);
-      }
+      // Pointer events
+      lightbox.addEventListener('pointerdown', pointerdownHandler, {
+        passive: false
+      });
+      lightbox.addEventListener('pointerup', pointerupHandler, {
+        passive: true
+      });
+      lightbox.addEventListener('pointermove', pointermoveHandler, {
+        passive: false
+      });
     };
 
     /**
@@ -1311,19 +1448,10 @@
       // Click event
       lightbox.removeEventListener('click', clickHandler);
 
-      // Touch events
-      if (isTouchDevice()) {
-        lightbox.removeEventListener('touchstart', touchstartHandler);
-        lightbox.removeEventListener('touchmove', touchmoveHandler);
-        lightbox.removeEventListener('touchend', touchendHandler);
-      }
-
-      // Mouse events
-      if (config.simulateTouch) {
-        lightbox.removeEventListener('mousedown', mousedownHandler);
-        lightbox.removeEventListener('mouseup', mouseupHandler);
-        lightbox.removeEventListener('mousemove', mousemoveHandler);
-      }
+      // Pointer events
+      lightbox.removeEventListener('pointerdown', pointerdownHandler);
+      lightbox.removeEventListener('pointerup', pointerupHandler);
+      lightbox.removeEventListener('pointermove', pointermoveHandler);
     };
 
     /**
@@ -1337,12 +1465,69 @@
       if (isOpen()) {
         close();
       }
-      lightbox.remove();
-      const LIGHTBOX_TRIGGER_ELS = document.querySelectorAll('.parvus-trigger');
-      LIGHTBOX_TRIGGER_ELS.forEach(remove);
 
-      // Create and dispatch a new event
-      fire('destroy');
+      // Add setTimeout to ensure all possible close transitions are completed
+      setTimeout(() => {
+        unbindEvents();
+
+        // Remove all registered event listeners for custom events
+        const eventTypes = ['open', 'close', 'select', 'destroy'];
+        eventTypes.forEach(eventType => {
+          const listeners = lightbox._listeners?.[eventType] || [];
+          listeners.forEach(listener => {
+            lightbox.removeEventListener(eventType, listener);
+          });
+        });
+
+        // Remove event listeners from trigger elements
+        const LIGHTBOX_TRIGGER_ELS = document.querySelectorAll('.parvus-trigger');
+        LIGHTBOX_TRIGGER_ELS.forEach(el => {
+          el.removeEventListener('click', triggerParvus);
+          el.classList.remove('parvus-trigger');
+          if (config.zoomIndicator) {
+            removeZoomIndicator(el);
+          }
+          if (el.dataset.group) {
+            delete el.dataset.group;
+          }
+        });
+
+        // Create and dispatch a new event
+        dispatchCustomEvent('destroy');
+        lightbox.remove();
+
+        // Remove references
+        lightbox = null;
+        lightboxOverlay = null;
+        toolbar = null;
+        toolbarLeft = null;
+        toolbarRight = null;
+        controls = null;
+        previousButton = null;
+        nextButton = null;
+        closeButton = null;
+        counter = null;
+
+        // Remove group data
+        Object.keys(GROUPS).forEach(groupKey => {
+          const group = GROUPS[groupKey];
+          if (group && group.contentElements) {
+            group.contentElements.forEach(content => {
+              if (content && content.tagName === 'IMG') {
+                content.src = '';
+                content.srcset = '';
+              }
+            });
+          }
+          delete GROUPS[groupKey];
+        });
+
+        // Reset variables
+        groupIdCounter = 0;
+        newGroup = null;
+        activeGroup = null;
+        currentIndex = 0;
+      }, 1000);
     };
 
     /**
@@ -1351,16 +1536,7 @@
      * @returns {boolean} - True if Parvus is open, otherwise false
      */
     const isOpen = () => {
-      return lightbox.getAttribute('aria-hidden') === 'false';
-    };
-
-    /**
-     * Check if the device supports touch events
-     *
-     * @returns {boolean} - True if the device is touch capable, otherwise false
-     */
-    const isTouchDevice = () => {
-      return 'ontouchstart' in window;
+      return lightbox.hasAttribute('open');
     };
 
     /**
@@ -1376,11 +1552,9 @@
      * Dispatch a custom event
      *
      * @param {String} type - The type of the event to dispatch
-     * @param {Function} event - The event object
      */
-    const fire = (type, event = {}) => {
+    const dispatchCustomEvent = type => {
       const CUSTOM_EVENT = new CustomEvent(type, {
-        detail: event,
         cancelable: true
       });
       lightbox.dispatchEvent(CUSTOM_EVENT);
@@ -1417,17 +1591,7 @@
     const init = () => {
       // Merge user options into defaults
       config = mergeOptions(userOptions);
-
-      // Check if the lightbox should be loaded empty or if there are elements for the lightbox.
-      if (!config.loadEmpty && !document.querySelectorAll(config.selector).length) {
-        return;
-      }
       reducedMotionCheck();
-
-      // Check if the lightbox already exists
-      if (!lightbox) {
-        createLightbox();
-      }
       if (config.gallerySelector !== null) {
         // Get a list of all `gallerySelector` elements within the document
         const GALLERY_ELS = document.querySelectorAll(config.gallerySelector);
@@ -1670,10 +1834,143 @@
 (function(win, doc) {
     'use strict';
 
+    if ( doc.querySelectorAll( '.visualizer button.playpause + audio' ) )
+    {
+        let buttons = doc.querySelectorAll( '.visualizer button.playpause' );
+
+        buttons.forEach( function( button )
+        {
+            button.refPlayer = doc.querySelector( 'audio[data-audioid="' + button.dataset.audioid + '"]' );
+            button.addEventListener( 'click', function( e )
+            {
+                let refPlayer = e.target.refPlayer;
+
+                if ( refPlayer.paused )
+                {
+                    refPlayer.play();
+                    button.classList.remove( 'is-paused' );
+                    button.classList.add( 'is-playing' );
+                }
+                else
+                {
+                    refPlayer.pause();
+                    button.classList.remove( 'is-playing' );
+                    button.classList.add( 'is-paused' );
+                }
+            });
+            button.refPlayer.addEventListener( 'ended', function( player )
+            {
+                let button = doc.querySelector( 'button[data-audioid="' + player.target.dataset.audioid + '"]' );
+                button.classList.remove( 'is-playing' );
+                button.classList.add( 'is-paused' );
+            });
+        });
+    }
+
+})(window, document);
+
+(function(win, doc) {
+    'use strict';
+
+    /* Basic Object
+    --------------------------------------------------- */
+    win.project = win.project || {};
+
+    win.project.embedvideo = {
+
+        selector: 'iframe[data-src]',
+
+        init: function()
+        {
+            let self = this;
+            self.frames = doc.querySelectorAll( win.project.embedvideo.selector );
+            self.message = '<p>' + self.frames[0].dataset.privacy + '</p><p class="buttons"><button class="button" data-action="show_embedded_content">' + self.frames[0].dataset.once + '</button><button class="button" data-action="show_embedded_content_always">' + self.frames[0].dataset.always + '</button></p>';
+
+            // did we get the permission already?
+            if ( win.localStorage.getItem( 'allow_embed' ) )
+            {
+                self.startAllFrames();
+            }
+            else
+            {
+                self.showMessage();
+            }
+        },
+
+        showMessage: function()
+        {
+            let self = this;
+
+            // show mesasge for every iframe, create element after iframe
+            self.frames.forEach( function( frame )
+            {
+                let messageContent = self.message;
+                if ( frame.nextElementSibling.tagName == 'NOSCRIPT' )
+                {
+                    messageContent += '<p>' + frame.nextElementSibling.innerHTML + '</p>';
+                }
+                let message = doc.createElement( 'div' );
+                message.classList.add( 'embedvideo__privacy' );
+                message.innerHTML = messageContent;
+                message.querySelector( 'button[data-action="show_embedded_content"]' ).addEventListener( 'click', self.enableEmbed );
+                message.querySelector( 'button[data-action="show_embedded_content_always"]' ).addEventListener( 'click', self.enableAllEmbeds );
+                frame.insertAdjacentElement( 'afterend', message );
+            });
+        },
+
+        enableEmbed: function( event )
+        {
+            let self = win.project.embedvideo;
+            // get message contianer and ifrmae
+            var message = event.target.parentNode.parentNode,
+                frame = message.previousElementSibling;
+            // set correct src for iframe
+            frame.src = frame.dataset.src;
+            // remove message
+            message.remove();
+        },
+
+        enableAllEmbeds: function()
+        {
+            let self = win.project.embedvideo;
+            // remember the decision
+            win.localStorage.setItem( 'allow_embed', true );
+            // go for every iframe
+            self.frames.forEach( function( frame )
+            {
+                // remove message
+                frame.nextElementSibling.remove();
+            });
+
+            self.startAllFrames();
+        },
+
+        startAllFrames: function()
+        {
+            let self = win.project.embedvideo;
+            // go for every iframe
+            self.frames.forEach( function( frame )
+            {
+                // set correct src for iframe
+                frame.src = frame.dataset.src;
+            });
+        },
+    };
+
+    if ( doc.querySelector( win.project.embedvideo.selector ) )
+    {
+        win.project.embedvideo.init();
+    }
+
+})(window, document);
+
+(function(win, doc) {
+    'use strict';
+
     win.project = win.project || {};
 
     win.project.scGallery = {
-        selector: '.sc-gallery',
+        selector: '.gallery',
 
         init: function()
         {
@@ -1686,8 +1983,7 @@
                 {
                     const prvs = new Parvus({
                         hideScrollbar: false,
-                        gallerySelector: self.selector,
-                        selector: '.sc-gallery__link',
+                        selector: '.link'
                     });
                 });
             }

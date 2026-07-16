@@ -49,7 +49,11 @@ function processStack( files, folderPath = config.src )
                     {
                         preset: [
                             'cssnano-preset-advanced',
-                            { zindex: false, reduceIdents: false }
+                            {
+                                zindex: false,
+                                calc: false,
+                                reduceIdents: false
+                            }
                         ]
                     }
                 ),

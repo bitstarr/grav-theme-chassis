@@ -1,0 +1,64 @@
+.audiovideo {
+    video&,
+    audio& {
+        width: 100%;
+    }
+}
+
+/* visualizer (image) for audio files */
+.visualizer {
+    position: relative;
+
+    .playpause {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate( -50%, -50% );
+        width: 1.5em;
+        height: 1.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var( --size-4 );
+        line-height: 1;
+        color: var( --global-onPrimary );
+        background-color: var( --global-primary );
+        border: 0;
+        border-radius: 50%;
+        box-shadow:
+            0 6.7px 5.3px rgba( 0, 0, 0, .028 ),
+            0 22.3px 17.9px rgba( 0, 0, 0, .042 ),
+            0 100px 80px rgba( 0, 0, 0, .07 );
+
+        &.is-paused .is-playing {
+            display: none;
+        }
+        &.is-playing .is-paused {
+            display: none;
+        }
+        .icon {
+            pointer-events: none;
+        }
+    }
+    .audiovideo {
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 0;
+        transition: opacity .2s;
+
+        .js & {
+            opacity: var( --_opacity, 0 );
+        }
+
+        &:focus-within,
+        &:focus,
+        &:hover {
+            --_opacity: 1;
+        }
+    }
+
+    .no-js & .playpause {
+        display: none;
+    }
+
+}

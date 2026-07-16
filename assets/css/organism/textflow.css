@@ -14,7 +14,10 @@
     }
 
     ul,
-    ol { margin-left: 1em; }
+    ol {
+        margin-left: 1em;
+        break-inside: avoid-column;
+    }
     li { break-inside: avoid; }
     ol { list-style: decimal; }
     ul { list-style: disc; }
@@ -103,11 +106,6 @@
             opacity: .6;
         }
         /**/
-    }
-
-    :where( figure figcaption ) {
-        margin-top: .4rem;
-        font-size: var( --size--1 );
     }
 
     code {

@@ -1,0 +1,106 @@
+title: Universal (Text and Media)
+extends@: modular/default
+
+form:
+  fields:
+    tabs:
+
+      fields:
+        content:
+          fields:
+
+            _media:
+              type: fieldset
+              title: THEME_C.MODULE.MEDIA
+              icon: picture-o
+              fields:
+                header.image:
+                  type: pagemediaselect
+                  label: THEME_C.MODULE.IMAGE
+                  toggleable: true
+                  preview_images: true
+                  accept:
+                    - .jpg
+                    - .jpeg
+                    - .png
+                    - .webp
+
+                header.audioVideo:
+                  type: pagemediaselect
+                  label: THEME_C.MODULE.AUDIOVIDEO
+                  toggleable: true
+                  accept:
+                    - .mp3
+                    - .mpg
+                    - .mp4
+
+                header.externalVideo:
+                  type: text
+                  label: THEME_C.MODULE.EXT_VIDEO
+                  toggleable: true
+                  autocomplete: off
+
+                header.caption:
+                  type: text
+                  label: THEME_C.MODULE.CAPTION
+                  toggleable: true
+                  autocomplete: off
+
+            _cta:
+              type: fieldset
+              title: THEME_C.CALLTOACTION.OPTIONS
+              icon: exclamation-circle
+              collapsible: true
+              collapsed: true
+              import@:
+                type: partials/calltoaction
+                context: blueprints://
+
+            _layout:
+              type: fieldset
+              title: THEME_C.MODULE.LAYOUT.OPTIONS
+              icon: th-large
+              collapsible: true
+              collapsed: true
+              import@2:
+                type: partials/layout-spread
+                context: blueprints://
+              import@:
+                type: partials/layout-title
+                context: blueprints://
+              fields:
+                _textmedia:
+                  title: THEME_C.MODULE.UNIVERSAL.TEXTANDMEDIA
+                  type: fieldset
+                  icon: newspaper-o
+                  import@2:
+                    type: partials/layout-flip
+                    context: blueprints://
+
+                # _mediaonly:
+                #   title: THEME_C.MODULE.UNIVERSAL.MEDIAONLY
+                #   type: fieldset
+                #   icon: picture-o
+                #   fields:
+
+                _textonly:
+                  title: THEME_C.MODULE.UNIVERSAL.TEXTONLY
+                  type: fieldset
+                  icon: align-left
+                  fields:
+                    header.layout.columns:
+                      type: radio
+                      label: THEME_C.MODULE.UNIVERSAL.READABILITY
+                      toggleable: true
+                      default: default
+                      options:
+                        default: THEME_C.MODULE.LAYOUT.DEFAULT
+                        2col: THEME_C.MODULE.UNIVERSAL.2COL
+                        3col: THEME_C.MODULE.UNIVERSAL.3COL
+                        readable: THEME_C.MODULE.UNIVERSAL.BEST
+
+            _publish:
+              type: section
+              import@:
+                type: partials/publish
+                context: blueprints://

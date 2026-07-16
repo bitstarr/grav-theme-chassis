@@ -63,8 +63,7 @@
         margin-left: -.075em; /* inlining line start with adjacent elements */
         font-size: 2em;
         line-height: 1.1;
-        -webkit-hyphens: auto;
-                hyphens: auto;
+        hyphens: auto;
     }
 .article__image {
         display: block;
@@ -125,9 +124,6 @@
         display: inline-block;
         padding: .25em 1em;
     }
-/* &__link {
-        --link-hover: var( --global-secondary );
-    } */
 .pager__link[rel='prev'],
     .pager__link[rel='next'] {
         position: relative;
@@ -142,6 +138,9 @@
             border-left: .15em solid;
             transition: opacity .2s;
         }
+/* &__link {
+        --link-hover: var( --global-secondary );
+    } */
 .pager__link[rel='prev']::after {
             left: .3em;
             transform: translateY( -50% ) rotate( 45deg );

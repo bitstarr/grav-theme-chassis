@@ -23,6 +23,8 @@ class Chassis extends Theme
     public function onThemeInitialized()
     {
         if ($this->isAdmin()) {
+            \Grav\Common\Data\Blueprint::addAllowedDynamicCallable('\Grav\Theme\Chassis\Utils::getIcons');
+
             $this->enable([
                 'onAssetsInitialized' => ['onAdminAssetsInitialized', 0],
             ]);
@@ -127,7 +129,7 @@ class Chassis extends Theme
         // if( $page->isPage() ) {}
 
         // admin & editor styles
-        $assets->addCss( 'theme://dist/css/admin.css' );
+        $assets->addCss( 'theme://dist/css/admin.css', 1 );
         // editor buttons
         if ($this->config->get('plugins.markdown-notices.enabled')) {
             $assets->add( 'theme://admin/buttons/notice.js', [ 'defer' => true ] );

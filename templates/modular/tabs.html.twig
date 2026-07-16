@@ -28,12 +28,12 @@
             {% endfor %}
         </ul>
         {% for target in header.tabs %}
-        <article class="tabs__content" id="tabsection{{ loop.index }}">
+        <div class="tabs__content" id="tabsection{{ loop.index }}">
             <h2 class="tabs__title">{{ target.title }}</h2>
             <div class="textflow">
                 {{ target.content|markdown|raw }}
             </div>
-        </article>
+        </div>
         {% endfor %}
     </div>
 

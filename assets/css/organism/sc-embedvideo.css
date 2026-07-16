@@ -3,14 +3,23 @@
     --outline-color: #fff;
 
     position: relative;
+    aspect-ratio: 16/9;
     text-align: center;
-    background-color: rgb( 0 0 0 / .1 );
+    color: #fff;
+    background:
+        linear-gradient( to bottom, hsl( 0 0% 100% / .25 ), rgb( 0 0 0 / .25 ) ),
+        radial-gradient( at top center, hsl( 0 0% 100% / .6 ) 0%, rgb( 0 0 0 / .6 ) 120%),
+        #989898;
+    background-blend-mode: multiply, multiply;
 
     &__media {
         display: block;
         width: 100%;
         height: auto;
         aspect-ratio: 16/9;
+    }
+    &__media[src=''] {
+        display: none;
     }
 
     &__privacy {
@@ -27,12 +36,6 @@
         align-items: center;
         justify-content: center;
         padding: 10%;
-        color: #fff;
-        background:
-            linear-gradient( to bottom, hsl( 0 0% 100% / .25 ), rgb( 0 0 0 / .25 ) ),
-            radial-gradient( at top center, hsl( 0 0% 100% / .6 ) 0%, rgb( 0 0 0 / .6 ) 120%),
-            #989898;
-        background-blend-mode: multiply, multiply;
 
         .buttons {
             --_space: clamp( .5rem, 7.5vw + -1rem, 2rem );
@@ -43,14 +46,14 @@
             margin: var( --_space );
         }
 
-        .source {
-            --link-color: currentcolor;
-        }
-
         @media (max-width: 40em) {
             padding: 5%;
             font-size: .8em;
         }
+    }
+
+    .source {
+        --link-color: currentcolor;
     }
 }
 

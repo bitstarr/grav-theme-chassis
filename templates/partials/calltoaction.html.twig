@@ -1,0 +1,14 @@
+{% spaceless %}
+    {% if header.calltoaction.url %}
+        {% set url = header.calltoaction.url %}
+    {% elseif header.calltoaction.page %}
+        {% set url = header.calltoaction.page %}
+    {% endif %}
+{% endspaceless %}
+{% if url and header.calltoaction.label -%}
+<p class="calltoaction">
+    <a class="button" href="{{ url }}"{% if header.calltoaction.external %} target="_blank"{% endif %}>
+        {{ header.calltoaction.label }}
+    </a>
+</p>
+{% endif -%}

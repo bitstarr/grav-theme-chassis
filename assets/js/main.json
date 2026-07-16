@@ -1,7 +1,6 @@
 {
     "lib": [],
     "stock": [
-        "embedvideo.js"
     ],
     "vendor": [
         "parvus.js"
@@ -9,6 +8,8 @@
     "src": [
         "base.js",
         "navigation.js",
+        "audio.js",
+        "embedvideo.js",
         "gallery.js",
         "details.js",
         "tabs.js"

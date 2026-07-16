@@ -1,0 +1,59 @@
+{% spaceless %}
+{% set baseImage = image.cropResize(640,null).quality(70).url %}
+{% if isNarrow %}
+    {# narrow width #}
+    {% set imageset = {
+        960: 960,
+    } %}
+{% elseif header.layout.spread == 'full' %}
+    {# full screen width #}
+    {% set imageset = {
+        550: 960,
+        960: 1280,
+        1280: 1920,
+        1920: 2560,
+    } %}
+{% elseif header.layout.spread == 'mid' %}
+    {# broken out of wrapper #}
+    {% set imageset = {
+        550: 960,
+        1280: 1280,
+        1920: 1920,
+    } %}
+{% else %}
+    {# wrapper wide width #}
+    {% set imageset = {
+        550: 960,
+        1440: 1280,
+        1920: 1440,
+    } %}
+{% endif %}
+{% endspaceless %}
+
+{% if imageset|length == 1 -%}
+<img class="image"
+    src="{{ baseImage }}"
+    width=640
+    height={{ ( image.height / image.width * 640)|round }}
+    alt="{{ image.metadata.alt }}"
+    loading="lazy"
+    decoding="async"
+    >
+{% else -%}
+<picture>
+    {% if imageset -%}
+        <source srcset="{{ baseImage }}" media="(max-width: 549px)">
+        {% for breakpoint, width in imageset|reverse -%}
+            <source srcset="{{ image.cropResize(width,null).quality(75).url }}" media="(min-width: {{ breakpoint }}px)">
+        {% endfor -%}
+    {% endif -%}
+    <img class="image"
+        src="{{ baseImage }}"
+        width=640
+        height={{ ( image.height / image.width * 640)|round }}
+        alt="{{ image.metadata.alt }}"
+        loading="lazy"
+        decoding="async"
+        >
+</picture>
+{% endif -%}

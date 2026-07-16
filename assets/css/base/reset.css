@@ -62,18 +62,21 @@ html {
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    scrollbar-gutter: stable;
 }
 
 /*
     Provide always full screen
 */
-html, body { height: 100%;}
+html, body { height: 100svh;}
 
 /* remember to define focus styles! */
 /* the following line is already done by our main reset… */
 /* :focus:not( :focus-visible ) { outline: 0; } */
 html:focus-within { scroll-behavior: smooth; }
 
+/* details/summary animated opening */
+html { interpolate-size: allow-keywords; }
 
 /* Anything that has been anchored to should have extra scroll margin (at least in main) */
 :where( main :target ) {
@@ -87,6 +90,10 @@ html:focus-within { scroll-behavior: smooth; }
     Remove all animations, transitions and smooth scroll for people that prefer not to see them
 */
 @media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+
     *,
     *::before,
     *::after {

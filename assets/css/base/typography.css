@@ -11,6 +11,7 @@ body {
     -webkit-font-smoothing: antialiased;
     text-decoration-thickness: from-font;
     hanging-punctuation: first allow-end last;
+    word-break: break-word;
 }
 
 :where( pre, code, kbd, samp ) {
@@ -51,6 +52,12 @@ body {
     text-wrap: balance;
 }
 
+:where( figure figcaption ) {
+    margin-block-start: var( --gap-xs );
+    font-size: var( --size--1 );
+    color: var( --global-muted );
+}
+
 /*
     Basic link styles
 */
@@ -89,6 +96,7 @@ body {
 :where( caption, th, td ) {
     padding: .5em;
     text-align: left;
+    word-break: normal;
 }
 
 /*

@@ -1,0 +1,43 @@
+{% spaceless %}
+{% set baseImage = image.cropResize(640,null).quality(70).url %}
+
+{% if audiovideo.type == 'video' %}
+    {% set type = 'video' %}
+    {% if image %}
+        {% set posterURL = image.cropResize(1920,null).quality(70).url %}
+        {% set poster = ' poster="' ~ posterURL ~ '"' %}
+    {% endif %}
+{% elseif audiovideo.type == 'audio' %}
+    {% set type = 'audio' %}
+    {% set hash = 'audio-' ~ random_string(10) %}
+{% endif %}
+
+{% endspaceless %}
+
+{% if type == 'video' -%}
+    <video class="audiovideo"{{ poster }} preload="auto" playsinline loop controls>
+        <source src="{{ audiovideo.url }}" type="{{ audiovideo.mime }}">
+    </video>
+{% elseif type == 'audio' %}
+    {% if image %}
+    <div class="visualizer">
+        {% include 'partials/universal-image.html.twig' with {
+            image: image,
+            isNarrow: page.content|length,
+            caption: header.caption
+        } -%}
+        <button class="playpause is-paused" aria-label="{{ 'THEME_C.MODULE.UNIVERSAL.AUDIOCONTROL'|t }}" data-audioid="{{ hash }}" aria-hidden>
+            {{ svg('audio', 'icon is-paused')|raw }}
+            {{ svg('pause', 'icon is-playing')|raw }}
+        </button>
+        <audio class="audiovideo" preload="auto" controls data-audioid="{{ hash }}">
+            <source src="{{ audiovideo.url }}" type="{{ audiovideo.mime }}">
+        </audio>
+    </div>
+    {% else -%}
+    <audio class="audiovideo" preload="auto" controls>
+        <source src="{{ audiovideo.url }}" type="{{ audiovideo.mime }}">
+    </audio>
+    {% endif -%}
+{% endif -%}
+

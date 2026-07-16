@@ -16,11 +16,26 @@ form:
             header.media_order:
               unset@: true
 
-            hint:
-              type: display
-              style: vertical
-              outerclasses: user-notice
-              content: THEME_C.MODULE.ACCORDION_NOTICE
+
+            _accordion:
+              type: section
+              title: THEME_C.MODULE.ACCORDION
+              underline: true
+              fields:
+                header.items:
+                  type: list
+                  # label: THEME_C.MODULE.TABS
+                  style: vertical
+                  controls: both
+                  fields:
+                    .title:
+                      type: text
+                      label: THEME_C.MODULE.TITLE
+                      style: vertical
+                    .content:
+                      type: editor
+                      label: THEME_C.MODULE.CONTENT
+                      rows: 3
 
             _layout:
               type: section

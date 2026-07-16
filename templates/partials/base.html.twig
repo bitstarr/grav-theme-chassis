@@ -19,7 +19,6 @@
 {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="view-transition" content="same-origin">
     <title>{{ doc_title }}</title>
 
     {% include 'partials/metadata.html.twig' %}
@@ -47,7 +46,7 @@
 
 {% block javascripts %}
     {% do assets.addJs('theme://dist/js/main.js', { group:'bottom', priority: 101 }) %}
-    {% if config.system.env.state == 'dev' %}
+    {% if config.site.env.state == 'dev' %}
         {% do assets.addJs('theme://dist/js/dev.js', { group:'bottom' }) %}
     {% endif %}
 {% endblock %}
@@ -154,7 +153,7 @@
     {{ assets.js('bottom')|raw }}
 {% endblock %}
 
-{% if config.system.env.banner %}
+{% if config.site.env.banner %}
     {% include 'partials/ticker.html.twig' %}
 {% endif %}
 </body>
