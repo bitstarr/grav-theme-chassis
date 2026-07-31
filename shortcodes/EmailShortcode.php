@@ -10,12 +10,20 @@ class EmailShortcode extends Shortcode
         $this->shortcode->getHandlers()->add('email', function(ShortcodeInterface $sc)
         {
             $link = $sc->getParameter('link');
-            $str = $sc->getContent();
+            $str = strip_tags($sc->getContent());
+            $subject = $sc->getParameter('subject', false);
+
+            if ( $subject )
+            {
+                $subject = html_entity_decode( $subject );
+                $str .= '?subject=' . rawurlencode( $subject) ;
+            }
 
             // Encode email
             $output = '';
             $str_len = strlen($str);
-            for ($i = 0; $i < $str_len; $i++) {
+            for ($i = 0; $i < $str_len; $i++)
+            {
                 $output .= '&#' . ord($str[$i]). ';';
             }
 
