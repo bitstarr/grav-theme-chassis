@@ -1,13 +1,13 @@
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 
 const config = {
     src: process.env.npm_package_config_fonts, // provided by package.json
     dist: process.env.npm_package_config_fontsDist, // provided by package.json
-}
+};
 
 const cwd = path.resolve( config.src );
 
@@ -35,7 +35,7 @@ await glob( '*.{jwoff,woff2}', { cwd: cwd } ).then( files =>
             console.log( chalk.whiteBright( file ) + ' ' + chalk.green( 'copied' ) );
         });
     });
-})
-.catch(error => {
+}
+).catch(error => {
     console.warn( error );
 });

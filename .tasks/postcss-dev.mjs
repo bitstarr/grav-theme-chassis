@@ -1,7 +1,7 @@
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 
 import postcss from 'postcss';
@@ -19,7 +19,7 @@ console.log( chalk.magenta( 'Generating Development CSS' ), '\n' );
 await glob( '*.css', { cwd: path.resolve( config.src ) })
     .then( files =>
     {
-        processStack( files )
+        processStack( files );
     })
     .catch(error => {
         console.warn( error );
@@ -28,7 +28,7 @@ await glob( '*.css', { cwd: path.resolve( config.src ) })
 await glob( '*.css', { cwd: path.resolve( config.src + 'page/' ) })
     .then( files =>
     {
-        processStack( files, config.src + 'page/' )
+        processStack( files, config.src + 'page/' );
     })
     .catch(error => {
         console.warn( error );

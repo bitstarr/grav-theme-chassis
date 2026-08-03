@@ -1,58 +1,62 @@
-import imagemin from 'imagemin';
-import imageminSvgo from 'imagemin-svgo';
+import { optimize } from 'svgo';
 
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 import prettyBytes from 'pretty-bytes';
 
 const config = {
     src: process.env.npm_package_config_icons, // provided by package.json
     dist: process.env.npm_package_config_iconsDist, // provided by package.json
-    options: {
+    svgo: {
+        js2svg: {
+            pretty: true
+        },
         plugins: [
-            imageminSvgo({
-                js2svg: {
-                    pretty: true
-                },
-                plugins: [
-                    'preset-default',
-                    {
-                        name: 'removeViewBox',
-                        active: false,
-                    },
-                    {
-                        name: 'removeDimensions',
-                        active: true,
-                    },
-                    {
-                        name: 'convertStyleToAttrs',
-                        active: true,
-                    },
-                    {
-                        name: 'removeUselessStrokeAndFill',
-                        active: false,
-                    },
-                    {
-                        name: 'removeAttrs',
-                        params: {
-                            attrs: [
-                                'svg:*:preserve',
-                                'class',
-                                'data.*',
-                                'aria.*',
-                                'focusable',
-                                'id',
-                            ]
-                        }
-                    },
-                ]
-            }),
-        ],
+            'preset-default',
+            {
+                name: 'removeViewBox',
+                active: false,
+            },
+            {
+                name: 'removeDimensions',
+                active: true,
+            },
+            {
+                name: 'convertStyleToAttrs',
+                active: true,
+            },
+            {
+                name: 'removeUselessStrokeAndFill',
+                active: false,
+            },
+            {
+                name: 'removeAttrs',
+                params: {
+                    attrs: [
+                        'svg:*:preserve',
+                        'class',
+                        'data.*',
+                        'aria.*',
+                        'focusable',
+                        'id',
+                    ]
+                }
+            },
+        ]
     },
 };
+
+function optimizeSvg( file )
+{
+    const result = optimize( file.content.toString( 'utf8' ), {
+        path: file.name,
+        ...config.svgo,
+    } );
+    return Buffer.from( result.data );
+}
 
 
 const cwd = path.resolve( config.src );
@@ -73,7 +77,7 @@ await glob( '**/*.svg', { cwd: cwd } ).then( files =>
             content: fs.readFileSync( path.join( cwd, file ) ),
         };
 
-        stack[stack.length] = imagemin.buffer( file.content, config.options )
+        stack[stack.length] = Promise.resolve( optimizeSvg( file ) )
             .then( data =>
             {
                 const originalSize = file.content.length;

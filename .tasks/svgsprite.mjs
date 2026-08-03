@@ -1,10 +1,10 @@
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 import vinyl from 'vinyl';
-import SVGSpriter from 'svg-sprite'
+import SVGSpriter from 'svg-sprite';
 
 const src = process.env.npm_package_config_sprite; // provided by package.json
 const config = {
