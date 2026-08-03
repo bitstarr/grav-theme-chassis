@@ -207,7 +207,7 @@ html {
         font-size: 1rem
 }
     }
-/* stylelint-disable selector-list-comma-newline-after */
+/* stylelint-disable @stylistic/selector-list-comma-newline-after */
 /*
     @see https://www.joshwcomeau.com/css/custom-css-reset/
     @see https://github.com/elad2412/the-new-css-reset
@@ -292,7 +292,7 @@ html { interpolate-size: allow-keywords; }
     scroll-margin-block: 5ex;
 }
 
-/* stylelint-enable selector-list-comma-newline-after */
+/* stylelint-enable @stylistic/selector-list-comma-newline-after */
 
 /* stylelint-disable */
 /*
@@ -2072,7 +2072,7 @@ video.audiovideo,
 .carousel {
         /* since we use fancy grid for wrapping, this is necassary */
         /* stylelint-disable length-zero-no-unit */
-        --bodyPadding: 0em
+        --bodyPadding: 0em;
         /* stylelint-endable */
 }
     }
@@ -2357,10 +2357,10 @@ body:has(.parvus[open]) {
     color: var(--parvus-btn-color);
     display: flex;
     justify-content: center;
-    padding: 0.5rem;
+    padding: .5rem;
     position: absolute;
-    inset-inline-end: 0.5rem;
-    inset-block-start: 0.5rem;
+    inset-inline-end: .5rem;
+    inset-block-start: .5rem;
 }
 
 .parvus-trigger:has(img) img {
@@ -2450,14 +2450,14 @@ body:has(.parvus[open]) {
 .parvus__content--error {
     background-color: var(--parvus-loading-error-background-color);
     color: var(--parvus-loading-error-color);
-    padding-block: 0.5rem;
+    padding-block: .5rem;
     padding-inline: 1rem;
 }
 
 .parvus__caption {
     background-color: var(--parvus-caption-background-color);
     color: var(--parvus-caption-color);
-    padding-block-start: 0.5rem;
+    padding-block-start: .5rem;
     text-align: start;
 }
 
@@ -2474,9 +2474,9 @@ body:has(.parvus[open]) {
 .parvus__loader::before {
     animation: spin 1s infinite linear;
     border-radius: 100%;
-    border: 0.25rem solid var(--parvus-loader-background-color);
+    border: .25rem solid var(--parvus-loader-background-color);
     border-block-start-color: var(--parvus-loader-color);
-    content: "";
+    content: '';
     inset: 0;
     position: absolute;
     z-index: 1;
@@ -2500,25 +2500,27 @@ body:has(.parvus[open]) {
 
 .parvus__controls {
     display: flex;
-    gap: 0.5rem;
+    gap: .5rem;
 }
 
+/* stylelint-disable number-max-precision */
 .parvus__btn {
     appearance: none;
     background-color: var(--parvus-btn-background-color);
     background-image: none;
     border-radius: 0;
-    border: 0.0625rem solid transparent;
+    border: .0625rem solid transparent;
     color: var(--parvus-btn-color);
     cursor: pointer;
     display: flex;
     font: inherit;
-    padding: 0.3125rem;
+    padding: .3125rem;
     position: relative;
     touch-action: manipulation;
     will-change: transform, opacity;
     z-index: 7;
 }
+/* stylelint-endable */
 
 .parvus__btn:hover,
 .parvus__btn:focus-visible {
