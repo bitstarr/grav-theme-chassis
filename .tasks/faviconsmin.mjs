@@ -1,50 +1,65 @@
-import imagemin from 'imagemin';
-import imageminPngquant from 'imagemin-pngquant';
-import imageminSvgo from 'imagemin-svgo';
-import imageminZopfli from 'imagemin-zopfli';
+import sharp from 'sharp';
+import { optimize } from 'svgo';
 
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { mkdirp } from 'mkdirp'
+import { mkdirp } from 'mkdirp';
 import chalk from 'chalk';
 import prettyBytes from 'pretty-bytes';
+
+const svgoOptions = {
+    js2svg: {
+        pretty: true
+    },
+    plugins: [
+        'preset-default',
+        {
+            name: 'removeViewBox',
+            active: false,
+        },
+        {
+            name: 'collapseGroups',
+            active: true,
+        },
+        {
+            name: 'removeUselessStrokeAndFill',
+            active: false,
+        },
+    ]
+};
 
 const config = {
     src: process.env.npm_package_config_faviconsDist, // provided by package.json
     dist: process.env.npm_package_config_faviconsDist, // provided by package.json
-    options: {
-        plugins: [
-            imageminPngquant({
-                // quality: [0.8, 0.95]
-            }),
-            imageminSvgo({
-                js2svg: {
-                    pretty: true
-                },
-                plugins: [
-                    'preset-default',
-                    {
-                        name: 'removeViewBox',
-                        active: false,
-                    },
-                    {
-                        name: 'collapseGroups',
-                        active: true,
-                    },
-                    {
-                        name: 'removeUselessStrokeAndFill',
-                        active: false,
-                    },
-                ]
-            }),
-            imageminZopfli({
-                more: true,
-                // iterations: 50 // very slow but more effective
-            }),
-        ],
-    },
 };
+
+// dispatch to the right optimizer by file type; sharp handles png
+// (replacing imagemin-pngquant/zopfli), svgo handles svg (replacing
+// imagemin-svgo) - imagemin itself is unmaintained
+async function optimizeFavicon( file )
+{
+    const ext = path.extname( file.name ).toLowerCase();
+
+    if ( ext === '.svg' )
+    {
+        return Buffer.from( optimize( file.content.toString( 'utf8' ), {
+            path: file.name,
+            ...svgoOptions,
+        } ).data );
+    }
+
+    if ( ext === '.png' )
+    {
+        return sharp( file.content ).png( {
+            compressionLevel: 9,
+            effort: 10,
+            palette: true,
+        } ).toBuffer();
+    }
+
+    return file.content;
+}
 
 
 const cwd = path.resolve( config.src );
@@ -66,7 +81,7 @@ await glob( '**/*.{png,svg}', { cwd: cwd } ).then( files =>
             content: fs.readFileSync( path.join( cwd, file ) ),
         };
 
-        stack[stack.length] = imagemin.buffer( file.content, config.options )
+        stack[stack.length] = optimizeFavicon( file )
             .then( data =>
             {
                 const originalSize = file.content.length;

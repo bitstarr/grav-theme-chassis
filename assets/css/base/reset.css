@@ -1,4 +1,4 @@
-/* stylelint-disable selector-list-comma-newline-after */
+/* stylelint-disable @stylistic/selector-list-comma-newline-after */
 /*
     @see https://www.joshwcomeau.com/css/custom-css-reset/
     @see https://github.com/elad2412/the-new-css-reset
@@ -83,7 +83,7 @@ html { interpolate-size: allow-keywords; }
     scroll-margin-block: 5ex;
 }
 
-/* stylelint-enable selector-list-comma-newline-after */
+/* stylelint-enable @stylistic/selector-list-comma-newline-after */
 
 /* stylelint-disable */
 /*
