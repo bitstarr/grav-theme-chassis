@@ -63,7 +63,7 @@
     <div class="{{ element_classes|join( ' ' )|trim }}">
         <div class="panels__shell shell" data-highlight="{{ layout }}">
         {% for filename in header.media_order|split(',')|slice(0, 3) -%}
-            {% set file = page.media[ filename ] -%}
+            {% set file = page.media[ filename|trim ] -%}
             {% set size = ( loop.index == 1 ) ? 'alpha' : 'omega' %}
             {% set image = file.cropZoom( setup[size][0], setup[size][1] ).quality(70) -%}
             <img class="panels__image image" src="{{ image.url }}" alt="{{ file.metadata.alt }}" loading="lazy">

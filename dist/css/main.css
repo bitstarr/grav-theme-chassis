@@ -1685,12 +1685,24 @@ input.bool {
 .universal:has( .media + .content ) .media {
             margin-bottom: var( --gap );
         }
-.universal:has( .media + .content ) .embedvideo {
+.universal.is-split .embedvideo {
             aspect-ratio: unset;
         }
-.universal:has( .media + .content ) .embedvideo__privacy {
+.universal.is-split .embedvideo__privacy {
             position: static;
         }
+/* sorry for being overly specific) */
+.universal:not( .is-split ):has( .content + .media ) .content,
+        .universal:not( .is-split ):has( .content + .media ) .title {
+            width: min( ( 50vw - var( --wrapper-offset ) - 1rem ) * 2, var( --wrapper ) );
+            margin-inline: auto;
+        }
+@media( max-width: 40rem ) {
+.universal:not( .is-split ):has( .content + .media ) .content,
+        .universal:not( .is-split ):has( .content + .media ) .title {
+                --wrapper-offset: calc( 0 * 1rem )
+        }
+            }
 .universal:where( .is-2col, .is-3col ):not( :has( .media ) ) .content {
         columns: var( --_col-size, 26ch );
         column-gap: var( --_col-gap, var( --gap-m ) ) ;
@@ -1706,7 +1718,7 @@ input.bool {
         margin-inline: var( --gap );
     }
 @container universal (inline-size > 39em) {
-            .universal:has( .media + .content ) .shell {
+            .universal.is-split .shell {
                 display: grid;
                 gap: 0 var( --_col-gap );
                 grid-template-areas: var( --_areas );
@@ -1714,7 +1726,7 @@ input.bool {
                 grid-template-columns: .9fr 1fr;
                 align-items: start;
             }
-            .universal:has( .media + .content ) .media {
+            .universal.is-split .media {
                 position: sticky;
                 top: var( --gap-m );
             }

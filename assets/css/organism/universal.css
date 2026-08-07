@@ -29,11 +29,25 @@
         .media {
             margin-bottom: var( --gap );
         }
+    }
+    &.is-split {
         .embedvideo {
             aspect-ratio: unset;
         }
         .embedvideo__privacy {
             position: static;
+        }
+    }
+    /* sorry for being overly specific) */
+    &:not( .is-split ):has( .content + .media ) {
+        .content,
+        .title {
+            width: min( ( 50vw - var( --wrapper-offset ) - 1rem ) * 2, var( --wrapper ) );
+            margin-inline: auto;
+
+            @media( max-width: 40rem ) {
+                --wrapper-offset: calc( 0 * 1rem );
+            }
         }
     }
 
@@ -54,7 +68,7 @@
     }
 
     @container universal (inline-size > 39em) {
-        &:has( .media + .content ) {
+        &.is-split {
             .shell {
                 display: grid;
                 gap: 0 var( --_col-gap );

@@ -1,0 +1,87 @@
+{% extends 'partials/base.html.twig' %}
+{% do assets.addCss('theme://dist/css/styleguide.css', 102) %}
+
+{# no need to notice a page collection all the time with this template #}
+{% set options = {
+    items: {'@self.modules': ''},
+    'order': {'by': 'folder', 'dir': 'asc'}
+} %}
+{% set modules = page.collection(options) %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="icon" type="image/svg+xml" href="{{ url( 'theme://dist/img/docs-favicon.svg' )}}" />
+{% endblock %}
+
+{% block content %}
+<article class="sg-item">
+    <header class="sg-item__header wrapping">
+        <h1 class="headline">{{ page.title|e }}</h1>
+        {% if page.header.styleguide.status %}
+            <p class="sg-item__status">
+                Status:
+                <span class="sg-status" data-status="{{ header.styleguide.status|e }}">
+                    {{ header.styleguide.status|e }}
+                </span>
+            </p>
+        {% endif %}
+        {% if page.header.styleguide.template_path %}
+            <p class="sg-item__status">
+                Template:
+                <code>
+                    {{ page.header.styleguide.template_path|e }}
+                </code>
+            </p>
+        {% endif %}
+        {% if modules|length > 1 %}
+        <p class="sg-item__jump">
+            ↓ <a href="#sg-description">Zur Beschreibung</a>
+        </p>
+        {% endif %}
+    </header>
+
+    {% if modules|length %}
+    {# 1. Live-Beispiel: echtes Modul via Collection #}
+    <section class="sg-item__preview" aria-label="Live-Beispiel/e des Moduls">
+        {% for module in modules %}
+        <figure class="sg-state">
+            {% if modules|length > 1 %}
+                <figcaption class="sg-state__label">
+                    <h2>{{ module.header.styleguide_state|default(module.title)|e }}</h2>
+                    {% if module.header.styleguide_note %}
+                        <p>{{ module.header.styleguide_note|e }}</p>
+                    {% endif %}
+                </figcaption>
+            {% endif %}
+            <div class="sg-state__preview">
+                {{ module.content|raw }}
+            </div>
+        </figure>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {# 2. Overview + Redakteurs-Guide aus dem Markdown-Body #}
+    <section id="sg-description" class="sg-item__docs textflow wrapping">
+        {{ page.content|raw }}
+    </section>
+
+</article>
+
+<nav class="sg-item__nav" aria-label="Komponenten">
+    <ul class="sg-index__list">
+    {% for child in page.parent.children %}
+        <li class="sg-index__item">
+            <a class="sg-index__link{{ (child.url == page.url ) ? ' active' : '' }}" href="{{ child.url }}">
+                {{ child.menu|default(child.title)|e }}
+            </a>
+            {% if child.header.styleguide.status %}
+                <span class="sg-status" data-status="{{ child.header.styleguide.status|e }}">
+                    {{ child.header.styleguide.status|e }}
+                </span>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</nav>
+{% endblock %}

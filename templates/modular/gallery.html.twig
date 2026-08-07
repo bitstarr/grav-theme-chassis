@@ -48,7 +48,7 @@
         <div class="gallery" data-cols="{{ columns }}" data-format="{{ format }}">
         {% for filename in header.media_order|split(',') -%}
             {% spaceless -%}
-                {% set file = page.media[ filename ] -%}
+                {% set file = page.media[ filename|trim ] -%}
                 {% if format != 'masonry' %}
                     {% set thumbnail = file.cropZoom( formats[format][0], formats[format][1] ).url %}
                 {% else %}

@@ -8,6 +8,9 @@
 {% set element_classes = [
     'universal',
 ] %}
+{% if header.layout.split %}
+    {% set element_classes = element_classes|merge( ['is-split'] ) %}
+{% endif %}
 {% if header.layout.flipped %}
     {% set element_classes = element_classes|merge( ['is-flipped'] ) %}
 {% endif %}
@@ -50,7 +53,7 @@
                 <figure class="universal__media media">
                 {% include 'partials/universal-' ~ hasMedia ~ '.html.twig' with {
                     image: image,
-                    isNarrow: page.content|length,
+                    isNarrow: header.layout.split,
                     audiovideo: audiovideo,
                     externalVideo: header.externalVideo
                 } -%}

@@ -56,6 +56,7 @@ THEME_C:
       INVERT: Invert
       ALTERNATE: Alternative Layout
       FLIP: Reverese Order
+      SPLIT: Next to each other
       LAYOUT: Layout
       GRID: Grid
       COLUMNS: Columns

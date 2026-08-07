@@ -56,6 +56,7 @@ THEME_C:
       INVERT: Invertieren
       ALTERNATE: Alternatives Layout
       FLIP: Reihenfolge umkehren
+      SPLIT: Nebeneinander
       LAYOUT: Darstellung
       GRID: Raster
       COLUMNS: Spalten

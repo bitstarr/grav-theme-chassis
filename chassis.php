@@ -3,10 +3,16 @@ namespace Grav\Theme;
 
 use Grav\Common\Grav;
 use Grav\Common\Theme;
+use Grav\Common\Data\Blueprint;
 use Grav\Theme\Chassis\Utils;
 
 class Chassis extends Theme
 {
+    public function autoload(): \Composer\Autoload\ClassLoader
+    {
+        return require __DIR__ . '/vendor/autoload.php';
+    }
+
     public static function getSubscribedEvents()
     {
         return [
@@ -22,8 +28,10 @@ class Chassis extends Theme
 
     public function onThemeInitialized()
     {
+        Blueprint::addAllowedDynamicCallable('Grav\Theme\Chassis\Utils::getIcons');
+
         if ($this->isAdmin()) {
-            \Grav\Common\Data\Blueprint::addAllowedDynamicCallable('\Grav\Theme\Chassis\Utils::getIcons');
+            // Blueprint::addAllowedDynamicCallable('\Grav\Theme\Chassis\Utils::getIcons');
 
             $this->enable([
                 'onAssetsInitialized' => ['onAdminAssetsInitialized', 0],

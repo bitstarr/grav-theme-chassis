@@ -6,7 +6,7 @@ use Grav\Common\Filesystem\Folder;
 
 class Utils
 {
-    function hexToRGB($hex)
+    function hexToRGB( String $hex )
     {
         list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
         return [$r, $g, $b];
@@ -69,7 +69,7 @@ class Utils
         return $icons;
     }
 
-    public static function phoneNumberCleanUp( $input )
+    public static function phoneNumberCleanUp( String $input )
     {
         $output = preg_replace( '~\s|-|\/|\(.*\)|\.~', '', $input );
         return $output;
