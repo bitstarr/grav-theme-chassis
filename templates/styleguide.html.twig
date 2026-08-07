@@ -1,0 +1,36 @@
+{% extends 'partials/base.html.twig' %}
+{% do assets.addCss('theme://dist/css/styleguide.css', 102) %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="icon" type="image/svg+xml" href="{{ url( 'theme://dist/img/docs-favicon.svg' )}}" />
+{% endblock %}
+
+{% block content %}
+<div class="sg-index wrapping">
+    <div class="sg-index__header">
+        <h1 class="headline">
+            {{ page.title|e }}
+        </h1>
+        <div class="textflow">
+            {{ page.content|raw }}
+        </div>
+    </div>
+    <nav aria-label="Komponenten">
+        <ul class="sg-index__list">
+        {% for child in page.children %}
+            <li class="sg-index__item">
+                <a class="sg-index__link" href="{{ child.url }}">
+                    {{ child.menu|default(child.title)|e }}
+                </a>
+                {% if child.header.styleguide.status %}
+                    <span class="sg-status" data-status="{{ child.header.styleguide.status|e }}">
+                        {{ child.header.styleguide.status|e }}
+                    </span>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

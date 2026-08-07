@@ -73,6 +73,17 @@ form:
                   title: THEME_C.MODULE.UNIVERSAL.TEXTANDMEDIA
                   type: fieldset
                   icon: newspaper-o
+                  fields:
+                    header.layout.split:
+                      type: toggle
+                      toggleable: true
+                      label: THEME_C.MODULE.LAYOUT.SPLIT
+                      highlight: 1
+                      options:
+                        1: PLUGIN_ADMIN.YES
+                        0: PLUGIN_ADMIN.NO
+                      validate:
+                        type: bool
                   import@2:
                     type: partials/layout-flip
                     context: blueprints://

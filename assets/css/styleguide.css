@@ -1,0 +1,184 @@
+.sg-index {
+
+    &__header {
+        margin-block-end: 2rem;
+    }
+    &__item {
+        padding: .2em 0;
+    }
+    &__link {
+        padding: .2em;
+        line-height: 1.3;
+        text-underline-offset: .2em;
+
+        &:hover {
+            text-decoration: underline;
+            text-decoration-thickness: .1em;
+        }
+
+        &.active {
+            text-decoration: underline;
+            text-decoration-thickness: .2em;
+        }
+    }
+}
+
+.sg-status {
+    display: inline-block;
+    vertical-align: center;
+    padding: .3em .5em;
+    font-size: .8rem;
+    line-height: 1;
+    color: var( --_cl, #222 );
+    border-radius: .4em;
+    background: var( --_bg, #ddd );
+
+    &[data-status='stable'] {
+        --_cl: #fff;
+        --_bg: #175c2e;
+    }
+    &[data-status='beta'] {
+        --_cl: #222;
+        --_bg: #fc0;
+    }
+    &[data-status='alpha'] {
+        --_cl: #fff;
+        --_bg: #a00;
+    }
+}
+
+.sg-item {
+    &__header,
+    &__preview {
+        margin-block-end: var( --gap-m );
+    }
+
+    &__jump {
+        margin-block-start: 1.5rem;
+    }
+
+    &__docs {
+        --alert-color: #268bd2;
+        --alert-color-error: #c0392b;
+        --alert-color-success: #32b643;
+        --alert-color-warning: #e67e22;
+    }
+
+    &__nav {
+        position: fixed;
+        z-index: 99;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        min-width: 11em;
+        background-color: #fff;
+        border: .08rem solid #ddd;
+        box-shadow: 0 1px 3px rgb( 3 7 18 / .03 ),
+            0 3px 11px rgb( 3 7 18 / .05 ),
+            0 6px 24px rgb( 3 7 18 / .08 );
+        transition: transform .3s;
+        transform: translateX( -100% );
+
+        &:focus-within,
+        &:hover {
+            transform: translateX( 0 );
+        }
+
+        &::after {
+            content: 'Styleguide';
+            position: absolute;
+            inset-block-start: 100%;
+            inset-inline-start: 1ex;
+            padding: 1em .2em;
+            background-color: #222;
+            color: #fff;
+            writing-mode: vertical-lr;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            height: calc( 100% + 3rem );
+            width: calc( 100% + 3rem );
+        }
+
+        .sg-index__list {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .sg-index__item {
+            display: flex;
+            gap: 1em;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sg-index__link {
+            display: block;
+            flex-grow: 1;
+        }
+    }
+
+    p.tip {
+        position: relative;
+        margin: 2em 0;
+        padding: 12px 24px 12px 20px;
+        background-color: #f8f8f8;
+        border-left: 4px solid;
+        border-left-color: var( --accent, var( --alert-color-success ) );
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        clear: both;
+    }
+    p.tip:before{
+        content: '!';
+        position: absolute;
+        top: 14px;
+        left: -12px;
+        width: 20px;
+        height: 20px;
+        font-family: Dosis, 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 700;
+        line-height: 20px;
+        text-align: center;
+        color: #fff;
+        border-radius: 100%;
+        background-color: var( --accent, var( --alert-color-success ) );
+    }
+    p.tip.warning {
+        --accent: var( --alert-color-warning );
+    }
+    p.tip.important {
+        --accent: var( --alert-color-error );
+    }
+
+    u {
+        text-decoration: underline;
+    }
+}
+
+.sg-state {
+    padding-block: 1rem;
+    margin-inline: .5rem;
+    border: .08rem solid #ddd;
+    box-shadow: 0 1px 3px rgb( 3 7 18 / .03 ),
+        0 3px 11px rgb( 3 7 18 / .05 ),
+        0 6px 24px rgb( 3 7 18 / .08 );
+
+    & + & {
+        margin-block-start: var( --gap-s );
+    }
+
+    &:has( &__label ) {
+        padding-block-start: 0;
+    }
+
+    &__label {
+        margin-block-start: 0;
+        margin-block-end: 1rem;
+        padding: .4rem 1rem;
+        color: #222;
+        background-color: #ddd;
+    }
+}
