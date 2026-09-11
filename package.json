@@ -22,7 +22,7 @@
         "postcss-nested": "^8.0.0",
         "pretty-bytes": "^7.1.1",
         "ruleemall": "https://github.com/bitstarr/ruleemall/",
-        "sharp": "^0.35.3",
+        "sharp": "^0.35.4",
         "stylelint": "^16.26.1",
         "svg-sprite": "^2.0.4",
         "svgo": "^4.0.2",
